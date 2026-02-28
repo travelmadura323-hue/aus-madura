@@ -74,6 +74,7 @@ export default function Header() {
     alt="Madura Travel Logo"
     className="h-12 w-auto object-contain"
   />
+
           </div>
           <div className="flex flex-col">
             <span className={cn(
