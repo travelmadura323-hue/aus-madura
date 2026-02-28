@@ -69,14 +69,11 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
           <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-slate-100">
-            <img 
-              src="/images/logo.png" 
-              alt="Madura Travel Logo"
-              className="w-full h-full object-contain p-1"
-              onError={(e) => {
-                e.currentTarget.src = "/src/images/logo.png";
-              }}
-            />
+           <img
+  src="/images/logo.png"
+  alt="Madura Travel Logo"
+  className="w-full h-full object-contain p-1"
+/>
           </div>
           <div className="flex flex-col">
             <span className={cn(
