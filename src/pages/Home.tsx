@@ -19,12 +19,12 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
     {
-      image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJqZ3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKD5lJbcBCMvXy0/giphy.gif",
+      image: "/src/images/2.png",
       title: "Discover Incredible India",
       subtitle: "Experience the royal heritage and natural beauty of the subcontinent."
     },
     {
-      image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJqZ3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6Z3R6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/l41lTfuxV5F6K6pJC/giphy.gif",
+      image: "/src/images/4.png",
       title: "Explore Southeast Asia",
       subtitle: "From the bustling streets of Singapore to the serene beaches of Vietnam."
     }
@@ -51,7 +51,7 @@ export default function Home() {
           >
             <motion.div style={{ y }} className="absolute inset-0">
               <img
-                src={slide.image}
+                src="/src/images/1.png"
                 alt={slide.title}
                 className="w-full h-full object-cover"
               />
@@ -164,7 +164,7 @@ export default function Home() {
                 location: 'Delhi, Agra, Jaipur',
                 duration: '5 Days / 4 Nights',
                 price: 750,
-                image: 'https://images.unsplash.com/photo-1564507592333-c60657eaa0ae?auto=format&fit=crop&w=600&h=400&q=80'
+                image: '/src/images/4.png'
               }} />
             </motion.div>
           </div>
@@ -388,11 +388,11 @@ export default function Home() {
           <h2 className="text-4xl font-bold text-primary">Our Trusted Partners & Affiliations</h2>
         </div>
         
-        <div className="space-y-12">
+        <div className="space-y-14">
           {/* Row 1: Left to Right */}
           <div className="flex gap-20 animate-marquee whitespace-nowrap">
             {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
-              <div key={idx} className="flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+              <div key={idx} className="flex items-center justify-center  opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
                 <img 
                   src={`/src/images/gallery/img-${i}.jpg`} 
                   alt="Partner Logo" 
@@ -405,7 +405,7 @@ export default function Home() {
           {/* Row 2: Right to Left */}
           <div className="flex gap-20 animate-marquee-reverse whitespace-nowrap">
             {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
-              <div key={idx} className="flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+              <div key={idx} className="flex items-center justify-center  opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
                 <img 
                   src={`/src/images/gallery/img-${i}.jpg`} 
                   alt="Partner Logo" 
