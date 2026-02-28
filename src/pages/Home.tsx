@@ -380,7 +380,7 @@ import { div } from 'framer-motion/client';
             >
               <div className="relative inline-block mb-8">
                 <img 
-                  src="images/screenshot40927-1731340896.png" 
+                  src="images/VKT-Balan.png" 
                   alt="chairman" 
                   className="rounded-2xl shadow-2xl relative z-10"
                 />
@@ -393,12 +393,12 @@ import { div } from 'framer-motion/client';
               viewport={{ once: true }}
             >
               <Quote className="w-16 h-16 text-accent mb-8 opacity-50" />
-              <h2 className="text-4xl font-bold mb-6">A Message from Our Founder</h2>
+              <h2 className="text-4xl font-bold mb-6">A Message from Our Chairman</h2>
               <p className="text-slate-300 text-lg leading-relaxed mb-8 italic">
-                "Travel is the only thing you buy that makes you richer. At Madura Travel Service, we don't just sell tickets; we craft experiences that stay with you forever. Our commitment to excellence and personalized service has been our guiding light for over 40 years."
+                "For over four decades,we have carried the dreams of millions .Trusted by more than 4 million travelers,we believe travel is not a transaction,it is a responsibility.Every journey we create is backed by experience,care,and an uncompromising promise: Client happiness and true value for every penny spent.This is not our slogan ;it is our promise."
               </p>
               <div>
-                <div className="text-2xl font-bold text-accent">V.K.T Balan</div>
+                <div className="text-2xl font-bold text-accent">Kalaimamani<span className="ml-2">V.K.T Balan</span></div>
                 <div className="text-slate-400">Chairman</div>
               </div>
             </motion.div>
