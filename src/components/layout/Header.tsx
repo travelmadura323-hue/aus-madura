@@ -70,10 +70,10 @@ export default function Header() {
         <Link to="/" className="flex items-center gap-3">
           <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-slate-100">
            <img
-  src="/images/logo.png"
-  alt="Madura Travel Logo"
-  className="w-full h-full object-contain p-1"
-/>
+    src="/images/logo.png"
+    alt="Madura Travel Logo"
+    className="h-12 w-auto object-contain"
+  />
           </div>
           <div className="flex flex-col">
             <span className={cn(
