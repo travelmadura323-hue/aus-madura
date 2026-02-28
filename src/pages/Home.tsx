@@ -90,6 +90,9 @@ export default function Home() {
               <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20">
                 Explore India <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
+              <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20">
+                Explore Australia <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
               {/* <button className="bg-white/10 backdrop-blur-md text-white border border-white/20 font-bold px-8 py-4 rounded-full hover:bg-white/20 transition-all flex items-center gap-2">
                 <Play className="w-5 h-5 fill-white" /> Explore India
               </button> */}
