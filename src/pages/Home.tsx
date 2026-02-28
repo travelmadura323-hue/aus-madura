@@ -19,12 +19,12 @@ export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
     {
-      image: "/src/images/2.png",
+      image: "/images/2.png",
       title: "Discover Incredible India",
       subtitle: "Experience the royal heritage and natural beauty of the subcontinent."
     },
     {
-      image: "/src/images/4.png",
+      image: "/images/4.png",
       title: "Explore Southeast Asia",
       subtitle: "From the bustling streets of Singapore to the serene beaches of Vietnam."
     }
@@ -397,7 +397,7 @@ export default function Home() {
             {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
               <div key={idx} className="flex items-center justify-center  opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
                 <img 
-                  src={`/src/images/gallery/img-${i}.jpg`} 
+                  src={`/images/gallery/img-${i}.jpg`} 
                   alt="Partner Logo" 
                   className="h-12 object-contain"
                 />
