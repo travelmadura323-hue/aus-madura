@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-6">
               <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden p-1">
                 <img 
-                  src="/src/images/logo.png" 
+                  src="/images/logo.png" 
                   alt="Madura Travel Logo"
                   className="w-full h-full object-contain"
                   onError={(e) => {

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
 import { cn } from '../lib/utils';
+// import Button from '../components/Button';
 
 export default function Home() {
   const heroRef = useRef(null);
@@ -20,12 +21,12 @@ export default function Home() {
   const slides = [
     {
       image: "/images/2.png",
-      title: "Discover Incredible India",
-      subtitle: "Experience the royal heritage and natural beauty of the subcontinent."
+      title: "Heritage. Architecture. Living Tradition.",
+      subtitle: "Curated India journeys from Australia — thoughtfully designed around history, culture and regional depth"
     },
     {
-      image: "/images/4.png",
-      title: "Explore Southeast Asia",
+      image: "images/4.png",
+      title: "Heritage. Architecture. Living Tradition.",
       subtitle: "From the bustling streets of Singapore to the serene beaches of Vietnam."
     }
   ];
@@ -51,7 +52,7 @@ export default function Home() {
           >
             <motion.div style={{ y }} className="absolute inset-0">
               <img
-                src="/src/images/1.png"
+                src="/images/1.png"
                 alt={slide.title}
                 className="w-full h-full object-cover"
               />
@@ -83,16 +84,16 @@ export default function Home() {
             <p className="text-lg text-slate-200 max-w-2xl mx-auto mb-10">
               {slides[currentSlide].subtitle}
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20">
-                Explore Destinations <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20">
-                Explore India <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20">
-                Explore Australia <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+<div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+  <Link to="/india">
+    <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20">
+      Explore Journeys to India <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+    </button>
+  </Link>
+  <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20">
+    Book a Free Travel Consultation <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+  </button>
+              
               {/* <button className="bg-white/10 backdrop-blur-md text-white border border-white/20 font-bold px-8 py-4 rounded-full hover:bg-white/20 transition-all flex items-center gap-2">
                 <Play className="w-5 h-5 fill-white" /> Explore India
               </button> */}
@@ -167,7 +168,7 @@ export default function Home() {
                 location: 'Delhi, Agra, Jaipur',
                 duration: '5 Days / 4 Nights',
                 price: 750,
-                image: '/src/images/4.png'
+                image: '/images/4.png'
               }} />
             </motion.div>
           </div>
@@ -185,10 +186,10 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               { name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80' },
-              { name: 'Malaysia', price: '650', image: '/src/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png' },
-              { name: 'Singapore', price: '950', image: 'https://images.unsplash.com/photo-1525625239514-75b4b17b9979?auto=format&fit=crop&w=600&h=800&q=80' },
+              { name: 'Malaysia', price: '650', image: '/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png' },
+              { name: 'Singapore', price: '950', image: '/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png' },
               { name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80' },
-              { name: 'India', price: '350', image: 'https://images.unsplash.com/photo-1524492707947-519a51e33117?auto=format&fit=crop&w=600&h=800&q=80' }
+              { name: 'India', price: '350', image: '/images/11.png' }
             ].map((dest, idx) => (
               <motion.div
                 key={dest.name}
@@ -277,7 +278,7 @@ export default function Home() {
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {[
-              // { icon: <Award className="w-8 h-8" />, title: 'Kalaimamani Award', badge: '🏆' },
+              { icon: <Award className="w-8 h-8" />, title: 'Kalaimamani Award', badge: '🏆' },
               { icon: <Globe className="w-8 h-8" />, title: '195+ Countries', badge: '🌍' },
               { icon: <Plane className="w-8 h-8" />, title: '4M+ Travelers', badge: '✈' },
               { icon: <Award className="w-8 h-8" />, title: '40+ Years', badge: '🏅' }
@@ -410,7 +411,7 @@ export default function Home() {
             {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
               <div key={idx} className="flex items-center justify-center  opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
                 <img 
-                  src={`/src/images/gallery/img-${i}.jpg`} 
+                  src={`/images/gallery/img-${i}.jpg`} 
                   alt="Partner Logo" 
                   className="h-12 object-contain"
                 />
