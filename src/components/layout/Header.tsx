@@ -70,12 +70,13 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
           <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-slate-100">
-            <img src={heroImg} alt="Hero" />;
-         <img
+            
+           <img
             src="/images/logo.png"
             alt="Madura Global Logo"
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-10 md:h-18 w-18 object-contain"
           />
+  
 
           </div>
         
