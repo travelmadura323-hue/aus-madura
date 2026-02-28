@@ -306,49 +306,69 @@ import { div } from 'framer-motion/client';
       </section> */}
 
       {/* Why Choose Us with Badges */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-primary mb-4">Why Choose Us?</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto">
-              With over four decades of excellence, we are committed to providing the best travel experiences.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-            {[
-              { icon: <Award className="w-8 h-8" />, title: 'Kalaimamani Award', badge: '🏆' },
-              { icon: <Globe className="w-8 h-8" />, title: '195+ Countries', badge: '🌍' },
-              { icon: <Plane className="w-8 h-8" />, title: '4M+ Travelers', badge: '✈' },
-              { icon: <Award className="w-8 h-8" />, title: '40+ Years', badge: '🏅' }
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ y: -5 }}
-                className="bg-secondary p-8 rounded-2xl text-center border border-slate-100 flex flex-col items-center gap-4"
-              >
-                <div className="text-4xl">{item.badge}</div>
-                <h3 className="text-lg font-bold text-primary">{item.title}</h3>
-              </motion.div>
-            ))}
-          </div>
+     <section className="py-28 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
+  <div className="max-w-7xl mx-auto px-6">
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[
-              { icon: <Compass className="w-10 h-10 text-accent" />, title: 'Expert Guidance', desc: 'Our travel experts have years of experience crafting the perfect itineraries.' },
-              { icon: <Building2 className="w-10 h-10 text-accent" />, title: 'Corporate Standards', desc: 'We maintain the highest standards of service and reliability in the industry.' },
-              { icon: <Users className="w-10 h-10 text-accent" />, title: 'Personalized Service', desc: 'Every trip is tailored to your specific needs and preferences.' }
-            ].map((item, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center">
-                <div className="mb-6">{item.icon}</div>
-                <h3 className="text-xl font-bold text-primary mb-4">{item.title}</h3>
-                <p className="text-slate-500">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+    {/* Header */}
+    <div className="text-center mb-20">
+      <h2 className="text-5xl font-extrabold text-primary mb-6">
+        Why Travel With Us?
+      </h2>
+      <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        For over four decades, we’ve been crafting unforgettable journeys across the globe.
+        Our passion, precision, and commitment to excellence make every trip extraordinary.
+      </p>
+    </div>
 
+    {/* Stats Section */}
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+      {[
+        { badge: "🏆", title: "Kalaimamani Award", subtitle: "Recognized Excellence" },
+        { badge: "🌍", title: "195+ Countries", subtitle: "Worldwide Coverage" },
+        { badge: "✈️", title: "4M+ Travelers", subtitle: "Happy Clients" },
+        { badge: "🏅", title: "40+ Years", subtitle: "Trusted Experience" }
+      ].map((item, idx) => (
+        <motion.div
+          key={idx}
+          whileHover={{ scale: 1.05 }}
+          className="bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 text-center border border-slate-100"
+        >
+          <div className="text-5xl mb-4">{item.badge}</div>
+          <h3 className="text-xl font-bold text-primary mb-2">{item.title}</h3>
+          <p className="text-slate-500 text-sm">{item.subtitle}</p>
+        </motion.div>
+      ))}
+    </div>
+
+    {/* Features Section */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      {[
+        {
+          title: "Expert Travel Guidance",
+          desc: "Our seasoned travel consultants craft seamless itineraries tailored to your dreams."
+        },
+        {
+          title: "Premium Corporate Standards",
+          desc: "We uphold the highest levels of reliability, safety, and professional service."
+        },
+        {
+          title: "100% Personalized Experiences",
+          desc: "From luxury escapes to family adventures, every journey is uniquely yours."
+        }
+      ].map((item, idx) => (
+        <motion.div
+          key={idx}
+          whileHover={{ y: -8 }}
+          className="bg-white p-10 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 text-center border border-slate-100"
+        >
+          <h3 className="text-2xl font-bold text-primary mb-4">{item.title}</h3>
+          <p className="text-slate-600 leading-relaxed">{item.desc}</p>
+        </motion.div>
+      ))}
+    </div>
+
+  </div>
+</section>
       {/* Founder Note Section */}
       <section className="py-24 bg-primary text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
@@ -360,8 +380,8 @@ import { div } from 'framer-motion/client';
             >
               <div className="relative inline-block mb-8">
                 <img 
-                  src="https://picsum.photos/seed/founder/500/600" 
-                  alt="Founder" 
+                  src="images/screenshot40927-1731340896.png" 
+                  alt="chairman" 
                   className="rounded-2xl shadow-2xl relative z-10"
                 />
                 <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl -z-0" />
@@ -378,8 +398,8 @@ import { div } from 'framer-motion/client';
                 "Travel is the only thing you buy that makes you richer. At Madura Travel Service, we don't just sell tickets; we craft experiences that stay with you forever. Our commitment to excellence and personalized service has been our guiding light for over 40 years."
               </p>
               <div>
-                <div className="text-2xl font-bold text-accent">Dr. V.S. Murali</div>
-                <div className="text-slate-400">Founder & Managing Director</div>
+                <div className="text-2xl font-bold text-accent">V.K.T Balan</div>
+                <div className="text-slate-400">Chairman</div>
               </div>
             </motion.div>
           </div>
@@ -394,11 +414,12 @@ import { div } from 'framer-motion/client';
             <p className="text-slate-500">Real stories from real people who traveled with us.</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {[
-              { name: 'Ananya Sharma', location: 'Delhi', text: 'The Kerala tour was absolutely magical. Everything from the houseboat to the tea gardens was perfectly organized.' },
-              { name: 'Rahul Verma', location: 'Mumbai', text: 'Madura Travel made our Singapore family trip so easy. Highly recommend their services for international travel.' },
-              { name: 'Priya Patel', location: 'Gujarat', text: 'The attention to detail in our Rajasthan heritage tour was impressive. We felt like royalty throughout the trip.' }
+              { name: 'S.Vijay', text: 'We had a wonderful experience with Madura Travel Service for our Sri Lanka trip. All the arrangements were well taken care of, and everything went smoothly. A special thanks to Mr. Sudharsan, who was very polite, friendly, and ensured we were comfortable throughout. Highly recommended!' },
+              { name: 'Hariharan Balasubramanian', text: 'Systematic and cautious apporach to each and every step of the VISA processing. My sincere thanks to the whole team mates for your courteous and warm welcome. Timely updates were provided and my family is delighted with the customer service.' },
+              { name: 'Subhashini Srivatsan', text: 'Excellent, personalised, professional and patient service by Ms Deepa and her team.'},
+              { name: 'Jagadeesh Jayaraman', text: 'Recently we took their tour services! By understanding our requirements, Ms.fathima gave a right tour plan!Good planning, co ordination, gave us a wonderful experience!'}
             ].map((feedback, idx) => (
               <motion.div
                 key={idx}
@@ -415,7 +436,7 @@ import { div } from 'framer-motion/client';
                   </div>
                   <div>
                     <div className="font-bold text-primary">{feedback.name}</div>
-                    <div className="text-xs text-slate-400">{feedback.location}</div>
+                    {/* <div className="text-xs text-slate-400">{feedback.location}</div> */}
                   </div>
                 </div>
               </motion.div>
