@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #191975; /* Dark Blue */
+  --color-accent: #cc1715;  /* Red */
+  --color-secondary: #e3ebf2; /* Light Blue-Grey Background */
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 30s linear infinite;
+}
+
+@layer base {
+  body {
+    @apply bg-secondary text-slate-900 antialiased;
+  }
+}
+
+.glass-nav {
+  @apply bg-white/80 backdrop-blur-md border-b border-white/20;
+}
+
+.mega-menu-gradient {
+  background: linear-gradient(to bottom, white, #f8fafc);
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Madura Travel",
+  "description": "Madura Travel Service - Premium Travel & Tourism for India and International Destinations",
+  "requestFramePermissions": ["geolocation"]
+}
