@@ -74,7 +74,7 @@ export default function Header() {
               alt="Madura Travel Logo"
               className="w-full h-full object-contain p-1"
               onError={(e) => {
-                e.currentTarget.src = "https://picsum.photos/seed/madura/100/100";
+                e.currentTarget.src = "/src/images/logo.png";
               }}
             />
           </div>
