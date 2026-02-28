@@ -182,7 +182,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               { name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80' },
-              { name: 'Malaysia', price: '650', image: 'https://images.unsplash.com/photo-1517622589940-b29ba996e050?auto=format&fit=crop&w=600&h=800&q=80' },
+              { name: 'Malaysia', price: '650', image: '/src/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png' },
               { name: 'Singapore', price: '950', image: 'https://images.unsplash.com/photo-1525625239514-75b4b17b9979?auto=format&fit=crop&w=600&h=800&q=80' },
               { name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80' },
               { name: 'India', price: '350', image: 'https://images.unsplash.com/photo-1524492707947-519a51e33117?auto=format&fit=crop&w=600&h=800&q=80' }
