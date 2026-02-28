@@ -13,7 +13,7 @@
   import MICE from './pages/MICE';
   import Contact from './pages/Contact';
   import OurStory from './pages/OurStory';
-  import India  from "./pages/india";
+  import India  from "./pages/India";
 
   export default function App() {
     return (
