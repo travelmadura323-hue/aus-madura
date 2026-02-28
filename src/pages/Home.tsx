@@ -41,7 +41,7 @@ import { div } from 'framer-motion/client';
       ]
     },
     {
-      image: "/landscape.png",
+      image: "images/landscape.png",
       title: "Landscape. Culture. Continental Scale.",
       subtitle:
         "From coastlines to desert interiors, Australia revealed through thoughtful design and disciplined execution.",
