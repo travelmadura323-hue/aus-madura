@@ -5,6 +5,7 @@ import { ChevronDown, Menu, X, Phone, Mail, MapPin, Globe, Building2, Users, Bri
 import { cn } from '../../lib/utils';
 import EnquiryModal from '../EnquiryModal';
 
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -69,13 +70,15 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
           <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-slate-100">
-           <img
-    src="/images/logo.png"
-    alt="Madura Travel Logo"
-    className="h-12 w-auto object-contain"
-  />
+            <img src={heroImg} alt="Hero" />;
+         <img
+            src="/images/logo.png"
+            alt="Madura Global Logo"
+            className="h-10 md:h-12 w-auto object-contain"
+          />
 
           </div>
+        
           <div className="flex flex-col">
             <span className={cn(
               "text-xl font-black tracking-tighter leading-none",
