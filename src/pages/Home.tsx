@@ -5,43 +5,69 @@ import { Link } from 'react-router-dom';
 import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
 import { cn } from '../lib/utils';
+import { div } from 'framer-motion/client';
 // import Button from '../components/Button';
 
-export default function Home() {
+// export default function Home() {
+//   const heroRef = useRef(null);
+//   const { scrollYProgress } = useScroll({
+//     target: heroRef,
+//     offset: ["start start", "end start"]
+//   });
+  
+ export default function Home() {
   const heroRef = useRef(null);
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
-  
+
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // ✅ Slides = DATA ONLY
   const slides = [
     {
-      image: "/images/2.png",
+      image: "/images/1.png",
       title: "Heritage. Architecture. Living Tradition.",
-      subtitle: "Curated India journeys from Australia — thoughtfully designed around history, culture and regional depth"
+      subtitle:
+        "Curated India journeys from Australia — thoughtfully designed around history, culture and regional depth",
+      buttons: [
+        { text: "Explore Journeys to India", link: "/india" },
+        { text: "Book a Free Travel Consultation", link: "/consultation" }
+      ]
     },
     {
-      image: "images/4.png",
-      title: "Heritage. Architecture. Living Tradition.",
-      subtitle: "From the bustling streets of Singapore to the serene beaches of Vietnam."
+      image: "/images/landscape.png",
+      title: "Landscape. Culture. Continental Scale.",
+      subtitle:
+        "From coastlines to desert interiors, Australia revealed through thoughtful design and disciplined execution.",
+      buttons: [
+        { text: "Explore Australia Tours", link: "/australia" },
+        { text: "Speak With Travel Expert", link: "/consultation" }
+      ]
     }
   ];
 
+  // Auto slide
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
+
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   return (
     <div className="overflow-x-hidden">
-      {/* Hero Section with Slider & Parallax */}
-      <section ref={heroRef} className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section
+        ref={heroRef}
+        className="relative h-screen flex items-center justify-center overflow-hidden"
+      >
+        {/* Background Slides */}
         {slides.map((slide, index) => (
           <motion.div
             key={index}
@@ -51,8 +77,9 @@ export default function Home() {
             className="absolute inset-0 z-0"
           >
             <motion.div style={{ y }} className="absolute inset-0">
+              {/* ✅ Dynamic Image */}
               <img
-                src="/images/1.png"
+                src={slide.image}
                 alt={slide.title}
                 className="w-full h-full object-cover"
               />
@@ -61,7 +88,8 @@ export default function Home() {
           </motion.div>
         ))}
 
-        <motion.div 
+        {/* Content */}
+        <motion.div
           style={{ opacity }}
           className="relative z-10 max-w-7xl mx-auto px-4 text-center"
         >
@@ -74,33 +102,43 @@ export default function Home() {
             <span className="inline-block bg-accent/20 backdrop-blur-md text-accent px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-accent/30">
               Welcome to Madura Global
             </span>
+
+            {/* Title */}
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.1]">
-              {slides[currentSlide].title.split(' ').map((word, i) => (
-                i === slides[currentSlide].title.split(' ').length - 1 ? 
-                <span key={i} className="text-accent italic font-serif block md:inline">{word}</span> : 
-                word + ' '
-              ))}
+              {slides[currentSlide].title.split(" ").map((word, i, arr) =>
+                i === arr.length - 1 ? (
+                  <span
+                    key={i}
+                    className="text-accent italic font-serif block md:inline"
+                  >
+                    {word}
+                  </span>
+                ) : (
+                  word + " "
+                )
+              )}
             </h1>
+
+            {/* Subtitle */}
             <p className="text-lg text-slate-200 max-w-2xl mx-auto mb-10">
               {slides[currentSlide].subtitle}
             </p>
-<div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-  <Link to="/india">
-    <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20">
-      Explore Journeys to India <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-    </button>
-  </Link>
-  <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20">
-    Book a Free Travel Consultation <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-  </button>
-              
-              {/* <button className="bg-white/10 backdrop-blur-md text-white border border-white/20 font-bold px-8 py-4 rounded-full hover:bg-white/20 transition-all flex items-center gap-2">
-                <Play className="w-5 h-5 fill-white" /> Explore India
-              </button> */}
+
+            {/* ✅ Dynamic Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              {slides[currentSlide].buttons.map((btn, index) => (
+                <Link key={index} to={btn.link}>
+                  <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20">
+                    {btn.text}
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </Link>
+              ))}
             </div>
           </motion.div>
         </motion.div>
 
+        {/* Slide Indicators */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20">
           {slides.map((_, i) => (
             <button
@@ -114,6 +152,7 @@ export default function Home() {
           ))}
         </div>
       </section>
+      
 
       {/* Popular India Tours */}
       <section className="py-24 bg-white">
@@ -420,6 +459,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+   </div>
   );
 }
