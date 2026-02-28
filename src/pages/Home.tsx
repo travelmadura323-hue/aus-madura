@@ -274,7 +274,7 @@ export default function Home() {
           
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {[
-              { icon: <Award className="w-8 h-8" />, title: 'Kalaimamani Award', badge: '🏆' },
+              // { icon: <Award className="w-8 h-8" />, title: 'Kalaimamani Award', badge: '🏆' },
               { icon: <Globe className="w-8 h-8" />, title: '195+ Countries', badge: '🌍' },
               { icon: <Plane className="w-8 h-8" />, title: '4M+ Travelers', badge: '✈' },
               { icon: <Award className="w-8 h-8" />, title: '40+ Years', badge: '🏅' }
