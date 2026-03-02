@@ -114,7 +114,7 @@ export default function Header() {
               ) : (
                 <button
                   className={cn(
-                    "text-sm font-medium flex items-center gap-1 hover:text-accent transition-colors",
+                    "text-sm font-medium flex items-center gap-1 hover:text-accent transition-colors ",
                     isScrolled ? "text-slate-700" : "text-white"
                   )}
                 >
