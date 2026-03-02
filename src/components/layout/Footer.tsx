@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Send } from 'lucide-react';
+import Image from '/images/logo.png';
 
 export default function Footer() {
   return (
@@ -11,7 +12,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-6">
               <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden p-1">
                 <img 
-                  src="/images/logo.png" 
+                  src={Image}
                   alt="Madura Travel Logo"
                   className="w-full h-full object-contain"
                   onError={(e) => {

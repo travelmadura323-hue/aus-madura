@@ -20,6 +20,7 @@ import { div } from 'framer-motion/client';
   eager: true,
   import: 'default',
 });
+
  export default function Home() {
   const heroRef = useRef(null);
 
@@ -212,7 +213,7 @@ import { div } from 'framer-motion/client';
                 location: 'Delhi, Agra, Jaipur',
                 duration: '5 Days / 4 Nights',
                 price: 750,
-                image: '/images/4.png'
+                image: images['/images/1.png'],
               }} />
             </motion.div>
           </div>
