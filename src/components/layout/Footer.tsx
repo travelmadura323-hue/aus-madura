@@ -24,7 +24,7 @@ export default function Footer() {
                 Madura<span className="text-accent">Global</span>
               </span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed mb-6">
+            <p className="text-white text-sm leading-relaxed mb-6">
               Madura Travel Service - Your trusted partner for global travel solutions for over 40 years. Excellence in service, every step of the way.
             </p>
             <div className="flex gap-4">
@@ -43,7 +43,7 @@ export default function Footer() {
           {/* Column 2: Quick Links */}
           <div>
             <h4 className="text-lg font-bold mb-6 text-accent">Quick Links</h4>
-            <ul className="space-y-4 text-slate-400 text-sm">
+            <ul className="space-y-4 text-white text-sm">
               <li><Link to="/company/our-story" className="hover:text-white transition-colors">Our Story</Link></li>
               <li><Link to="/company/careers" className="hover:text-white transition-colors">Careers</Link></li>
               <li><Link to="/mice" className="hover:text-white transition-colors">MICE Services</Link></li>
@@ -55,7 +55,7 @@ export default function Footer() {
           {/* Column 3: Top Destinations */}
           <div>
             <h4 className="text-lg font-bold mb-6 text-accent">Top Destinations</h4>
-            <ul className="space-y-4 text-slate-400 text-sm">
+            <ul className="space-y-4 text-white text-sm">
               <li><Link to="/destinations/kerala" className="hover:text-white transition-colors">Kerala Backwaters</Link></li>
               <li><Link to="/destinations/rajasthan" className="hover:text-white transition-colors">Rajasthan Heritage</Link></li>
               <li><Link to="/destinations/vietnam" className="hover:text-white transition-colors">Vietnam Discovery</Link></li>
@@ -67,7 +67,7 @@ export default function Footer() {
           {/* Column 4: Newsletter */}
           <div>
             <h4 className="text-lg font-bold mb-6 text-accent">Newsletter</h4>
-            <p className="text-slate-400 text-sm mb-6">Subscribe to get the latest travel deals and updates.</p>
+            <p className="text-white text-sm mb-6">Subscribe to get the latest travel deals and updates.</p>
             <form className="relative">
               <input
                 type="email"
@@ -79,17 +79,17 @@ export default function Footer() {
               </button>
             </form>
             <div className="mt-8 space-y-3">
-              <div className="flex items-center gap-3 text-sm text-slate-400">
+              <div className="flex items-center gap-3 text-sm text-white">
                 <Phone className="w-4 h-4 text-accent" /> +61 434 500 743
               </div>
-              <div className="flex items-center gap-3 text-sm text-slate-400">
+              <div className="flex items-center gap-3 text-sm text-white">
                 <Mail className="w-4 h-4 text-accent" /> australia@maduraglobal.com
               </div>
             </div>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-white text-xs">
           <p>© 2026 Madura Travel Service Pvt Ltd. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white">Privacy Policy</a>

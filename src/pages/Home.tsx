@@ -140,7 +140,7 @@ import image from '/images/VKT-BALAN.png';
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {slides[currentSlide].buttons.map((btn, index) => (
                 <Link key={index} to={btn.link}>
-                  <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20">
+                  <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20 ">
                     {btn.text}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
@@ -174,9 +174,13 @@ import image from '/images/VKT-BALAN.png';
               <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">Domestic Highlights</span>
               <h2 className="text-4xl font-bold text-primary">Popular India Tours</h2>
             </div>
-            <button className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group">
-              View All India Tours <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+           <Link
+  to="/india"
+  className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group"
+>
+  View All India Tours
+  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+</Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -318,147 +322,137 @@ import image from '/images/VKT-BALAN.png';
       </section> */}
 
       {/* Why Choose Us with Badges */}
-     <section className="py-28 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
-  <div className="max-w-7xl mx-auto px-6">
+  <section className="py-28 bg-gradient-to-b from-white to-slate-50">
+  <div className="max-w-7xl mx-auto px-6 text-center">
 
-    {/* Header */}
-    <div className="text-center mb-20">
-      <h2 className="text-5xl font-extrabold text-primary mb-6">
-        Why Travel With Us?
-      </h2>
-      <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-        For over four decades, we’ve been crafting unforgettable journeys across the globe.
-        Our passion, precision, and commitment to excellence make every trip extraordinary.
-      </p>
-    </div>
+    {/* Top Tagline */}
+    <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
+      Experience. Quality. Trust.
+    </span>
 
-    {/* Stats Section */}
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+    {/* Heading */}
+    <h2 className="text-5xl md:text-6xl font-extrabold text-primary mt-6 mb-6">
+      Why Choose Us?
+    </h2>
+
+    {/* Description */}
+    <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-20">
+      Join millions of happy travelers who trust Madura Travel Service (P) Ltd,
+      one of India’s leading travel companies. With over four decades of excellence,
+      we craft unforgettable journeys backed by global expertise and personalized service.
+    </p>
+
+    {/* Stats Cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
       {[
-        { badge: "🏆", title: "Kalaimamani Award", subtitle: "Recognized Excellence" },
-        { badge: "🌍", title: "195+ Countries", subtitle: "Worldwide Coverage" },
-        { badge: "✈️", title: "4M+ Travelers", subtitle: "Happy Clients" },
-        { badge: "🏅", title: "40+ Years", subtitle: "Trusted Experience" }
-      ].map((item, idx) => (
-        <motion.div
-          key={idx}
-          whileHover={{ scale: 1.05 }}
-          className="bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 text-center border border-slate-100"
+        { number: "4M+", label: "Happy Travelers" },
+        { number: "28K+", label: "Destinations Covered" },
+        { number: "40+", label: "Years of Excellence" },
+        { number: "200K+", label: "5-Star Client Ratings" }
+      ].map((item, index) => (
+        <div
+          key={index}
+          className="bg-[#f3ece3] rounded-3xl p-14 shadow-sm hover:shadow-2xl transition-all duration-300 group"
         >
-          <div className="text-5xl mb-4">{item.badge}</div>
-          <h3 className="text-xl font-bold text-primary mb-2">{item.title}</h3>
-          <p className="text-slate-500 text-sm">{item.subtitle}</p>
-        </motion.div>
-      ))}
-    </div>
-
-    {/* Features Section */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-      {[
-        {
-          title: "Expert Travel Guidance",
-          desc: "Our seasoned travel consultants craft seamless itineraries tailored to your dreams."
-        },
-        {
-          title: "Premium Corporate Standards",
-          desc: "We uphold the highest levels of reliability, safety, and professional service."
-        },
-        {
-          title: "100% Personalized Experiences",
-          desc: "From luxury escapes to family adventures, every journey is uniquely yours."
-        }
-      ].map((item, idx) => (
-        <motion.div
-          key={idx}
-          whileHover={{ y: -8 }}
-          className="bg-white p-10 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 text-center border border-slate-100"
-        >
-          <h3 className="text-2xl font-bold text-primary mb-4">{item.title}</h3>
-          <p className="text-slate-600 leading-relaxed">{item.desc}</p>
-        </motion.div>
+          <h3 className="text-6xl font-extrabold text-slate-900 mb-4 group-hover:text-primary transition-colors">
+            {item.number}
+          </h3>
+          <p className="text-slate-700 text-lg font-medium">
+            {item.label}
+          </p>
+        </div>
       ))}
     </div>
 
   </div>
 </section>
-      {/* Founder Note Section */}
-      <section className="py-24 bg-primary text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="relative inline-block mb-8">
-                {/* // In Home.tsx — keep as-is if image is in /public/images/ */}
-                {/* <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl -z-0" /> */}
-                <img
-                  src={image}
-                  alt="Chairman V.K.T Balan"
-                  className="w-80 h-80 object-cover rounded-2xl shadow-2xl border-4 border-white"
-                />
-                
-                
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <Quote className="w-16 h-16 text-accent mb-8 opacity-50" />
-              <h2 className="text-4xl font-bold mb-6">A Message from Our Chairman</h2>
-              <p className="text-slate-300 text-lg leading-relaxed mb-8 italic">
-                "For over four decades,we have carried the dreams of millions .Trusted by more than 4 million travelers,we believe travel is not a transaction,it is a responsibility.Every journey we create is backed by experience,care,and an uncompromising promise: Client happiness and true value for every penny spent.This is not our slogan ;it is our promise."
-              </p>
-              <div>
-                <div className="text-2xl font-bold text-accent">Kalaimamani<span className="ml-2">V.K.T Balan</span></div>
-                <div className="text-slate-400">Chairman</div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* Feedbacks Section */}
-      <section className="py-24 bg-secondary">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-primary mb-4">What Our Travelers Say</h2>
-            <p className="text-slate-500">Real stories from real people who traveled with us.</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            {[
-              { name: 'S.Vijay', text: 'We had a wonderful experience with Madura Travel Service for our Sri Lanka trip. All the arrangements were well taken care of, and everything went smoothly. A special thanks to Mr. Sudharsan, who was very polite, friendly, and ensured we were comfortable throughout. Highly recommended!' },
-              { name: 'Hariharan Balasubramanian', text: 'Systematic and cautious apporach to each and every step of the VISA processing. My sincere thanks to the whole team mates for your courteous and warm welcome. Timely updates were provided and my family is delighted with the customer service.' },
-              { name: 'Subhashini Srivatsan', text: 'Excellent, personalised, professional and patient service by Ms Deepa and her team.'},
-              { name: 'Jagadeesh Jayaraman', text: 'Recently we took their tour services! By understanding our requirements, Ms.fathima gave a right tour plan!Good planning, co ordination, gave us a wonderful experience!'}
-            ].map((feedback, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ y: -10 }}
-                className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100"
-              >
-                <div className="flex gap-1 text-accent mb-4">
-                  {[1,2,3,4,5].map(s => <Star key={s} className="w-4 h-4 fill-current" />)}
+  <section className="py-32 bg-gradient-to-b from-secondary to-white">
+  <div className="max-w-7xl mx-auto px-6">
+
+    {/* Header */}
+    <div className="text-center max-w-3xl mx-auto mb-20">
+      <span className="text-sm tracking-[0.3em] uppercase text-accent font-semibold">
+        Testimonials
+      </span>
+      <h2 className="text-5xl font-extrabold text-primary mt-4 mb-6">
+        What Our Travelers Say
+      </h2>
+      <p className="text-lg text-slate-500 leading-relaxed">
+        Real stories from real people who trusted us to plan their journeys.
+      </p>
+    </div>
+
+    {/* Testimonials Data */}
+    {(() => {
+      const testimonials = [
+        {
+          name: "S. Vijay",
+          text: "We had a wonderful experience for our Sri Lanka trip. All arrangements were seamless and Mr. Sudharsan ensured we were comfortable throughout."
+        },
+        {
+          name: "Hariharan Balasubramanian",
+          text: "Systematic and careful VISA processing. Timely updates were provided and my family is delighted with the customer service."
+        },
+        {
+          name: "Subhashini Srivatsan",
+          text: "Excellent, personalised, professional and patient service by Ms. Deepa and her team."
+        },
+        {
+          name: "Jagadeesh Jayaraman",
+          text: "They understood our requirements perfectly and gave us a well-planned tour. Wonderful coordination and experience!"
+        }
+      ]
+
+      return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {testimonials.map((feedback, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="aspect-square bg-white p-8 rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-100 flex flex-col justify-between relative"
+            >
+              {/* Quote */}
+              <div className="absolute -top-5 left-6 bg-accent text-white px-3 py-1 rounded-full text-xl shadow-md">
+                “
+              </div>
+
+              {/* Stars */}
+              <div className="flex gap-1 text-yellow-400 mt-6">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star key={s} className="w-4 h-4 fill-current" />
+                ))}
+              </div>
+
+              {/* Text */}
+              <p className="text-slate-600 text-sm leading-relaxed mt-4">
+                {feedback.text}
+              </p>
+
+              {/* User */}
+              <div className="flex items-center gap-3 mt-6">
+                <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center font-bold text-primary text-sm">
+                  {feedback.name[0]}
                 </div>
-                <p className="text-slate-600 mb-6 italic">"{feedback.text}"</p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center font-bold text-primary">
-                    {feedback.name[0]}
+                <div>
+                  <div className="font-semibold text-primary text-sm">
+                    {feedback.name}
                   </div>
-                  <div>
-                    <div className="font-bold text-primary">{feedback.name}</div>
-                    {/* <div className="text-xs text-slate-400">{feedback.location}</div> */}
+                  <div className="text-xs text-slate-400">
+                    Verified Traveler
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </section>
+      )
+    })()}
+
+  </div>
+</section>
 
       {/* Logo Carousel Section */}
       <section className="py-24 bg-white border-y border-slate-100 overflow-hidden">
