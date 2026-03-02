@@ -36,7 +36,7 @@ import { div } from 'framer-motion/client';
   // ✅ Slides = DATA ONLY
   const slides = [
     {
-      image: "/images/1.png",
+      image: images['/images/1.png'],
       title: "Heritage. Architecture. Living Tradition.",
       subtitle:
         "Curated India journeys from Australia — thoughtfully designed around history, culture and regional depth",
