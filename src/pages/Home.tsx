@@ -230,10 +230,10 @@ import { div } from 'framer-motion/client';
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               { name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80' },
-              { name: 'Malaysia', price: '650', image: '/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png' },
-              { name: 'Singapore', price: '950', image: '/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png' },
+              { name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'] },
+              { name: 'Singapore', price: '950', image: images['/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png'] },
               { name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80' },
-              { name: 'India', price: '350', image: '/images/11.png' }
+              { name: 'India', price: '350', image: images['/images/11.png'] }
             ].map((dest, idx) => (
               <motion.div
                 key={dest.name}
@@ -385,7 +385,7 @@ import { div } from 'framer-motion/client';
             >
               <div className="relative inline-block mb-8">
                 <img 
-                  src="images/VKT-Balan.png" 
+                  src={images["images/VKT-Balan.png"]}
                   alt="chairman" 
                   className="rounded-2xl shadow-2xl relative z-10"
                 />
@@ -463,7 +463,7 @@ import { div } from 'framer-motion/client';
             {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
               <div key={idx} className="flex items-center justify-center  opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
                 <img 
-                  src={`/images/gallery/img-${i}.jpg`} 
+                  src={images[`/images/gallery/img-${i}.jpg`]} 
                   alt="Partner Logo" 
                   className="h-12 object-contain"
                 />
@@ -476,7 +476,7 @@ import { div } from 'framer-motion/client';
             {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
               <div key={idx} className="flex items-center justify-center  opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
                 <img 
-                  src={`/images/gallery/img-${i}.jpg`} 
+                  src={images[`/images/gallery/img-${i}.jpg`]} 
                   alt="Partner Logo" 
                   className="h-12 object-contain"
                 />
