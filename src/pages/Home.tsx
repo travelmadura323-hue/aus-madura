@@ -394,7 +394,7 @@ import Chairmanimage from '/images/VKT-Balan.png';
                 <img
                   src={Chairmanimage}
                   alt="Chairman V.K.T Balan"
-                  className="w-80 h-80 object-cover rounded-2xl shadow-2xl border-4 border-white"
+                  // className="w-80 h-80 object-cover rounded-2xl shadow-2xl border-4 border-white"
                 />
                 <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl -z-0" />
               </div>
