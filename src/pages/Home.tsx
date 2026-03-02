@@ -386,7 +386,7 @@ import { div } from 'framer-motion/client';
             >
               <div className="relative inline-block mb-8">
                 <img 
-                  src={images["/images/VKT-Balan.png"]}
+                  src={images['/images/VKT-Balan.png']}
                   alt="chairman" 
                   className="rounded-2xl shadow-2xl relative z-10"
                 />
@@ -464,7 +464,7 @@ import { div } from 'framer-motion/client';
             {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
               <div key={idx} className="flex items-center justify-center  opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
                 <img 
-                  src={images['/images/gallery/img-${i}.jpg']} 
+                  src={images[`/images/gallery/img-${i}.jpg`]} 
                   alt="Partner Logo" 
                   className="h-12 object-contain"
                 />
@@ -477,7 +477,7 @@ import { div } from 'framer-motion/client';
             {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
               <div key={idx} className="flex items-center justify-center  opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
                 <img 
-                  src={images[`/images/gallery/img-${i}.jpg`]} 
+                  src={images['/images/gallery/img-${i}.jpg']} 
                   alt="Partner Logo" 
                   className="h-12 object-contain"
                 />
