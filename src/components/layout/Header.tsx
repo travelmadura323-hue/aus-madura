@@ -190,8 +190,8 @@ export default function Header() {
                 ))}
               </div>
               <div className="mt-10 space-y-4">
-                <div className="flex items-center gap-3 text-slate-600"><Phone className="w-5 h-5" /> +91 98765 43210</div>
-                <div className="flex items-center gap-3 text-slate-600"><Mail className="w-5 h-5" /> info@maduratravel.com</div>
+                <div className="flex items-center gap-3 text-slate-600"><Phone className="w-5 h-5" /> +61 434 500 743</div>
+                <div className="flex items-center gap-3 text-slate-600"><Mail className="w-5 h-5" /> australia@maduraglobal.com</div>
               </div>
             </div>
           </motion.div>

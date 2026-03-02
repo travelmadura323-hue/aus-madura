@@ -6,7 +6,9 @@ import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
 import { cn } from '../lib/utils';
 import { div } from 'framer-motion/client';
-// import Button from '../components/Button';
+
+
+
 
 // export default function Home() {
 //   const heroRef = useRef(null);
@@ -14,7 +16,10 @@ import { div } from 'framer-motion/client';
 //     target: heroRef,
 //     offset: ["start start", "end start"]
 //   });
-  
+  const images = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+});
  export default function Home() {
   const heroRef = useRef(null);
 
