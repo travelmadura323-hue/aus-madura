@@ -6,7 +6,7 @@ import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
 import { cn } from '../lib/utils';
 import { div } from 'framer-motion/client';
-import image from '/images/VKT-Balan.png';
+import Chairmanimage from '/images/VKT-Balan.png';
 
 
 
@@ -391,7 +391,7 @@ import image from '/images/VKT-Balan.png';
             >
               <div className="relative inline-block mb-8">
                 <img 
-                  src={image}
+                  src={Chairmanimage}
                   alt="chairman" 
                   className="rounded-2xl shadow-2xl relative z-10"
                 />
