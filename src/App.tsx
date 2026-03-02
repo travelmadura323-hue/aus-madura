@@ -14,6 +14,9 @@
   import Contact from './pages/Contact';
   import OurStory from './pages/OurStory';
   import India  from "./pages/India";
+  import CareersPage from './pages/Careers';
+  import MediaPage from './pages/media';
+  import Testimonial from './pages/Testimonial';
 
   export default function App() {
     return (
@@ -30,8 +33,12 @@
               <Route path="/contact" element={<Contact />} />
               <Route path="/company/our-story" element={<OurStory />} />
               {/* Fallback routes for demo */}
-              <Route path="/company/*" element={<OurStory />} />
+              {/* <Route path="/company/*" element={<OurStory />} /> */}
               <Route path="/india" element={<India />} />
+              <Route path="/company/careers" element={<CareersPage />} /> 
+              <Route path="/company/media" element={<MediaPage />} /> 
+              <Route path="/company/testimonials" element={<Testimonial />} />
+
             </Routes>
           </main>
           <Footer />

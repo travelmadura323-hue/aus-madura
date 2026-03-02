@@ -331,7 +331,7 @@ import image from '/images/VKT-BALAN.png';
     </span>
 
     {/* Heading */}
-    <h2 className="text-5xl md:text-6xl font-extrabold text-primary mt-6 mb-6">
+    <h2 className="text-5xl md:text-6xl font-bold text-primary mt-6 mb-6">
       Why Choose Us?
     </h2>
 
