@@ -391,11 +391,7 @@ import Chairmanimage from '/images/VKT-Balan.png';
             >
               <div className="relative inline-block mb-8">
                 {/* // In Home.tsx — keep as-is if image is in /public/images/ */}
-                <img
-                  src={Chairmanimage}
-                  alt="Chairman V.K.T Balan"
-                  // className="w-80 h-80 object-cover rounded-2xl shadow-2xl border-4 border-white"
-                />
+               <img src={Chairmanimage} alt="VKT Balan" />
                 <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl -z-0" />
               </div>
             </motion.div>
@@ -468,7 +464,7 @@ import Chairmanimage from '/images/VKT-Balan.png';
           {/* Row 1: Left to Right */}
           <div className="flex gap-20 animate-marquee whitespace-nowrap">
             {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
-              <div key={idx} className="flex items-center justify-center  opacity-50  hover:opacity-100 transition-all">
+              <div key={idx} className="flex items-center justify-center  opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
                 <img 
                   src={gallery[`/src/gallery/img-${i}.jpg`]} 
                   alt="Partner Logo" 
