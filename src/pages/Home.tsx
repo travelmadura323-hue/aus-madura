@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote } from 'lucide-react';
+import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote, Images } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { tours } from '../data/mockData';
@@ -218,7 +218,7 @@ import Chairmanimage from '/images/VKT-Balan.png';
                 location: 'Delhi, Agra, Jaipur',
                 duration: '5 Days / 4 Nights',
                 price: 750,
-                image: "/images/2.png",
+                image: Images["/images/2.png"],
               }} />
             </motion.div>
           </div>
