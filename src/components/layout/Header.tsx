@@ -68,7 +68,7 @@ export default function Header() {
         isScrolled ? 'glass-nav py-3' : 'bg-transparent py-5'
       )}
     >
-    <div className="max-w-7xl mx-auto  flex  justify-between">
+    <div className="max-w-7xl ml-10  flex  justify-between">
   <Link to="/" className="flex items-center">
     <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-slate-100">
       <img

@@ -77,7 +77,7 @@ import image from '/images/VKT-BALAN.png';
     <div className="overflow-x-hidden">
       <section
         ref={heroRef}
-        className="relative h-screen flex items-center justify-center overflow-hidden"
+        className="relative h-[70vh] flex items-center justify-center overflow-hidden"
       >
         {/* Background Slides */}
         {slides.map((slide, index) => (
@@ -103,7 +103,7 @@ import image from '/images/VKT-BALAN.png';
         {/* Content */}
         <motion.div
           style={{ opacity }}
-          className="relative z-10 max-w-7xl mx-auto px-4 text-center"
+          className="relative z-10 max-w-7xl mx-auto px-4 text-center pt-10"
         >
           <motion.div
             key={currentSlide}
