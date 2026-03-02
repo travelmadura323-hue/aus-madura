@@ -468,9 +468,9 @@ import Chairmanimage from '/images/VKT-Balan.png';
           {/* Row 1: Left to Right */}
           <div className="flex gap-20 animate-marquee whitespace-nowrap">
             {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
-              <div key={idx} className="flex items-center justify-center  opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
+              <div key={idx} className="flex items-center justify-center  opacity-50  hover:opacity-100 transition-all">
                 <img 
-                  src={images[`/images/gallery/img-${i}.jpg`]} 
+                  src={gallery[`/src/gallery/img-${i}.jpg`]} 
                   alt="Partner Logo" 
                   className="h-12 object-contain"
                 />
@@ -483,7 +483,7 @@ import Chairmanimage from '/images/VKT-Balan.png';
             {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
               <div key={idx} className="flex items-center justify-center  opacity-50 hover:grayscale-0 hover:opacity-100 transition-all">
                 <img 
-                  src={gallery[`/gallery/img-${i}.jpg`]} 
+                  src={gallery[`/src/gallery/img-${i}.jpg`]} 
                   alt="Partner Logo" 
                   className="h-12 object-contain"
                 />
