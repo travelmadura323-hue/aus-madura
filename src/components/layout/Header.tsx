@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Menu, X, Phone, Mail, MapPin, Globe, Building2, Users, Briefcase } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import EnquiryModal from '../EnquiryModal';
+import  Image  from '/images/logo.png';
 
 
 export default function Header() {
@@ -71,7 +72,7 @@ export default function Header() {
   <Link to="/" className="flex items-center">
     <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-slate-100">
       <img
-        src="/images/logo.svg"
+        src={Image}
         alt="Madura Global Logo"
         className="w-full h-full object-contain"
       />
