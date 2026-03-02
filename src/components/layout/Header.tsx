@@ -67,18 +67,15 @@ export default function Header() {
         isScrolled ? 'glass-nav py-3' : 'bg-transparent py-5'
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3">
-          <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-slate-100">
-            
-           <img
-            src="/images/logo.png"
-            alt="Madura Global Logo"
-            className="h-10 md:h-18 w-18 object-contain"
-          />
-  
-
-          </div>
+    <div className="max-w-7xl mx-auto  flex  justify-between">
+  <Link to="/" className="flex items-center">
+    <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-slate-100">
+      <img
+        src="/images/logo.svg"
+        alt="Madura Global Logo"
+        className="w-full h-full object-contain"
+      />
+    </div>
         
           <div className="flex flex-col">
             <span className={cn(
