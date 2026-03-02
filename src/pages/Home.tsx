@@ -203,7 +203,7 @@ import Chairmanimage from '/images/VKT-Balan.png';
                 location: 'Kashmir, India',
                 duration: '6 Days / 5 Nights',
                 price: 950,
-                image: images['/images/Gemini_Generated_Image_54pojh54pojh54po.png']
+                image: images['/images/Gemini_Generated_Image_54pojh54pojh54po.png'] as string,
               }} />
             </motion.div>
             <motion.div
@@ -218,7 +218,7 @@ import Chairmanimage from '/images/VKT-Balan.png';
                 location: 'Delhi, Agra, Jaipur',
                 duration: '5 Days / 4 Nights',
                 price: 750,
-                image: images['/images/2.png'],
+                image: images['/images/2.png'] as string,
               }} />
             </motion.div>
           </div>
@@ -237,7 +237,7 @@ import Chairmanimage from '/images/VKT-Balan.png';
             {[
               { name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80' },
               { name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'] },
-              { name: 'Singapore', price: '950', image: images['/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png'] },
+              { name: 'Singapore', price: '950', image: images['/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png'] as string },
               { name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80' },
               { name: 'India', price: '350', image: images['/images/11.png'] }
             ].map((dest, idx) => (
