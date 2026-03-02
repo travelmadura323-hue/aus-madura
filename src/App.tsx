@@ -35,9 +35,9 @@
               {/* Fallback routes for demo */}
               {/* <Route path="/company/*" element={<OurStory />} /> */}
               <Route path="/india" element={<India />} />
-              <Route path="/company/careers" element={<CareersPage />} /> 
+              <Route path="/company/Careers" element={<CareersPage />} /> 
               <Route path="/company/media" element={<MediaPage />} /> 
-              <Route path="/company/testimonials" element={<Testimonial />} />
+              <Route path="/company/Testimonials" element={<Testimonial />} />
 
             </Routes>
           </main>
