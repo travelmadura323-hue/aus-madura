@@ -391,7 +391,11 @@ import Chairmanimage from '/images/VKT-Balan.png';
             >
               <div className="relative inline-block mb-8">
                 {/* // In Home.tsx — keep as-is if image is in /public/images/ */}
-               <img src={Chairmanimage} alt="VKT Balan" />
+                <img
+                  src="/images/VKT-BALAN.png"
+                  alt="Chairman V.K.T Balan"
+                  // className="w-80 h-80 object-cover rounded-2xl shadow-2xl border-4 border-white"
+                />
                 <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl -z-0" />
               </div>
             </motion.div>
