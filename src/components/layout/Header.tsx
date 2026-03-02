@@ -68,9 +68,10 @@ export default function Header() {
         isScrolled ? 'glass-nav py-3' : 'bg-transparent py-5'
       )}
     >
-    <div className="max-w-7xl mx-auto  flex  justify-between">
+    <div className="w-full bg-slate-900 py-6 px-6">
+ 
   <Link to="/" className="flex items-center">
-    <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-slate-100">
+    <div className="w-18 h-18 bg-white max-w-7xl mx-auto flex items-center gap-6 rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-slate-100">
       <img
         src={Image}
         alt="Madura Global Logo"
@@ -89,7 +90,7 @@ export default function Header() {
               "text-[8px] font-bold uppercase tracking-[0.3em] leading-none mt-1",
               isScrolled ? "text-slate-400" : "text-white/60"
             )}>
-              Service Excellence
+              
             </span>
           </div>
         </Link>
