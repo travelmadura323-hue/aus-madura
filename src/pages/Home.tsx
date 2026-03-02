@@ -213,7 +213,6 @@ import { div } from 'framer-motion/client';
                 location: 'Delhi, Agra, Jaipur',
                 duration: '5 Days / 4 Nights',
                 price: 750,
-                image: images['/images/1.png'],
               }} />
             </motion.div>
           </div>
