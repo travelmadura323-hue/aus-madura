@@ -203,7 +203,7 @@ import Chairmanimage from '/images/VKT-Balan.png';
                 location: 'Kashmir, India',
                 duration: '6 Days / 5 Nights',
                 price: 950,
-                image: 'https://images.unsplash.com/photo-1595928642581-f50f4f3453a5?auto=format&fit=crop&w=600&h=400&q=80'
+                image: images['/images/Gemini_Generated_Image_54pojh54pojh54po.png']
               }} />
             </motion.div>
             <motion.div
