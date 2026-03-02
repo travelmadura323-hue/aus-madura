@@ -218,7 +218,7 @@ import Chairmanimage from '/images/VKT-Balan.png';
                 location: 'Delhi, Agra, Jaipur',
                 duration: '5 Days / 4 Nights',
                 price: 750,
-                image: Images["/images/2.png"],
+                image: images['/images/2.png'],
               }} />
             </motion.div>
           </div>
