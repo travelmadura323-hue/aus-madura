@@ -390,11 +390,8 @@ import Chairmanimage from '/images/VKT-Balan.png';
               viewport={{ once: true }}
             >
               <div className="relative inline-block mb-8">
-                <img 
-                  src={Chairmanimage}
-                  alt="chairman" 
-                  className="rounded-2xl shadow-2xl relative z-10"
-                />
+                // In Home.tsx — keep as-is if image is in /public/images/
+<img src="/images/VKT-Balan.png" alt="..." />
                 <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl -z-0" />
               </div>
             </motion.div>
