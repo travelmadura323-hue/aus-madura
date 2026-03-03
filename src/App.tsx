@@ -52,7 +52,7 @@ import ScrollToTop from "./components/ScrollToTop";
               <Route path="/company/testimonials" element={<Testimonial />} />
 
 
-<Route path="/malaysia" element={<Malaysia />} />
+<Route path="/pages/malaysia" element={<Malaysia />} />
             </Routes>
           </main>
           <Footer />
