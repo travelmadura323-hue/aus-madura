@@ -1,0 +1,66 @@
+{
+  "india": [
+    {
+      "id": 1,
+      "title": "7 Days Kerala Backwaters",
+      "duration": "7 Days / 6 Nights",
+      "price": 850,
+      "location": "Kerala, India",
+      "image": "/images/kerala.jpg",
+      "description": "Enjoy beautiful backwaters and houseboat stay."
+    },
+    {
+      "id": 2,
+      "title": "Rajasthan Royal Heritage",
+      "duration": "10 Days / 9 Nights",
+      "price": 1250,
+      "location": "Rajasthan, India",
+      "image": "/images/rajasthan.jpg",
+      "description": "Explore royal palaces and desert safari."
+    }
+  ],
+  "malaysia": [
+    {
+      "id": 3,
+      "title": "Malaysia City Explorer",
+      "duration": "5 Days / 4 Nights",
+      "price": 700,
+      "location": "Kuala Lumpur",
+      "image": "/images/malaysia.jpg",
+      "description": "Explore KL city and Genting Highlands."
+    }
+  ],
+   "sri-lanka": [
+    {
+      "id": 4,
+      "title": "Sri Lanka Cultural Tour",
+      "duration": "8 Days / 7 Nights",
+      "price": 800,
+      "location": "Sri Lanka",
+      "image": "/images/sri-lanka.jpg",
+      "description": "Visit ancient cities and tea plantations."
+    }
+  ],
+    "vietnam": [
+     {
+        "id": 5,
+        "title": "Vietnam Highlights",
+        "duration": "7 Days / 6 Nights",
+        "price": 750,
+        "location": "Vietnam",
+        "image": "/images/vietnam.jpg",
+        "description": "Explore Hanoi, Halong Bay, and Ho Chi Minh City."
+     }
+      ],
+  "singapore": [
+    {
+      "id": 10,
+      "title": "Singapore City Highlights",
+      "duration": "4 Days / 3 Nights",
+      "price": 900,
+      "location": "Singapore",
+      "image": "/images/landscape.png",
+      "description": "Explore Marina Bay Sands, Sentosa, and Universal Studios."
+    }
+  ]
+}

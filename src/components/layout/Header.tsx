@@ -51,11 +51,11 @@ export default function Header() {
     {
       name: 'Destinations',
       dropdown: [
-        { name: 'India', path: '/destinations/india' },
-        { name: 'Malaysia', path: '/destinations/malaysia' },
-        { name: 'Singapore', path: '/destinations/singapore' },
-        { name: 'Sri Lanka', path: '/destinations/sri-lanka' },
-        { name: 'Vietnam', path: '/destinations/vietnam' },
+        { name: 'India', path: '/india' },
+        { name: 'Malaysia', path: '/pages/malaysia' },
+        { name: 'Singapore', path: '/pages/singapore' },
+        { name: 'Sri Lanka', path: '/pages/sri-lanka' },
+        { name: 'Vietnam', path: '/pages/vietnam' },
       ]
     },
     { name: 'Contact Us', path: '/contact' },

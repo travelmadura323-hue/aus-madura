@@ -2,7 +2,7 @@
    * @license
    * SPDX-License-Identifier: Apache-2.0
    */
-
+import ScrollToTop from "./components/ScrollToTop";
   import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
   import Header from './components/layout/Header';
   import Footer from './components/layout/Footer';
@@ -17,7 +17,9 @@
   import Careers from './pages/CareersPage';
   import MediaPage from './pages/media';
   import Testimonial from './pages/Testimonial';
-import CareersPage from './pages/CareersPage';
+// import CareersPage from './pages/CareersPage';
+   import PackageDetails from './pages/packageDetails';
+     import Singapore from "./pages/singapore";
 
   export default function App() {
     return (
@@ -25,7 +27,9 @@ import CareersPage from './pages/CareersPage';
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-grow">
+             <ScrollToTop /> 
             <Routes>
+             
               <Route path="/" element={<Home />} />
               <Route path="/tours/:slug" element={<TourDetail />} />
               <Route path="/destinations/:country" element={<DestinationDetail />} />
@@ -33,10 +37,16 @@ import CareersPage from './pages/CareersPage';
               <Route path="/mice" element={<MICE />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/company/our-story" element={<OurStory />} />
+              <Route path="pages/india" element={<India />} />
+        <Route path="/package/:id" element={<PackageDetails />} />
               {/* Fallback routes for demo */}
-              {/* <Route path="/company/*" element={<OurStory />} /> */}
-              <Route path="/india" element={<India />} />
-              <Route path="/company/careers" element={<CareersPage />} /> 
+            
+
+<Route path="pages/singapore" element={<Singapore />} />
+             
+              {/* <Route path="/india" element=
+              {<India />} /> */}
+              {/* <Route path="/company/careers" element={<CareersPage />} />  */}
               <Route path="/company/media" element={<MediaPage />} /> 
               <Route path="/company/testimonials" element={<Testimonial />} />
 
@@ -47,3 +57,5 @@ import CareersPage from './pages/CareersPage';
       </Router>
     );
   }
+
+

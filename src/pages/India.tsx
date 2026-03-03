@@ -1,118 +1,94 @@
-import { FC } from "react";
-import { motion } from "framer-motion";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import packagesData from "../data/packages.json";
 
-const tourismImages: string[] = [
-  "https://images.unsplash.com/photo-1524492412937-b28074a5d7da", // Taj Mahal
-  "/images/5.png", // Temple architecture
-  "https://images.unsplash.com/photo-1548013146-72479768bada", // Rajasthan Palace
-  "https://images.unsplash.com/photo-1587474260584-136574528ed5", // Varanasi
-  "/images/6.png", // Kerala
-  "https://images.unsplash.com/photo-1514222134-b57cbb8ce073", // Hampi
-  "https://images.unsplash.com/photo-1596176530529-78163a4f7af2", // Madurai
-  "https://images.unsplash.com/photo-1566552881560-0be862a7c445", // Jaipur
-];
+interface Package {
+  id: number;
+  title: string;
+  duration: string;
+  price: number;
+  location: string;
+  image: string;
+  description: string;
+}
 
-const India = () => {
+const India: React.FC = () => {
+  const navigate = useNavigate();
+
+  const indiaPackages = (packagesData as any).india as Package[];
+
   return (
-    <div className="bg-white text-neutral-800">
+    <div style={{ padding: "40px" }}>
+      <h2>India Tour Packages</h2>
 
-      {/* HERO SECTION */}
-      <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1564507592333-c60657eea523"
-          alt="India Heritage"
-          className="absolute inset-0 w-full h-full object-cover scale-110"
-        />
-        <div className="absolute inset-0 bg-black/60" />
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10 text-center px-6"
-        >
-          <h1 className="text-4xl md:text-6xl font-serif font-semibold text-white mb-6 leading-tight">
-            India Is Experienced Through Its Layers.
-          </h1>
-
-          <p className="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto">
-            Temple architecture carved in stone. Royal courts that shaped dynasties.
-            Sacred rivers, intricate rituals and living traditions carried forward for centuries.
-          </p>
-        </motion.div>
-      </section>
-
-      {/* CONTENT SECTION */}
-      <section className="py-20 px-6 md:px-16 max-w-6xl mx-auto space-y-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="space-y-8 text-lg leading-relaxed text-neutral-700"
-        >
-          <p>
-            India reveals itself gradually — through its regions, its heritage cities,
-            its spiritual centres and its culinary traditions shaped by geography,
-            trade and time.
-          </p>
-
-          <p>
-            From monumental architecture to refined regional cuisines, every journey
-            requires thoughtful sequencing — balancing immersion, comfort and
-            cultural understanding.
-          </p>
-
-          <p>
-            We design India journeys with precision and perspective, ensuring that
-            each experience feels considered, immersive and seamless.
-          </p>
-        </motion.div>
-      </section>
-
-      {/* IMAGE GALLERY SECTION */}
-      <section className="pb-24 px-6 md:px-16">
-        <h2 className="text-3xl md:text-4xl font-serif font-semibold text-center mb-12">
-          Discover India Through Its Heritage & Landscapes
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {tourismImages.map((image, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="overflow-hidden rounded-2xl shadow-lg group"
-            >
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+          gap: "20px",
+          marginTop: "30px",
+        }}
+      >
+        {indiaPackages.map((pkg) => (
+          <div
+            key={pkg.id}
+            style={{
+              borderRadius: "12px",
+              overflow: "hidden",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+              background: "#fff",
+            }}
+          >
+            {/* Image */}
+            <div style={{ position: "relative" }}>
               <img
-                src={`${image}?auto=format&fit=crop&w=900&q=80`}
-                alt="India Tourism"
-                className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                src={pkg.image}
+                alt={pkg.title}
+                style={{ width: "100%", height: "200px", objectFit: "cover" }}
               />
-            </motion.div>
-          ))}
-        </div>
-      </section>
+              <span
+                style={{
+                  position: "absolute",
+                  top: "10px",
+                  left: "10px",
+                  background: "#fff",
+                  padding: "6px 10px",
+                  borderRadius: "20px",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                }}
+              >
+                {pkg.duration}
+              </span>
+            </div>
 
-      {/* CTA SECTION */}
-      <section className="bg-neutral-900 text-white py-20 text-center px-6">
-        <h2 className="text-3xl md:text-4xl font-serif font-semibold mb-8">
-          Experience Travel With Depth and Structure.
-        </h2>
+            {/* Content */}
+            <div style={{ padding: "15px" }}>
+              <h3>{pkg.title}</h3>
+              <p style={{ color: "gray" }}>{pkg.location}</p>
 
-        <div className="flex flex-col sm:flex-row justify-center gap-6">
-          <button className="bg-white text-black px-8 py-3 rounded-full font-medium hover:bg-gray-200 transition">
-            Explore Journeys to India
-          </button>
+              <h4 style={{ marginTop: "10px" }}>
+                Starting from ${pkg.price}
+              </h4>
 
-          <button className="border border-white px-8 py-3 rounded-full font-medium hover:bg-white hover:text-black transition">
-            Book a Free Travel Consultation
-          </button>
-        </div>
-      </section>
-
+              <button
+                onClick={() => navigate(`/package/${pkg.id}`)}
+                style={{
+                  marginTop: "10px",
+                  padding: "8px 14px",
+                  background: "red",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "6px",
+                  cursor: "pointer",
+                }}
+              >
+                View Details →
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
