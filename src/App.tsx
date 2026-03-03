@@ -21,6 +21,10 @@ import ScrollToTop from "./components/ScrollToTop";
    import PackageDetails from './components/PackageDetails';
      import Singapore from "./pages/singapore";
      import Malaysia from "./pages/Malaysia";
+     import Vietnam from "./pages/vietnam";
+     import SriLanka from "./pages/sri-lanka";
+
+
 
   export default function App() {
     return (
@@ -39,7 +43,9 @@ import ScrollToTop from "./components/ScrollToTop";
               <Route path="/contact" element={<Contact />} />
               <Route path="/company/our-story" element={<OurStory />} />
               <Route path="/pages/india" element={<India />} />
-        <Route path="/package/:id" element={<PackageDetails />} />
+             <Route path="/package/:id" element={<PackageDetails />} />
+             <Route path="/pages/vietnam" element={<Vietnam />} />
+             <Route path="/pages/sri-lanka" element={<SriLanka />} />
               {/* Fallback routes for demo */}
             
 
