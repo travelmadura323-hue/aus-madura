@@ -19,6 +19,7 @@
       "description": "Explore royal palaces and desert safari."
     }
   ],
+    
   "malaysia": [
     {
       "id": 3,
@@ -28,8 +29,37 @@
       "location": "Kuala Lumpur",
       "image": "/images/malaysia.jpg",
       "description": "Explore KL city and Genting Highlands."
+    },
+    {
+      "id": 101,
+      "title": "Kuala Lumpur City Escape",
+      "duration": "4 Days / 3 Nights",
+      "price": 650,
+      "location": "Kuala Lumpur, Malaysia",
+      "image": "/images/kualalumpur.jpg",
+      "description": "Visit Petronas Twin Towers, Batu Caves and Genting Highlands."
+    },
+    {
+      "id": 102,
+      "title": "Langkawi Island Getaway",
+      "duration": "5 Days / 4 Nights",
+      "price": 900,
+      "location": "Langkawi, Malaysia",
+      "image": "/images/langkawi.jpg",
+      "description": "Relax on beautiful beaches and enjoy island hopping tours."
+    },
+    {
+      "id": 103,
+      "title": "Penang Heritage Tour",
+      "duration": "3 Days / 2 Nights",
+      "price": 550,
+      "location": "Penang, Malaysia",
+      "image": "/images/penang.jpg",
+      "description": "Explore George Town heritage sites and street food paradise."
     }
-  ],
+  ]
+
+  ,
    "sri-lanka": [
     {
       "id": 4,
