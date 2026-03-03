@@ -106,7 +106,7 @@ export default function Header() {
                   to={link.path}
                   className={cn(
                     "text-sm font-medium hover:text-accent transition-colors",
-                    isScrolled ? "text-slate-700" : "text-black"
+                    isScrolled ? "text-slate-700" : "text-[#191975]"
                   )}
                 >
                   {link.name}
@@ -115,7 +115,7 @@ export default function Header() {
                 <button
                   className={cn(
                     "text-sm font-medium flex items-center gap-1 hover:text-accent transition-colors ",
-                    isScrolled ? "text-slate-700" : "text-black"
+                    isScrolled ? "text-slate-700" : "text-[#191975]"
                   )}
                 >
                   {link.name} <ChevronDown className="w-4 h-4" />
