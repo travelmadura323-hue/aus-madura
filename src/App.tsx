@@ -37,12 +37,12 @@ import ScrollToTop from "./components/ScrollToTop";
               <Route path="/mice" element={<MICE />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/company/our-story" element={<OurStory />} />
-              <Route path="pages/india" element={<India />} />
+              <Route path="/pages/india" element={<India />} />
         <Route path="/package/:id" element={<PackageDetails />} />
               {/* Fallback routes for demo */}
             
 
-<Route path="pages/singapore" element={<Singapore />} />
+<Route path="/pages/singapore" element={<Singapore />} />
              
               {/* <Route path="/india" element=
               {<India />} /> */}
