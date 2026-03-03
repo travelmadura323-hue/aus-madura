@@ -18,7 +18,7 @@ import ScrollToTop from "./components/ScrollToTop";
   import MediaPage from './pages/media';
   import Testimonial from './pages/Testimonial';
 // import CareersPage from './pages/CareersPage';
-   import PackageDetails from './pages/packageDetails';
+   import PackageDetails from './components/PackageDetails';
      import Singapore from "./pages/singapore";
      import Malaysia from "./pages/Malaysia";
 
@@ -38,12 +38,12 @@ import ScrollToTop from "./components/ScrollToTop";
               <Route path="/mice" element={<MICE />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/company/our-story" element={<OurStory />} />
-              <Route path="/destinations/india" element={<India />} />
+              <Route path="/pages/india" element={<India />} />
         <Route path="/package/:id" element={<PackageDetails />} />
               {/* Fallback routes for demo */}
             
 
-<Route path="/destinations/singapore" element={<Singapore />} />
+<Route path="/pages/singapore" element={<Singapore />} />
              
               {/* <Route path="/india" element=
               {<India />} /> */}
@@ -52,7 +52,7 @@ import ScrollToTop from "./components/ScrollToTop";
               <Route path="/company/testimonials" element={<Testimonial />} />
 
 
-<Route path="/destinations/malaysia" element={<Malaysia />} />
+<Route path="/pages/malaysia" element={<Malaysia />} />
             </Routes>
           </main>
           <Footer />
