@@ -6,14 +6,35 @@ const India = () => {
   const navigate = useNavigate();
   const indiaPackages = packagesData.india;
 
+const images = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+});
   return (
     <div>
+      <div className="bg-[#191975] py-24 text-center text-white">
+        <div className="mx-auto max-w-3xl px-6">
+          <span className="text-sm font-semibold uppercase tracking-widest text-red-500">
+            Press & News
+          </span>
+
+          <h1 className="mt-4 text-4xl md:text-5xl font-bold">
+            Media
+          </h1>
+
+          <p className="mt-6 text-gray-300 leading-relaxed">
+            Stay updated with our latest news, press releases,
+            and industry recognition.
+          </p>
+        </div>
+      </div>
+
 
       {/* 🔹 Hero Section */}
       <div
         style={{
           height: "400px",
-          backgroundImage: "url('/images/india-banner.jpg')",
+          backgroundImage: `url(${images['/images/Temple1.png']})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
