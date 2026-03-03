@@ -140,9 +140,9 @@ import Chairmanimage from '/images/VKT-BALAN.png';
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               {slides[currentSlide].buttons.map((btn, index) => (
                 <Link key={index} to={btn.link}>
-                  <button className="bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20 ">
+                  <button className="bg-accent text-white font-bold px-8 py-4 rounded-full  hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20 ">
                     {btn.text}
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1  transition-transform" />
                   </button>
                 </Link>
               ))}
@@ -220,11 +220,11 @@ import Chairmanimage from '/images/VKT-BALAN.png';
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-              {/* <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">Domestic Highlights</span> */}
+              <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">International Highlights</span>
               <h2 className="text-4xl font-bold text-primary">Popular India Tours</h2>
             </div>
            <Link
-  to="/india"
+  to="/india" onClick={() => window.scrollTo(0, 0)}
   className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group"
 >
   View All India Tours
@@ -341,7 +341,7 @@ import Chairmanimage from '/images/VKT-BALAN.png';
     className="relative z-10 w-80 h-80 object-cover rounded-2xl shadow-2xl border-4 border-white"
   />
 
-</div>
+</div> 
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -411,31 +411,38 @@ import Chairmanimage from '/images/VKT-BALAN.png';
       {/* Feedbacks Section */}
   <section className="py-32 bg-gradient-to-b from-secondary to-white">
   <div className="max-w-7xl mx-auto px-6">
-       <Link
-    to="/company/testimonials"
-    className="absolute top-0 right-4 text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group"
-  >
-    View All
-    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-  </Link>
+      
 
     {/* Header */}
-    <div className="text-center max-w-3xl mx-auto mb-20">
-      <span className="text-sm tracking-[0.3em] uppercase text-accent font-semibold">
-        Testimonials
-      </span>
-       
-       
-      <h2 className="text-5xl font-extrabold text-primary mt-4 mb-6">
-        What Our Travelers Say
-      </h2>
-     
-      
-      <p className="text-lg text-slate-500 leading-relaxed">
-        Real stories from real people who trusted us to plan their journeys.
-      </p>
-    </div>
-    
+<div className="relative mb-16">
+
+  {/* View All - aligned with Testimonials label */}
+  <div className="absolute right-0 top-6">
+    <Link
+      to="/company/testimonials"onClick={() => window.scrollTo(0, 0)}
+      className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group"
+    >
+      View All 
+      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+    </Link>
+  </div>
+
+  {/* Center Content */}
+  <div className="text-center max-w-3xl mx-auto">
+    <span className="text-sm tracking-[0.3em] uppercase text-accent font-semibold">
+      Testimonials
+    </span>
+
+    <h2 className="text-5xl font-extrabold text-primary mt-4 mb-6">
+      What Our Travelers Say
+    </h2>
+
+    <p className="text-lg text-slate-500 leading-relaxed">
+      Real stories from real people who trusted us to plan their journeys.
+    </p>
+  </div>
+
+</div>
     
 
     {/* Testimonials Data */}
