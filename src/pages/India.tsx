@@ -2,26 +2,26 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import packagesData from "../data/packages.json";
 
-const India: React.FC = () => {
+const India = () => {
   const navigate = useNavigate();
   const indiaPackages = packagesData.india;
 
   return (
-    <div style={{ fontFamily: "sans-serif", background: "#f9fafc" }}>
-      
-      {/* ================= HERO SECTION ================= */}
-      <section
+    <div>
+
+      {/* 🔹 Hero Section */}
+      <div
         style={{
-          height: "90vh",
+          height: "400px",
           backgroundImage: "url('/images/india-banner.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          position: "relative",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           color: "white",
-          textAlign: "center"
+          textAlign: "center",
+          position: "relative",
         }}
       >
         {/* Overlay */}
@@ -29,133 +29,91 @@ const India: React.FC = () => {
           style={{
             position: "absolute",
             inset: 0,
-            background:
-              "linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.4))"
+            backgroundColor: "rgba(0,0,0,0.5)",
           }}
-        />
+        ></div>
 
+        {/* Text */}
         <div style={{ position: "relative", zIndex: 2 }}>
-          <h1 style={{ fontSize: "60px", marginBottom: "20px" }}>
-            Discover Incredible India
+          <h1 style={{ fontSize: "48px", marginBottom: "10px" }}>
+            Explore Incredible India
           </h1>
-          <p style={{ fontSize: "20px", maxWidth: "700px", margin: "0 auto" }}>
-            Explore majestic palaces, spiritual temples, vibrant culture and
-            breathtaking landscapes across India.
+          <p style={{ fontSize: "18px" }}>
+            Discover Culture, Heritage & Natural Beauty
           </p>
-
-          <button
-            style={{
-              marginTop: "30px",
-              padding: "14px 30px",
-              fontSize: "16px",
-              background: "#ff6b00",
-              border: "none",
-              borderRadius: "30px",
-              color: "white",
-              cursor: "pointer",
-              fontWeight: 600
-            }}
-          >
-            Explore Packages ↓
-          </button>
         </div>
-      </section>
+      </div>
 
-
-
-      {/* ================= PACKAGES SECTION ================= */}
-      <section style={{ padding: "80px 60px" }}>
-        <h2
-          style={{
-            textAlign: "center",
-            fontSize: "36px",
-            marginBottom: "60px"
-          }}
-        >
-          Popular India Tour Packages
+      {/* 🔹 Packages Section */}
+      <div style={{ padding: "50px 40px" }}>
+        <h2 style={{ textAlign: "center", marginBottom: "30px" }}>
+          India Tour Packages
         </h2>
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "30px"
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gap: "20px",
           }}
         >
-          {indiaPackages.map((pkg: any) => (
+          {indiaPackages.map((pkg) => (
             <div
               key={pkg.id}
               style={{
-                background: "white",
-                borderRadius: "20px",
+                borderRadius: "12px",
                 overflow: "hidden",
-                boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
-                transition: "0.3s",
-                cursor: "pointer"
+                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                background: "#fff",
               }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.transform = "translateY(-10px)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.transform = "translateY(0px)")
-              }
             >
               {/* Image */}
               <div style={{ position: "relative" }}>
                 <img
-                  src={pkg.image || "/images/india-default.jpg"}
+                  src={pkg.image}
                   alt={pkg.title}
                   style={{
                     width: "100%",
-                    height: "220px",
-                    objectFit: "cover"
+                    height: "200px",
+                    objectFit: "cover",
                   }}
                 />
 
                 <span
                   style={{
                     position: "absolute",
-                    top: "15px",
-                    left: "15px",
-                    background: "#ff6b00",
-                    color: "white",
-                    padding: "6px 12px",
+                    top: "10px",
+                    left: "10px",
+                    background: "#fff",
+                    padding: "6px 10px",
                     borderRadius: "20px",
-                    fontSize: "13px",
-                    fontWeight: 600
+                    fontSize: "12px",
+                    fontWeight: 600,
                   }}
                 >
-                  {pkg.duration.days} Days
+                  {pkg.duration}
                 </span>
               </div>
 
               {/* Content */}
-              <div style={{ padding: "25px" }}>
-                <h3 style={{ marginBottom: "10px" }}>{pkg.title}</h3>
+              <div style={{ padding: "15px" }}>
+                <h3>{pkg.title}</h3>
+                <p style={{ color: "gray" }}>{pkg.location}</p>
 
-                <p style={{ color: "gray", fontSize: "14px" }}>
-                  {pkg.location.cities.join(", ")}
-                </p>
-
-                <p style={{ marginTop: "15px", fontWeight: 600 }}>
-                  Starting From
-                </p>
-
-                <h2 style={{ color: "#ff6b00", margin: "5px 0" }}>
-                  {pkg.price.currency} {pkg.price.startingFrom}
-                </h2>
+                <h4 style={{ marginTop: "10px" }}>
+                  Starting from ${pkg.price}
+                </h4>
 
                 <button
                   onClick={() => navigate(`/package/${pkg.id}`)}
                   style={{
-                    marginTop: "15px",
-                    padding: "10px 18px",
-                    background: "#111",
-                    color: "white",
+                    marginTop: "10px",
+                    padding: "8px 14px",
+                    background: "orange",
+                    color: "#fff",
                     border: "none",
-                    borderRadius: "8px",
+                    borderRadius: "6px",
                     cursor: "pointer",
-                    width: "100%"
                   }}
                 >
                   View Details →
@@ -164,38 +122,7 @@ const India: React.FC = () => {
             </div>
           ))}
         </div>
-      </section>
-
-      {/* ================= CTA SECTION ================= */}
-      <section
-        style={{
-          background: "#111",
-          color: "white",
-          textAlign: "center",
-          padding: "80px 20px"
-        }}
-      >
-        <h2 style={{ fontSize: "36px", marginBottom: "20px" }}>
-          Ready to Explore India?
-        </h2>
-        <p style={{ marginBottom: "30px" }}>
-          Book your dream vacation today and experience the magic of India.
-        </p>
-        <button
-          style={{
-            padding: "14px 30px",
-            fontSize: "16px",
-            background: "#ff6b00",
-            border: "none",
-            borderRadius: "30px",
-            color: "white",
-            cursor: "pointer",
-            fontWeight: 600
-          }}
-        >
-          Contact Us
-        </button>
-      </section>
+      </div>
 
     </div>
   );
