@@ -77,7 +77,7 @@ import Chairmanimage from '/images/VKT-BALAN.png';
     <div className="overflow-x-hidden">
       <section
         ref={heroRef}
-        className="relative h-[70vh] flex items-center justify-center overflow-hidden"
+        className="relative h-[80vh] flex items-center justify-center overflow-hidden"
       >
         {/* Background Slides */}
         {slides.map((slide, index) => (

@@ -79,12 +79,12 @@ export default function Header() {
     </div>
         
           <div className="flex  flex-col pl-3">
-            <span className={cn(
+            {/* <span className={cn(
               "text-xl font-black tracking-tighter leading-none",
               isScrolled ? "text-primary" : "text-[#191975]"
             )}>
               Madura<span className="text-accent pl-1">Global</span>
-            </span>
+            </span> */}
             <span className={cn(
               "text-xl font-bold uppercase tracking-[0.3em] leading-none mt-1",
               isScrolled ? "text-slate-400" : "text-white/60"
