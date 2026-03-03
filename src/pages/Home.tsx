@@ -43,7 +43,7 @@ import Chairmanimage from '/images/VKT-BALAN.png';
   // ✅ Slides = DATA ONLY
   const slides = [
     {
-      image: images['/images/1.png'],
+      image: images['/images/Temple1.png'],
       title: "Heritage. Architecture. Living Tradition.",
       subtitle:
         "Curated India journeys from Australia — thoughtfully designed around history, culture and regional depth",
@@ -111,9 +111,9 @@ import Chairmanimage from '/images/VKT-BALAN.png';
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block bg-accent/20 backdrop-blur-md text-accent px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-accent/30">
+            {/* <span className="inline-block bg-accent/20 backdrop-blur-md text-accent px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-accent/30">
               Welcome to Madura Global
-            </span>
+            </span> */}
 
             {/* Title */}
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.1]">
@@ -151,7 +151,7 @@ import Chairmanimage from '/images/VKT-BALAN.png';
         </motion.div>
 
         {/* Slide Indicators */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20 mt -3">
           {slides.map((_, i) => (
             <button
               key={i}
@@ -164,6 +164,55 @@ import Chairmanimage from '/images/VKT-BALAN.png';
           ))}
         </div>
       </section>
+       {/* Trending Destinations */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">Global Favorites</span>
+            <h2 className="text-4xl font-bold text-primary">Trending Destinations</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {[
+              { name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80' },
+              { name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'] },
+              { name: 'Singapore', price: '950', image: images['/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png'] as string },
+              { name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80' },
+              { name: 'India', price: '350', image: images['/images/11.png'] }
+            ].map((dest, idx) => (
+              <motion.div
+                key={dest.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+                viewport={{ once: true }}
+                className="group cursor-pointer"
+              >
+                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-lg">
+                  <img 
+                    src={dest.image} 
+                    alt={dest.name} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                  
+                  {/* Price Badge - Bottom Left */}
+                  <div className="absolute bottom-4 left-4 z-10">
+                    <div className="text-[10px] font-bold text-white/80 uppercase tracking-widest mb-1">Starting from</div>
+                    <div className="bg-accent text-white font-black px-3 py-1 rounded-lg shadow-xl inline-block text-lg">
+                      ${dest.price}
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <h3 className="text-xl font-bold text-primary group-hover:text-accent transition-colors">{dest.name}</h3>
+                  <div className="w-8 h-1 bg-accent mx-auto mt-2 scale-x-0 group-hover:scale-x-100 transition-transform origin-center" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
       
 
       {/* Popular India Tours */}
@@ -171,7 +220,7 @@ import Chairmanimage from '/images/VKT-BALAN.png';
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
-              <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">Domestic Highlights</span>
+              {/* <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">Domestic Highlights</span> */}
               <h2 className="text-4xl font-bold text-primary">Popular India Tours</h2>
             </div>
            <Link
@@ -230,55 +279,7 @@ import Chairmanimage from '/images/VKT-BALAN.png';
         </div>
       </section>
 
-      {/* Trending Destinations */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">Global Favorites</span>
-            <h2 className="text-4xl font-bold text-primary">Trending Destinations</h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {[
-              { name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80' },
-              { name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'] },
-              { name: 'Singapore', price: '950', image: images['/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png'] as string },
-              { name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80' },
-              { name: 'India', price: '350', image: images['/images/11.png'] }
-            ].map((dest, idx) => (
-              <motion.div
-                key={dest.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer"
-              >
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-lg">
-                  <img 
-                    src={dest.image} 
-                    alt={dest.name} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                  
-                  {/* Price Badge - Bottom Left */}
-                  <div className="absolute bottom-4 left-4 z-10">
-                    <div className="text-[10px] font-bold text-white/80 uppercase tracking-widest mb-1">Starting from</div>
-                    <div className="bg-accent text-white font-black px-3 py-1 rounded-lg shadow-xl inline-block text-lg">
-                      ${dest.price}
-                    </div>
-                  </div>
-                </div>
-                <div className="text-center">
-                  <h3 className="text-xl font-bold text-primary group-hover:text-accent transition-colors">{dest.name}</h3>
-                  <div className="w-8 h-1 bg-accent mx-auto mt-2 scale-x-0 group-hover:scale-x-100 transition-transform origin-center" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
       {/* SE Asia Section */}
       {/* <section className="relative py-32 overflow-hidden">
@@ -320,53 +321,7 @@ import Chairmanimage from '/images/VKT-BALAN.png';
           </div>
         </div>
       </section> */}
-
-      {/* Why Choose Us with Badges */}
-  <section className="py-28 bg-gradient-to-b from-white to-slate-50">
-  <div className="max-w-7xl mx-auto px-6 text-center">
-
-    {/* Top Tagline */}
-    <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
-      Experience. Quality. Trust.
-    </span>
-
-    {/* Heading */}
-    <h2 className="text-5xl md:text-6xl font-bold text-primary mt-6 mb-6">
-      Why Choose Us?
-    </h2>
-
-    {/* Description */}
-    <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-20">
-      Join millions of happy travelers who trust Madura Travel Service (P) Ltd,
-      one of India’s leading travel companies. With over four decades of excellence,
-      we craft unforgettable journeys backed by global expertise and personalized service.
-    </p>
-
-    {/* Stats Cards */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-      {[
-        { number: "4M+", label: "Happy Travelers" },
-        { number: "28K+", label: "Destinations Covered" },
-        { number: "40+", label: "Years of Excellence" },
-        { number: "200K+", label: "5-Star Client Ratings" }
-      ].map((item, index) => (
-        <div
-          key={index}
-          className="bg-[#f3ece3] rounded-3xl p-14 shadow-sm hover:shadow-2xl transition-all duration-300 group"
-        >
-          <h3 className="text-6xl font-extrabold text-slate-900 mb-4 group-hover:text-primary transition-colors">
-            {item.number}
-          </h3>
-          <p className="text-slate-700 text-lg font-medium">
-            {item.label}
-          </p>
-        </div>
-      ))}
-    </div>
-
-  </div>
-</section>
- <section className="py-24 bg-primary text-white overflow-hidden">
+       <section className="py-24 bg-primary text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -402,22 +357,76 @@ import Chairmanimage from '/images/VKT-BALAN.png';
           </div>
         </div>
       </section>
+
+      {/* Why Choose Us with Badges */}
+  <section className="py-28 bg-gradient-to-b from-white to-slate-50">
+  <div className="max-w-7xl mx-auto px-6 text-center">
+
+    {/* Top Tagline */}
+    <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
+      Experience. Quality. Trust.
+    </span>
+
+    {/* Heading */}
+    <h2 className="text-5xl md:text-6xl font-bold text-primary mt-6 mb-6">
+      The Advantage of Choosing Us
+    </h2>
+
+    {/* Description */}
+    <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-20">
+      Join millions of happy travelers who trust Madura Travel Service (P) Ltd,
+      one of India’s leading travel companies. With over four decades of excellence,
+      we craft unforgettable journeys backed by global expertise and personalized service.
+    </p>
+
+    {/* Stats Cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      {[
+        { number: "4M+", label: "Happy Travelers" },
+        { number: "28K+", label: "Destinations Covered" },
+        { number: "40+", label: "Years of Excellence" },
+        { number: "200K+", label: "5-Star Client Ratings" }
+      ].map((item, index) => (
+        <div
+          key={index}
+          className="bg-[#f3ece3] rounded-3xl p-14 shadow-sm hover:shadow-2xl transition-all duration-300 group"
+        >
+          <h3 className="text-6xl font-extrabold text-slate-900 mb-4 group-hover:text-primary transition-colors">
+            {item.number}
+          </h3>
+          <p className="text-slate-700 text-lg font-medium">
+            {item.label}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
       {/* Feedbacks Section */}
   <section className="py-32 bg-gradient-to-b from-secondary to-white">
   <div className="max-w-7xl mx-auto px-6">
+    
 
     {/* Header */}
     <div className="text-center max-w-3xl mx-auto mb-20">
       <span className="text-sm tracking-[0.3em] uppercase text-accent font-semibold">
         Testimonials
       </span>
+       
+       
       <h2 className="text-5xl font-extrabold text-primary mt-4 mb-6">
         What Our Travelers Say
       </h2>
+     
+      
       <p className="text-lg text-slate-500 leading-relaxed">
         Real stories from real people who trusted us to plan their journeys.
       </p>
     </div>
+    <Link to="/company/testimonials" className="text-primary font-bold flex items- gap-2 hover:text-accent transition-colors group" > View All <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /> </Link>
+    
 
     {/* Testimonials Data */}
     {(() => {
