@@ -7,6 +7,7 @@ import EnquiryModal from '../EnquiryModal';
 import  Image  from '/images/logo.png';
 
 
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -51,11 +52,11 @@ export default function Header() {
     {
       name: 'Destinations',
       dropdown: [
-        { name: 'India', path: '/india' },
-        { name: 'Malaysia', path: '/pages/malaysia' },
-        { name: 'Singapore', path: '/pages/singapore' },
-        { name: 'Sri Lanka', path: '/pages/sri-lanka' },
-        { name: 'Vietnam', path: '/pages/vietnam' },
+        { name: 'India', path: 'pages/india' },
+        { name: 'Malaysia', path: 'pages/malaysia' },
+        { name: 'Singapore', path: 'pages/singapore' },
+        { name: 'Sri Lanka', path: 'pages/sri-lanka' },
+        { name: 'Vietnam', path: 'pages/vietnam' },
       ]
     },
     { name: 'Contact Us', path: '/contact' },
