@@ -19,10 +19,10 @@ export default function ContactPage() {
           <span className="text-sm font-semibold uppercase tracking-widest text-accent">
             Get in Touch
           </span>
-          <h1 className="mt-3 font-serif text-4xl font-bold text-primary-foreground md:text-5xl">
+          <h1 className="mt-3 font-serif text-white font-bold text-primary-foreground md:text-5xl">
             Contact Us
           </h1>
-          <p className="mt-4 text-primary-foreground/70 leading-relaxed">
+          <p className="mt-4 text-white leading-relaxed">
             Have a question or ready to plan your next adventure? Our travel experts are
             here to help create your perfect journey.
           </p>
