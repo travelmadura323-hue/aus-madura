@@ -6,7 +6,7 @@ import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
 import { cn } from '../lib/utils';
 // import motive == from 'framer-motion/client';
-import image from '/images/VKT-BALAN.png';
+import Chairmanimage from '/images/VKT-BALAN.png';
 
 
 
@@ -366,7 +366,42 @@ import image from '/images/VKT-BALAN.png';
 
   </div>
 </section>
-
+ <section className="py-24 bg-primary text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="relative inline-block mb-8">
+                {/* // In Home.tsx — keep as-is if image is in /public/images/ */}
+                <img
+                  src={Chairmanimage}
+                  alt="Chairman V.K.T Balan"
+                  className="w-80 h-80 object-cover rounded-2xl shadow-2xl border-4 border-white"
+                />
+                {/* <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl -z-0" /> */}
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Quote className="w-16 h-16 text-accent mb-8 opacity-50" />
+              <h2 className="text-4xl font-bold mb-6">A Message from Our Chairman</h2>
+              <p className="text-slate-300 text-lg leading-relaxed mb-8 italic">
+                "For over four decades,we have carried the dreams of millions .Trusted by more than 4 million travelers,we believe travel is not a transaction,it is a responsibility.Every journey we create is backed by experience,care,and an uncompromising promise: Client happiness and true value for every penny spent.This is not our slogan ;it is our promise."
+              </p>
+              <div>
+                <div className="text-2xl font-bold text-accent">Kalaimamani<span className="ml-2">V.K.T Balan</span></div>
+                <div className="text-slate-400">Chairman</div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
       {/* Feedbacks Section */}
   <section className="py-32 bg-gradient-to-b from-secondary to-white">
   <div className="max-w-7xl mx-auto px-6">
