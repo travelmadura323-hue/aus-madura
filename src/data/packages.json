@@ -19,6 +19,8 @@
       "description": "Explore royal palaces and desert safari."
     }
   ],
+
+    
     
   "malaysia": [
     {
@@ -58,8 +60,9 @@
       "description": "Explore George Town heritage sites and street food paradise."
     }
   ]
+
   ,
-   "srilanka": [
+   "sri-lanka": [
     {
       "id": 4,
       "title": "Sri Lanka Cultural Tour",
@@ -68,33 +71,6 @@
       "location": "Sri Lanka",
       "image": "/images/sri-lanka.jpg",
       "description": "Visit ancient cities and tea plantations."
-    },
-      {
-      "id": 201,
-      "title": "Colombo City & Bentota Beach",
-      "duration": "5 Days / 4 Nights",
-      "price": 750,
-      "location": "Colombo & Bentota, Sri Lanka",
-      "image": "/images/srilanka1.jpg",
-      "description": "Explore Colombo city and relax at Bentota beach."
-    },
-    {
-      "id": 202,
-      "title": "Kandy & Nuwara Eliya Escape",
-      "duration": "6 Days / 5 Nights",
-      "price": 980,
-      "location": "Kandy & Nuwara Eliya",
-      "image": "/images/srilanka2.jpg",
-      "description": "Visit Temple of the Tooth and scenic tea plantations."
-    },
-    {
-      "id": 203,
-      "title": "Sri Lanka Cultural Tour",
-      "duration": "7 Days / 6 Nights",
-      "price": 1100,
-      "location": "Sigiriya, Dambulla, Kandy",
-      "image": "/images/srilanka3.jpg",
-      "description": "Discover ancient ruins, rock fortress & cultural heritage."
     }
   ],
     "vietnam": [
@@ -106,34 +82,8 @@
         "location": "Vietnam",
         "image": "/images/vietnam.jpg",
         "description": "Explore Hanoi, Halong Bay, and Ho Chi Minh City."
-     },{
-      "id": 301,
-      "title": "Hanoi & Halong Bay Cruise",
-      "duration": "5 Days / 4 Nights",
-      "price": 820,
-      "location": "Hanoi & Halong Bay, Vietnam",
-      "image": "/images/vietnam1.jpg",
-      "description": "Explore Hanoi city and enjoy an overnight cruise in Halong Bay."
-    },
-    {
-      "id": 302,
-      "title": "Da Nang & Hoi An Retreat",
-      "duration": "6 Days / 5 Nights",
-      "price": 950,
-      "location": "Da Nang & Hoi An",
-      "image": "/images/vietnam2.jpg",
-      "description": "Relax on Da Nang beaches and explore Hoi An ancient town."
-    },
-    {
-      "id": 303,
-      "title": "Ho Chi Minh & Mekong Delta",
-      "duration": "4 Days / 3 Nights",
-      "price": 700,
-      "location": "Ho Chi Minh City",
-      "image": "/images/vietnam3.jpg",
-      "description": "Discover vibrant city life and cruise through the Mekong Delta."
-    }
-  ],
+     }
+      ],
   "singapore": [
     {
       "id": 10,
