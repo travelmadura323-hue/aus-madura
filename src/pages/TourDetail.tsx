@@ -117,7 +117,7 @@ export default function TourDetail() {
               </div>
 
               {/* Gallery */}
-              <div className="mb-12">
+              {/* <div className="mb-12">
                 <h2 className="text-3xl font-bold text-primary mb-8">Photo Gallery</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {[1,2,3,4,5,6].map(i => (
@@ -126,7 +126,7 @@ export default function TourDetail() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </div>
 
             {/* Right Sidebar */}
