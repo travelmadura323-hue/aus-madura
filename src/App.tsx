@@ -20,6 +20,7 @@ import ScrollToTop from "./components/ScrollToTop";
 // import CareersPage from './pages/CareersPage';
    import PackageDetails from './pages/packageDetails';
      import Singapore from "./pages/singapore";
+     import Malaysia from "./pages/Malaysia";
 
   export default function App() {
     return (
@@ -50,6 +51,8 @@ import ScrollToTop from "./components/ScrollToTop";
               <Route path="/company/media" element={<MediaPage />} /> 
               <Route path="/company/testimonials" element={<Testimonial />} />
 
+
+<Route path="/malaysia" element={<Malaysia />} />
             </Routes>
           </main>
           <Footer />
