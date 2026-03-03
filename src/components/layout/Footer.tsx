@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Column 1: About */}
           <div>
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-6 pl-3">
               <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden p-1">
                 <img 
                   src={Image}
@@ -21,7 +21,7 @@ export default function Footer() {
                 />
               </div>
               <span className="text-2xl font-black tracking-tighter">
-                Madura<span className="text-accent">Global</span>
+                Madura<span className="text-accent pl-1">Global</span>
               </span>
             </div>
             <p className="text-white text-sm leading-relaxed mb-6">

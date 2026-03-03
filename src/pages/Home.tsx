@@ -329,15 +329,19 @@ import Chairmanimage from '/images/VKT-BALAN.png';
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="relative inline-block mb-8">
-                {/* // In Home.tsx — keep as-is if image is in /public/images/ */}
-                <img
-                  src={Chairmanimage}
-                  alt="Chairman V.K.T Balan"
-                  className="w-80 h-80 object-cover rounded-2xl shadow-2xl border-4 border-white"
-                />
-                {/* <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl -z-0" /> */}
-              </div>
+             <div className="relative inline-block mb-8">
+
+  {/* Red box */}
+  <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl z-0"></div>
+
+  {/* Image */}
+  <img
+    src={Chairmanimage}
+    alt="Chairman V.K.T Balan"
+    className="relative z-10 w-80 h-80 object-cover rounded-2xl shadow-2xl border-4 border-white"
+  />
+
+</div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -369,7 +373,7 @@ import Chairmanimage from '/images/VKT-BALAN.png';
 
     {/* Heading */}
     <h2 className="text-5xl md:text-6xl font-bold text-primary mt-6 mb-6">
-      The Advantage of Choosing Us
+      Advantage of Choosing Us
     </h2>
 
     {/* Description */}
@@ -407,7 +411,13 @@ import Chairmanimage from '/images/VKT-BALAN.png';
       {/* Feedbacks Section */}
   <section className="py-32 bg-gradient-to-b from-secondary to-white">
   <div className="max-w-7xl mx-auto px-6">
-    
+       <Link
+    to="/company/testimonials"
+    className="absolute top-0 right-4 text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group"
+  >
+    View All
+    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+  </Link>
 
     {/* Header */}
     <div className="text-center max-w-3xl mx-auto mb-20">
@@ -425,7 +435,7 @@ import Chairmanimage from '/images/VKT-BALAN.png';
         Real stories from real people who trusted us to plan their journeys.
       </p>
     </div>
-    <Link to="/company/testimonials" className="text-primary font-bold flex items- gap-2 hover:text-accent transition-colors group" > View All <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" /> </Link>
+    
     
 
     {/* Testimonials Data */}

@@ -32,7 +32,7 @@ export default function Header() {
       name: 'Our Company',
       dropdown: [
         { name: 'Our Story', path: '/company/our-story' },
-        { name: 'Careers', path: '/company/careers' },
+        // { name: 'Careers', path: '/company/careers' },
         { name: 'Media', path: '/company/media' },
         { name: 'Testimonials', path: '/company/testimonials' },
       ]
@@ -78,15 +78,15 @@ export default function Header() {
       />
     </div>
         
-          <div className="flex flex-col">
+          <div className="flex  flex-col pl-3">
             <span className={cn(
               "text-xl font-black tracking-tighter leading-none",
               isScrolled ? "text-primary" : "text-[#191975]"
             )}>
-              Madura<span className="text-accent">Global</span>
+              Madura<span className="text-accent pl-1">Global</span>
             </span>
             <span className={cn(
-              "text-[8px] font-bold uppercase tracking-[0.3em] leading-none mt-1",
+              "text-xl font-bold uppercase tracking-[0.3em] leading-none mt-1",
               isScrolled ? "text-slate-400" : "text-white/60"
             )}>
               
