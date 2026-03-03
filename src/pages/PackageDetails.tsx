@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import packagesData from "../data/packages.json";
 
-const packageDetails: React.FC = () => {
+const PackageDetails: React.FC = () => {
   const { id } = useParams();
 
   const allPackages = Object.values(packagesData).flat() as any[];
@@ -25,4 +25,4 @@ const packageDetails: React.FC = () => {
   );
 };
 
-export default packageDetails;
+export default PackageDetails;
