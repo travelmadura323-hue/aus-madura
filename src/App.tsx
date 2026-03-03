@@ -36,7 +36,7 @@ import CareersPage from './pages/CareersPage';
               {/* Fallback routes for demo */}
               {/* <Route path="/company/*" element={<OurStory />} /> */}
               <Route path="/india" element={<India />} />
-              <Route path="/company/CareersPage" element={<CareersPage />} /> 
+              <Route path="/company/careers" element={<CareersPage />} /> 
               <Route path="/company/media" element={<MediaPage />} /> 
               <Route path="/company/testimonials" element={<Testimonial />} />
 
