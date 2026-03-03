@@ -38,7 +38,7 @@ import CareersPage from './pages/CareersPage';
               <Route path="/india" element={<India />} />
               <Route path="/company/CareersPage" element={<CareersPage />} /> 
               <Route path="/company/media" element={<MediaPage />} /> 
-              <Route path="/company/Testimonials" element={<Testimonial />} />
+              <Route path="/company/testimonials" element={<Testimonial />} />
 
             </Routes>
           </main>
