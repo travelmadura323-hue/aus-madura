@@ -25,7 +25,6 @@ import ScrollToTop from "./components/ScrollToTop";
      import SriLanka from "./pages/sri-lanka";
 
 
-
   export default function App() {
     return (
       <Router>
@@ -47,6 +46,8 @@ import ScrollToTop from "./components/ScrollToTop";
              <Route path="/pages/vietnam" element={<Vietnam />} />
              <Route path="/pages/sri-lanka" element={<SriLanka />} />
               {/* Fallback routes for demo */}
+              {/* <Route path="/:country" element={<CountryPage />} /> */}
+      <Route path="/package/:id" element={<PackageDetails />} />
             
 
 <Route path="/pages/singapore" element={<Singapore />} />

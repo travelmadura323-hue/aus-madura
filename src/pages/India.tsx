@@ -2,131 +2,201 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import packagesData from "../data/packages.json";
 
-interface PackageType {
-  id: number;
-  title: string;
-  duration: string; // "7 Days / 6 Nights"
-  price: number;
-  location: string;
-  image: string;
-  description: string;
-}
-
 const India: React.FC = () => {
   const navigate = useNavigate();
-  const indiaPackages: PackageType[] = packagesData.india || [];
+  const indiaPackages = packagesData.india;
 
   return (
-    <div style={{ padding: "60px", background: "#f4f6f9" }}>
-      <h2 style={{ fontSize: "32px", marginBottom: "40px" }}>
-        India Tour Packages
-      </h2>
-
-      <div
+    <div style={{ fontFamily: "sans-serif", background: "#f9fafc" }}>
+      
+      {/* ================= HERO SECTION ================= */}
+      <section
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "30px",
+          height: "90vh",
+          backgroundImage: "url('/images/india-banner.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          position: "relative",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "white",
+          textAlign: "center"
         }}
       >
-        {indiaPackages.map((pkg) => {
-          const formattedPrice = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-          }).format(pkg.price);
+        {/* Overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.4))"
+          }}
+        />
 
-          return (
+        <div style={{ position: "relative", zIndex: 2 }}>
+          <h1 style={{ fontSize: "60px", marginBottom: "20px" }}>
+            Discover Incredible India
+          </h1>
+          <p style={{ fontSize: "20px", maxWidth: "700px", margin: "0 auto" }}>
+            Explore majestic palaces, spiritual temples, vibrant culture and
+            breathtaking landscapes across India.
+          </p>
+
+          <button
+            style={{
+              marginTop: "30px",
+              padding: "14px 30px",
+              fontSize: "16px",
+              background: "#ff6b00",
+              border: "none",
+              borderRadius: "30px",
+              color: "white",
+              cursor: "pointer",
+              fontWeight: 600
+            }}
+          >
+            Explore Packages ↓
+          </button>
+        </div>
+      </section>
+
+
+
+      {/* ================= PACKAGES SECTION ================= */}
+      <section style={{ padding: "80px 60px" }}>
+        <h2
+          style={{
+            textAlign: "center",
+            fontSize: "36px",
+            marginBottom: "60px"
+          }}
+        >
+          Popular India Tour Packages
+        </h2>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "30px"
+          }}
+        >
+          {indiaPackages.map((pkg: any) => (
             <div
               key={pkg.id}
               style={{
-                background: "#fff",
-                borderRadius: "18px",
+                background: "white",
+                borderRadius: "20px",
                 overflow: "hidden",
-                boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
-                cursor: "pointer",
+                boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
                 transition: "0.3s",
+                cursor: "pointer"
               }}
               onMouseEnter={(e) =>
-                (e.currentTarget.style.transform = "translateY(-8px)")
+                (e.currentTarget.style.transform = "translateY(-10px)")
               }
               onMouseLeave={(e) =>
-                (e.currentTarget.style.transform = "translateY(0)")
+                (e.currentTarget.style.transform = "translateY(0px)")
               }
             >
-              {/* Image Section */}
+              {/* Image */}
               <div style={{ position: "relative" }}>
                 <img
-                  src={pkg.image}
+                  src={pkg.image || "/images/india-default.jpg"}
                   alt={pkg.title}
                   style={{
                     width: "100%",
-                    height: "230px",
-                    objectFit: "cover",
+                    height: "220px",
+                    objectFit: "cover"
                   }}
                 />
 
-                {/* Duration Badge */}
-                <div
+                <span
                   style={{
                     position: "absolute",
                     top: "15px",
                     left: "15px",
-                    background: "white",
+                    background: "#ff6b00",
+                    color: "white",
                     padding: "6px 12px",
                     borderRadius: "20px",
-                    fontSize: "12px",
-                    fontWeight: 600,
-                  }}
-                >
-                  ⏱ {pkg.duration}
-                </div>
-
-                {/* Location */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: "15px",
-                    left: "15px",
-                    color: "white",
                     fontSize: "13px",
-                    fontWeight: 500,
+                    fontWeight: 600
                   }}
                 >
-                  📍 {pkg.location}
-                </div>
+                  {pkg.duration.days} Days
+                </span>
               </div>
 
               {/* Content */}
-              <div style={{ padding: "20px" }}>
-                <h3 style={{ marginBottom: "10px", color: "#1a237e" }}>
-                  {pkg.title}
-                </h3>
+              <div style={{ padding: "25px" }}>
+                <h3 style={{ marginBottom: "10px" }}>{pkg.title}</h3>
 
-                <p style={{ color: "#777", marginBottom: "5px" }}>
-                  Starting from
+                <p style={{ color: "gray", fontSize: "14px" }}>
+                  {pkg.location.cities.join(", ")}
                 </p>
 
-                <h2 style={{ color: "#0d47a1", marginBottom: "15px" }}>
-                  {formattedPrice}
+                <p style={{ marginTop: "15px", fontWeight: 600 }}>
+                  Starting From
+                </p>
+
+                <h2 style={{ color: "#ff6b00", margin: "5px 0" }}>
+                  {pkg.price.currency} {pkg.price.startingFrom}
                 </h2>
 
                 <button
                   onClick={() => navigate(`/package/${pkg.id}`)}
                   style={{
-                    background: "none",
+                    marginTop: "15px",
+                    padding: "10px 18px",
+                    background: "#111",
+                    color: "white",
                     border: "none",
-                    color: "#d32f2f",
-                    fontWeight: 600,
+                    borderRadius: "8px",
                     cursor: "pointer",
+                    width: "100%"
                   }}
                 >
                   View Details →
                 </button>
               </div>
             </div>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= CTA SECTION ================= */}
+      <section
+        style={{
+          background: "#111",
+          color: "white",
+          textAlign: "center",
+          padding: "80px 20px"
+        }}
+      >
+        <h2 style={{ fontSize: "36px", marginBottom: "20px" }}>
+          Ready to Explore India?
+        </h2>
+        <p style={{ marginBottom: "30px" }}>
+          Book your dream vacation today and experience the magic of India.
+        </p>
+        <button
+          style={{
+            padding: "14px 30px",
+            fontSize: "16px",
+            background: "#ff6b00",
+            border: "none",
+            borderRadius: "30px",
+            color: "white",
+            cursor: "pointer",
+            fontWeight: 600
+          }}
+        >
+          Contact Us
+        </button>
+      </section>
+
     </div>
   );
 };
