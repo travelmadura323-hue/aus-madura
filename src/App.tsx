@@ -13,15 +13,15 @@ import CategoryDetail from './pages/CategoryDetail';
 import MICE from './pages/MICE';
 import Contact from './pages/Contact';
 import OurStory from './pages/OurStory';
-import India from "./pages/India";
+import India from "./components/destinations/India";
 import MediaPage from './pages/media';
 import Testimonial from './pages/Testimonial';
 import PackageDetails from './components/PackageDetails';
-import Singapore from "./pages/singapore";
-import Malaysia from "./pages/Malaysia";
-import Vietnam from "./pages/vietnam";
-import SriLanka from "./pages/sri-lanka";
-import Australia from "./pages/australia";
+import Singapore from "./components/destinations/singapore";
+import Malaysia from "./components/destinations/Malaysia";
+import Vietnam from "./components/destinations/vietnam";
+import SriLanka from "./components/destinations/sri-lanka";
+import Australia from "./components/destinations/australia";
 import Privacy from "./components/privacy";
 import Terms from "./pages/Terms";
 
@@ -42,20 +42,20 @@ export default function App() {
             <Route path="/mice" element={<MICE />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/company/our-story" element={<OurStory />} />
-            <Route path="/pages/india" element={<India />} />
+            <Route path="/destinations/india" element={<India />} />
             <Route path="/package/:id" element={<PackageDetails />} />
-            <Route path="/pages/vietnam" element={<Vietnam />} />
-            <Route path="/pages/sri-lanka" element={<SriLanka />} />
+            <Route path="/destinations/vietnam" element={<Vietnam />} />
+            <Route path="/destinations/sri-lanka" element={<SriLanka />} />
             {/* Fallback routes for demo */}
             {/* <Route path="/:country" element={<CountryPage />} /> */}
-            <Route path="/pages/singapore" element={<Singapore />} />
-            <Route path="/pages/australia" element={<Australia />} />
+            <Route path="/destinations/singapore" element={<Singapore />} />
+            <Route path="/destinations/australia" element={<Australia />} />
             <Route path="/company/media" element={<MediaPage />} />
             <Route path="/company/testimonials" element={<Testimonial />} />
             <Route path="/privacy-policy" element={<Privacy />} />
             <Route path="/terms-conditions" element={<Terms />} />
 
-            <Route path="/pages/malaysia" element={<Malaysia />} />
+            <Route path="/destinations/malaysia" element={<Malaysia />} />
           </Routes>
         </main>
         <Footer />

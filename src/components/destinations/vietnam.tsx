@@ -1,7 +1,7 @@
 import React from 'react';
 import { Globe, Heart, MapPin } from 'lucide-react';
-import { tours } from '../data/mockData';
-import DestinationPackages from '../components/tours/DestinationPackages';
+import { tours } from '../../data/mockData';
+import DestinationPackages from '../tours/DestinationPackages';
 
 const Vietnam = () => {
   const vietnamTours = tours.filter((t) =>

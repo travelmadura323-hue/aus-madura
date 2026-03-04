@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import { motion } from "motion/react"
 import { Send } from "lucide-react"
+import PhoneInput from "react-phone-input-2"
+import "react-phone-input-2/lib/style.css"
 
 interface FormData {
   name: string
@@ -15,7 +17,6 @@ export default function ContactForm() {
     name: "",
     email: "",
     phone: "",
-    countryCode: "+1",
     subject: "General Inquiry",
     message: "",
   })
@@ -100,17 +101,23 @@ export default function ContactForm() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-primary">
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="+91 1234567890"
-              className="w-full bg-background border border-primary/30 rounded-xl px-4 py-3 text-primary placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
-            />
+  <label className="text-sm font-medium text-primary">
+    Phone Number
+  </label>
+
+  <PhoneInput
+    country={"au"} // default country (Australia)
+    enableSearch={true}
+    value={formData.phone}
+    onChange={(phone) =>
+      setFormData((prev) => ({
+        ...prev,
+        phone,
+      }))
+    }
+    inputClass="!w-full !h-[52px] !bg-background !border !border-primary/30 !rounded-xl !text-primary"
+    buttonClass="!border-primary/30 !rounded-l-xl"
+  />
           </div>
 
           <div className="space-y-2">
@@ -148,7 +155,7 @@ export default function ContactForm() {
 
         <button
           type="submit"
-          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02]"
+          className="w-full bg-primary hover:bg-[#cc1217] text-primary-foreground font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02]"
         >
           Send Message <Send size={18} />
         </button>

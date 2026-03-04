@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import packages from "../data/packages.json";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 interface Package {
   id: number;
@@ -78,7 +80,7 @@ export default function PackageDetails() {
 
         <h3 className="text-lg font-semibold mb-2">From</h3>
         <p className="text-3xl font-bold text-red-600 mb-6">
-          ₹{packageData.price.toLocaleString()}
+          ₹{packageData.price}
         </p>
 
         <form
@@ -102,12 +104,11 @@ export default function PackageDetails() {
             required
           />
 
-          <input
-            type="tel"
-            placeholder="Phone"
-            className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-red-400 outline-none"
-            required
-          />
+          <PhoneInput
+  country={"in"}
+  enableSearch={true}
+  inputClass="!w-full !h-[48px]"
+/>
 
           <input
             type="date"

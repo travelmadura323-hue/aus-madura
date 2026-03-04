@@ -83,7 +83,7 @@ export default function Home() {
         className="relative h-[85vh] flex items-center justify-center overflow-hidden"
       >
         {/* Floating Consultation Button - Sliding Tab */}
-        <motion.div
+        {/* <motion.div
           initial={{ x: 100 }}
           animate={{ x: 0 }}
           whileHover={{ x: -10 }}
@@ -107,7 +107,7 @@ export default function Home() {
               </div>
             </button>
           </Link>
-        </motion.div>
+        </motion.div> */}
 
         {/* Mobile Floating Button */}
         <div className="fixed bottom-6 right-6 z-50 md:hidden">

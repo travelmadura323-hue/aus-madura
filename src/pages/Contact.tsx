@@ -5,9 +5,36 @@ import ContactForm from "../components/ContactForm"
 
 
 const contactInfo = [
-  { icon: MapPin, title: "Our Office", details: ["1-11 Rosa Crescent Castle Hill 2154 NSW, Australia"] },
-  { icon: Phone, title: "Phone", details: ["+61 434 500 743"] },
-  { icon: Mail, title: "Email", details: ["australia@maduraglobal.com"] },
+  {
+    icon: MapPin,
+    title: "Our Office",
+    details: [
+      {
+        label: "1-11 Rosa Crescent Castle Hill 2154 NSW, Australia",
+        link: "https://www.google.com/maps?q=1-11+Rosa+Crescent+Castle+Hill+2154+NSW+Australia",
+      },
+    ],
+  },
+  {
+    icon: Phone,
+    title: "Phone",
+    details: [
+      {
+        label: "+61 434 500 743",
+        link: "tel:+61434500743",
+      },
+    ],
+  },
+  {
+    icon: Mail,
+    title: "Email",
+    details: [
+      {
+        label: "australia@maduraglobal.com",
+        link: "mailto:australia@maduraglobal.com",
+      },
+    ],
+  },
 ]
 
 export default function ContactPage() {
@@ -44,10 +71,16 @@ export default function ContactPage() {
                 {info.title}
               </h3>
               {info.details.map((detail) => (
-                <p key={detail} className="mt-1 text-sm text-muted-foreground">
-                  {detail}
-                </p>
-              ))}
+  <a
+    key={detail.label}
+    href={detail.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-1 block text-sm text-muted-foreground hover:text-accent transition"
+  >
+    {detail.label}
+  </a>
+))}
             </div>
           ))}
         </div>
