@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
 import { cn } from '../lib/utils';
-// import motive == from 'framer-motion/client';
 import Chairmanimage from '/images/VKT-BALAN.png';
 
 
@@ -49,7 +48,7 @@ export default function Home() {
       subtitle:
         "Curated India journeys from Australia — thoughtfully designed around history, culture and regional depth",
       buttons: [
-        { text: "Explore Journeys to India", link: "/destinations/india" }
+        { text: "Explore Journeys to India", link: "/pages/india" }
       ]
     },
     {
@@ -58,7 +57,7 @@ export default function Home() {
       subtitle:
         "From coastlines to desert interiors, Australia revealed through thoughtful design and disciplined execution.",
       buttons: [
-        { text: "Explore Australia Tours", link: "/destinations/australia" }
+        { text: "Explore Australia Tours", link: "/pages/australia" }
       ]
     }
   ];
