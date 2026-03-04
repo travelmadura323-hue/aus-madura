@@ -10,6 +10,10 @@ const gal = import.meta.glob('/src/gallery/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 });
+const im = import.meta.glob('/images/im/*.{png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+});
 
 const stats = [
   { icon: Globe, value: "28K+", label: "Total Destinations" },
@@ -187,8 +191,106 @@ Your premier choice for unforgettable travel experiences backed by 39 years of e
 
   </div>
 </section>
+<section className="py-24 bg-gray-50 text-center">
 
+  {/* Main Heading */}
+  <h2 className="text-4xl md:text-5xl font-extrabold text-indigo-900 mb-16">
+    Awards & Recognitions
+  </h2>
+
+  {/* Top Logos */}
+  <div className="flex flex-col md:flex-row items-center justify-center gap-70 mb-24">
+    <img
+      src={im['/images/im/rsh_100cg_truem-4.png']}
+      alt="Incredible India"
+      className="h-24 object-contain"
+    />
+    <img
+      src={im['/images/im/rsh_100cg_truem-10.jpeg']}
+      alt="Enchanting Tamil Nadu"
+      className="h-24 object-contain"
+    />
+  </div>
+
+  {/* Government Recognitions Grid */}
+  <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">
+    Government Recognitions
+  </h3>
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 max-w-6xl mx-auto px-4 mb-24">
+    {[
+      { img: im['/images/im/111.png'], label: "Primary Host" },
+      { img: im['/images/im/22-1.png'], label: "Record Holder" },
+      { img: im['/images/im/33-1.png'], label: "M.I.C.E Leader" },
+      { img: im['/images/im/44-1.png'], label: "Record Holder" },
+    ].map((item, index) => (
+      <div
+        key={index}
+        className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition"
+      >
+        <img
+          src={item.img}
+          alt={item.label}
+          className="h-20 mx-auto mb-6 object-contain"
+        />
+        <span className="inline-block px-4 py-2 text-indigo-900 border border-indigo-200 rounded-full font-semibold">
+          {item.label}
+        </span>
       </div>
-    // </div>
+    ))}
+  </div>
+
+  {/* Subsidiaries Section */}
+  <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-16">
+    Our Subsidiaries
+  </h3>
+
+  <div className="flex flex-wrap items-center justify-center gap-30 max-w-7xl mx-auto px-4 mb-24">
+    {[
+      im['/images/im/rsh_100cg_true.png'],
+      im['/images/im/MADURAGLOBALIMMIGRATION-300x300.png'],
+      im['/images/im/madura-intitute-300x300.png'],
+      im['/images/im/Madura-Global-Logo-150x150.png'],
+      im['/images/im/111.png'],
+    ].map((logo, index) => (
+      <img
+        key={index}
+        src={logo}
+        alt="Subsidiary Logo"
+        className="h-24 object-contain transition duration-300"
+      />
+    ))}
+  </div>
+
+  {/* Second Recognition Row */}
+  <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">
+ Our Accreditations
+  </h3>
+
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-9 max-w-6xl mx-auto px-4">
+    {[
+      im['/images/im/iata.png'],
+      im['/images/im/iaai.jpg'],
+      im['/images/im/download.png'],
+      im['/images/im/taai.png'],
+      im['/images/im/tafi.jpg'],
+    ].map((logo, index) => (
+      <div
+        key={index}
+        className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition"
+      >
+        <img
+          src={logo}
+          alt="Association Logo"
+          className="h-20 mx-auto object-contain"
+        />
+      </div>
+    ))}
+  </div>
+
+</section>
+
+      
+     </div>
   )
 }

@@ -44,7 +44,7 @@ export default function Home() {
   // ✅ Slides = DATA ONLY
   const slides = [
     {
-      image: images['/images/Temple1.png'],
+      image: images['/images/Meenachi amman temple.png'],
       title: "Explore India",
       subtitle:
         "Curated India journeys from Australia — thoughtfully designed around history, culture and regional depth",
@@ -53,7 +53,7 @@ export default function Home() {
       ]
     },
     {
-      image: images['/images/landscape.png'],
+      image: images['/images/Australia.png'],
       title: "Explore Australia",
       subtitle:
         "From coastlines to desert interiors, Australia revealed through thoughtful design and disciplined execution.",
@@ -155,19 +155,8 @@ export default function Home() {
             </span> */}
 
             {/* Title */}
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.1]">
-              {slides[currentSlide].title.split(" ").map((word, i, arr) =>
-                i === arr.length - 1 ? (
-                  <span
-                    key={i}
-                    className="text-accent italic font-serif block md:inline"
-                  >
-                    {word}
-                  </span>
-                ) : (
-                  word + " "
-                )
-              )}
+            <h1 className="text-8xl md:text-[9rem] lg:text-[12rem]  font-bold text-white mb-6 leading-tight">
+              {slides[currentSlide].title}
             </h1>
 
             {/* Subtitle */}
@@ -214,7 +203,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               { id: 'vietnam', name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80', link: '/pages/vietnam' },
-              { id: 'malaysia', name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'], link: '/pages/malaysia' },
+              { id: 'malaysia', name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'], link: '/pages/Malaysia' },
               { id: 'singapore', name: 'Singapore', price: '950', image: images['/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png'] as string, link: '/pages/singapore' },
               { id: 'sri-lanka', name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80', link: '/pages/sri-lanka' },
               { id: 'india', name: 'India', price: '350', image: images['/images/11.png'], link: '/pages/india' }
