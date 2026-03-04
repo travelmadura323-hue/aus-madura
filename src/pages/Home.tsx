@@ -90,9 +90,16 @@ export default function Home() {
           className="fixed right-0 top-1/2 -translate-y-1/2 z-[100] hidden md:block"
         >
           <Link to="/contact">
-            <button className="bg-accent text-primary font-black py-4 px-6 rounded-l-2xl shadow-[-10px_0_30px_rgba(0,0,0,0.2)] flex items-center gap-4 group transition-colors hover:bg-white border-l-4 border-primary">
+            <button className=" w-48 h-20
+        bg-accent
+        text-primary
+        rounded-2xl
+        shadow-lg
+        flex flex-col items-center justify-center
+        gap-1
+        transition-all duration-300
+        hover:shadow-xl">
               <div className="bg-primary text-accent p-2 rounded-lg group-hover:bg-accent group-hover:text-white transition-colors">
-                <Phone className="w-5 h-5" />
               </div>
               <span className="whitespace-nowrap tracking-tight">Book a Free Consultation</span>
               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
