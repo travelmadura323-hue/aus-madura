@@ -8,10 +8,15 @@ const Malaysia = () => {
     (typeof t.location === 'string' ? t.location : t.location.country).toLowerCase().includes('Malaysia')
   );
 
+const pho = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+});
+
   return (
     <DestinationPackages
       country="Malaysia"
-      heroImage="https://images.unsplash.com/photo-1596422846543-75c6fc18a593?auto=format&fit=crop&w=1920&q=80"
+      heroImage={pho['/images/landscape.png']}
       tagline="A Vibrant Mix of Cultures"
       description="Experience the modernity of Kuala Lumpur, the beaches of Langkawi, and the ancient rainforests of Taman Negara."
       features={[

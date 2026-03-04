@@ -56,11 +56,11 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-bold mb-6 text-accent">Top Destinations</h4>
             <ul className="space-y-4 text-white text-sm">
-              <li><Link to="/destinations/kerala" className="hover:text-white transition-colors">Kerala Backwaters</Link></li>
-              <li><Link to="/destinations/rajasthan" className="hover:text-white transition-colors">Rajasthan Heritage</Link></li>
-              <li><Link to="/destinations/vietnam" className="hover:text-white transition-colors">Vietnam Discovery</Link></li>
-              <li><Link to="/destinations/singapore" className="hover:text-white transition-colors">Singapore City</Link></li>
-              <li><Link to="/destinations/kashmir" className="hover:text-white transition-colors">Kashmir Paradise</Link></li>
+              <li><Link to="/pages/india" className="hover:text-white transition-colors">India</Link></li>
+              <li><Link to="/pages/Australia" className="hover:text-white transition-colors">Australia</Link></li>
+              <li><Link to="/pages/vietnam" className="hover:text-white transition-colors">Vietnam </Link></li>
+              <li><Link to="/pages/singapore" className="hover:text-white transition-colors">Singapore City</Link></li>
+              <li><Link to="/pages/sri-lanka" className="hover:text-white transition-colors">Sri Lanka</Link></li>
             </ul>
           </div>
 
@@ -92,8 +92,8 @@ export default function Footer() {
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-white text-xs">
           <p>© 2026 Madura Travel Service Pvt Ltd. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white">Privacy Policy</a>
-            <a href="#" className="hover:text-white">Terms of Service</a>
+            <a href="/privacy-policy" className="hover:text-white">Privacy Policy</a>
+            <a href="/terms-conditions" className="hover:text-white">Terms of Service</a>
             <a href="#" className="hover:text-white">Cookie Policy</a>
           </div>
         </div>
