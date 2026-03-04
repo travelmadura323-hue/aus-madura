@@ -99,7 +99,7 @@ export default function Home() {
         gap-1
         transition-all duration-300
         hover:shadow-xl">
-              <div className="bg-primary text-accent p-2 rounded-lg group-hover:bg-accent group-hover:text-white transition-colors">
+              <div className=" text-accent p-2 rounded-lg group-hover:bg-accent group-hover:text-white transition-colors">
               </div>
               <span className="whitespace-nowrap tracking-tight">Book a Free Consultation</span>
               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">

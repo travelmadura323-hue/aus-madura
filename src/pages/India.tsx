@@ -7,12 +7,16 @@ const India = () => {
   const indiaTours = tours.filter((t) =>
     (typeof t.location === 'string' ? t.location : t.location.country).toLowerCase().includes('india')
   );
+  const photo = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+});
 
   return (
     <DestinationPackages
       country="India"
       titlePrefix="Incredible"
-      heroImage="https://images.unsplash.com/photo-1524492707947-2f85a1a24d3c?auto=format&fit=crop&w=1920&q=80"
+      heroImage={photo['/images/1.jpg']}
       tagline="Experience the Soul of a Nation"
       description="A land of diverse landscapes, ancient history, and vibrant traditions. From the snow-capped Himalayas to the tropical backwaters of Kerala, discover a world within a country."
       features={[

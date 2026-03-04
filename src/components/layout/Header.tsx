@@ -41,23 +41,25 @@ export default function Header() {
     {
       name: 'Categories',
       dropdown: [
-        { name: 'Medical Tourism', path: '/categories/medical-tourism' },
+         { name: 'Family Tourism', path: '/categories/family-tourism' },
+               { name: 'Honeymoon Tourism', path: '/categories/honeymoon-tourism' },
         { name: 'Spiritual Tourism', path: '/categories/spiritual-tourism' },
         { name: 'Wellness Tourism', path: '/categories/wellness-tourism' },
-        { name: 'Sports Tourism', path: '/categories/sports-tourism' },
-        { name: 'Family Tourism', path: '/categories/family-tourism' },
-        { name: 'Honeymoon Tourism', path: '/categories/honeymoon-tourism' },
+     
+      
+  
       ]
     },
     {
       name: 'Destinations',
       dropdown: [
         { name: 'India', path: '/pages/india' },
+         { name: 'Australia', path: '/pages/australia' },
         { name: 'Malaysia', path: '/pages/Malaysia' },
         { name: 'Singapore', path: '/pages/singapore' },
-        { name: 'Sri Lanka', path: '/pages/sri lanka' },
+        { name: 'Sri Lanka', path: '/pages/sri-lanka' },
         { name: 'Vietnam', path: '/pages/vietnam' },
-        { name: 'Australia', path: '/pages/australia' },
+       
       ]
     },
     { name: 'Contact Us', path: '/contact' },
@@ -70,7 +72,7 @@ export default function Header() {
         (isScrolled || location.pathname !== '/') ? 'bg-primary/95 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-5'
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 left-0 h-full flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 left-0 h-full flex items-center  justify-between">
         <Link to="/" className="flex items-center gap-4">
           <div className={cn(
             "relative transition-all duration-300",
@@ -104,8 +106,8 @@ export default function Header() {
                 <Link
                   to={link.path}
                   className={cn(
-                    "text-sm font-medium hover:text-accent transition-colors",
-                    isScrolled ? "text-slate-700" : "text-[#191975]"
+                    "text-sm font-medium hover:text-accent transition-colors ",
+                    isScrolled ? "text-white" : "text-[#ffffff]"
                   )}
                 >
                   {link.name}
@@ -114,7 +116,7 @@ export default function Header() {
                 <button
                   className={cn(
                     "text-sm font-medium flex items-center gap-1 hover:text-accent transition-colors ",
-                    isScrolled ? "text-slate-700" : "text-[#191975]"
+                    isScrolled ? "text-white" : "text-[#ffffff]"
                   )}
                 >
                   {link.name} <ChevronDown className="w-4 h-4" />
