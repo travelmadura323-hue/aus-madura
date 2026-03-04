@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
 import { cn } from '../lib/utils';
+// import motive == from 'framer-motion/client';
 import Chairmanimage from '/images/VKT-BALAN.png';
 
 
@@ -48,7 +49,7 @@ export default function Home() {
       subtitle:
         "Curated India journeys from Australia — thoughtfully designed around history, culture and regional depth",
       buttons: [
-        { text: "Explore Journeys to India", link: "/pages/India" }
+        { text: "Explore Journeys to India", link: "/pages/india" }
       ]
     },
     {
@@ -57,7 +58,7 @@ export default function Home() {
       subtitle:
         "From coastlines to desert interiors, Australia revealed through thoughtful design and disciplined execution.",
       buttons: [
-        { text: "Explore Australia Tours", link: "/pages/Australia" }
+        { text: "Explore Australia Tours", link: "/pages/australia" }
       ]
     }
   ];
@@ -89,17 +90,9 @@ export default function Home() {
           className="fixed right-0 top-1/2 -translate-y-1/2 z-[100] hidden md:block"
         >
           <Link to="/contact">
-            <button className="  w-48 h-20
-        bg-accent
-        text-primary
-        rounded-2xl
-        shadow-lg
-        flex flex-col items-center justify-center
-        gap-1
-        transition-all duration-300
-        hover:shadow-xl hover:shadow-accent/30">
+            <button className="bg-accent text-primary font-black py-4 px-6 rounded-l-2xl shadow-[-10px_0_30px_rgba(0,0,0,0.2)] flex items-center gap-4 group transition-colors hover:bg-white border-l-4 border-primary">
               <div className="bg-primary text-accent p-2 rounded-lg group-hover:bg-accent group-hover:text-white transition-colors">
-                {/* <Phone className="w-2 h-2" /> */}
+                <Phone className="w-5 h-5" />
               </div>
               <span className="whitespace-nowrap tracking-tight">Book a Free Consultation</span>
               <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
@@ -261,7 +254,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
               <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">International Highlights</span>
-              <h2 className="text-4xl font-bold text-primary">Discover India Tours</h2>
+              <h2 className="text-4xl font-bold text-primary">Popular India Tours</h2>
             </div>
             <Link
               to="/pages/india" onClick={() => window.scrollTo(0, 0)}
@@ -326,7 +319,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 px-4">
             <div>
               <span className="text-accent font-bold uppercase tracking-[0.4em] text-[10px] mb-2 block">Exclusive Feature</span>
-              <h2 className="text-4xl md:text-5xl font-black text-primary">Iconic Australia </h2>
+              <h2 className="text-4xl md:text-5xl font-black text-primary">Australia Specials</h2>
             </div>
             <p className="text-slate-500 max-w-sm text-right hidden md:block italic">
               Explore the Great Outback, the Great Barrier Reef, and the vibrant cities of the land down under.
@@ -600,7 +593,7 @@ export default function Home() {
           <div className="flex w-full overflow-hidden select-none">
             <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee">
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={`logo-1-${i}`} className="w-40 h-20 flex items-center justify-center p-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                <div key={`logo-1-${i}`} className="w-40 h-20 flex items-center justify-center p-4  transition-all duration-500">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
                     alt={`Partner ${i}`}
@@ -609,8 +602,8 @@ export default function Home() {
                 </div>
               ))}
               {/* Duplicate for seamless effect */}
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                <div key={`logo-1-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4  hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={`logo-1-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4  transition-all duration-500">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
                     alt={`Partner ${i}`}
@@ -625,7 +618,7 @@ export default function Home() {
           <div className="flex w-full overflow-hidden select-none">
             <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee-reverse">
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={`logo-2-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500">
+                <div key={`logo-2-${i}`} className="w-40 h-20 flex items-center justify-center p-4   transition-all duration-500">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
                     alt={`Partner ${i}`}
@@ -635,7 +628,7 @@ export default function Home() {
               ))}
               {/* Duplicate for seamless effect */}
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={`logo-2-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500">
+                <div key={`logo-2-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4  transition-all duration-500">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
                     alt={`Partner ${i}`}
