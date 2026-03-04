@@ -16,7 +16,7 @@ const India = () => {
     <DestinationPackages
       country="India"
       titlePrefix="Incredible"
-      heroImage={photo['/images/1.jpg']}
+      heroImage={photo['/images/1.png']}
       tagline="Experience the Soul of a Nation"
       description="A land of diverse landscapes, ancient history, and vibrant traditions. From the snow-capped Himalayas to the tropical backwaters of Kerala, discover a world within a country."
       features={[
