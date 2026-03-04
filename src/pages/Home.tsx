@@ -319,7 +319,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 px-4">
             <div>
               <span className="text-accent font-bold uppercase tracking-[0.4em] text-[10px] mb-2 block">Exclusive Feature</span>
-              <h2 className="text-4xl md:text-5xl font-black text-primary">Australia Specials</h2>
+              <h2 className="text-4xl md:text-5xl font-black text-primary">Iconic Australia </h2>
             </div>
             <p className="text-slate-500 max-w-sm text-right hidden md:block italic">
               Explore the Great Outback, the Great Barrier Reef, and the vibrant cities of the land down under.
