@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Menu, X, Phone, Mail, MapPin, Globe, Building2, Users, Briefcase } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import EnquiryModal from '../EnquiryModal';
-import  Image  from '/images/logo.png';
+import Image from '/images/logo.png';
 
 
 
@@ -52,11 +52,12 @@ export default function Header() {
     {
       name: 'Destinations',
       dropdown: [
-        { name: 'India', path: 'pages/india' },
-        { name: 'Malaysia', path: 'pages/malaysia' },
-        { name: 'Singapore', path: 'pages/singapore' },
-        { name: 'Sri Lanka', path: 'pages/sri-lanka' },
-        { name: 'Vietnam', path: 'pages/vietnam' },
+        { name: 'India', path: '/destinations/india' },
+        { name: 'Malaysia', path: '/destinations/malaysia' },
+        { name: 'Singapore', path: '/destinations/singapore' },
+        { name: 'Sri Lanka', path: '/destinations/sri-lanka' },
+        { name: 'Vietnam', path: '/destinations/vietnam' },
+        { name: 'Australia', path: '/destinations/australia' },
       ]
     },
     { name: 'Contact Us', path: '/contact' },
@@ -66,32 +67,29 @@ export default function Header() {
     <header
       className={cn(
         'fixed top-0 left-0 w-full z-50 transition-all duration-300',
-        isScrolled ? 'glass-nav py-3' : 'bg-transparent py-5'
+        (isScrolled || location.pathname !== '/') ? 'bg-primary/95 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-5'
       )}
     >
-    <div className="max-w-7xl ml-10  flex  justify-between">
-  <Link to="/" className="flex items-center">
-    <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden border border-slate-100">
-      <img
-        src={Image}
-        alt="Madura Global Logo"
-        className="w-full h-full object-contain"
-      />
-    </div>
-        
-          <div className="flex  flex-col pl-3">
+      <div className="max-w-7xl mx-auto px-6 left-0 h-full flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-4">
+          <div className={cn(
+            "relative transition-all duration-300",
+            (isScrolled || location.pathname !== '/') ? "w-14 h-14" : "w-20 h-20"
+          )}>
+            <img
+              src={Image}
+              alt="Madura Global Logo"
+              className="w-full h-full object-contain drop-shadow-md"
+            />
+          </div>
+
+          <div className="flex flex-col">
             {/* <span className={cn(
-              "text-xl font-black tracking-tighter leading-none",
-              isScrolled ? "text-primary" : "text-[#191975]"
+              "text-xl font-black tracking-tighter leading-none transition-colors",
+              (isScrolled || location.pathname !== '/') ? "text-white" : "text-primary transition-colors"
             )}>
               Madura<span className="text-accent pl-1">Global</span>
             </span> */}
-            <span className={cn(
-              "text-xl font-bold uppercase tracking-[0.3em] leading-none mt-1",
-              isScrolled ? "text-slate-400" : "text-white/60"
-            )}>
-              
-            </span>
           </div>
         </Link>
 
@@ -142,7 +140,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button 
+          <button
             onClick={() => setIsEnquiryModalOpen(true)}
             className="hidden md:flex bg-accent text-white font-bold px-6 py-2.5 rounded-full text-sm hover:bg-primary transition-all"
           >
@@ -157,9 +155,9 @@ export default function Header() {
         </div>
       </div>
 
-      <EnquiryModal 
-        isOpen={isEnquiryModalOpen} 
-        onClose={() => setIsEnquiryModalOpen(false)} 
+      <EnquiryModal
+        isOpen={isEnquiryModalOpen}
+        onClose={() => setIsEnquiryModalOpen(false)}
       />
 
       {/* Mobile Menu */}
@@ -171,33 +169,75 @@ export default function Header() {
             exit={{ opacity: 0, x: '100%' }}
             className="fixed inset-0 bg-white z-50 lg:hidden overflow-y-auto"
           >
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-10">
-                <span className="text-2xl font-bold text-primary">MENU</span>
-                <button onClick={() => setIsMobileMenuOpen(false)}><X className="w-8 h-8 text-primary" /></button>
+            <div className="p-8">
+              <div className="flex justify-between items-center mb-12">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center p-2 border border-slate-100 shadow-sm">
+                    <img src={Image} alt="Logo" className="w-full h-full object-contain" />
+                  </div>
+                  <span className="text-xl font-black text-primary tracking-tighter">
+                    Madura<span className="text-accent">Global</span>
+                  </span>
+                </div>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center text-primary shadow-sm active:scale-90 transition-all"
+                >
+                  <X className="w-6 h-6" />
+                </button>
               </div>
-              <div className="space-y-6">
+
+              <div className="space-y-2">
                 {navLinks.map(link => (
-                  <div key={link.name} className="border-b border-slate-100 pb-4">
-                    <div className="text-lg font-bold text-primary mb-2">{link.name}</div>
-                    {link.dropdown && (
-                      <div className="grid grid-cols-2 gap-2 pl-4">
+                  <div key={link.name} className="bg-slate-50/50 rounded-3xl p-6 border border-slate-100">
+                    <div className="text-sm font-black text-slate-400 uppercase tracking-widest mb-4">{link.name}</div>
+                    {link.dropdown ? (
+                      <div className="grid grid-cols-1 gap-3">
                         {link.dropdown.map(item => (
-                          <Link key={item.name} to={item.path} className="text-slate-600 text-sm py-1">{item.name}</Link>
+                          <Link
+                            key={item.name}
+                            to={item.path}
+                            className="text-primary font-bold text-lg flex items-center justify-between group active:translate-x-1 transition-all"
+                          >
+                            {item.name}
+                            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm opacity-0 group-active:opacity-100 group-hover:opacity-100 transition-all">
+                              <ChevronDown className="w-4 h-4 -rotate-90 text-accent" />
+                            </div>
+                          </Link>
                         ))}
                       </div>
+                    ) : (
+                      <Link
+                        to={link.path || '#'}
+                        className="text-primary font-bold text-lg block active:translate-x-1 transition-all"
+                      >
+                        {link.name}
+                      </Link>
                     )}
                   </div>
                 ))}
               </div>
-              <div className="mt-10 space-y-4">
-                <div className="flex items-center gap-3 text-slate-600"><Phone className="w-5 h-5" /> +61 434 500 743</div>
-                <div className="flex items-center gap-3 text-slate-600"><Mail className="w-5 h-5" /> australia@maduraglobal.com</div>
+
+              <div className="mt-12 bg-primary text-white p-8 rounded-[2.5rem] shadow-xl shadow-primary/20 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl" />
+                <div className="relative z-10">
+                  <h4 className="font-bold text-accent mb-4">Contact Our Specialists</h4>
+                  <div className="space-y-4">
+                    <a href="tel:+61434500743" className="flex items-center gap-4 text-sm font-medium hover:text-accent transition-colors">
+                      <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center"><Phone className="w-5 h-5 text-accent" /></div>
+                      +61 434 500 743
+                    </a>
+                    <a href="mailto:australia@maduraglobal.com" className="flex items-center gap-4 text-sm font-medium hover:text-accent transition-colors">
+                      <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center"><Mail className="w-5 h-5 text-accent" /></div>
+                      australia@maduraglobal.com
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </header >
   );
 }

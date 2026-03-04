@@ -17,17 +17,17 @@ import Chairmanimage from '/images/VKT-BALAN.png';
 //     target: heroRef,
 //     offset: ["start start", "end start"]
 //   });
-  const images = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+const images = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 });
- const gallery = import.meta.glob('/src/gallery/*.{png,jpg,jpeg,svg}', {
+const gallery = import.meta.glob('/src/gallery/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 });
 
 
- export default function Home() {
+export default function Home() {
   const heroRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -39,46 +39,86 @@ import Chairmanimage from '/images/VKT-BALAN.png';
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   // ✅ Slides = DATA ONLY
   const slides = [
     {
       image: images['/images/Temple1.png'],
-      title: "Heritage. Architecture. Living Tradition.",
+      title: "Explore India",
       subtitle:
         "Curated India journeys from Australia — thoughtfully designed around history, culture and regional depth",
       buttons: [
-        { text: "Explore Journeys to India", link: "/india" },
-        { text: "Book a Free Travel Consultation", link: "/consultation" }
+        { text: "Explore Journeys to India", link: "/destinations/india" }
       ]
     },
     {
       image: images['/images/landscape.png'],
-      title: "Landscape. Culture. Continental Scale.",
+      title: "Explore Australia",
       subtitle:
         "From coastlines to desert interiors, Australia revealed through thoughtful design and disciplined execution.",
       buttons: [
-        { text: "Explore Australia Tours", link: "/australia" },
-        { text: "Speak With Travel Expert", link: "/consultation" }
+        { text: "Explore Australia Tours", link: "/destinations/australia" }
       ]
     }
   ];
 
   // Auto slide
   useEffect(() => {
+    if (isPaused) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
 
     return () => clearInterval(timer);
-  }, [slides.length]);
+  }, [slides.length, isPaused]);
+
 
   return (
     <div className="overflow-x-hidden">
       <section
         ref={heroRef}
-        className="relative h-[80vh] flex items-center justify-center overflow-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        className="relative h-[85vh] flex items-center justify-center overflow-hidden"
       >
+        {/* Floating Consultation Button - Sliding Tab */}
+        <motion.div
+          initial={{ x: 100 }}
+          animate={{ x: 0 }}
+          whileHover={{ x: -10 }}
+          className="fixed right-0 top-1/2 -translate-y-1/2 z-[100] hidden md:block"
+        >
+          <Link to="/contact">
+            <button className="  w-48 h-20
+        bg-accent
+        text-primary
+        rounded-2xl
+        shadow-lg
+        flex flex-col items-center justify-center
+        gap-1
+        transition-all duration-300
+        hover:shadow-xl hover:shadow-accent/30">
+              <div className="bg-primary text-accent p-2 rounded-lg group-hover:bg-accent group-hover:text-white transition-colors">
+                {/* <Phone className="w-2 h-2" /> */}
+              </div>
+              <span className="whitespace-nowrap tracking-tight">Book a Free Consultation</span>
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                <ArrowRight className="w-4 h-4 text-primary" />
+              </div>
+            </button>
+          </Link>
+        </motion.div>
+
+        {/* Mobile Floating Button */}
+        <div className="fixed bottom-6 right-6 z-50 md:hidden">
+          <Link to="/contact">
+            <button className="bg-accent text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center border-2 border-white/20">
+              <Phone className="w-6 h-6" />
+            </button>
+          </Link>
+        </div>
+
         {/* Background Slides */}
         {slides.map((slide, index) => (
           <motion.div
@@ -164,7 +204,7 @@ import Chairmanimage from '/images/VKT-BALAN.png';
           ))}
         </div>
       </section>
-       {/* Trending Destinations */}
+      {/* Trending Destinations */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
@@ -174,46 +214,47 @@ import Chairmanimage from '/images/VKT-BALAN.png';
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
-              { name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80' },
-              { name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'] },
-              { name: 'Singapore', price: '950', image: images['/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png'] as string },
-              { name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80' },
-              { name: 'India', price: '350', image: images['/images/11.png'] }
+              { id: 'vietnam', name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80', link: '/pages/vietnam' },
+              { id: 'malaysia', name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'], link: '/pages/malaysia' },
+              { id: 'singapore', name: 'Singapore', price: '950', image: images['/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png'] as string, link: '/pages/singapore' },
+              { id: 'sri-lanka', name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80', link: '/pages/sri-lanka' },
+              { id: 'india', name: 'India', price: '350', image: images['/images/11.png'], link: '/pages/india' }
             ].map((dest, idx) => (
-              <motion.div
-                key={dest.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer"
-              >
-                <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-lg">
-                  <img 
-                    src={dest.image} 
-                    alt={dest.name} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                  
-                  {/* Price Badge - Bottom Left */}
-                  <div className="absolute bottom-4 left-4 z-10">
-                    <div className="text-[10px] font-bold text-white/80 uppercase tracking-widest mb-1">Starting from</div>
-                    <div className="bg-accent text-white font-black px-3 py-1 rounded-lg shadow-xl inline-block text-lg">
-                      ${dest.price}
+              <Link key={dest.id} to={dest.link} onClick={() => window.scrollTo(0, 0)}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group cursor-pointer"
+                >
+                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-lg">
+                    <img
+                      src={dest.image as string}
+                      alt={dest.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+
+                    {/* Price Badge - Bottom Left */}
+                    <div className="absolute bottom-4 left-4 z-10">
+                      <div className="text-[10px] font-bold text-white/80 uppercase tracking-widest mb-1">Starting from</div>
+                      <div className="bg-accent text-white font-black px-3 py-1 rounded-lg shadow-xl inline-block text-lg">
+                        ${dest.price}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="text-center">
-                  <h3 className="text-xl font-bold text-primary group-hover:text-accent transition-colors">{dest.name}</h3>
-                  <div className="w-8 h-1 bg-accent mx-auto mt-2 scale-x-0 group-hover:scale-x-100 transition-transform origin-center" />
-                </div>
-              </motion.div>
+                  <div className="text-center">
+                    <h3 className="text-xl font-bold text-primary group-hover:text-accent transition-colors">{dest.name}</h3>
+                    <div className="w-8 h-1 bg-accent mx-auto mt-2 scale-x-0 group-hover:scale-x-100 transition-transform origin-center" />
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
-      
+
 
       {/* Popular India Tours */}
       <section className="py-24 bg-white">
@@ -221,15 +262,15 @@ import Chairmanimage from '/images/VKT-BALAN.png';
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
               <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">International Highlights</span>
-              <h2 className="text-4xl font-bold text-primary">Popular India Tours</h2>
+              <h2 className="text-4xl font-bold text-primary">Discover India Tours</h2>
             </div>
-           <Link
-  to="/india" onClick={() => window.scrollTo(0, 0)}
-  className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group"
->
-  View All India Tours
-  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-</Link>
+            <Link
+              to="/pages/india" onClick={() => window.scrollTo(0, 0)}
+              className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group"
+            >
+              View All India Tours
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -279,9 +320,38 @@ import Chairmanimage from '/images/VKT-BALAN.png';
         </div>
       </section>
 
-     
+      {/* Australia Specials - Highlight the 5 new tours */}
+      <section className="py-24 bg-slate-50 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 px-4">
+            <div>
+              <span className="text-accent font-bold uppercase tracking-[0.4em] text-[10px] mb-2 block">Exclusive Feature</span>
+              <h2 className="text-4xl md:text-5xl font-black text-primary">Iconic Australia </h2>
+            </div>
+            <p className="text-slate-500 max-w-sm text-right hidden md:block italic">
+              Explore the Great Outback, the Great Barrier Reef, and the vibrant cities of the land down under.
+            </p>
+          </div>
 
-      {/* SE Asia Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {tours.filter((t: any) => {
+              const loc = typeof t.location === 'string' ? t.location : t.location.country;
+              return loc.toLowerCase().includes('australia');
+            }).map((tour, idx) => (
+              <motion.div
+                key={tour.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: idx * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <TourCard tour={tour} />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
       {/* <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0">
           <img
@@ -321,7 +391,7 @@ import Chairmanimage from '/images/VKT-BALAN.png';
           </div>
         </div>
       </section> */}
-       <section className="py-24 bg-primary text-white overflow-hidden">
+      <section className="py-24 bg-primary text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -329,19 +399,19 @@ import Chairmanimage from '/images/VKT-BALAN.png';
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-             <div className="relative inline-block mb-8">
+              <div className="relative inline-block mb-8">
 
-  {/* Red box */}
-  <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl z-0"></div>
+                {/* Red box */}
+                <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl z-0"></div>
 
-  {/* Image */}
-  <img
-    src={Chairmanimage}
-    alt="Chairman V.K.T Balan"
-    className="relative z-10 w-80 h-80 object-cover rounded-2xl shadow-2xl border-4 border-white"
-  />
+                {/* Image */}
+                <img
+                  src={Chairmanimage}
+                  alt="Chairman V.K.T Balan"
+                  className="relative z-10 w-80 h-80 object-cover rounded-2xl shadow-2xl border-4 border-white"
+                />
 
-</div> 
+              </div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -363,193 +433,236 @@ import Chairmanimage from '/images/VKT-BALAN.png';
       </section>
 
       {/* Why Choose Us with Badges */}
-  <section className="py-28 bg-gradient-to-b from-white to-slate-50">
-  <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="py-28 bg-gradient-to-b from-white to-slate-50">
+        <div className="max-w-7xl mx-auto px-6 text-center">
 
-    {/* Top Tagline */}
-    <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
-      Experience. Quality. Trust.
-    </span>
+          {/* Top Tagline */}
+          <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
+            Experience. Quality. Trust.
+          </span>
 
-    {/* Heading */}
-    <h2 className="text-5xl md:text-6xl font-bold text-primary mt-6 mb-6">
-      Advantage of Choosing Us
-    </h2>
+          {/* Heading */}
+          <h2 className="text-5xl md:text-6xl font-bold text-primary mt-6 mb-6">
+            Advantage of Choosing Us
+          </h2>
 
-    {/* Description */}
-    <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-20">
-      Join millions of happy travelers who trust Madura Travel Service (P) Ltd,
-      one of India’s leading travel companies. With over four decades of excellence,
-      we craft unforgettable journeys backed by global expertise and personalized service.
-    </p>
-
-    {/* Stats Cards */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-      {[
-        { number: "4M+", label: "Happy Travelers" },
-        { number: "28K+", label: "Destinations Covered" },
-        { number: "40+", label: "Years of Excellence" },
-        { number: "200K+", label: "5-Star Client Ratings" }
-      ].map((item, index) => (
-        <div
-          key={index}
-          className="bg-[#f3ece3] rounded-3xl p-14 shadow-sm hover:shadow-2xl transition-all duration-300 group"
-        >
-          <h3 className="text-6xl font-extrabold text-slate-900 mb-4 group-hover:text-primary transition-colors">
-            {item.number}
-          </h3>
-          <p className="text-slate-700 text-lg font-medium">
-            {item.label}
+          {/* Description */}
+          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-20">
+            Join millions of happy travelers who trust Madura Travel Service (P) Ltd,
+            one of India’s leading travel companies. With over four decades of excellence,
+            we craft unforgettable journeys backed by global expertise and personalized service.
           </p>
-        </div>
-      ))}
-    </div>
 
-  </div>
-</section>
-
-      {/* Feedbacks Section */}
-  <section className="py-32 bg-gradient-to-b from-secondary to-white">
-  <div className="max-w-7xl mx-auto px-6">
-      
-
-    {/* Header */}
-<div className="relative mb-16">
-
-  {/* View All - aligned with Testimonials label */}
-  <div className="absolute right-0 top-6">
-    <Link
-      to="/company/testimonials"onClick={() => window.scrollTo(0, 0)}
-      className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group"
-    >
-      View All 
-      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-    </Link>
-  </div>
-
-  {/* Center Content */}
-  <div className="text-center max-w-3xl mx-auto">
-    <span className="text-sm tracking-[0.3em] uppercase text-accent font-semibold">
-      Testimonials
-    </span>
-
-    <h2 className="text-5xl font-extrabold text-primary mt-4 mb-6">
-      What Our Travelers Say
-    </h2>
-
-    <p className="text-lg text-slate-500 leading-relaxed">
-      Real stories from real people who trusted us to plan their journeys.
-    </p>
-  </div>
-
-</div>
-    
-
-    {/* Testimonials Data */}
-    {(() => {
-      const testimonials = [
-        {
-          name: "S. Vijay",
-          text: "We had a wonderful experience for our Sri Lanka trip. All arrangements were seamless and Mr. Sudharsan ensured we were comfortable throughout."
-        },
-        {
-          name: "Hariharan Balasubramanian",
-          text: "Systematic and careful VISA processing. Timely updates were provided and my family is delighted with the customer service."
-        },
-        {
-          name: "Subhashini Srivatsan",
-          text: "Excellent, personalised, professional and patient service by Ms. Deepa and her team."
-        },
-        {
-          name: "Jagadeesh Jayaraman",
-          text: "They understood our requirements perfectly and gave us a well-planned tour. Wonderful coordination and experience!"
-        }
-      ]
-
-      return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {testimonials.map((feedback, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="aspect-square bg-white p-8 rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-100 flex flex-col justify-between relative"
-            >
-              {/* Quote */}
-              <div className="absolute -top-5 left-6 bg-accent text-white px-3 py-1 rounded-full text-xl shadow-md">
-                “
-              </div>
-
-              {/* Stars */}
-              <div className="flex gap-1 text-yellow-400 mt-6">
-                {[1, 2, 3, 4, 5].map((s) => (
-                  <Star key={s} className="w-4 h-4 fill-current" />
-                ))}
-              </div>
-
-              {/* Text */}
-              <p className="text-slate-600 text-sm leading-relaxed mt-4">
-                {feedback.text}
-              </p>
-
-              {/* User */}
-              <div className="flex items-center gap-3 mt-6">
-                <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center font-bold text-primary text-sm">
-                  {feedback.name[0]}
-                </div>
-                <div>
-                  <div className="font-semibold text-primary text-sm">
-                    {feedback.name}
-                  </div>
-                  <div className="text-xs text-slate-400">
-                    Verified Traveler
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      )
-    })()}
-
-  </div>
-</section>
-
-      {/* Logo Carousel Section */}
-      <section className="py-24 bg-white border-y border-slate-100 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 mb-16 text-center">
-          <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">Our Network</span>
-          <h2 className="text-4xl font-bold text-primary">Our Trusted Partners & Affiliations</h2>
-        </div>
-        
-        <div className="space-y-14">
-          {/* Row 1: Left to Right */}
-          <div className="flex gap-20 animate-marquee whitespace-nowrap">
-            {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
-              <div key={idx} className="flex items-center justify-center  transition-all">
-                <img 
-                  src={gallery[`/src/gallery/img-${i}.jpg`]} 
-                  alt="Partner Logo" 
-                  className="h-12 object-contain"
-                />
+          {/* Stats Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {[
+              { number: "4M+", label: "Happy Travelers" },
+              { number: "28K+", label: "Destinations Covered" },
+              { number: "40+", label: "Years of Excellence" },
+              { number: "200K+", label: "5-Star Client Ratings" }
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="bg-[#f3ece3] rounded-3xl p-14 shadow-sm hover:shadow-2xl transition-all duration-300 group"
+              >
+                <h3 className="text-6xl font-extrabold text-slate-900 mb-4 group-hover:text-primary transition-colors">
+                  {item.number}
+                </h3>
+                <p className="text-slate-700 text-lg font-medium">
+                  {item.label}
+                </p>
               </div>
             ))}
           </div>
 
-          {/* Row 2: Right to Left */}
-          <div className="flex gap-20 animate-marquee-reverse whitespace-nowrap">
-            {[1,2,3,4,5,6,1,2,3,4,5,6].map((i, idx) => (
-              <div key={idx} className="flex items-center justify-center  transition-all">
-                <img 
-                  src={gallery[`/src/gallery/img-${i}.jpg`]} 
-                  alt="Partner Logo" 
-                  className="h-12 object-contain"
+        </div>
+      </section>
+
+      {/* Feedbacks Section */}
+      <section className="py-32 bg-gradient-to-b from-secondary to-white">
+        <div className="max-w-7xl mx-auto px-6">
+
+
+          {/* Header */}
+          <div className="relative mb-16">
+
+            {/* View All - aligned with Testimonials label */}
+            <div className="absolute right-0 top-6">
+              <Link
+                to="/company/testimonials" onClick={() => window.scrollTo(0, 0)}
+                className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group"
+              >
+                View All
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+
+            {/* Center Content */}
+            <div className="text-center max-w-3xl mx-auto">
+              <span className="text-sm tracking-[0.3em] uppercase text-accent font-semibold">
+                Testimonials
+              </span>
+
+              <h2 className="text-5xl font-extrabold text-primary mt-4 mb-6">
+                What Our Travelers Say
+              </h2>
+
+              <p className="text-lg text-slate-500 leading-relaxed">
+                Real stories from real people who trusted us to plan their journeys.
+              </p>
+            </div>
+
+          </div>
+
+
+          {/* Testimonials Data */}
+          {(() => {
+            const testimonials = [
+              {
+                name: "S. Vijay",
+                text: "We had a wonderful experience for our Sri Lanka trip. All arrangements were seamless and Mr. Sudharsan ensured we were comfortable throughout."
+              },
+              {
+                name: "Hariharan Balasubramanian",
+                text: "Systematic and careful VISA processing. Timely updates were provided and my family is delighted with the customer service."
+              },
+              {
+                name: "Subhashini Srivatsan",
+                text: "Excellent, personalised, professional and patient service by Ms. Deepa and her team."
+              },
+              {
+                name: "Jagadeesh Jayaraman",
+                text: "They understood our requirements perfectly and gave us a well-planned tour. Wonderful coordination and experience!"
+              }
+            ]
+
+            return (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {testimonials.map((feedback, idx) => (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="aspect-square bg-white p-8 rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-100 flex flex-col justify-between relative"
+                  >
+                    {/* Quote */}
+                    <div className="absolute -top-5 left-6 bg-accent text-white px-3 py-1 rounded-full text-xl shadow-md">
+                      “
+                    </div>
+
+                    {/* Stars */}
+                    <div className="flex gap-1 text-accent mt-6">
+                      {[1, 2, 3, 4, 5].map((s) => (
+                        <Star key={s} className="w-4 h-4 fill-current" />
+                      ))}
+                    </div>
+
+                    {/* Text */}
+                    <p className="text-slate-600 text-sm leading-relaxed mt-4">
+                      {feedback.text}
+                    </p>
+
+                    {/* User */}
+                    <div className="flex items-center gap-3 mt-6">
+                      <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center font-bold text-primary text-sm">
+                        {feedback.name[0]}
+                      </div>
+                      <div>
+                        <div className="font-semibold text-primary text-sm">
+                          {feedback.name}
+                        </div>
+                        <div className="text-xs text-slate-400">
+                          Verified Traveler
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )
+          })()}
+
+        </div>
+      </section>
+
+      {/* Logo Carousel Section */}
+      <section className="py-24 bg-white border-y border-slate-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 mb-20 text-center">
+          <span className="text-accent font-bold uppercase tracking-[0.4em] text-xs mb-3 block">Global Network</span>
+          <h2 className="text-4xl md:text-5xl font-black text-primary mb-6">Our Trusted Partners</h2>
+          <p className="text-slate-500 max-w-2xl mx-auto text-lg">
+            Collaborating with leading airlines, hotels, and tourism boards worldwide to deliver excellence.
+          </p>
+        </div>
+
+        {/* Marquee Container */}
+        <div className="relative flex flex-col gap-12">
+          {/* Row 1 */}
+          <div className="flex w-full overflow-hidden select-none">
+            <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={`logo-1-${i}`} className="w-40 h-20 flex items-center justify-center p-4 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                  <img
+                    src={gallery[`/src/gallery/img-${i}.jpg`]}
+                    alt={`Partner ${i}`}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              ))}
+              {/* Duplicate for seamless effect */}
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                <div key={`logo-1-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4  hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                  <img
+                    src={gallery[`/src/gallery/img-${i}.jpg`]}
+                    alt={`Partner ${i}`}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2 (Reverse) */}
+          <div className="flex w-full overflow-hidden select-none">
+            <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee-reverse">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={`logo-2-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500">
+                  <img
+                    src={gallery[`/src/gallery/img-${i}.jpg`]}
+                    alt={`Partner ${i}`}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              ))}
+              {/* Duplicate for seamless effect */}
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={`logo-2-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500">
+                  <img
+                    src={gallery[`/src/gallery/img-${i}.jpg`]}
+                    alt={`Partner ${i}`}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Grid (Static on Small Screens for Stability) */}
+        <div className="md:hidden mt-16 px-6">
+          <div className="grid grid-cols-2 gap-4">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={`mobile-logo-${i}`} className="bg-slate-50 rounded-2xl p-6 flex items-center justify-center h-24 border border-slate-100">
+                <img
+                  src={gallery[`/src/gallery/img-${i}.jpg`]}
+                  alt={`Partner ${i}`}
+                  className="max-w-full max-h-full object-contain opacity-70"
                 />
               </div>
             ))}
           </div>
         </div>
       </section>
-   </div>
+    </div>
   );
 }
