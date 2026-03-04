@@ -15,6 +15,7 @@ export default function ContactForm() {
     name: "",
     email: "",
     phone: "",
+    countryCode: "+1",
     subject: "General Inquiry",
     message: "",
   })

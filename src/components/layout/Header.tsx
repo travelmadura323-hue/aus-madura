@@ -53,11 +53,11 @@ export default function Header() {
       name: 'Destinations',
       dropdown: [
         { name: 'India', path: '/pages/india' },
-        { name: 'Malaysia', path: '/pages/malaysia' },
-        { name: 'Singapore', path: '/pages/Singapore' },
+        { name: 'Malaysia', path: '/pages/Malaysia' },
+        { name: 'Singapore', path: '/pages/singapore' },
         { name: 'Sri Lanka', path: '/pages/sri lanka' },
         { name: 'Vietnam', path: '/pages/vietnam' },
-        { name: 'Australia', path: '/pages/Australia' },
+        { name: 'Australia', path: '/pages/australia' },
       ]
     },
     { name: 'Contact Us', path: '/contact' },
