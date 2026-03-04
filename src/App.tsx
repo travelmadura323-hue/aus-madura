@@ -23,6 +23,7 @@ import Vietnam from "./pages/vietnam";
 import SriLanka from "./pages/sri-lanka";
 import Australia from "./pages/australia";
 import Privacy from "./components/privacy";
+import Terms from "./pages/Terms";
 
 
 export default function App() {
@@ -52,7 +53,7 @@ export default function App() {
             <Route path="/company/media" element={<MediaPage />} />
             <Route path="/company/testimonials" element={<Testimonial />} />
             <Route path="/privacy-policy" element={<Privacy />} />
-
+            <Route path="/terms-conditions" element={<Terms />} />
 
             <Route path="/pages/malaysia" element={<Malaysia />} />
           </Routes>
