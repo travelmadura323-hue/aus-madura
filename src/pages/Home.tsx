@@ -53,12 +53,12 @@ export default function Home() {
       ]
     },
     {
-      image: images['/images/Aus.png'],
+      image: images['/images/Austra.png'],
       title: "Explore Australia",
       subtitle:
         "From coastlines to desert interiors, Australia revealed through thoughtful design and disciplined execution.",
       buttons: [
-        { text: "Explore Australia Tours", link: "/pages/australia" }
+        { text: "Explore Australia Tours", link: "/pages/Australia" }
       ]
     }
   ];
