@@ -44,7 +44,7 @@ export default function Header() {
          { name: 'Family Tourism', path: '/categories/family-tourism' },
                { name: 'Honeymoon Tourism', path: '/categories/honeymoon-tourism' },
         { name: 'Spiritual Tourism', path: '/categories/spiritual-tourism' },
-        { name: 'Wellness Tourism', path: '/categories/wellness-tourism' },
+        { name: 'Group Tourism', path: '/categories/group-tourism' },
      
       
   
