@@ -24,6 +24,8 @@ import SriLanka from "./components/destinations/sri-lanka";
 import Australia from "./components/destinations/australia";
 import Privacy from "./components/privacy";
 import Terms from "./pages/Terms";
+import Disclaimer from "./pages/Disclaimer"
+import ComplaintPolicy from "./pages/complaint-policy";
 
 
 export default function App() {
@@ -54,8 +56,9 @@ export default function App() {
             <Route path="/company/testimonials" element={<Testimonial />} />
             <Route path="/privacy-policy" element={<Privacy />} />
             <Route path="/terms-conditions" element={<Terms />} />
-
             <Route path="/destinations/malaysia" element={<Malaysia />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
+            <Route path="/complaint-policy" element={<ComplaintPolicy />} />
           </Routes>
         </main>
         <Footer />

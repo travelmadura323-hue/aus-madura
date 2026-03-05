@@ -163,80 +163,136 @@ export default function Header() {
       />
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            className="fixed inset-0 bg-white z-50 lg:hidden overflow-y-auto"
-          >
-            <div className="p-8">
-              <div className="flex justify-between items-center mb-12">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center p-2 border border-slate-100 shadow-sm">
-                    <img src={Image} alt="Logo" className="w-full h-full object-contain" />
-                  </div>
-                  <span className="text-xl font-black text-primary tracking-tighter">
-                    Madura<span className="text-accent">Global</span>
-                  </span>
-                </div>
-                <button
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center text-primary shadow-sm active:scale-90 transition-all"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-              </div>
+    <AnimatePresence>
+  {isMobileMenuOpen && (
+    <motion.div
+      initial={{ opacity: 0, x: "100%" }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: "100%" }}
+      transition={{ duration: 0.35, ease: "easeInOut" }}
+      className="fixed inset-0 bg-white z-50 lg:hidden overflow-y-auto w-full"
+    >
+      <div className="px-6 py-8 sm:px-8 max-w-2xl mx-auto">
 
-              <div className="space-y-2">
-                {navLinks.map(link => (
-                  <div key={link.name} className="bg-slate-50/50 rounded-3xl p-6 border border-slate-100">
-                    <div className="text-sm font-black text-slate-400 uppercase tracking-widest mb-4">{link.name}</div>
-                    {link.dropdown ? (
-                      <div className="grid grid-cols-1 gap-3">
-                        {link.dropdown.map(item => (
-                          <Link
-                            key={item.name}
-                            to={item.path}
-                            className="text-primary font-bold text-lg flex items-center justify-between group active:translate-x-1 transition-all"
-                          >
-                            {item.name}
-                            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm opacity-0 group-active:opacity-100 group-hover:opacity-100 transition-all">
-                              <ChevronDown className="w-4 h-4 -rotate-90 text-accent" />
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    ) : (
-                      <Link
-                        to={link.path || '#'}
-                        className="text-primary font-bold text-lg block active:translate-x-1 transition-all"
-                      >
-                        {link.name}
-                      </Link>
-                    )}
-                  </div>
-                ))}
-              </div>
+        {/* Header */}
+        <div className="flex justify-between items-center mb-10">
 
-              <div className="mt-12 bg-primary text-white p-8 rounded-[2.5rem] shadow-xl shadow-primary/20 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/20 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl" />
-                <div className="relative z-10">
-                  <h4 className="font-bold text-accent mb-4">Contact Our Specialists</h4>
-                  <div className="space-y-4">
-                    <a href="tel:+61434500743" className="flex items-center gap-4 text-sm font-medium hover:text-accent transition-colors">
-                      <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center"><Phone className="w-5 h-5 text-accent" /></div>
-                      +61 434 500 743
-                    </a>
-                    <a href="mailto:australia@maduraglobal.com" className="flex items-center gap-4 text-sm font-medium hover:text-accent transition-colors">
-                      <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center"><Mail className="w-5 h-5 text-accent" /></div>
-                      australia@maduraglobal.com
-                    </a>
-                  </div>
-                </div>
-              </div>
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 sm:h-11 sm:w-11 bg-primary rounded-full flex items-center justify-center p-2 border border-slate-100 shadow-sm">
+              <img
+                src={Image}
+                alt="Logo"
+                className="h-6 sm:h-7 md:h-8 w-auto object-contain"
+              />
             </div>
+
+            <span className="text-lg sm:text-xl font-black text-primary tracking-tight">
+              Madura<span className="text-accent">Global</span>
+            </span>
+          </div>
+
+          {/* Close Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-primary shadow-sm active:scale-90 transition"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
+        </div>
+
+        {/* Navigation Links */}
+        <div className="space-y-4">
+
+          {navLinks.map((link) => (
+            <div
+              key={link.name}
+              className="bg-slate-50 rounded-2xl p-5 border border-slate-100"
+            >
+
+              <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
+                {link.name}
+              </div>
+
+              {link.dropdown ? (
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+                  {link.dropdown.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center justify-between text-primary font-semibold text-base sm:text-lg hover:text-accent transition group"
+                    >
+                      {item.name}
+
+                      <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow opacity-0 group-hover:opacity-100 transition">
+                        <ChevronDown className="w-4 h-4 -rotate-90 text-accent" />
+                      </div>
+                    </Link>
+                  ))}
+
+                </div>
+
+              ) : (
+
+                <Link
+                  to={link.path || "#"}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-primary font-semibold text-base sm:text-lg block hover:text-accent transition"
+                >
+                  {link.name}
+                </Link>
+
+              )}
+            </div>
+          ))}
+
+        </div>
+
+        {/* Contact Card */}
+        <div className="mt-10 bg-primary text-white p-6 sm:p-8 rounded-3xl shadow-lg relative overflow-hidden">
+
+          <div className="absolute top-0 right-0 w-28 h-28 bg-accent/20 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl" />
+
+          <div className="relative z-10">
+
+            <h4 className="font-bold text-accent mb-5 text-lg">
+              Contact Our Specialists
+            </h4>
+
+            <div className="space-y-4">
+
+              <a
+                href="tel:+61434500743"
+                className="flex items-center gap-4 text-sm sm:text-base font-medium hover:text-accent transition"
+              >
+                <div className="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center">
+                  <Phone className="w-4 h-4 text-accent" />
+                </div>
+
+                +61 434 500 743
+              </a>
+
+              <a
+                href="mailto:australia@maduraglobal.com"
+                className="flex items-center gap-4 text-sm sm:text-base font-medium hover:text-accent transition"
+              >
+                <div className="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center">
+                  <Mail className="w-4 h-4 text-accent" />
+                </div>
+
+                australia@maduraglobal.com
+              </a>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    
           </motion.div>
         )}
       </AnimatePresence>

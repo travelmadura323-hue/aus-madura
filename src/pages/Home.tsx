@@ -58,7 +58,7 @@ export default function Home() {
       subtitle:
         "From coastlines to desert interiors, Australia revealed through thoughtful design and disciplined execution.",
       buttons: [
-        { text: "Explore Australia Tours", link: "/pages/Australia" }
+        { text: "Explore Australia Tours", link: "/pages/australia" }
       ]
     }
   ];
@@ -588,7 +588,7 @@ export default function Home() {
           {/* Row 1 */}
           <div className="flex w-full overflow-hidden select-none">
             <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
                 <div key={`logo-1-${i}`} className="w-40 h-20 flex items-center justify-center p-4  transition-all duration-500">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
@@ -598,7 +598,7 @@ export default function Home() {
                 </div>
               ))}
               {/* Duplicate for seamless effect */}
-              {[1, 2, 3, 4, 5, 6].map((i) => (
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
                 <div key={`logo-1-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4  transition-all duration-500">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
@@ -613,7 +613,7 @@ export default function Home() {
           {/* Row 2 (Reverse) */}
           <div className="flex w-full overflow-hidden select-none">
             <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee-reverse">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
+              {[13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24].map((i) => (
                 <div key={`logo-2-${i}`} className="w-40 h-20 flex items-center justify-center p-4   transition-all duration-500">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
@@ -623,7 +623,7 @@ export default function Home() {
                 </div>
               ))}
               {/* Duplicate for seamless effect */}
-              {[1, 2, 3, 4, 5, 6].map((i) => (
+              {[13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24].map((i) => (
                 <div key={`logo-2-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4  transition-all duration-500">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}

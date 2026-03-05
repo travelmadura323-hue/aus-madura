@@ -12,7 +12,6 @@ interface TourCardProps {
     price: number | { startingFrom: number; currency: string; perPerson: boolean };
     image: string;
     description?: string;
-    category?: string;
   };
   key?: string | number;
 }
@@ -46,15 +45,8 @@ export default function TourCard({ tour }: TourCardProps) {
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           />
         </Link>
-        <div className="absolute top-4 left-4 flex gap-2">
-          <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-primary uppercase tracking-wider flex items-center gap-1">
-            <Clock className="w-3 h-3 text-accent" /> {displayDuration}
-          </div>
-          {tour.category && (
-            <div className="bg-accent/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider">
-              {tour.category}
-            </div>
-          )}
+        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-primary uppercase tracking-wider flex items-center gap-1">
+          <Clock className="w-3 h-3 text-accent" /> {displayDuration}
         </div>
         <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/60 to-transparent">
           <div className="flex items-center gap-1 text-white text-xs">
@@ -63,7 +55,6 @@ export default function TourCard({ tour }: TourCardProps) {
         </div>
       </div>
       <div className="p-6">
-       < h3 className="text-white text-lg font-bold">{tour.title}</h3>
         <p className="text-slate-500 text-sm line-clamp-2 mb-4 leading-relaxed">
           {tour.description || "Discover the hidden gems and iconic landmarks of this breathtaking destination with our expert-led tour."}
         </p>
