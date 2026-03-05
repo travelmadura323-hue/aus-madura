@@ -93,7 +93,7 @@ export const tours = [
     startingPlace: "Chennai, India",
     image: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&h=600&q=80',
     description: "Discover the best of Australia with iconic landmarks, stunning beaches, and vibrant city life.",
-    category: 'International',
+    category: 'Group Tourism',
     rating: 4.8,
     reviews: 124,
     highlights: [
@@ -259,6 +259,7 @@ export const tours = [
   },
   {
     id: 'kerala-backwaters',
+    numericId: 1,
     slug: '7-days-kerala-backwaters',
     title: '7 Days Kerala Backwaters',
     location: {
@@ -286,6 +287,7 @@ export const tours = [
   },
   {
     id: 'rajasthan-heritage',
+    numericId: 2,
     slug: 'rajasthan-royal-heritage',
     title: 'Rajasthan Royal Heritage Tour',
     location: {
@@ -307,13 +309,14 @@ export const tours = [
   },
   {
     id: 'vietnam-essence',
+    numericId: 5,
     slug: 'essential-vietnam-10d',
     title: 'Essential Vietnam - 10 Days',
     location: { country: 'Vietnam', cities: ['Hanoi', 'Halong Bay', 'Hoi An', 'Ho Chi Minh City'] },
     duration: { days: 10, nights: 9 },
     price: { startingFrom: 1450, currency: 'USD', perPerson: true },
     image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80',
-    category: 'International'
+    category: 'Group Tourism'
   },
   {
     id: 'malaysia-modern-wild',
@@ -326,7 +329,56 @@ export const tours = [
     category: 'Family Tourism'
   },
   {
+    id: 'malaysia-city-explorer',
+    numericId: 3,
+    slug: 'malaysia-city-explorer-5d',
+    title: 'Malaysia City Explorer',
+    location: { country: 'Malaysia', cities: ['Kuala Lumpur', 'Genting Highlands'] },
+    duration: { days: 5, nights: 4 },
+    price: { startingFrom: 700, currency: 'USD', perPerson: true },
+    image: 'https://images.unsplash.com/photo-1596422846543-75c6fc18a593?auto=format&fit=crop&w=600&h=800&q=80',
+    category: 'Family Tourism',
+    description: 'Explore KL city and Genting Highlands.'
+  },
+  {
+    id: 'kl-city-escape',
+    numericId: 101,
+    slug: 'kl-city-escape-4d',
+    title: 'Kuala Lumpur City Escape',
+    location: { country: 'Malaysia', cities: ['Kuala Lumpur', 'Batu Caves', 'Genting Highlands'] },
+    duration: { days: 4, nights: 3 },
+    price: { startingFrom: 650, currency: 'USD', perPerson: true },
+    image: 'https://images.unsplash.com/photo-1596422846543-75c6fc18a593?auto=format&fit=crop&w=600&h=800&q=80',
+    category: 'Family Tourism',
+    description: 'Visit Petronas Twin Towers, Batu Caves and Genting Highlands.'
+  },
+  {
+    id: 'langkawi-island-getaway',
+    numericId: 102,
+    slug: 'langkawi-island-getaway-5d',
+    title: 'Langkawi Island Getaway',
+    location: { country: 'Malaysia', cities: ['Langkawi'] },
+    duration: { days: 5, nights: 4 },
+    price: { startingFrom: 900, currency: 'USD', perPerson: true },
+    image: 'https://images.unsplash.com/photo-1596422846543-75c6fc18a593?auto=format&fit=crop&w=600&h=800&q=80',
+    category: 'Family Tourism',
+    description: 'Relax on beautiful beaches and enjoy island hopping tours.'
+  },
+  {
+    id: 'penang-heritage-tour',
+    numericId: 103,
+    slug: 'penang-heritage-tour-3d',
+    title: 'Penang Heritage Tour',
+    location: { country: 'Malaysia', cities: ['George Town'] },
+    duration: { days: 3, nights: 2 },
+    price: { startingFrom: 550, currency: 'USD', perPerson: true },
+    image: 'https://images.unsplash.com/photo-1596422846543-75c6fc18a593?auto=format&fit=crop&w=600&h=800&q=80',
+    category: 'Cultural Tourism',
+    description: 'Explore George Town heritage sites and street food paradise.'
+  },
+  {
     id: 'singapore-luxury-escape',
+    numericId: 10,
     slug: 'singapore-luxury-escape-5d',
     title: 'Singapore Luxury Escape',
     location: { country: 'Singapore', cities: ['Sentosa', 'Marina Bay', 'Orchard Road'] },
@@ -337,6 +389,7 @@ export const tours = [
   },
   {
     id: 'sri-lanka-classical',
+    numericId: 4,
     slug: 'classical-sri-lanka-9d',
     title: 'Classical Sri Lanka',
     location: { country: 'Sri Lanka', cities: ['Colombo', 'Kandy', 'Sigiriya', 'Ella'] },
@@ -348,6 +401,17 @@ export const tours = [
   {
     id: 'india-golden-triangle',
     slug: 'golden-triangle-luxury',
+    title: 'Golden Triangle',
+    location: { country: 'India', cities: ['Delhi', 'Agra', 'Jaipur'] },
+    duration: { days: 6, nights: 5 },
+    price: { startingFrom: 1100, currency: 'USD', perPerson: true },
+    image: 'https://images.unsplash.com/photo-1524492707947-2f85a1a24d3c?auto=format&fit=crop&w=800&q=80',
+    description: "Explore the historic cities of Delhi, Agra, and Jaipur in ultimate luxury and style.",
+    category: 'Luxury Tourism'
+  },
+  {
+    id: 'india',
+    slug: 'golden-triangle-luxury',
     title: 'Golden Triangle Luxury Tour',
     location: { country: 'India', cities: ['Delhi', 'Agra', 'Jaipur'] },
     duration: { days: 6, nights: 5 },
@@ -356,6 +420,7 @@ export const tours = [
     description: "Explore the historic cities of Delhi, Agra, and Jaipur in ultimate luxury and style.",
     category: 'Luxury Tourism'
   },
+
   {
     id: 'vietnam-adventure',
     slug: 'vietnam-adventure-8d',
@@ -375,6 +440,9 @@ export const categories = [
   { id: 'wellness', name: 'Wellness Tourism', slug: 'wellness-tourism' },
   { id: 'family', name: 'Family Tourism', slug: 'family-tourism' },
   { id: 'honeymoon', name: 'Honeymoon Tourism', slug: 'honeymoon-tourism' },
-  { id: 'sports', name: 'Sports Tourism', slug: 'sports-tourism' }
+  { id: 'sports', name: 'Sports Tourism', slug: 'sports-tourism' },
+  { id: 'group', name: 'Group Tourism', slug: 'group-tourism' },
+  { id: 'cultural', name: 'Cultural Tourism', slug: 'cultural-tourism' },
+  { id: 'luxury', name: 'Luxury Tourism', slug: 'luxury-tourism' }
 ];
 

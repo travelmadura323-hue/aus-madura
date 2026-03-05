@@ -1,26 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import packages from "../data/packages.json";
+import { tours } from "../data/mockData";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-
-interface Package {
-  id: number;
-  title: string;
-  duration: string;
-  price: number;
-  location: string;
-  image: string;
-  description: string;
-}
 
 export default function PackageDetails() {
   const { id } = useParams();
 
-  const allPackages: Package[] = Object.values(packages).flat();
-
-  const packageData = allPackages.find(
-    (pkg) => pkg.id.toString() === id
+  const tour = tours.find(
+    (t) => t.id?.toString() === id || t.slug === id || t.id === id
   );
 
   const [formData, setFormData] = useState({
@@ -31,8 +19,22 @@ export default function PackageDetails() {
     adults: 1
   });
 
-  if (!packageData)
+  if (!tour)
     return <div className="p-10 text-center">Package Not Found</div>;
+
+  const displayLocation = typeof tour.location === 'string'
+    ? tour.location
+    : tour.location.country;
+
+  const displayDuration = typeof tour.duration === 'string'
+    ? tour.duration
+    : `${tour.duration.days} Days / ${tour.duration.nights} Nights`;
+
+  const displayPrice = typeof tour.price === 'number'
+    ? tour.price
+    : tour.price.startingFrom;
+
+  const displayCurrency = (typeof tour.price === 'object' && tour.price.currency === 'INR') ? '₹' : '$';
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-10">
@@ -41,34 +43,43 @@ export default function PackageDetails() {
       <div className="md:col-span-2 space-y-6">
 
         <img
-          src={packageData.image}
-          alt={packageData.title}
+          src={tour.image}
+          alt={tour.title}
           className="w-full h-[400px] object-cover rounded-2xl shadow"
         />
 
-        <h1 className="text-3xl font-bold">{packageData.title}</h1>
+        <h1 className="text-3xl font-bold">{tour.title}</h1>
 
-        <div className="flex gap-6 text-gray-600 text-sm">
-          <p>📍 {packageData.location}</p>
-          <p>⏳ {packageData.duration}</p>
+        <div className="flex flex-wrap gap-6 text-gray-600 text-sm">
+          <p>📍 {displayLocation}</p>
+          <p>⏳ {displayDuration}</p>
+          {tour.category && (
+            <p className="bg-red-50 text-red-600 px-3 py-1 rounded-full font-semibold">
+              🔖 {tour.category}
+            </p>
+          )}
         </div>
 
         <p className="text-gray-700 leading-relaxed">
-          {packageData.description}
+          {tour.description || tour.overview}
         </p>
 
-        {/* Dummy Tour Plan */}
+        {/* Tour Plan */}
         <div>
           <h2 className="text-xl font-semibold mb-4">Tour Plan</h2>
 
-          {[1, 2, 3].map((day) => (
+          {(tour.tourPlan || [
+            { day: 1, title: "Arrival", description: "Arrival and check-in" },
+            { day: 2, title: "Sightseeing", description: "Full day sightseeing tour" },
+            { day: 3, title: "Departure", description: "Final shopping and departure" }
+          ]).map((step: any) => (
             <div
-              key={day}
+              key={step.day}
               className="border rounded-lg p-4 mb-3 bg-gray-50"
             >
-              <h4 className="font-semibold">Day {day}</h4>
+              <h4 className="font-semibold">Day {step.day}: {step.title}</h4>
               <p className="text-gray-600 text-sm">
-                Detailed itinerary description for day {day}.
+                {step.description}
               </p>
             </div>
           ))}
@@ -80,7 +91,7 @@ export default function PackageDetails() {
 
         <h3 className="text-lg font-semibold mb-2">From</h3>
         <p className="text-3xl font-bold text-red-600 mb-6">
-          ₹{packageData.price}
+          {displayCurrency}{displayPrice.toLocaleString()}
         </p>
 
         <form
@@ -95,6 +106,8 @@ export default function PackageDetails() {
             placeholder="Name"
             className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-red-400 outline-none"
             required
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
 
           <input
@@ -102,24 +115,31 @@ export default function PackageDetails() {
             placeholder="Email"
             className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-red-400 outline-none"
             required
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           />
 
           <PhoneInput
-  country={"in"}
-  enableSearch={true}
-  inputClass="!w-full !h-[48px]"
-/>
+            country={"in"}
+            enableSearch={true}
+            inputClass="!w-full !h-[48px]"
+            value={formData.phone}
+            onChange={(phone) => setFormData({ ...formData, phone })}
+          />
 
           <input
             type="date"
             className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-red-400 outline-none"
             required
+            value={formData.travelDate}
+            onChange={(e) => setFormData({ ...formData, travelDate: e.target.value })}
           />
 
           <input
             type="number"
             min="1"
-            defaultValue={1}
+            value={formData.adults}
+            onChange={(e) => setFormData({ ...formData, adults: parseInt(e.target.value) })}
             className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-red-400 outline-none"
           />
 

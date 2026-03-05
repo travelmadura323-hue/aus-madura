@@ -7,7 +7,7 @@ import TourCard from '../components/tours/TourCard';
 export default function DestinationDetail() {
   const { country } = useParams();
   const destination = destinations.find(d => d.id === country) || destinations[0];
-  const relatedTours = tours.filter(t => t.location.toLowerCase().includes(destination.name.toLowerCase()));
+  const relatedTours = tours.filter(t => t.location.country.toLowerCase().includes(destination.name.toLowerCase()));
 
   return (
     <div className="pt-20">
@@ -25,7 +25,7 @@ export default function DestinationDetail() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
             >
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">{destination.name}</h1>
+              <h1 className="text-[32px] font-bold text-white mb-6 uppercase">{destination.name}</h1>
               <p className="text-xl text-slate-200 max-w-2xl mx-auto">{destination.description}</p>
             </motion.div>
           </div>
@@ -37,7 +37,7 @@ export default function DestinationDetail() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
             <div className="lg:col-span-3">
               <div className="mb-16">
-                <h2 className="text-3xl font-bold text-primary mb-6">About {destination.name}</h2>
+                <h2 className="text-[24px] font-bold text-primary mb-6">About {destination.name}</h2>
                 <p className="text-slate-600 leading-relaxed text-lg mb-8">
                   {destination.description} This destination offers a unique blend of history, culture, and natural beauty. Whether you're looking for adventure, relaxation, or cultural immersion, {destination.name} has something for everyone.
                 </p>
@@ -64,7 +64,7 @@ export default function DestinationDetail() {
               </div>
 
               <div className="mb-16">
-                <h2 className="text-3xl font-bold text-primary mb-10">Top Tour Packages</h2>
+                <h2 className="text-[24px] font-bold text-primary mb-10">Top Tour Packages</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {relatedTours.length > 0 ? (
                     relatedTours.map(tour => <TourCard key={tour.id} tour={tour} />)
@@ -75,9 +75,9 @@ export default function DestinationDetail() {
               </div>
 
               <div>
-                <h2 className="text-3xl font-bold text-primary mb-10">Photo Gallery</h2>
+                <h2 className="text-[24px] font-bold text-primary mb-10">Photo Gallery</h2>
                 <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-                  {[1,2,3,4,5,6].map(i => (
+                  {[1, 2, 3, 4, 5, 6].map(i => (
                     <div key={i} className="rounded-xl overflow-hidden h-40">
                       <img src={`https://picsum.photos/seed/dest-${destination.id}-${i}/400/400`} className="w-full h-full object-cover" />
                     </div>

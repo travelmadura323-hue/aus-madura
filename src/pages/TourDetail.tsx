@@ -78,7 +78,7 @@ export default function TourDetail() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-2xl"
+              className="text-[32px] font-bold text-white mb-6 drop-shadow-2xl uppercase"
             >
               {tour.title}
             </motion.h1>
@@ -131,7 +131,7 @@ export default function TourDetail() {
 
               {/* Highlights Section */}
               <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
-                <h2 className="text-3xl font-bold text-primary mb-8 flex items-center gap-3">
+                <h2 className="text-[24px] font-bold text-primary mb-8 flex items-center gap-3">
                   <span className="w-2 h-8 bg-accent rounded-full" />
                   Tour Highlights
                 </h2>
@@ -155,7 +155,7 @@ export default function TourDetail() {
 
               {/* Overview */}
               <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
-                <h2 className="text-3xl font-bold text-primary mb-6 flex items-center gap-3">
+                <h2 className="text-[24px] font-bold text-primary mb-6 flex items-center gap-3">
                   <span className="w-2 h-8 bg-accent rounded-full" />
                   Tour Overview
                 </h2>
@@ -166,7 +166,7 @@ export default function TourDetail() {
 
               {/* Tour Plan */}
               <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
-                <h2 className="text-3xl font-bold text-primary mb-10 flex items-center gap-3">
+                <h2 className="text-[24px] font-bold text-primary mb-10 flex items-center gap-3">
                   <span className="w-2 h-8 bg-accent rounded-full" />
                   Day-by-Day Journey
                 </h2>
@@ -198,7 +198,7 @@ export default function TourDetail() {
 
               {/* Image Gallery */}
               <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
-                <h2 className="text-3xl font-bold text-primary mb-8 flex items-center gap-3">
+                <h2 className="text-[24px] font-bold text-primary mb-8 flex items-center gap-3">
                   <span className="w-2 h-8 bg-accent rounded-full" />
                   Image Gallery
                 </h2>
@@ -261,7 +261,7 @@ export default function TourDetail() {
               {/* FAQs Section */}
               {tour.faqs && (
                 <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
-                  <h2 className="text-3xl font-bold text-primary mb-10 flex items-center gap-3">
+                  <h2 className="text-[24px] font-bold text-primary mb-10 flex items-center gap-3">
                     <HelpCircle className="w-10 h-10 text-accent" />
                     Frequently Asked Questions
                   </h2>
@@ -308,26 +308,10 @@ export default function TourDetail() {
                   <div className="relative z-10">
                     <div className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mb-2">Exclusive Pricing</div>
                     <div className="flex items-baseline gap-2 mb-8">
-                      <span className="text-5xl font-black text-accent">{displayCurrency}{displayPrice.toLocaleString()}</span>
+                      <span className="text-[32px] font-black text-accent">{displayCurrency}{displayPrice.toLocaleString()}</span>
                       <span className="text-slate-400 text-sm">/ person</span>
                     </div>
 
-                    <div className="space-y-6 mb-10">
-                      {[
-                        { label: 'Booking Fee', value: 'Instant Confirmation', icon: <Check className="w-4 h-4" /> },
-                        { label: 'Hotel Type', value: '4* - 5* Selected Hotels', icon: <Hotel className="w-4 h-4" /> },
-                        { label: 'Cancellation', value: 'Flexible Policy', icon: <ShieldCheck className="w-4 h-4" /> },
-                        { label: 'Meals', value: 'Daily Breakfast & Dinner', icon: <Coffee className="w-4 h-4" /> }
-                      ].map((detail, idx) => (
-                        <div key={idx} className="flex items-center gap-4 py-3 border-b border-white/5">
-                          <div className="text-accent">{detail.icon}</div>
-                          <div>
-                            <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest leading-none mb-1">{detail.label}</div>
-                            <div className="text-sm font-bold text-white tracking-tight">{detail.value}</div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
 
                     <div id="booking-form" className="bg-white/5 p-6 rounded-2xl border border-white/10">
                       <h4 className="text-white font-bold mb-4 flex items-center gap-2">
@@ -446,7 +430,7 @@ export default function TourDetail() {
             <div className="flex items-end justify-between mb-16 px-4">
               <div>
                 <span className="text-accent font-bold uppercase tracking-widest text-[10px] mb-2 block">Our Collection</span>
-                <h2 className="text-4xl font-bold text-primary">Similar Experiences</h2>
+                <h2 className="text-[24px] font-bold text-primary">Similar Experiences</h2>
               </div>
               <Link to="/tours" className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-all group">
                 View All Collection

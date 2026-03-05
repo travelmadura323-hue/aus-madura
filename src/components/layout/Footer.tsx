@@ -20,9 +20,9 @@ export default function Footer() {
                   }}
                 />
               </div>
-              <span className="text-2xl font-black tracking-tighter">
+              {/* <span className="text-2xl font-black tracking-tighter">
                 Madura<span className="text-accent pl-1">Global</span>
-              </span>
+              </span> */}
             </div>
             <p className="text-white text-sm leading-relaxed mb-6">
               Madura Travel Service - Your trusted partner for global travel solutions for over 40 years. Excellence in service, every step of the way.

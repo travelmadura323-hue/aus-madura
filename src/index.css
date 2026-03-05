@@ -37,14 +37,19 @@
     font-size: 16px;
   }
 
-  h1, h2, h3 {
+  h1 {
     @apply font-bold;
     font-size: 32px !important;
   }
 
-  h4, h5, h6 {
+  h2, h3 {
     @apply font-bold;
     font-size: 24px !important;
+  }
+
+  h4, h5, h6 {
+    @apply font-bold;
+    font-size: 20px !important;
   }
 
   p, span, div, li, a {

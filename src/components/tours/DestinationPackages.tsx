@@ -50,7 +50,7 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
                         <span className="text-accent font-bold uppercase tracking-[0.4em] text-sm mb-6 block">
                             {tagline}
                         </span>
-                        <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 leading-tight">
+                        <h1 className="text-[32px] font-bold text-white mb-8 leading-tight uppercase">
                             {titlePrefix} <span className="text-accent italic font-serif">{country}</span>
                         </h1>
                         <p className="text-xl text-slate-200 max-w-3xl mx-auto mb-10 leading-relaxed drop-shadow-lg">
@@ -70,7 +70,7 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
                             className="bg-white p-10 rounded-[2.5rem] shadow-xl border border-slate-100"
                         >
                             <div className="text-accent mb-6 bg-accent/10 w-fit p-4 rounded-3xl">{feature.icon}</div>
-                            <h3 className="text-2xl font-bold text-primary mb-3">{feature.title}</h3>
+                            <h3 className="text-[24px] font-bold text-primary mb-3">{feature.title}</h3>
                             <p className="text-slate-500 leading-relaxed">{feature.desc}</p>
                         </motion.div>
                     ))}
@@ -82,7 +82,7 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 px-4">
                     <div>
                         <span className="text-accent font-bold uppercase tracking-widest text-[10px] mb-2 block">Our Collection</span>
-                        <h2 className="text-4xl font-bold text-primary">Signature {country} Tours</h2>
+                        <h2 className="text-[24px] font-bold text-primary">Signature {country} Tours</h2>
                     </div>
                     <p className="text-slate-500 max-w-md text-right hidden md:block italic">
                         "Travel is the only thing you buy that makes you richer." - Experience {country} like never before.
@@ -104,32 +104,6 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
                 </div>
             </section>
 
-            {/* 🔹 CTA Section */}
-            <section className="pb-32 max-w-7xl mx-auto px-4">
-                <div className="bg-primary rounded-[3.5rem] p-12 lg:p-24 text-center relative overflow-hidden shadow-2xl shadow-primary/30">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl" />
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full -translate-x-1/2 translate-y-1/2 blur-3xl" />
-
-                    <div className="relative z-10">
-                        <h2 className="text-4xl md:text-6xl font-black text-white mb-8">Ready for an adventure in {country}?</h2>
-                        <p className="text-slate-400 text-xl max-w-2xl mx-auto mb-12">
-                            Our travel experts are ready to craft your perfect itinerary. Handpicked hotels, exclusive experiences, and seamless travel.
-                        </p>
-                        <div className="flex flex-wrap justify-center gap-6">
-                            <Link to="/contact">
-                                <button className="bg-accent text-primary font-black px-12 py-5 rounded-2xl hover:bg-white transition-all transform hover:scale-105 shadow-xl shadow-accent/20">
-                                    Plan Your Trip
-                                </button>
-                            </Link>
-                            <Link to="/contact">
-                                <button className="bg-white/10 backdrop-blur-md text-white border border-white/20 font-bold px-12 py-5 rounded-2xl hover:bg-white/20 transition-all">
-                                    Contact Specialist
-                                </button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
     );
 };

@@ -53,7 +53,7 @@ export default function Home() {
       ]
     },
     {
-      image: images['/images/Australia.png'],
+      image: images['/images/Aus.png'],
       title: "Explore Australia",
       subtitle:
         "From coastlines to desert interiors, Australia revealed through thoughtful design and disciplined execution.",
@@ -155,7 +155,7 @@ export default function Home() {
             </span> */}
 
             {/* Title */}
-            <h1 className="text-8xl md:text-[9rem] lg:text-[12rem]  font-bold text-white mb-6 leading-tight">
+            <h1 className="text-[32px] font-bold text-white mb-6 leading-tight uppercase">
               {slides[currentSlide].title}
             </h1>
 
@@ -197,16 +197,16 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">Global Favorites</span>
-            <h2 className="text-4xl font-bold text-primary">Trending Destinations</h2>
+            <h2 className="text-[24px] font-bold text-primary">Trending Destinations</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
-              { id: 'vietnam', name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80', link: '/pages/vietnam' },
-              { id: 'malaysia', name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'], link: '/pages/Malaysia' },
-              { id: 'singapore', name: 'Singapore', price: '950', image: images['/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png'] as string, link: '/pages/singapore' },
-              { id: 'sri-lanka', name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80', link: '/pages/sri-lanka' },
-              { id: 'india', name: 'India', price: '350', image: images['/images/11.png'], link: '/pages/india' }
+              { id: 'vietnam', name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80', link: '/destinations/vietnam' },
+              { id: 'malaysia', name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'], link: '/destinations/malaysia' },
+              { id: 'singapore', name: 'Singapore', price: '950', image: images['/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png'] as string, link: '/destinations/singapore' },
+              { id: 'sri-lanka', name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80', link: '/destinations/sri-lanka' },
+              { id: 'india', name: 'India', price: '350', image: images['/images/11.png'], link: '/destinations/india' }
             ].map((dest, idx) => (
               <Link key={dest.id} to={dest.link} onClick={() => window.scrollTo(0, 0)}>
                 <motion.div
@@ -250,7 +250,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
               <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">International Highlights</span>
-              <h2 className="text-4xl font-bold text-primary">Popular India Tours</h2>
+              <h2 className="text-[24px] font-bold text-primary">Popular India Tours</h2>
             </div>
             <Link
               to="/pages/india" onClick={() => window.scrollTo(0, 0)}
@@ -315,7 +315,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 px-4">
             <div>
               <span className="text-accent font-bold uppercase tracking-[0.4em] text-[10px] mb-2 block">Exclusive Feature</span>
-              <h2 className="text-4xl md:text-5xl font-black text-primary">Iconic Australia </h2>
+              <h2 className="text-[24px] font-bold text-primary">Iconic Australia </h2>
             </div>
             <p className="text-slate-500 max-w-sm text-right hidden md:block italic">
               Explore the Great Outback, the Great Barrier Reef, and the vibrant cities of the land down under.
@@ -407,13 +407,13 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <Quote className="w-16 h-16 text-accent mb-8 opacity-50" />
-              <h2 className="text-4xl font-bold mb-6">A Message from Our Chairman</h2>
+              <h2 className="text-[24px] font-bold mb-6">A Message from Our Chairman</h2>
               <p className="text-slate-300 text-lg leading-relaxed mb-8 italic">
                 "For over four decades,we have carried the dreams of millions .Trusted by more than 4 million travelers,we believe travel is not a transaction,it is a responsibility.Every journey we create is backed by experience,care,and an uncompromising promise: Client happiness and true value for every penny spent.This is not our slogan ;it is our promise."
               </p>
               <div>
-                <div className="text-2xl font-bold text-accent">Kalaimamani<span className="ml-2">V.K.T Balan</span></div>
-                <div className="text-slate-400">Chairman</div>
+                <div className="text-2xl text-[#cc1715] font-bold text-accent">Kalaimamani V.K.T Balan</div>
+                <div className="text-slate-400">Chairman - Madura Travel Service</div>
               </div>
             </motion.div>
           </div>
@@ -430,7 +430,7 @@ export default function Home() {
           </span>
 
           {/* Heading */}
-          <h2 className="text-5xl md:text-6xl font-bold text-primary mt-6 mb-6">
+          <h2 className="text-[32px] font-bold text-primary mt-6 mb-6">
             Advantage of Choosing Us
           </h2>
 
@@ -453,7 +453,7 @@ export default function Home() {
                 key={index}
                 className="bg-[#f3ece3] rounded-3xl p-14 shadow-sm hover:shadow-2xl transition-all duration-300 group"
               >
-                <h3 className="text-6xl font-extrabold text-slate-900 mb-4 group-hover:text-primary transition-colors">
+                <h3 className="text-[32px] font-extrabold text-slate-900 mb-4 group-hover:text-primary transition-colors">
                   {item.number}
                 </h3>
                 <p className="text-slate-700 text-lg font-medium">
@@ -491,7 +491,7 @@ export default function Home() {
                 Testimonials
               </span>
 
-              <h2 className="text-5xl font-extrabold text-primary mt-4 mb-6">
+              <h2 className="text-[24px] font-extrabold text-primary mt-4 mb-6">
                 What Our Travelers Say
               </h2>
 
@@ -577,7 +577,7 @@ export default function Home() {
       <section className="py-24 bg-white border-y border-slate-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 mb-20 text-center">
           <span className="text-accent font-bold uppercase tracking-[0.4em] text-xs mb-3 block">Global Network</span>
-          <h2 className="text-4xl md:text-5xl font-black text-primary mb-6">Our Trusted Partners</h2>
+          <h2 className="text-[24px] font-bold text-primary mb-6">Our Trusted Partners</h2>
           <p className="text-slate-500 max-w-2xl mx-auto text-lg">
             Collaborating with leading airlines, hotels, and tourism boards worldwide to deliver excellence.
           </p>
