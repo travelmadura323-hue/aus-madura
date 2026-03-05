@@ -1,3 +1,7 @@
+const gallery = import.meta.glob('/images/queensland/ *.{png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+});
 export const destinations = [
   {
     id: 'kerala',
@@ -226,56 +230,58 @@ export const tours = [
       "Meet unique wildlife at Kangaroo Island"
     ],
     gallery: [
-      'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1524820197278-540916411e20?auto=format&fit=crop&w=800&q=80'
+
+          gallery['images/queensland/1.png'] as string,
+          gallery['images/queensland/2.png'] as string,
+          gallery['images/queensland/3.png'] as string,
+          gallery['images/queensland/4.png'] as string,
     ],
 
     tourPlan: [
-      {
+       {
         day: 1,
         title: "Gold Coast Arrival",
-        description: "Arrive at Sydney Airport, transfer to hotel. Evening at leisure."
+        description: "G'day!Welcome to Australia- Arrive at Brisbane Airport and enjoy a comfortable private transfer to your hotel in Gold Coast. After check-in, the rest of the day is free to relax, explore nearby beaches, or unwind after your journey.Overnight stay at hotel."
       },
       {
         day: 2,
         title: " A Day in Movie World",
-        description: "Visit Opera House, Harbour Bridge, Bondi Beach and Darling Harbour."
+        description: "Morning Breakfast and then enjoy a full-day visit to Warner Bros. Movie World with SIC (Seat-in-Coach) transfers. Warner Bros. Movie World on the Gold Coast is Australia’s premier theme park, featuring thrilling rides, live shows, and attractions based on famous movies and superheroes. Visitors can enjoy action-packed adventures, family-friendly entertainment, and unforgettable experiences in a world of movies and excitement.Overnight stay at hotel"
       },
       {
         day: 3,
         title: "A Day in Sea World",
-        description: "Full day trip to Blue Mountains with Scenic World rides."
+        description: "Morning Breakfast,Today, proceed on a full-day Sea World tour with return SIC transfers. Sea World on the Gold Coast is a premier marine-themed park offering exciting rides, interactive exhibits, and live shows. Visitors can explore marine life, enjoy dolphin and seal performances, experience thrilling attractions, and learn about ocean conservation, making it a perfect destination for families and adventure enthusiasts alike.Overnight stay at hotel"
       },
       {
         day: 4,
         title: "Gold Coast Departure- Cairns Arrival",
-        description: "Flight to Gold Coast and evening free for shopping."
+        description: "Morning Breakfast and then check out from the hotel- transfer to Brisbane/Gold Coast Airport for your flight to Cairns. Upon arrival, enjoy a private transfer to your Cairns hotel and spend the evening at leisure.Overnight stay at hotel"
       },
       {
         day: 5,
         title: "Full Day Bigcat Green Island Tour",
-        description: "Visit Movie World or Sea World."
+        description: "Morning breakfast,Set out on a full-day Big Cat Green Island tour with SIC transfers. Big Cat Green Island, near Cairns, is a stunning coral cay in the Great Barrier Reef. Visitors can snorkel among vibrant marine life, relax on pristine beaches, or explore the island’s natural beauty.Overnight stay at hotel."
       },
       {
         day: 6,
         title: " Full Day at Kurunda Rainforest toure",
-        description: "Flight to Melbourne. Leisure time."
+        description: "Morning breakfast,The Kuranda Rainforest near Cairns is a lush tropical paradise, rich in flora and fauna. Visitors can explore via the scenic Kuranda Railway or Skyrail Rainforest Cableway, visit Kuranda Village, enjoy wildlife parks, cultural experiences and blend in  nature, adventure, and Aboriginal heritage. Travel by the scenic Kuranda Railway, visit Kuranda Village, enjoy the Army Duck Rainforest Tour, Tropical Fruit Orchard, Pamagirri Aboriginal Experience, Koala & Wildlife Park, and lunch. Return via the Skyrail Rainforest Cableway.Overnight stay at Hotel"
       },
       {
         day: 7,
         title: "Departure",
-        description: "Airport transfer and departure."
+        description: "Morning enjoy breakfast at the hotel and check out before 1000 hrs. Proceed with a one-way airport transfer to the airport and depart from Cairns. Upon arrival to the Airport- clear immigration and security checks and then board back your flight with amazing memories!!End of Services!"
       }
     ],
 
     included: [
-      "6 Nights Hotel Accommodation",
-      "Daily Breakfast",
-      "Airport Transfers",
-      "Sightseeing Tours",
-      "Internal Flights",
-      "Travel Insurance"
+      "Accommodation with breakfast",
+      "Arrival and departure transfer",
+      "Visa services",
+      "Sightseeing as per the itinerary",
+      "Admission to Movie World on SIC basis",
+      "Admission to Sea World in SIC basis"
     ],
 
     excluded: [
