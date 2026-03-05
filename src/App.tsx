@@ -26,6 +26,7 @@ import Privacy from "./components/privacy";
 import Terms from "./pages/Terms";
 import Disclaimer from "./pages/Disclaimer"
 import ComplaintPolicy from "./pages/complaint-policy";
+import CareersPage from "./pages/CareersPage";
 
 
 export default function App() {
@@ -48,6 +49,7 @@ export default function App() {
             <Route path="/package/:id" element={<PackageDetails />} />
             <Route path="/destinations/vietnam" element={<Vietnam />} />
             <Route path="/destinations/sri-lanka" element={<SriLanka />} />
+            <Route path="/company/careers" element={<CareersPage />} />
             {/* Fallback routes for demo */}
             {/* <Route path="/:country" element={<CountryPage />} /> */}
             <Route path="/destinations/singapore" element={<Singapore />} />
