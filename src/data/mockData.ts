@@ -189,6 +189,129 @@ export const tours = [
       }
     ]
   },
+   {
+    id: "australia-queensland",
+    slug: "australia-queensland",
+    title: "Queensland Coastal Experience 07 Days Tour Package",
+    location: {
+      country: "Australia",
+      cities: ["Sydney", "Melbourne", "Gold Coast"]
+    },
+    overview: "Gold Coast and Cairns showcase Australia’s coastal beauty. Gold Coast is known for golden beaches, vibrant city life, theme parks, and surfing culture, while Cairns is the gateway to the Great Barrier Reef, tropical rainforests, crystal-clear waters, and unforgettable nature-based adventures.",
+    duration: {
+      days: 7,
+      nights: 6
+    },
+    price: {
+      startingFrom: 1750,
+      currency: "USD",
+      perPerson: true
+    },
+    travelers: {
+      adults: 2,
+      children: 1,
+      infants: 0
+    },
+    minimumAge: 5,
+    startingPlace: "Gold Coast",
+    image: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&h=600&q=80',
+    description: "Discover the best of Australia with iconic landmarks, stunning beaches, and vibrant city life.",
+    category: 'Group Tourism',
+    rating: 4.8,
+    reviews: 124,
+    highlights: [
+      "Visit the iconic Sydney Opera House",
+      "Explore the Great Barrier Reef",
+      "Drive along the Great Ocean Road",
+      "Meet unique wildlife at Kangaroo Island"
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1524820197278-540916411e20?auto=format&fit=crop&w=800&q=80'
+    ],
+
+    tourPlan: [
+      {
+        day: 1,
+        title: "Gold Coast Arrival",
+        description: "Arrive at Sydney Airport, transfer to hotel. Evening at leisure."
+      },
+      {
+        day: 2,
+        title: " A Day in Movie World",
+        description: "Visit Opera House, Harbour Bridge, Bondi Beach and Darling Harbour."
+      },
+      {
+        day: 3,
+        title: "A Day in Sea World",
+        description: "Full day trip to Blue Mountains with Scenic World rides."
+      },
+      {
+        day: 4,
+        title: "Gold Coast Departure- Cairns Arrival",
+        description: "Flight to Gold Coast and evening free for shopping."
+      },
+      {
+        day: 5,
+        title: "Full Day Bigcat Green Island Tour",
+        description: "Visit Movie World or Sea World."
+      },
+      {
+        day: 6,
+        title: " Full Day at Kurunda Rainforest toure",
+        description: "Flight to Melbourne. Leisure time."
+      },
+      {
+        day: 7,
+        title: "Departure",
+        description: "Airport transfer and departure."
+      }
+    ],
+
+    included: [
+      "6 Nights Hotel Accommodation",
+      "Daily Breakfast",
+      "Airport Transfers",
+      "Sightseeing Tours",
+      "Internal Flights",
+      "Travel Insurance"
+    ],
+
+    excluded: [
+      "International Airfare",
+      "Visa Charges",
+      "Personal Expenses",
+      "Meals Not Mentioned",
+      "Optional Tours"
+    ],
+
+    relatedPackages: [
+      {
+        id: "australia-honeymoon-6d",
+        title: "Romantic Australia - 6 Days"
+      },
+      {
+        id: "new-zealand-combo-10d",
+        title: "Australia + New Zealand Combo"
+      }
+    ],
+
+    faqs: [
+      {
+        question: "Do Indian citizens need a visa for Australia?",
+        answer: "Yes, Indian passport holders must apply for an Australian tourist visa."
+      },
+      {
+        question: "Best time to visit Australia?",
+        answer: "September to November and March to May are ideal seasons."
+      },
+      {
+        question: "Is travel insurance mandatory?",
+        answer: "It is highly recommended for international travel."
+      }
+    ]
+  },
   {
     id: "australia-honeymoon-6d",
     slug: "australia-honeymoon-6d",
@@ -431,6 +554,19 @@ export const tours = [
     image: 'https://images.unsplash.com/photo-1509030450996-939983783ee8?auto=format&fit=crop&w=800&q=80',
     description: "Trek through the stepped rice fields of Sapa and explore the unique karst landscapes of Northern Vietnam.",
     category: 'Sports Tourism'
+  },
+  
+   {
+
+    id: 'australia-queensland',
+    slug: 'australia-queensland-7d',
+    title: 'Queensland Paradise',
+    location: { country: 'Australia', cities: ['Brisbane', 'Gold Coast', 'Cairns'] },
+    duration: { days: 7, nights: 6 },
+    price: { startingFrom: 1400, currency: 'USD', perPerson: true },
+    image: 'https://images.unsplash.com/photo-1509030450996-939983783ee8?auto=format&fit=crop&w=800&q=80',
+    description: "Trek through the stepped rice fields of Sapa and explore the unique karst landscapes of Northern Vietnam.",
+    category: 'Family Tourism'
   }
 ];
 
