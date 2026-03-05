@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function CustomerComplaint() {
+export default function complaintPolicy() {
   return (
     <section className="bg-white py-20">
       <div className="max-w-5xl mx-auto px-6">
@@ -20,13 +20,13 @@ export default function CustomerComplaint() {
             <p>
               Delivering reliable, customized, and prompt customer support is our
               mission. As a result, this commitment remains one of the most
-              important assets that Madura Travel Service (P) Ltd focuses on
+              important assets that Madura Global focuses on
               developing and maintaining.
             </p>
             <p className="mt-3">
               Dialogue is key to building strong relationships with our
               customers. Should you experience any dissatisfaction regarding
-              the services provided by Madura Travel Service (P) Ltd, we
+              the services provided by Madura Global, we
               encourage you to notify us immediately so we can investigate the
               matter and work toward a solution.
             </p>
@@ -43,7 +43,7 @@ export default function CustomerComplaint() {
             </p>
 
             <p className="mt-3 font-medium text-[#cc1715]">
-              india@maduratravel.com
+              Australia@maduraglobal.com
             </p>
 
             <p className="mt-3">
@@ -78,7 +78,7 @@ export default function CustomerComplaint() {
             </p>
 
             <p className="mt-3 font-medium text-[#cc1715]">
-              mail@maduratravel.com
+              Australia@maduraglobal.com
             </p>
 
             <p className="mt-3">
@@ -106,7 +106,7 @@ export default function CustomerComplaint() {
             </p>
 
             <p className="mt-3 font-medium text-[#cc1715]">
-              mail@maduratravel.com
+              Australia@maduraglobal.com
             </p>
 
             <p className="mt-3">

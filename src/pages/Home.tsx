@@ -639,7 +639,7 @@ export default function Home() {
         {/* Mobile Grid (Static on Small Screens for Stability) */}
         <div className="md:hidden mt-16 px-6">
           <div className="grid grid-cols-2 gap-4">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
               <div key={`mobile-logo-${i}`} className="bg-slate-50 rounded-2xl p-6 flex items-center justify-center h-24 border border-slate-100">
                 <img
                   src={gallery[`/src/gallery/img-${i}.jpg`]}

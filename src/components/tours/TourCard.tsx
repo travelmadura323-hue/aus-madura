@@ -48,6 +48,7 @@ export default function TourCard({ tour }: TourCardProps) {
         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-primary uppercase tracking-wider flex items-center gap-1">
           <Clock className="w-3 h-3 text-accent" /> {displayDuration}
         </div>
+        
         <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/60 to-transparent">
           <div className="flex items-center gap-1 text-white text-xs">
             <MapPin className="w-3 h-3 text-accent" /> {displayLocation}
@@ -55,6 +56,7 @@ export default function TourCard({ tour }: TourCardProps) {
         </div>
       </div>
       <div className="p-6">
+        <h3 className="text-lg font-bold text-primary mb-2">{tour.title}</h3>
         <p className="text-slate-500 text-sm line-clamp-2 mb-4 leading-relaxed">
           {tour.description || "Discover the hidden gems and iconic landmarks of this breathtaking destination with our expert-led tour."}
         </p>
