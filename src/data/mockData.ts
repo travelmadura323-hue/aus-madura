@@ -407,7 +407,7 @@ export const tours = [
     travelers: { adults: 10, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "New Delhi",
-    image: 'https://images.unsplash.com/photo-1524492707947-2f85a1a24d3c?auto=format&fit=crop&w=800&q=80',
+    image: gallery['/images/jaipur.png'] as string,
     description: "Explore the historic cities of Delhi, Agra, and Jaipur in ultimate luxury and style.",
     category: 'Group Tourism,Family Tourism',
     rating: 4.8,

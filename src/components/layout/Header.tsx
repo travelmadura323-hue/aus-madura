@@ -77,7 +77,9 @@ export default function Header() {
           <Link to="/" className="flex items-center gap-4">
             <div className={cn(
               "relative transition-all duration-300",
-              (isScrolled || location.pathname !== '/') ? "w-14 h-14" : "w-20 h-20"
+              (isScrolled || location.pathname !== '/')
+                ? "w-10 h-10 md:w-14 md:h-14"
+                : "w-12 h-12 md:w-20 md:h-20"
             )}>
               <img
                 src={Image}
