@@ -56,11 +56,11 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-bold mb-6 text-accent">Top Destinations</h4>
             <ul className="space-y-4 text-white text-sm">
-              <li><Link to="/pages/india" className="hover:text-white transition-colors">India</Link></li>
-              <li><Link to="/pages/Australia" className="hover:text-white transition-colors">Australia</Link></li>
-              <li><Link to="/pages/vietnam" className="hover:text-white transition-colors">Vietnam </Link></li>
-              <li><Link to="/pages/singapore" className="hover:text-white transition-colors">Singapore City</Link></li>
-              <li><Link to="/pages/sri-lanka" className="hover:text-white transition-colors">Sri Lanka</Link></li>
+              <li><Link to="/destinations/india" className="hover:text-white transition-colors">India</Link></li>
+              <li><Link to="/destinations/australia" className="hover:text-white transition-colors">Australia</Link></li>
+              <li><Link to="/destinations/vietnam" className="hover:text-white transition-colors">Vietnam </Link></li>
+              <li><Link to="/destinations/singapore" className="hover:text-white transition-colors">Singapore City</Link></li>
+              <li><Link to="/destinations/sri-lanka" className="hover:text-white transition-colors">Sri Lanka</Link></li>
             </ul>
           </div>
 
