@@ -6,7 +6,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
-import FloatingEnquiry from './components/FloatingEnquiry';
+
 import Home from './pages/Home';
 import TourDetail from './pages/TourDetail';
 import DestinationDetail from './pages/DestinationDetail';
@@ -64,7 +64,7 @@ export default function App() {
             <Route path="/complaint-policy" element={<ComplaintPolicy />} />
           </Routes>
         </main>
-        <FloatingEnquiry />
+       
         <Footer />
       </div>
     </Router>
