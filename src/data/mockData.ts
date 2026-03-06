@@ -8,7 +8,7 @@ export const destinations = [
     id: 'kerala',
     name: 'Kerala',
     type: 'domestic',
-    image: gallery['../../images/3.png'] as string,
+    image: gallery['/images/3.png'] as string,
     description: 'Experience the serene backwaters and lush greenery of Gods Own Country.',
     region: 'South India'
   },
@@ -16,7 +16,7 @@ export const destinations = [
     id: 'rajasthan',
     name: 'Rajasthan',
     type: 'domestic',
-    image: gallery['../../images/4.png'] as string,
+    image: gallery['/images/4.png'] as string,
     description: 'Discover the royal heritage and majestic forts of the Land of Kings.',
     region: 'North India'
   },
@@ -97,10 +97,10 @@ export const tours = [
       "Meet unique wildlife at Kangaroo Island"
     ],
     gallery: [
-      gallery['../../images/Tours/quuensland1.png'] as string,
-      gallery['../../images/Tours/queensland2.png'] as string,
-      gallery['../../images/Tours/queensland3.png'] as string,
-      gallery['../../images/Tours/queensland4.webp'] as string,
+      gallery['/images/Tours/quuensland1.png'] as string,
+      gallery['/images/Tours/queensland2.png'] as string,
+      gallery['/images/Tours/queensland3.png'] as string,
+      gallery['/images/Tours/queensland4.webp'] as string,
     ],
     tourPlan: [
       { day: 1, title: "Gold Coast Arrival", description: "G'day! Welcome to Australia- Arrive at Brisbane Airport and enjoy a comfortable private transfer to your hotel in Gold Coast. After check-in, the rest of the day is free to relax, explore nearby beaches, or unwind after your journey." },
@@ -184,16 +184,16 @@ export const tours = [
     travelers: { adults: 9, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "Chennai",
-    image: gallery['../../images/thiruvannamalai1.webp'] as string,
+    image: gallery['/images/thiruvannamalai1.webp'] as string,
     description: "Experience the profound spiritual journey of Girivalam around the sacred Annamalai Hill.",
     category: ['Family Tourism', "Group Tourism"],
     rating: 4.9,
     reviews: 210,
     highlights: ["Arunachaleswarar Temple Visit", "Sacred 14-km Girivalam Trek", "Spiritual Annamalai Hill Experience", "Temple Architecture & Heritage"],
     gallery: [
-      gallery['../../images/thiruvannamalai 2.webp'] as string,
-      gallery['../../images/thiruvannamalai3.webp'] as string,
-      gallery['../../images/thiruvannamalai4.webp'] as string,
+      gallery['/images/thiruvannamalai 2.webp'] as string,
+      gallery['/images/thiruvannamalai3.webp'] as string,
+      gallery['/images/thiruvannamalai4.webp'] as string,
     ],
     overview: 'Experience the profound spiritual journey of Girivalam with Madura Travel Service Pvt Ltd in Chennai. The term Girivalam is a combination of the Tamil words giri (hill) and valam (coming around), signifying the devotional ritual of circling Annamalai Hill. Every full moon, thousands of pilgrims assemble at the Arunachaleswarar Temple in Thiruvannamalai to undertake the sacred 14-kilometer trek around the hill. Madura Travel Service offers seamless and comfortable travel packages from Chennai, ensuring you can focus entirely on this deeply spiritual experience. Book your Girivalam pilgrimage with us and connect with this ancient tradition.',
     tourPlan: [
@@ -218,15 +218,15 @@ export const tours = [
     travelers: { adults: 9, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "Chennai",
-    image: gallery['../../images/pondicherry.png'] as string,
+    image: gallery['/images/pondicherry.png'] as string,
     description: "Immerse yourself in the rich culture and regal traditions of Tamil Nadu.",
     category: ['Spiritual Tourism', 'Family Tourism'],
     rating: 4.8,
     reviews: 185,
     highlights: ["hirukadalmallai", "Aurobindo ashramr", "Kapeeleshwara Temple"],
     gallery: [
-      gallery['../../images/pondicherry.png'] as string,
-      gallery['../../images/mahbalipuram.png'] as string,
+      gallery['/images/pondicherry.png'] as string,
+      gallery['/images/mahbalipuram.png'] as string,
     ],
     overview: 'Tamil Nadu tourism beckons with a rich tapestry of cultural heritage, vibrant traditions, and stunning landscapes. Explore ancient temples in Madurai, serene hill stations like Ooty, and picturesque beaches in Chennai. Indulge in aromatic cuisine, classical dance performances, and intricately woven silk sarees. Embark on an enchanting journey through Tamil Nadu’s timeless charm..We Offer Best Kashir Tour Packages.',
     tourPlan: [
@@ -295,7 +295,7 @@ export const tours = [
     travelers: { adults: 1, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "Penangr",
-    image: 'https://images.unsplash.com/photo-1596422846543-75c6fc18a593?auto=format&fit=crop&w=600&h=800&q=80',
+    image: gallery['/images/landscape.png'] as string,
     description: "Experience the bustling modern metropolis before diving into pristine nature.",
     category: 'Family Tourism',
     rating: 4.8,
@@ -407,7 +407,7 @@ export const tours = [
     travelers: { adults: 10, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "New Delhi",
-    image: gallery['../../images/jaipur.png'] as string,
+    image: gallery['/images/jaipur.png'] as string,
     description: "Explore the historic cities of Delhi, Agra, and Jaipur in ultimate luxury and style.",
     category: 'Group Tourism,Family Tourism',
     rating: 4.8,
@@ -415,8 +415,8 @@ export const tours = [
     highlights: ["Sunrise at the Taj Mahal", "Rickshaw ride in Old Delhi", "Amber Fort visit in Jaipur"],
     gallery: [
       "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80",
-      gallery['../../images/Delhi.png'] as string,
-      gallery['../../images/jaipur.png'] as string
+      gallery['/images/Delhi.png'] as string,
+      gallery['/images/jaipur.png'] as string
     ],
     overview: 'The Golden Triangle of India, consisting of Delhi, Agra, and Jaipur, is a popular tourist route known for its rich history and vibrant culture. In Delhi, visitors can explore landmarks like India Gate, Humayun’s Tomb, and the Red Fort. Agra is home to the majestic Taj Mahal, a symbol of eternal love, and other Mughal architecture like the Agra Fort. Jaipur, also known as the Pink City, boasts stunning palaces, forts, and temples, including the Amber Fort and City Palace. The Golden Triangle offers an unforgettable journey through India’s royal heritage, architecture, and traditions, attracting travelers worldwide.',
     tourPlan: [
