@@ -1,4 +1,4 @@
-const gallery = import.meta.glob('/images/ *.{png,jpg,jpeg,svg}', {
+const gallery = import.meta.glob('/images/**/*.{png,jpg,jpeg,svg,webp}', {
   eager: true,
   import: 'default',
 });
@@ -230,10 +230,10 @@ export const tours = [
       "Meet unique wildlife at Kangaroo Island"
     ],
     gallery: [
-            gallery['images/queensland/1.png'] as string ,
-            gallery['images/queensland/2.png'] as string ,
-           gallery['images/queensland/3.png'] as string ,
-            gallery['images/queensland/4.png'] as string ,
+            gallery['/images/queensland/1.png'] as string ,
+            gallery['/images/queensland/2.png'] as string ,
+           gallery['/images/queensland/3.png'] as string ,
+            gallery['/images/queensland/4.webp'] as string ,
      ],
 
     tourPlan: [
