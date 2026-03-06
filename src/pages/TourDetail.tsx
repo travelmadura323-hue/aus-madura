@@ -225,33 +225,33 @@ export default function TourDetail() {
 
               {/* Inclusion/Exclusion Tabs */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-emerald-50/40 p-10 rounded-[2.5rem] border border-emerald-100/50">
-                  <h3 className="text-xl font-bold text-emerald-900 mb-8 flex items-center gap-3">
-                    <div className="w-10 h-10 bg-emerald-500 rounded-2xl flex items-center justify-center text-white">
+                <div className="bg-[#191975]/5 p-10 rounded-[2.5rem] border border-[#191975]/20">
+                  <h3 className="text-xl font-bold text-[#191975] mb-8 flex items-center gap-3">
+                    <div className="w-10 h-10 bg-[#191975] rounded-2xl flex items-center justify-center text-white">
                       <Check className="w-6 h-6" />
                     </div>
                     What's Included
                   </h3>
                   <ul className="space-y-5">
                     {(tour.included || ['Premium Hotel Stay', 'Luxury Transportation', 'Guided Cultural Tours', 'Full Board Meals', 'Activity Charges']).map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-4 text-emerald-800 font-medium">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full" /> {item}
+                      <li key={idx} className="flex items-center gap-4 text-[#191975] font-medium">
+                        <div className="w-2 h-2 bg-[#191975] rounded-full" /> {item}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="bg-rose-50/40 p-10 rounded-[2.5rem] border border-rose-100/50">
-                  <h3 className="text-xl font-bold text-rose-900 mb-8 flex items-center gap-3">
-                    <div className="w-10 h-10 bg-rose-500 rounded-2xl flex items-center justify-center text-white">
+                <div className="bg-[#cc1217]/5 p-10 rounded-[2.5rem] border border-[#cc1217]/20">
+                  <h3 className="text-xl font-bold text-[#cc1217] mb-8 flex items-center gap-3">
+                    <div className="w-10 h-10 bg-[#cc1217] rounded-2xl flex items-center justify-center text-white">
                       <X className="w-6 h-6" />
                     </div>
                     What's Excluded
                   </h3>
                   <ul className="space-y-5">
                     {(tour.excluded || ['International Airfare', 'Visa Processing Charges', 'Travel & Health Insurance', 'Additional Activities', 'Private Shopping']).map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-4 text-rose-800 font-medium">
-                        <div className="w-2 h-2 bg-rose-500 rounded-full" /> {item}
+                      <li key={idx} className="flex items-center gap-4 text-[#cc1217] font-medium">
+                        <div className="w-2 h-2 bg-[#cc1217] rounded-full" /> {item}
                       </li>
                     ))}
                   </ul>

@@ -253,7 +253,7 @@ export default function Home() {
               <h2 className="text-[24px] font-bold text-primary">Popular India Tours</h2>
             </div>
             <Link
-              to="/pages/india" onClick={() => window.scrollTo(0, 0)}
+              to="/destinations/india" onClick={() => window.scrollTo(0, 0)}
               className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group"
             >
               View All India Tours
