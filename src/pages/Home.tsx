@@ -152,23 +152,33 @@ export default function Home() {
               Welcome to Madura Global
             </span> */}
 
-            {/* Title */}
-            <motion.h1
-              key={slides[currentSlide].title}
-              initial={{ opacity: 0, y: 80 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -80 }}
-              transition={{ duration: 0.9, ease: "easeOut" }}
-              style={{ fontSize: 'clamp(2.5rem, 15vw, 35rem)', lineHeight: 0.9 }}
-              className="font-black uppercase tracking-tight drop-shadow-2xl"
+            {/* Multi-layered Premium Hero Title */}
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, ease: "circOut" }}
+              className="relative flex flex-col items-center justify-center py-10"
             >
-              <span className="text-white">
-                {slides[currentSlide].title.split(" ")[0]}
-              </span>{" "}
-              <span className="text-accent">
-                {slides[currentSlide].title.split(" ").slice(1).join(" ")}
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary/5 font-black text-[15vw] leading-none uppercase select-none pointer-events-none whitespace-nowrap">
+                {slides[currentSlide].title.replace("Explore ", "")}
               </span>
-            </motion.h1>
+
+              <div className="relative z-10 flex items-center gap-4 mb-6">
+                <div className="h-[1px] w-8 md:w-16 bg-primary/50" />
+                <span className="text-white/90 text-xs md:text-sm lg:text-base font-bold uppercase tracking-[1em] pl-[1em]">
+                  Explore
+                </span>
+                <div className="h-[1px] w-8 md:w-16 bg-primary/50" />
+              </div>
+
+              <motion.h1
+                style={{ fontSize: 'clamp(3rem, 10vw, 8rem)', lineHeight: 0.8 }}
+                className="relative z-10 font-black uppercase tracking-tighter text-primary drop-shadow-[0_10px_40px_rgba(255,255,255,0.2)]"
+              >
+                {slides[currentSlide].title.replace("Explore ", "")}
+              </motion.h1>
+            </motion.div>
 
             {/* Subtitle */}
             <p className="text-lg text-slate-200 max-w-2xl mx-auto mb-10">
