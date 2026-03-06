@@ -43,7 +43,7 @@ export default function complaintPolicy() {
             </p>
 
             <p className="mt-3 font-medium text-[#cc1715]">
-              Australia@maduraglobal.com
+              australia@maduraglobal.com
             </p>
 
             <p className="mt-3">
@@ -78,7 +78,7 @@ export default function complaintPolicy() {
             </p>
 
             <p className="mt-3 font-medium text-[#cc1715]">
-              Australia@maduraglobal.com
+              australia@maduraglobal.com
             </p>
 
             <p className="mt-3">
@@ -106,7 +106,7 @@ export default function complaintPolicy() {
             </p>
 
             <p className="mt-3 font-medium text-[#cc1715]">
-              Australia@maduraglobal.com
+              australia@maduraglobal.com
             </p>
 
             <p className="mt-3">

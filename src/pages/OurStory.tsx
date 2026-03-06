@@ -2,15 +2,15 @@ import React from "react"
 import { Award, Globe, Users, Heart } from "lucide-react"
 import { image } from "framer-motion/client";
 
-const OurStory = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+const images = import.meta.glob('../../images/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 });
-const gal = import.meta.glob('/src/gallery/*.{png,jpg,jpeg,svg}', {
+const gal = import.meta.glob('../gallery/*.{png,jpg,jpeg,svg,webp}', {
   eager: true,
   import: 'default',
 });
-const im = import.meta.glob('/images/im/*.{png,jpg,jpeg,svg}', {
+const im = import.meta.glob('../../images/im/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 });
@@ -116,7 +116,7 @@ export default function OurStoryPage() {
                 Your premier choice for unforgettable travel experiences backed by 39 years of expertise and the esteemed approval of the Ministry of Tourism, Government of India. We have been dedicated to curating exceptional journeys for millions of passengers including Families, Honeymooners, Corporate & Business travellers, Solo Travellers, Student Educational Trips and many more.</p>
             </div>
             <div className="relative  w-full h-[800px] overflow-hidden rounded-2xl">
-              <img src={OurStory['/images/WhatsApp-Image-2024-11-21-at-16.41.41_0f849961-767x1024 (1).jpg']}
+              <img src={images['../../images/WhatsApp-Image-2024-11-21-at-16.41.41_0f849961-767x1024 (1).jpg'] as string}
                 alt="Our team on a tour"
                 fill className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw" />
@@ -181,7 +181,7 @@ export default function OurStoryPage() {
                 className="bg-gray-50 rounded-xl p-6 flex items-center justify-center hover:shadow-md transition"
               >
                 <img
-                  src={gal[`/src/gallery/img-${index + 1}.jpg`]}
+                  src={gal[`../gallery/img-${index + 1}.jpg`] as string}
                   alt={`Client ${index + 1}`}
                   className="max-h-28 object-contain"
                 />
@@ -201,12 +201,12 @@ export default function OurStoryPage() {
         {/* Top Logos */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-70 mb-24">
           <img
-            src={im['/images/im/rsh_100cg_truem-4.png']}
+            src={im['../../images/im/rsh_100cg_truem-4.png']}
             alt="Incredible India"
             className="h-24 object-contain"
           />
           <img
-            src={im['/images/im/rsh_100cg_truem-10.jpeg']}
+            src={im['../../images/im/rsh_100cg_truem-10.jpeg']}
             alt="Enchanting Tamil Nadu"
             className="h-24 object-contain"
           />
@@ -219,10 +219,10 @@ export default function OurStoryPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10 max-w-6xl mx-auto px-4 sm:px-6 mb-16 sm:mb-24">
           {[
-            { img: im['/images/im/111.png'], label: "Primary Host" },
-            { img: im['/images/im/22-1.png'], label: "Record Holder" },
-            { img: im['/images/im/33-1.png'], label: "M.I.C.E Leader" },
-            { img: im['/images/im/44-1.png'], label: "Record Holder" },
+            { img: im['../../images/im/111.png'], label: "Primary Host" },
+            { img: im['../../images/im/22-1.png'], label: "Record Holder" },
+            { img: im['../../images/im/33-1.png'], label: "M.I.C.E Leader" },
+            { img: im['../../images/im/44-1.png'], label: "Record Holder" },
           ].map((item, index) => (
             <div
               key={index}
@@ -247,11 +247,11 @@ export default function OurStoryPage() {
 
         <div className="flex flex-wrap items-center justify-center gap-30 max-w-7xl mx-auto px-4 mb-24">
           {[
-            im['/images/im/rsh_100cg_true.png'],
-            im['/images/im/MADURAGLOBALIMMIGRATION-300x300.png'],
-            im['/images/im/madura-intitute-300x300.png'],
-            im['/images/im/Madura-Global-Logo-150x150.png'],
-            im['/images/im/111.png'],
+            im['../../images/im/rsh_100cg_true.png'],
+            im['../../images/im/MADURAGLOBALIMMIGRATION-300x300.png'],
+            im['../../images/im/madura-intitute-300x300.png'],
+            im['../../images/im/Madura-Global-Logo-150x150.png'],
+            im['../../images/im/111.png'],
           ].map((logo, index) => (
             <img
               key={index}
@@ -269,11 +269,11 @@ export default function OurStoryPage() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-9 max-w-6xl mx-auto px-4">
           {[
-            im['/images/im/iata.png'],
-            im['/images/im/iaai.jpg'],
-            im['/images/im/download.png'],
-            im['/images/im/taai.png'],
-            im['/images/im/tafi.jpg'],
+            im['../../images/im/iata.png'],
+            im['../../images/im/iaai.jpg'],
+            im['../../images/im/download.png'],
+            im['../../images/im/taai.png'],
+            im['../../images/im/tafi.jpg'],
           ].map((logo, index) => (
             <div
               key={index}

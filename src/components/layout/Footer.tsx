@@ -89,14 +89,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-white text-[10px] md:text-xs text-center md:text-left">
-          <p>© 2026 Madura Travel Service Pvt Ltd. All rights reserved.</p>
-          <div className="flex flex-wrap justify-center md:justify-end gap-x-4 md:gap-x-6 gap-y-2">
-            <Link to="/privacy-policy" className="hover:text-accent transition-colors whitespace-nowrap">Privacy Policy</Link>
-            <Link to="/terms-conditions" className="hover:text-accent transition-colors whitespace-nowrap">Terms of Service</Link>
-            <Link to="/complaint-policy" className="hover:text-accent transition-colors whitespace-nowrap">Compliant Policy</Link>
-            <Link to="/disclaimer" className="hover:text-accent transition-colors whitespace-nowrap">Disclaimer</Link>
-            <Link to="/contact" className="hover:text-accent transition-colors whitespace-nowrap">Contact us</Link>
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8 text-white text-[10px] md:text-sm text-center md:text-left">
+          <p className="opacity-80">© 2026 Madura Travel Service Pvt Ltd. All rights reserved.</p>
+          <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-3 px-4">
+            <Link to="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</Link>
+            <Link to="/terms-conditions" className="hover:text-accent transition-colors">Terms of Service</Link>
+            <Link to="/complaint-policy" className="hover:text-accent transition-colors">Compliant Policy</Link>
+            <Link to="/disclaimer" className="hover:text-accent transition-colors">Disclaimer</Link>
+            <Link to="/contact" className="hover:text-accent transition-colors">Contact us</Link>
           </div>
         </div>
       </div>

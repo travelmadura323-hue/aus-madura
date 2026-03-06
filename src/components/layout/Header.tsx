@@ -76,15 +76,15 @@ export default function Header() {
         <div className="w-full px-4 md:px-10 h-full flex items-center justify-between">
           <Link to="/" className="flex items-center gap-4">
             <div className={cn(
-              "relative transition-all duration-300",
+              "relative transition-all duration-300 rounded-full bg-white p-1 shadow-sm border border-slate-100 flex items-center justify-center overflow-hidden",
               (isScrolled || location.pathname !== '/')
-                ? "w-14 h-14 md:w-16 md:h-16"
-                : "w-16 h-16 md:w-22 md:h-22"
+                ? "w-14 h-14"
+                : "w-16 h-16 md:w-20 md:h-20"
             )}>
               <img
                 src={Image}
                 alt="Madura Global Logo"
-                className="w-full h-full object-contain drop-shadow-md"
+                className="w-full h-full object-contain"
               />
             </div>
 
@@ -152,13 +152,13 @@ export default function Header() {
               Enquiry
             </button>
             <button
-              className="lg:hidden"
+              className="lg:hidden p-2 rounded-lg bg-black/10 backdrop-blur-sm border border-white/10"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
-                <X className="text-primary w-7 h-7" />
+                <X className="text-primary w-6 h-6" />
               ) : (
-                <Menu className={cn("w-7 h-7 transition-colors drop-shadow-md", (isScrolled || location.pathname !== '/') ? "text-white" : "text-white")} />
+                <Menu className={cn("w-6 h-6 transition-colors drop-shadow-md", (isScrolled || location.pathname !== '/') ? "text-white" : "text-white")} />
               )}
             </button>
           </div>
