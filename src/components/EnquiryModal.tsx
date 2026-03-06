@@ -31,7 +31,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: "YOUR_ACCESS_KEY_HERE", // Get this from https://web3forms.com/
+          access_key: "43dd3943-e03b-40eb-af68-3a2618020a2e", // Web3Forms Access Key
           subject: `New Enquiry: ${formData.type} from ${formData.name}`,
           from_name: "Madura Travel Advisor",
           name: formData.name,
