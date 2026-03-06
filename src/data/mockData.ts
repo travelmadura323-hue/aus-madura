@@ -8,7 +8,7 @@ export const destinations = [
     id: 'kerala',
     name: 'Kerala',
     type: 'domestic',
-    image: 'https://picsum.photos/seed/kerala/800/600',
+    image: gallery['/images/3.png'] as string,
     description: 'Experience the serene backwaters and lush greenery of Gods Own Country.',
     region: 'South India'
   },
@@ -16,7 +16,7 @@ export const destinations = [
     id: 'rajasthan',
     name: 'Rajasthan',
     type: 'domestic',
-    image: 'https://picsum.photos/seed/rajasthan/800/600',
+    image: gallery['/images/4.png'] as string,
     description: 'Discover the royal heritage and majestic forts of the Land of Kings.',
     region: 'North India'
   },
@@ -97,7 +97,7 @@ export const tours = [
       "Meet unique wildlife at Kangaroo Island"
     ],
     gallery: [
-      gallery['/images/Tours/queensland1.png'] as string,
+      gallery['/images/Tours/quuensland1.png'] as string,
       gallery['/images/Tours/queensland2.png'] as string,
       gallery['/images/Tours/queensland3.png'] as string,
       gallery['/images/Tours/queensland4.webp'] as string,
@@ -146,7 +146,7 @@ export const tours = [
     startingPlace: "Kochi",
     image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80',
     description: "A serene journey through God’s Own Country.",
-    category: ['Family Tourism',"Group Tourism"],
+    category: ['Family Tourism', "Group Tourism"],
     rating: 4.9,
     reviews: 210,
     highlights: ["Munnar Tea Gardens", "Periyar Wildlife Sanctuary", "Overnight Houseboat stay", "Traditional Kerala Cuisine"],
@@ -162,7 +162,7 @@ export const tours = [
       { day: 4, title: 'Thekkady – Kumarakom', description: 'After having a sumptuous breakfast,get transferred to Kumarakom.The fresh water of the lake flows into the mainland, making a labyrinth of lagoons, canals and waterways. Spend the rest of the day exploring your beautiful resort of Kumarakom.Overnight at Kumarakom.' },
       { day: 5, title: ' Kumarakom – Kochi', description: 'After having a sumptuous breakfast,drive to Cochin.Upon arrival, check-in at the hotel. Later, Enjoy city tour covering Mattancherry Palace,about 500 year old Jewish Synagogue, Chinese fishing nets, local spices market followed by colorful performing art –Kathakali Dance.Overnight in Kochi' },
       { day: 6, title: 'Departure', description: 'After having a sumptuous breakfast.You will be transferred to Cochin airport for a return flight back home.' },
-      
+
     ],
     included: ["Accommodation in well-appointed rooms as mentioned in the above hotels or equivalent", "Driver allowances, toll taxes", "Sightseeing as per itinerary by private tourist vehicle"],
     excluded: ["Air tickets and airport taxe", "Entry Fee at the Monuments", "Items of personal nature like laundry, phone calls, tips to guides/drivers, etc", "Camera / Video camera fees applicable at monuments"],
@@ -177,7 +177,7 @@ export const tours = [
     numericId: 2,
     slug: 'tamilnadu-heritage-tour',
     title: 'Spellbinding of Tamil Nadu 06 Days Group Tour',
-    location: { country: 'India', cities: [ 'Chennai','pondicherry'] },
+    location: { country: 'India', cities: ['Chennai', 'pondicherry'] },
     duration: { days: 6, nights: 5 },
     price: { startingFrom: 1250, currency: "USD", perPerson: true },
     travelers: { adults: 9, children: 0, infants: 0 },
@@ -201,7 +201,7 @@ export const tours = [
       { day: 4, title: 'Pondicherry Sightseeing', description: 'After having a sumptuous breakfast.Rest of the day leisure. Alternatively, you can explore the Local streets, Markets and French colonies of Pondicherry.Overnight at Pondicherry.' },
       { day: 5, title: 'Pondicherry – Chennai', description: 'After having a sumptuous breakfast.Check-out from the hotel and proceed to Chennai. Upon arrival check in to the hotel.Later explore Chennai- Visit Fort St George, St. Marys Church and a museum, Kapeeleshwara Temple, San Thome Cathedral,Government State Museum & National Art Gallery. Drive past Marina Beach, the second longest beach in the world.Overnight Stay in Chennai..' },
       { day: 6, title: ' Departure', description: 'After having a sumptuous breakfast.You will be transferred to Chennai airport for return flight back home' },
-      
+
     ],
     included: ["Accommodation in well-appointed rooms as mentioned in the above hotels or equivalent", "Assistance at the airport", "Sightseeing as per itinerary by private tourist vehicle", "Driver allowances, toll taxes, Road Taxes and Parking charges"],
     excluded: ["Air tickets and airport taxes", "Entry Fee at the Monuments", "Items of personal nature like laundry, phone calls, tips to guides/drivers", "Camera / Video camera fees applicable at monuments"],
@@ -241,10 +241,10 @@ export const tours = [
       { day: 5, title: ' Transfer to Ho Chi Minh City (Saigon)', description: 'Morning: Have breakfast at your hotel before transferring to Da Nang Airport for your flight to Ho Chi Minh City.Afternoon: Check into your 4-star hotel in Ho Chi Minh City. The rest of the day is free for you to explore Saigon’s vibrant streets or indulge in local delicacies.Overnight stay in Ho Chi Minh City.' },
       { day: 6, title: 'Cu Chi Tunnels Guided Tour', description: 'Morning: After breakfast, embark on a guided city tour of the Cu Chi Tunnels, a fascinating historical site showcasing Vietnam\'s wartime ingenuity.Afternoon: Return to Ho Chi Minh City and explore the local markets or landmarks like the Notre Dame Cathedral and Ben Thanh Market.Overnight stay in Ho Chi Minh City.' },
       { day: 7, title: ' Departure', description: 'Morning: Enjoy a final breakfast at your hotel before checking out.Airport Transfer: Private transfer to Tan Son Nhat International Airport for your onward journey back to India..' },
-      
+
     ],
-    included: ["Accommodation: 6 nights at premium 4-star hotels and a luxury Ha Long Bay cruise.", "Meals: Daily breakfast included at all accommodations; dinner included on the Ha Long Bay cruise.", "Airport Transfers: Private transfers upon arrival in Hanoi and for departure from Ho Chi Minh City.", "City Tours: Guided half-day Hanoi city tour covering key landmarks like Hoan Kiem Lake, the Temple of Literature, and Hanoi Opera House.","Luxury Amenities: Access to premium cruise facilities and 4-star hotel services."],
-    excluded: ["Inbound and domestic Flights and flight details ", "Entry tickets which are not mention in inclusion Personal expenses such as meals, tips, and gratuities not specified in the package. Insurance coverage and any unforeseen additional costs.", "Tipping","Any additional hotel nights or room services beyond the package inclusions.","Any items not explicitly mentioned in the inclusions."],
+    included: ["Accommodation: 6 nights at premium 4-star hotels and a luxury Ha Long Bay cruise.", "Meals: Daily breakfast included at all accommodations; dinner included on the Ha Long Bay cruise.", "Airport Transfers: Private transfers upon arrival in Hanoi and for departure from Ho Chi Minh City.", "City Tours: Guided half-day Hanoi city tour covering key landmarks like Hoan Kiem Lake, the Temple of Literature, and Hanoi Opera House.", "Luxury Amenities: Access to premium cruise facilities and 4-star hotel services."],
+    excluded: ["Inbound and domestic Flights and flight details ", "Entry tickets which are not mention in inclusion Personal expenses such as meals, tips, and gratuities not specified in the package. Insurance coverage and any unforeseen additional costs.", "Tipping", "Any additional hotel nights or room services beyond the package inclusions.", "Any items not explicitly mentioned in the inclusions."],
     relatedPackages: [],
     faqs: [
       { question: "Do I need a visa?", answer: "Most travelers require a visa arranged prior to arrival or via E-Visa." }
@@ -281,8 +281,8 @@ export const tours = [
       { day: 7, title: 'Langkawi Cable Car', description: 'Gain stunning aerial views of the Andaman Sea.' },
       { day: 8, title: 'Departure', description: 'Transfer to the Langkawi airport for your flight home.' }
     ],
-    included: ["Accomodation with breakfast", "Arrival and Departure transfer", "Sightseeing as per itinerary", "Orientation tour of George Town","Visit to Entopia Butterfly Farm","Visit to Tropical Spice garden","Orientation tour Kuala Lumpur City","Genting skyway cable car ride"],
-    excluded: ["International and domestic flights", "Visa and Travel Insurance service", "Lunches and Dinners on tour","Entry fees for optional attractions or activities","Personal expenses ( tips, beverages, laundry,, etc.,)"],
+    included: ["Accomodation with breakfast", "Arrival and Departure transfer", "Sightseeing as per itinerary", "Orientation tour of George Town", "Visit to Entopia Butterfly Farm", "Visit to Tropical Spice garden", "Orientation tour Kuala Lumpur City", "Genting skyway cable car ride"],
+    excluded: ["International and domestic flights", "Visa and Travel Insurance service", "Lunches and Dinners on tour", "Entry fees for optional attractions or activities", "Personal expenses ( tips, beverages, laundry,, etc.,)"],
 
     relatedPackages: [],
     faqs: [
@@ -316,10 +316,10 @@ export const tours = [
       { day: 2, title: ' Explore Singapore’s Landmarks', description: 'Half-Day City Tour: Visit iconic landmarks like Merlion Park, Marina Bay Sands, and Esplanade Theatre. Stop by the Singapore Flyer (optional ride). Explore Gardens by the Bay, featuring the futuristic Supertree Grove (entry optional). Discover the cultural richness of Chinatown, Little India, and Kampong Glam.Lunch: Free time to explore local dining options (at your own expense).Evening: Optional activity like a Night Safari or a river cruise at Clarke Quay (additional cost). Overnight Stay: At your hotel in Singapore.' },
       { day: 3, title: ' Sentosa Island Exploration', description: 'This is an exclusive crafter self exploratory tour of Sentosa where you will have the greatest time of your life ever. Walk along Siloso Beach or enjoy thrilling adventures at Adventure Cove Waterpark (optional, additional ticket). Experience the panoramic views from the Skyline Luge & Skyride(optional, additional ticket). End the day with the Wings of Time show (optional, additional ticket).Evening Return: Head back to the hotel after a memorable day.Overnight Stay: At your hotel in Singapore.' },
       { day: 4, title: 'Departure from Singapore', description: 'Check-Out & Airport Transfer: Depending on your flight timing, our representative will assist you with a smooth transfer to Changi Airport. Goodbye Singapore: Depart with unforgettable memories and a promise to return!' },
-     
+
     ],
-    included: ["Airport Transfers between the airport and hotel for arrival and departure.", "Vortex Fountain at Jewel Changi", "City Tour: Guided city exploration, including key landmarks and a 3-hour experience","Self explorational Sentosa Tour plan","Professional Guide: Services of an English-speaking guide for all tours and transfers.","Comprehensive Tour Coverage: All activities and attractions are arranged on a private basis for enhanced comfort and personalization."],
-    excluded: ["Inbound and domestic Flights and flight details (to be arranged separately).", "Entry tickets which are not mention in inclusion", "Any additional hotel nights or room services beyond the package inclusions","Personal expenses such as meals, tips, and gratuities not specified in the package.","GST (5%) and TCS (5%) included in the overall invoice"],
+    included: ["Airport Transfers between the airport and hotel for arrival and departure.", "Vortex Fountain at Jewel Changi", "City Tour: Guided city exploration, including key landmarks and a 3-hour experience", "Self explorational Sentosa Tour plan", "Professional Guide: Services of an English-speaking guide for all tours and transfers.", "Comprehensive Tour Coverage: All activities and attractions are arranged on a private basis for enhanced comfort and personalization."],
+    excluded: ["Inbound and domestic Flights and flight details (to be arranged separately).", "Entry tickets which are not mention in inclusion", "Any additional hotel nights or room services beyond the package inclusions", "Personal expenses such as meals, tips, and gratuities not specified in the package.", "GST (5%) and TCS (5%) included in the overall invoice"],
     relatedPackages: [],
     faqs: [
       { question: "Is the Michelin dinner vegetarian friendly?", answer: "Yes, dietary restrictions can be accommodated with advance notice." }
@@ -353,10 +353,10 @@ export const tours = [
       { day: 3, title: ' Nuwara Eliya / Ella', description: 'Train Ride to Ella: A breathtaking train journey through hills, tea fields, and local villages.Ravana Ella Cave & Falls: Visit the cave where Ravana is said to have hidden Sita and enjoy the stunning waterfall.Nine Arch Bridge: A historical railway bridge with panoramic views.Flying Ravana Zip Line: Experience the thrill of zip-lining with a spectacular view of the hills.Dinner & Overnight Stay at Bentota.' },
       { day: 4, title: ' Bentota', description: 'Madu River Cruise: Explore the serene Madu River with its 64 small islands and mangroves.Leisure Activities: Enjoy the natural beauty and unwind in Bentota.Nightlife in Colombo: Optionally explore Colombos lively nightlife.Dinner & Overnight Stay at Hotel in Bentota.' },
       { day: 5, title: ' Colombo / Airport', description: 'Colombo City Tour: Explore the mix of old and modern architecture, including Dutch, British, and colonial buildings, along with vibrant markets.Transfer to Colombo Airport for Departure.' },
-     
+
     ],
-    included: ["Meet and Greet at Colombo Airport by our representative.", "Accommodation in 3-star hotels or similar with comfortable amenities.", "Breakfasts, 4 Dinners at the hotel, and 4 Lunches at reputed Indian restaurants.", "All transfers during the tour in A/C private vehicles.","Services of an English-Speaking National Guide.","Sightseeing as per the itinerary, including historical sites, temples, waterfalls, and more.","Scenic train journey from Nuwara Eliya to Ella.","Madu River cruise across 64 small islands showcasing nature."],
-    excluded: ["Entry tickets which are not mention in inclusion", "Inbound and domestic Flights and flight details (to be arranged separately).", "Personal expenses such as meals, tips, and gratuities not specified in the package.","Insurance coverage and any unforeseen additional costs.","Any items not explicitly mentioned in the inclusions."],
+    included: ["Meet and Greet at Colombo Airport by our representative.", "Accommodation in 3-star hotels or similar with comfortable amenities.", "Breakfasts, 4 Dinners at the hotel, and 4 Lunches at reputed Indian restaurants.", "All transfers during the tour in A/C private vehicles.", "Services of an English-Speaking National Guide.", "Sightseeing as per the itinerary, including historical sites, temples, waterfalls, and more.", "Scenic train journey from Nuwara Eliya to Ella.", "Madu River cruise across 64 small islands showcasing nature."],
+    excluded: ["Entry tickets which are not mention in inclusion", "Inbound and domestic Flights and flight details (to be arranged separately).", "Personal expenses such as meals, tips, and gratuities not specified in the package.", "Insurance coverage and any unforeseen additional costs.", "Any items not explicitly mentioned in the inclusions."],
     relatedPackages: [],
     faqs: [
       { question: "Is the train ride guaranteed?", answer: "We purchase tickets in advance but it is always subject to government railway availability." }
@@ -389,9 +389,9 @@ export const tours = [
       { day: 3, title: ' Delhi - Agra', description: 'After breakfast, drive to Agra. Check in at your hotel and proceed for a half-day city tour. Begin by exploring the majestic Red Fort. Next, visit the iconic Taj Mahal.After a day of exploration, relax and unwind at your hotel in Agra.Overnight in Agra.' },
       { day: 4, title: ' Agra - Jaipur', description: 'Embark on a full-day sightseeing trip of Jaipur.Visit the majestic Amber Fort, where you can ride up to the fort on an elephant. Capture the beauty of Hawa Mahal, the City Palace and Jantar Mantar Observatory.Overnight in Jaipur' },
       { day: 5, title: ' Jaipur - Delhi', description: 'After breakfast, drive back to Delhi. You will be transferred to Delhi airport/railway station for a return flight back home.' },
-      
+
     ],
-    included: ["Accommodation in well-appointed rooms as mentioned in the above hotels or equivalent", "Elephant / Jeep ride at Amer fort", "Assistance at the airport", "Sightseeing as per itinerary by private tourist vehicle","Driver allowances, toll taxes, and Govt. Service Tax"],
+    included: ["Accommodation in well-appointed rooms as mentioned in the above hotels or equivalent", "Elephant / Jeep ride at Amer fort", "Assistance at the airport", "Sightseeing as per itinerary by private tourist vehicle", "Driver allowances, toll taxes, and Govt. Service Tax"],
     excluded: ["Air tickets and airport taxes", "Entry Fee at the Monuments", "Camera / Video camera fees applicable at monuments"],
     relatedPackages: [],
     faqs: [

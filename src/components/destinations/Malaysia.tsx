@@ -5,13 +5,13 @@ import DestinationPackages from '../tours/DestinationPackages';
 
 const Malaysia = () => {
   const malaysiaTours = tours.filter((t) =>
-    (typeof t.location === 'string' ? t.location : t.location.country).toLowerCase().includes('Malaysia')
+    (typeof t.location === 'string' ? t.location : t.location.country).toLowerCase().includes('malaysia')
   );
 
-const pho = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
-  eager: true,
-  import: 'default',
-});
+  const pho = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+    eager: true,
+    import: 'default',
+  });
 
   return (
     <DestinationPackages

@@ -5,7 +5,7 @@ import DestinationPackages from '../tours/DestinationPackages';
 
 const SriLanka = () => {
   const sriLankaTours = tours.filter((t) =>
-    (typeof t.location === 'string' ? t.location : t.location.country).toLowerCase().includes('sri-lanka')
+    (typeof t.location === 'string' ? t.location : t.location.country).toLowerCase().includes('sri lanka')
   );
 
   return (

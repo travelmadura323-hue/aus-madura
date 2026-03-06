@@ -204,12 +204,12 @@ export default function TourDetail() {
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {((tour as any).gallery || [
-                    'https://picsum.photos/seed/g1/800/600',
-                    'https://picsum.photos/seed/g2/800/600',
-                    'https://picsum.photos/seed/g3/800/600',
-                    'https://picsum.photos/seed/g4/800/600',
-                    'https://picsum.photos/seed/g5/800/600',
-                    'https://picsum.photos/seed/g6/800/600'
+                    'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1596422846543-75c6fc18a593?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1525596662741-e94ff9f26de1?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1524492707947-2f85a1a24d3c?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&q=80'
                   ]).map((img: string, idx: number) => (
                     <motion.div
                       key={idx}

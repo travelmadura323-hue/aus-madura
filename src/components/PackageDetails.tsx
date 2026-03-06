@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { tours } from "../data/mockData";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
+import EnquiryModal from "./EnquiryModal";
+import { div } from "framer-motion/client";
 
 export default function PackageDetails() {
   const { id } = useParams();
@@ -11,13 +11,7 @@ export default function PackageDetails() {
     (t) => t.id?.toString() === id || t.slug === id || t.id === id
   );
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    travelDate: "",
-    adults: 1
-  });
+  const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
 
   if (!tour)
     return <div className="p-10 text-center">Package Not Found</div>;
@@ -94,63 +88,19 @@ export default function PackageDetails() {
           {displayCurrency}{displayPrice.toLocaleString()}
         </p>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            alert("Enquiry Submitted!");
-          }}
-          className="space-y-4"
+        <button
+          onClick={() => setIsEnquiryModalOpen(true)}
+          className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg transition"
         >
-          <input
-            type="text"
-            placeholder="Name"
-            className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-red-400 outline-none"
-            required
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          />
-
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-red-400 outline-none"
-            required
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          />
-
-          <PhoneInput
-            country={"in"}
-            enableSearch={true}
-            inputClass="!w-full !h-[48px]"
-            value={formData.phone}
-            onChange={(phone) => setFormData({ ...formData, phone })}
-          />
-
-          <input
-            type="date"
-            className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-red-400 outline-none"
-            required
-            value={formData.travelDate}
-            onChange={(e) => setFormData({ ...formData, travelDate: e.target.value })}
-          />
-
-          <input
-            type="number"
-            min="1"
-            value={formData.adults}
-            onChange={(e) => setFormData({ ...formData, adults: parseInt(e.target.value) })}
-            className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-red-400 outline-none"
-          />
-
-          <button
-            type="submit"
-            className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg transition"
-          >
-            Send Enquiry
-          </button>
-        </form>
+          Send Enquiry
+        </button>
       </div>
+
+      <EnquiryModal
+        isOpen={isEnquiryModalOpen}
+        onClose={() => setIsEnquiryModalOpen(false)}
+      />
     </div>
+
   );
 }

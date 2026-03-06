@@ -5,10 +5,7 @@ import { Link } from 'react-router-dom';
 import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
 import { cn } from '../lib/utils';
-// import motive == from 'framer-motion/client';
-import Chairmanimage from '/images/VKT-BALAN.png';
-
-
+import Chairmanimage from '../../images/VKT-BALAN.png';
 
 
 // export default function Home() {
@@ -273,37 +270,6 @@ export default function Home() {
                 <TourCard tour={tour} />
               </motion.div>
             ))}
-            {/* Added mock cards for variety */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <TourCard tour={{
-                slug: 'kashmir-paradise',
-                title: 'Kashmir Paradise Escape',
-                location: 'Kashmir, India',
-                duration: '6 Days / 5 Nights',
-                price: 950,
-                image: images['/images/Gemini_Generated_Image_54pojh54pojh54po.png'] as string,
-              }} />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <TourCard tour={{
-                slug: 'golden-triangle',
-                title: 'Golden Triangle Special',
-                location: 'Delhi, Agra, Jaipur',
-                duration: '5 Days / 4 Nights',
-                price: 750,
-                image: images['/images/2.png'] as string,
-              }} />
-            </motion.div>
           </div>
         </div>
       </section>
