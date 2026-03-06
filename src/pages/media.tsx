@@ -18,7 +18,7 @@ export default function MediaPage() {
             Press & News
           </span>
 
-          <h1 className="mt-4 text-4xl md:text-5xl font-bold">
+          <h1 className="mt-4 text-4xl text-white md:text-5xl font-bold">
             Media
           </h1>
 

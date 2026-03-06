@@ -73,7 +73,7 @@ export default function Header() {
           (isScrolled || location.pathname !== '/') ? 'bg-primary/95 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-5'
         )}
       >
-        <div className="max-w-7xl mx-auto px-6 left-0 h-full flex items-center  justify-between">
+        <div className="w-full px-4 md:px-10 h-full flex items-center justify-between">
           <Link to="/" className="flex items-center gap-4">
             <div className={cn(
               "relative transition-all duration-300",
