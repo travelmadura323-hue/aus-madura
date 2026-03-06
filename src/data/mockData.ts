@@ -1,4 +1,4 @@
-const gallery = import.meta.glob('/images/queensland/ *.{png,jpg,jpeg,svg}', {
+const gallery = import.meta.glob('/images/ *.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 });
@@ -230,12 +230,11 @@ export const tours = [
       "Meet unique wildlife at Kangaroo Island"
     ],
     gallery: [
-
-          gallery['images/queensland/1.png'] as string,
-          gallery['images/queensland/2.png'] as string,
-          gallery['images/queensland/3.png'] as string,
-          gallery['images/queensland/4.png'] as string,
-    ],
+            gallery['images/queensland/1.png'] as string ,
+            gallery['images/queensland/2.png'] as string ,
+           gallery['images/queensland/3.png'] as string ,
+            gallery['images/queensland/4.png'] as string ,
+     ],
 
     tourPlan: [
        {
@@ -572,19 +571,15 @@ export const tours = [
     price: { startingFrom: 1400, currency: 'USD', perPerson: true },
     image: 'https://images.unsplash.com/photo-1509030450996-939983783ee8?auto=format&fit=crop&w=800&q=80',
     description: "Trek through the stepped rice fields of Sapa and explore the unique karst landscapes of Northern Vietnam.",
-    category: 'Family Tourism'
+    category: 'Family Tourism,Group Tourism'
   }
 ];
 
 export const categories = [
-  { id: 'medical', name: 'Medical Tourism', slug: 'medical-tourism' },
   { id: 'spiritual', name: 'Spiritual Tourism', slug: 'spiritual-tourism' },
-  { id: 'wellness', name: 'Wellness Tourism', slug: 'wellness-tourism' },
   { id: 'family', name: 'Family Tourism', slug: 'family-tourism' },
   { id: 'honeymoon', name: 'Honeymoon Tourism', slug: 'honeymoon-tourism' },
-  { id: 'sports', name: 'Sports Tourism', slug: 'sports-tourism' },
   { id: 'group', name: 'Group Tourism', slug: 'group-tourism' },
-  { id: 'cultural', name: 'Cultural Tourism', slug: 'cultural-tourism' },
-  { id: 'luxury', name: 'Luxury Tourism', slug: 'luxury-tourism' }
+  
 ];
 
