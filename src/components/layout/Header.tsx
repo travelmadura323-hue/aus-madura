@@ -147,15 +147,19 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsEnquiryModalOpen(true)}
-              className="hidden md:flex bg-accent text-white font-bold px-6 py-2.5 rounded-full text-sm hover:bg-primary transition-all"
+              className="flex items-center gap-2 bg-accent text-white font-bold px-4 py-2 rounded-full text-[10px] md:text-sm hover:bg-primary transition-all shadow-lg shadow-accent/20"
             >
               Enquiry
             </button>
             <button
-              className="lg:hidden text-white"
+              className="lg:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
-              {isMobileMenuOpen ? <X className={isScrolled ? "text-primary" : "text-white"} /> : <Menu className={isScrolled ? "text-primary" : "text-white"} />}
+              {isMobileMenuOpen ? (
+                <X className="text-primary w-7 h-7" />
+              ) : (
+                <Menu className={cn("w-7 h-7 transition-colors drop-shadow-md", (isScrolled || location.pathname !== '/') ? "text-white" : "text-white")} />
+              )}
             </button>
           </div>
         </div>
@@ -183,17 +187,13 @@ export default function Header() {
 
                 {/* Logo */}
                 <div className="flex items-center gap-3">
-                  <div className="h-14 w-14 sm:h-16 sm:w-16 bg-primary rounded-full flex items-center justify-center p-2 border border-slate-100 shadow-sm">
+                  <div className="h-14 w-14 bg-primary rounded-full flex items-center justify-center p-2 border border-slate-100 shadow-sm">
                     <img
                       src={Image}
                       alt="Logo"
-                      className="h-8 sm:h-10 md:h-12 w-auto object-contain"
+                      className="h-9 w-auto object-contain"
                     />
                   </div>
-
-                  <span className="text-lg sm:text-xl font-black text-primary tracking-tight">
-                    Madura<span className="text-accent">Global</span>
-                  </span>
                 </div>
 
                 {/* Close Button */}

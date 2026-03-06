@@ -6,6 +6,9 @@ import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
 import { cn } from '../lib/utils';
 import Chairmanimage from '../../images/VKT-BALAN.png';
+import TrendingDestinationsCarousel from '../components/carousels/TrendingDestinationsCarousel';
+import TourCarousel from '../components/carousels/TourCarousel';
+import TestimonialCarousel from '../components/carousels/TestimonialCarousel';
 
 
 // export default function Home() {
@@ -131,7 +134,7 @@ export default function Home() {
                 alt={slide.title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black/50" />
+              <div className="absolute inset-0 bg-black/55" />
             </motion.div>
           </motion.div>
         ))}
@@ -221,46 +224,15 @@ export default function Home() {
             <h2 className="text-[24px] font-bold text-primary">Trending Destinations</h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {[
+          <TrendingDestinationsCarousel
+            destinations={[
               { id: 'vietnam', name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80', link: '/destinations/vietnam' },
-              { id: 'malaysia', name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'], link: '/destinations/malaysia' },
+              { id: 'malaysia', name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'] as string, link: '/destinations/malaysia' },
               { id: 'singapore', name: 'Singapore', price: '950', image: images['/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png'] as string, link: '/destinations/singapore' },
               { id: 'sri-lanka', name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80', link: '/destinations/sri-lanka' },
-              { id: 'india', name: 'India', price: '350', image: images['/images/11.png'], link: '/destinations/india' }
-            ].map((dest, idx) => (
-              <Link key={dest.id} to={dest.link} onClick={() => window.scrollTo(0, 0)}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  viewport={{ once: true }}
-                  className="group cursor-pointer"
-                >
-                  <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-lg">
-                    <img
-                      src={dest.image as string}
-                      alt={dest.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-
-                    {/* Price Badge - Bottom Left */}
-                    <div className="absolute bottom-4 left-4 z-10">
-                      <div className="text-[10px] font-bold text-white/80 uppercase tracking-widest mb-1">Starting from</div>
-                      <div className="bg-accent text-white font-black px-3 py-1 rounded-lg shadow-xl inline-block text-lg">
-                        ${dest.price}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <h3 className="text-xl font-bold text-primary group-hover:text-accent transition-colors">{dest.name}</h3>
-                    <div className="w-8 h-1 bg-accent mx-auto mt-2 scale-x-0 group-hover:scale-x-100 transition-transform origin-center" />
-                  </div>
-                </motion.div>
-              </Link>
-            ))}
-          </div>
+              { id: 'india', name: 'India', price: '350', image: images['/images/11.png'] as string, link: '/destinations/india' }
+            ]}
+          />
         </div>
       </section>
 
@@ -282,19 +254,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {tours.filter(t => (typeof t.location === 'string' ? t.location : t.location.country).toLowerCase().includes('india')).map((tour, idx) => (
-              <motion.div
-                key={tour.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <TourCard tour={tour} />
-              </motion.div>
-            ))}
-          </div>
+          <TourCarousel tours={tours.filter(t => (typeof t.location === 'string' ? t.location : t.location.country).toLowerCase().includes('india'))} />
         </div>
       </section>
 
@@ -312,22 +272,10 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {tours.filter((t: any) => {
-              const loc = typeof t.location === 'string' ? t.location : t.location.country;
-              return loc.toLowerCase().includes('australia');
-            }).map((tour, idx) => (
-              <motion.div
-                key={tour.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: idx * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <TourCard tour={tour} />
-              </motion.div>
-            ))}
-          </div>
+          <TourCarousel tours={tours.filter((t: any) => {
+            const loc = typeof t.location === 'string' ? t.location : t.location.country;
+            return loc.toLowerCase().includes('australia');
+          })} />
         </div>
       </section>
       {/* <section className="relative py-32 overflow-hidden">
@@ -515,48 +463,26 @@ export default function Home() {
             ]
 
             return (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {testimonials.map((feedback, idx) => (
-                  <motion.div
-                    key={idx}
-                    whileHover={{ y: -10 }}
-                    transition={{ duration: 0.3 }}
-                    className="aspect-square bg-white p-8 rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-100 flex flex-col justify-between relative"
-                  >
-                    {/* Quote */}
-                    <div className="absolute -top-5 left-6 bg-accent text-white px-3 py-1 rounded-full text-xl shadow-md">
-                      “
-                    </div>
-
-                    {/* Stars */}
-                    <div className="flex gap-1 text-accent mt-6">
-                      {[1, 2, 3, 4, 5].map((s) => (
-                        <Star key={s} className="w-4 h-4 fill-current" />
-                      ))}
-                    </div>
-
-                    {/* Text */}
-                    <p className="text-slate-600 text-sm leading-relaxed mt-4">
-                      {feedback.text}
-                    </p>
-
-                    {/* User */}
-                    <div className="flex items-center gap-3 mt-6">
-                      <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center font-bold text-primary text-sm">
-                        {feedback.name[0]}
-                      </div>
-                      <div>
-                        <div className="font-semibold text-primary text-sm">
-                          {feedback.name}
-                        </div>
-                        <div className="text-xs text-slate-400">
-                          Verified Traveler
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              <TestimonialCarousel
+                testimonials={[
+                  {
+                    name: "S. Vijay",
+                    text: "We had a wonderful experience for our Sri Lanka trip. All arrangements were seamless and Mr. Sudharsan ensured we were comfortable throughout."
+                  },
+                  {
+                    name: "Hariharan Balasubramanian",
+                    text: "Systematic and careful VISA processing. Timely updates were provided and my family is delighted with the customer service."
+                  },
+                  {
+                    name: "Subhashini Srivatsan",
+                    text: "Excellent, personalised, professional and patient service by Ms. Deepa and her team."
+                  },
+                  {
+                    name: "Jagadeesh Jayaraman",
+                    text: "They understood our requirements perfectly and gave us a well-planned tour. Wonderful coordination and experience!"
+                  }
+                ]}
+              />
             )
           })()}
 
@@ -577,9 +503,9 @@ export default function Home() {
         <div className="relative flex flex-col gap-12">
           {/* Row 1 */}
           <div className="flex w-full overflow-hidden select-none">
-            <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
-                <div key={`logo-1-${i}`} className="w-40 h-20 flex items-center justify-center p-4  transition-all duration-500">
+            <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee hover:[animation-play-state:paused]">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((i) => (
+                <div key={`logo-1-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 hover:grayscale-0 grayscale opacity-70 hover:opacity-100">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
                     alt={`Partner ${i}`}
@@ -588,8 +514,8 @@ export default function Home() {
                 </div>
               ))}
               {/* Duplicate for seamless effect */}
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
-                <div key={`logo-1-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4  transition-all duration-500">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((i) => (
+                <div key={`logo-1-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 hover:grayscale-0 grayscale opacity-70 hover:opacity-100">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
                     alt={`Partner ${i}`}
@@ -602,9 +528,9 @@ export default function Home() {
 
           {/* Row 2 (Reverse) */}
           <div className="flex w-full overflow-hidden select-none">
-            <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee-reverse">
-              {[13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24].map((i) => (
-                <div key={`logo-2-${i}`} className="w-40 h-20 flex items-center justify-center p-4   transition-all duration-500">
+            <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee-reverse hover:[animation-play-state:paused]">
+              {[19, 20, 21, 22, 23, 24, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((i) => (
+                <div key={`logo-2-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 hover:grayscale-0 grayscale opacity-70 hover:opacity-100">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
                     alt={`Partner ${i}`}
@@ -613,8 +539,8 @@ export default function Home() {
                 </div>
               ))}
               {/* Duplicate for seamless effect */}
-              {[13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24].map((i) => (
-                <div key={`logo-2-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4  transition-all duration-500">
+              {[19, 20, 21, 22, 23, 24, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((i) => (
+                <div key={`logo-2-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 hover:grayscale-0 grayscale opacity-70 hover:opacity-100">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
                     alt={`Partner ${i}`}

@@ -80,10 +80,10 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
 
             {/* 🔹 Packages Section */}
             <section className="py-24 max-w-7xl mx-auto px-4">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16 px-4">
-                    <div>
+                <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 px-4 text-center md:text-left">
+                    <div className="mb-6 md:mb-0">
                         <span className="text-accent font-bold uppercase tracking-widest text-[10px] mb-2 block">Our Collection</span>
-                        <h2 className="text-[24px] font-bold text-primary">Signature {country} Tours</h2>
+                        <h2 className="text-3xl md:text-[40px] font-bold text-primary">Signature {country} Tours</h2>
                     </div>
                     <p className="text-slate-500 max-w-md text-right hidden md:block italic">
                         "Travel is the only thing you buy that makes you richer." - Experience {country} like never before.
