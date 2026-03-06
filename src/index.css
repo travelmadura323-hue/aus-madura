@@ -39,6 +39,24 @@
   animation: marquee-reverse 30s linear infinite;
 }
 
+@keyframes pulse-subtle {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.03);
+    opacity: 0.95;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
 @layer base {
   html {
     @apply text-slate-900 antialiased font-sans;
@@ -64,7 +82,8 @@
   h6,
   .sub-header {
     @apply font-extrabold text-primary;
-    font-size: 24px !important;
+    font-size: inherit;
+    /* Allow component-level control */
   }
 
   /* Paragraphs and Body Text */
@@ -74,7 +93,8 @@
   li,
   a {
     @apply font-normal;
-    font-size: 16px;
+    font-size: inherit;
+    /* Allow component-level control */
   }
 }
 
@@ -84,4 +104,12 @@
 
 .mega-menu-gradient {
   background: linear-gradient(to bottom, white, #f8fafc);
+}
+
+.shadow-premium {
+  box-shadow: 0 20px 40px -15px rgba(25, 25, 117, 0.1);
+}
+
+.shadow-accent-premium {
+  box-shadow: 0 15px 30px -10px rgba(204, 23, 21, 0.3);
 }

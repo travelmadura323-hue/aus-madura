@@ -58,51 +58,51 @@ export default function TourDetail() {
           transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
           src={tour.image}
           alt={tour.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover px-4 sm:px-0 rounded-[2rem] sm:rounded-none"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
-        <div className="absolute inset-0 flex items-end pb-16">
-          <div className="max-w-7xl mx-auto px-4 w-full">
+        <div className="absolute inset-0 flex items-end pb-8 sm:pb-16 px-6">
+          <div className="max-w-7xl mx-auto w-full">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-2 text-white/80 text-sm mb-6 bg-black/20 backdrop-blur-md w-fit px-4 py-2 rounded-full border border-white/10"
+              className="hidden sm:flex items-center gap-2 text-white/80 text-xs mb-6 bg-black/20 backdrop-blur-md w-fit px-4 py-2 rounded-full border border-white/10"
             >
               <Link to="/" className="hover:text-accent transition-colors">Home</Link>
               <ChevronRight className="w-4 h-4" />
-              <span className="text-white font-medium">{tour.title}</span>
+              <span className="text-white font-medium truncate max-w-[200px]">{tour.title}</span>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-[32px] font-bold text-white mb-6 drop-shadow-2xl uppercase"
+              className="text-2xl sm:text-[32px] font-bold text-white mb-4 sm:mb-6 drop-shadow-2xl uppercase leading-tight"
             >
               {tour.title}
             </motion.h1>
 
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="flex flex-wrap gap-8 text-white"
+              className="flex flex-wrap gap-4 sm:gap-8 text-white"
             >
-              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/10">
-                <Clock className="w-6 h-6 text-accent" />
-                <span className="text-lg font-medium">{displayDuration}</span>
+              <div className="flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-md px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl border border-white/10">
+                <Clock className="w-4 h-4 sm:w-6 sm:h-6 text-accent" />
+                <span className="text-sm sm:text-lg font-medium">{displayDuration}</span>
               </div>
-              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/10">
-                <MapPin className="w-6 h-6 text-accent" />
-                <span className="text-lg font-medium">{displayLocation}</span>
+              <div className="flex items-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-md px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl border border-white/10">
+                <MapPin className="w-4 h-4 sm:w-6 sm:h-6 text-accent" />
+                <span className="text-sm sm:text-lg font-medium">{displayLocation}</span>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 lg:py-20 relative z-10 -mt-10">
+      <section className="py-8 sm:py-16 lg:py-20 relative z-10 -mt-6 sm:-mt-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
 

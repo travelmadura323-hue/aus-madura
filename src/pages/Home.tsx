@@ -9,6 +9,7 @@ import Chairmanimage from '../../images/VKT-BALAN.png';
 import TrendingDestinationsCarousel from '../components/carousels/TrendingDestinationsCarousel';
 import TourCarousel from '../components/carousels/TourCarousel';
 import TestimonialCarousel from '../components/carousels/TestimonialCarousel';
+import ContactForm from '../components/ContactForm';
 
 
 // export default function Home() {
@@ -345,7 +346,7 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <Quote className="w-12 h-12 md:w-16 md:h-16 text-accent mb-6 md:mb-8 opacity-50" />
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">A Message from Our Chairman</h2>
+              <h2 className="text-2xl md:text-3xl text-white font-bold mb-6">A Message from Our Chairman</h2>
               <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-8 italic">
                 "For over four decades,we have carried the dreams of millions .Trusted by more than 4 million travelers,we believe travel is not a transaction,it is a responsibility.Every journey we create is backed by experience,care,and an uncompromising promise: Client happiness and true value for every penny spent.This is not our slogan ;it is our promise."
               </p>
@@ -505,7 +506,7 @@ export default function Home() {
           <div className="flex w-full overflow-hidden select-none">
             <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee hover:[animation-play-state:paused]">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((i) => (
-                <div key={`logo-1-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 hover:grayscale-0 grayscale opacity-70 hover:opacity-100">
+                <div key={`logo-1-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
                     alt={`Partner ${i}`}
@@ -515,7 +516,7 @@ export default function Home() {
               ))}
               {/* Duplicate for seamless effect */}
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((i) => (
-                <div key={`logo-1-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 hover:grayscale-0 grayscale opacity-70 hover:opacity-100">
+                <div key={`logo-1-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
                     alt={`Partner ${i}`}
@@ -530,7 +531,7 @@ export default function Home() {
           <div className="flex w-full overflow-hidden select-none">
             <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee-reverse hover:[animation-play-state:paused]">
               {[19, 20, 21, 22, 23, 24, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((i) => (
-                <div key={`logo-2-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 hover:grayscale-0 grayscale opacity-70 hover:opacity-100">
+                <div key={`logo-2-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 ">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
                     alt={`Partner ${i}`}
@@ -540,7 +541,7 @@ export default function Home() {
               ))}
               {/* Duplicate for seamless effect */}
               {[19, 20, 21, 22, 23, 24, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((i) => (
-                <div key={`logo-2-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 hover:grayscale-0 grayscale opacity-70 hover:opacity-100">
+                <div key={`logo-2-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 ">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
                     alt={`Partner ${i}`}
@@ -564,6 +565,44 @@ export default function Home() {
                 />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Global Enquiry Form Section for better visibility */}
+      <section className="py-12 sm:py-16 lg:py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <span className="text-accent font-bold uppercase tracking-widest text-xs mb-3 block">Get a Custom Quote</span>
+              <h2 className="text-4xl font-bold text-primary mb-6">Plan Your Dream Journey With Our Experts</h2>
+              <p className="text-slate-600 text-lg mb-8 leading-relaxed">
+                Whether you're planning a family vacation, a romantic honeymoon, or a solo adventure, our travel specialists are here to help you every step of the way.
+              </p>
+              <div className="space-y-6">
+                <div className="flex gap-4 items-start">
+                  <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm shrink-0 border border-slate-100">
+                    <Star className="w-6 h-6 text-accent" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-primary mb-1">Expert Consultation</h4>
+                    <p className="text-slate-500 text-sm">Professional advice tailored to your preferences and budget.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm shrink-0 border border-slate-100">
+                    <Globe className="w-6 h-6 text-accent" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-primary mb-1">Global Network</h4>
+                    <p className="text-slate-500 text-sm">Access to exclusive deals across hotels and airlines worldwide.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <ContactForm />
+            </div>
           </div>
         </div>
       </section>

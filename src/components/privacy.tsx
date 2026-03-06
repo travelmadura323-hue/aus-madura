@@ -9,9 +9,8 @@ const privacy = () => {
           <h1 className="mt-3 text-4xl font-bold text-white md:text-5xl">
             Privacy Policy
           </h1>
-          <p className="mt-4 text-white/80 leading-relaxed">
-            From a passion for travel to a premium global travel agency,
-            discover the journey that shaped Madura Global.
+          <p className="mt-4 text-white/80 leading-relaxed italic">
+            "Your trust is our most valuable asset. We are dedicated to protecting your personal information and ensuring a secure travel experience."
           </p>
         </div>
       </div>
@@ -172,7 +171,7 @@ const privacy = () => {
             <h2 className="text-2xl font-bold text-indigo-900 mb-3">
               Intellectual Property
             </h2>
-            <p className="text-gray-700 leading-relaxed">All present and future rights in and to trade secrets, patents, copyright, trademarks, service marks, know-how and other proprietary rights of any type arising at law, including rights in and to all applications and registrations relating to this website (including but not limited to all data contained on this website relating to you and your associated customer (“Data”), information, text, look and feel, material, graphics, software and advertisements) (the “Intellectual Property Rights”) shall, as between you and us, at all times be and remain the sole and exclusive property of Tyche Payment Services. You assign upon creation all Intellectual Property Rights to us.
+            <p className="text-gray-700 leading-relaxed">All present and future rights in and to trade secrets, patents, copyright, trademarks, service marks, know-how and other proprietary rights of any type arising at law, including rights in and to all applications and registrations relating to this website (including but not limited to all data contained on this website relating to you and your associated customer (“Data”), information, text, look and feel, material, graphics, software and advertisements) (the “Intellectual Property Rights”) shall, as between you and us, at all times be and remain the sole and exclusive property of Madura Travel Service Pvt Ltd. You assign upon creation all Intellectual Property Rights to us.
 
               You do not acquire any rights or licences in or to the Intellectual Property Rights, this website and materials contained within this website other than the limited right to use this website in accordance with the Terms of Use.</p>
 

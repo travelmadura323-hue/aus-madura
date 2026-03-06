@@ -147,16 +147,16 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsEnquiryModalOpen(true)}
-              className="flex items-center gap-2 bg-accent text-white font-bold px-4 py-2 rounded-full text-[10px] md:text-sm hover:bg-primary transition-all shadow-lg shadow-accent/20"
+              className="flex items-center gap-2 bg-accent text-white font-bold px-5 py-2.5 rounded-full text-xs md:text-sm hover:bg-primary transition-all shadow-lg shadow-accent/40 animate-pulse-subtle"
             >
               Enquiry
             </button>
             <button
-              className="lg:hidden p-2 rounded-lg bg-black/10 backdrop-blur-sm border border-white/10"
+              className="lg:hidden p-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
-                <X className="text-primary w-6 h-6" />
+                <X className="text-white w-6 h-6" />
               ) : (
                 <Menu className={cn("w-6 h-6 transition-colors drop-shadow-md", (isScrolled || location.pathname !== '/') ? "text-white" : "text-white")} />
               )}
@@ -187,11 +187,11 @@ export default function Header() {
 
                 {/* Logo */}
                 <div className="flex items-center gap-3">
-                  <div className="h-14 w-14 bg-primary rounded-full flex items-center justify-center p-2 border border-slate-100 shadow-sm">
+                  <div className="h-14 w-14 bg-white rounded-full flex items-center justify-center p-2 border border-slate-100 shadow-sm">
                     <img
                       src={Image}
                       alt="Logo"
-                      className="h-9 w-auto object-contain"
+                      className="h-10 w-auto object-contain"
                     />
                   </div>
                 </div>
@@ -256,19 +256,28 @@ export default function Header() {
 
               </div>
 
+              {/* Enquiry Button for Mobile Menu */}
+              <div className="mt-8 px-2">
+                <button
+                  onClick={() => {
+                    setIsEnquiryModalOpen(true);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full bg-accent text-white font-bold py-5 rounded-2xl shadow-xl shadow-accent/30 flex items-center justify-center gap-3 text-lg"
+                >
+                  <Send className="w-5 h-5" />
+                  Request a Free Quote
+                </button>
+              </div>
+
               {/* Contact Card */}
               <div className="mt-10 bg-primary text-white p-6 sm:p-8 rounded-3xl shadow-lg relative overflow-hidden">
-
                 <div className="absolute top-0 right-0 w-28 h-28 bg-accent/20 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl" />
-
                 <div className="relative z-10">
-
                   <h4 className="font-bold text-accent mb-5 text-lg">
                     Contact Our Specialists
                   </h4>
-
                   <div className="space-y-4">
-
                     <a
                       href="tel:+61434500743"
                       className="flex items-center gap-4 text-sm sm:text-base font-medium hover:text-accent transition"
@@ -276,10 +285,8 @@ export default function Header() {
                       <div className="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center">
                         <Phone className="w-4 h-4 text-accent" />
                       </div>
-
                       +61 434 500 743
                     </a>
-
                     <a
                       href="mailto:australia@maduraglobal.com"
                       className="flex items-center gap-4 text-sm sm:text-base font-medium hover:text-accent transition"
@@ -287,19 +294,15 @@ export default function Header() {
                       <div className="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center">
                         <Mail className="w-4 h-4 text-accent" />
                       </div>
-
                       australia@maduraglobal.com
                     </a>
-
                   </div>
                 </div>
               </div>
-
             </div>
-
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence >
     </>
   );
 }

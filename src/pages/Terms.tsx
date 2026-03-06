@@ -10,9 +10,8 @@ const Terms = () => {
             <h1 className="mt-3 text-4xl font-bold text-white md:text-5xl">
               Terms & Conditions
             </h1>
-            <p className="mt-4 text-white/80 leading-relaxed">
-              From a passion for travel to a premium global travel agency,
-              discover the journey that shaped Madura Global.
+            <p className="mt-4 text-white/80 leading-relaxed italic">
+              "Clear and transparent terms to ensure a smooth and reliable travel partnership between us and our valued travelers."
             </p>
           </div>
         </div>

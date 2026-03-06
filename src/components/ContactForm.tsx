@@ -159,7 +159,10 @@ export default function ContactForm() {
                 placeholder={
                   formData.countryCode === '+91' ? '98765 43210' :
                     formData.countryCode === '+61' ? '0412 345 678' :
-                      'Enter phone number'
+                      formData.countryCode === '+65' ? '8123 4567' :
+                        formData.countryCode === '+44' ? '7123 456789' :
+                          formData.countryCode === '+1' ? '202 555 0123' :
+                            'Enter phone number'
                 }
                 className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
                 value={formData.phone}

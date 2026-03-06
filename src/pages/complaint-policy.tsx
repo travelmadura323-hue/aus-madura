@@ -62,7 +62,7 @@ export default function complaintPolicy() {
               After the Customer Complaint department receives the complaint,
               a written acknowledgement including a Complaint Number will be
               provided within <strong>2 business days</strong> from the date the
-              complaint was received. Business days are from Monday to Saturday.
+              complaint was received. Business days are from Monday to Friday.
             </p>
           </div>
 
