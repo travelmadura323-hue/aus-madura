@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-6 pl-3">
               <div className="w-18 h-18 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden p-1">
-                <img 
+                <img
                   src={Image}
                   alt="Madura Travel Logo"
                   className="w-full h-full object-contain"
@@ -89,14 +89,14 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-white text-xs">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-white text-[10px] md:text-xs text-center md:text-left">
           <p>© 2026 Madura Travel Service Pvt Ltd. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="/privacy-policy" className="hover:text-white">Privacy Policy</a>
-            <a href="/terms-conditions" className="hover:text-white">Terms of Service</a>
-            <a href="/complaint-policy" className="hover:text-white">Compliant Policy</a>
-             <a href="/disclaimer" className="hover:text-white">Disclaimer</a>
-              <a href="/contact" className="hover:text-white">Contact us</a>
+          <div className="flex flex-wrap justify-center md:justify-end gap-x-4 md:gap-x-6 gap-y-2">
+            <Link to="/privacy-policy" className="hover:text-accent transition-colors whitespace-nowrap">Privacy Policy</Link>
+            <Link to="/terms-conditions" className="hover:text-accent transition-colors whitespace-nowrap">Terms of Service</Link>
+            <Link to="/complaint-policy" className="hover:text-accent transition-colors whitespace-nowrap">Compliant Policy</Link>
+            <Link to="/disclaimer" className="hover:text-accent transition-colors whitespace-nowrap">Disclaimer</Link>
+            <Link to="/contact" className="hover:text-accent transition-colors whitespace-nowrap">Contact us</Link>
           </div>
         </div>
       </div>

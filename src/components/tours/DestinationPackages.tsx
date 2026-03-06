@@ -54,7 +54,7 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
                             <span className="text-xl md:text-3xl lg:text-4xl block mb-2 opacity-90">{titlePrefix}</span>
                             <span className="text-white italic font-serif">{country}</span>
                         </h1>
-                        <p className="text-lg md:text-xl text-slate-200 max-w-3xl mx-auto mb-10 leading-relaxed drop-shadow-lg">
+                        <p className="text-lg md:text-xl text-white max-w-3xl mx-auto mb-10 leading-relaxed drop-shadow-lg">
                             {description}
                         </p>
                     </motion.div>

@@ -160,28 +160,28 @@ export default function Home() {
               transition={{ duration: 1.2, ease: "circOut" }}
               className="relative flex flex-col items-center justify-center py-10"
             >
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary/5 font-black text-[15vw] leading-none uppercase select-none pointer-events-none whitespace-nowrap">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/5 font-black text-[15vw] leading-none uppercase select-none pointer-events-none whitespace-nowrap">
                 {slides[currentSlide].title.replace("Explore ", "")}
               </span>
 
               <div className="relative z-10 flex items-center gap-4 mb-6">
-                <div className="h-[1px] w-8 md:w-16 bg-primary/50" />
-                <span className="text-white/90 text-xs md:text-sm lg:text-base font-bold uppercase tracking-[1em] pl-[1em]">
+                <div className="h-[1px] w-8 md:w-16 bg-white/50" />
+                <span className="text-white text-xs md:text-sm lg:text-base font-bold uppercase tracking-[1em] pl-[1em]">
                   Explore
                 </span>
-                <div className="h-[1px] w-8 md:w-16 bg-primary/50" />
+                <div className="h-[1px] w-8 md:w-16 bg-white/50" />
               </div>
 
               <motion.h1
                 style={{ fontSize: 'clamp(3rem, 10vw, 8rem)', lineHeight: 0.8 }}
-                className="relative z-10 font-black uppercase tracking-tighter text-primary drop-shadow-[0_10px_40px_rgba(255,255,255,0.2)]"
+                className="relative z-10 font-black uppercase tracking-tighter text-white drop-shadow-[0_10px_40px_rgba(255,255,255,0.2)]"
               >
                 {slides[currentSlide].title.replace("Explore ", "")}
               </motion.h1>
             </motion.div>
 
             {/* Subtitle */}
-            <p className="text-lg text-slate-200 max-w-2xl mx-auto mb-10">
+            <p className="text-lg text-white max-w-2xl mx-auto mb-10">
               {slides[currentSlide].subtitle}
             </p>
 

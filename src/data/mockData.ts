@@ -218,15 +218,15 @@ export const tours = [
     travelers: { adults: 9, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "Chennai",
-    image: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=80',
+    image: gallery['/images/pondicherry.png'] as string,
     description: "Immerse yourself in the rich culture and regal traditions of Tamil Nadu.",
     category: ['Spiritual Tourism', 'Family Tourism'],
     rating: 4.8,
     reviews: 185,
     highlights: ["hirukadalmallai", "Aurobindo ashramr", "Kapeeleshwara Temple"],
     gallery: [
-      "https://images.unsplash.com/photo-1599661046289-e31897846140?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1559828552-32deeeaf5ea3?auto=format&fit=crop&w=800&q=80"
+      gallery['/images/pondicherry.png'] as string,
+      gallery['/images/mahbalipuram.png'] as string,
     ],
     overview: 'Tamil Nadu tourism beckons with a rich tapestry of cultural heritage, vibrant traditions, and stunning landscapes. Explore ancient temples in Madurai, serene hill stations like Ooty, and picturesque beaches in Chennai. Indulge in aromatic cuisine, classical dance performances, and intricately woven silk sarees. Embark on an enchanting journey through Tamil Nadu’s timeless charm..We Offer Best Kashir Tour Packages.',
     tourPlan: [
@@ -415,7 +415,8 @@ export const tours = [
     highlights: ["Sunrise at the Taj Mahal", "Rickshaw ride in Old Delhi", "Amber Fort visit in Jaipur"],
     gallery: [
       "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1622308643194-e0eb2c3faea1?auto=format&fit=crop&w=800&q=80"
+      gallery['/images/Delhi.png'] as string,
+      gallery['/images/jaipur.png'] as string
     ],
     overview: 'The Golden Triangle of India, consisting of Delhi, Agra, and Jaipur, is a popular tourist route known for its rich history and vibrant culture. In Delhi, visitors can explore landmarks like India Gate, Humayun’s Tomb, and the Red Fort. Agra is home to the majestic Taj Mahal, a symbol of eternal love, and other Mughal architecture like the Agra Fort. Jaipur, also known as the Pink City, boasts stunning palaces, forts, and temples, including the Amber Fort and City Palace. The Golden Triangle offers an unforgettable journey through India’s royal heritage, architecture, and traditions, attracting travelers worldwide.',
     tourPlan: [
