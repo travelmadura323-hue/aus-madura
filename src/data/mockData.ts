@@ -184,14 +184,14 @@ export const tours = [
     travelers: { adults: 9, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "Chennai",
-    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80',
+    image: '/images/thiruvannamalai 2.webp',
     description: "A serene journey through God’s Own Country.",
     category: ['Family Tourism', "Group Tourism"],
     rating: 4.9,
     reviews: 210,
     highlights: ["Munnar Tea Gardens", "Periyar Wildlife Sanctuary", "Overnight Houseboat stay", "Traditional Kerala Cuisine"],
     gallery: [
-      gallery['/images/thiruvannamalai2.webp'] as string,
+      gallery['/images/thiruvannamalai1.webp'] as string,
       gallery['/images/thiruvannamalai3.webp'] as string,
 
     ],

@@ -47,13 +47,13 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                     >
-                        <span className="text-white font-bold uppercase tracking-[0.4em] text-sm md:text-base mb-6 block drop-shadow-lg">
+                        <span className="text-white font-bold uppercase tracking-[0.4em] text-xs md:text-base mb-6 block drop-shadow-lg">
                             {tagline}
                         </span>
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight uppercase drop-shadow-2xl">
+                        <h1 className="text-4xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight uppercase drop-shadow-2xl">
                             {titlePrefix}{" "}<span className="text-white italic font-serif">{country}</span>
                         </h1>
-                        <p className="text-xl text-slate-200 max-w-3xl mx-auto mb-10 leading-relaxed drop-shadow-lg">
+                        <p className="text-lg md:text-xl text-slate-200 max-w-3xl mx-auto mb-10 leading-relaxed drop-shadow-lg">
                             {description}
                         </p>
                     </motion.div>
@@ -62,16 +62,16 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
 
             {/* 🔹 Quick Info Grid */}
             <section className="max-w-7xl mx-auto px-4 -mt-16 relative z-30">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                     {features.map((feature, idx) => (
                         <motion.div
                             key={idx}
                             whileHover={{ y: -10 }}
-                            className="bg-white p-10 rounded-[2.5rem] shadow-xl border border-slate-100"
+                            className="bg-white p-6 md:p-10 rounded-3xl md:rounded-[2.5rem] shadow-xl border border-slate-100"
                         >
-                            <div className="text-accent mb-6 bg-accent/10 w-fit p-4 rounded-3xl">{feature.icon}</div>
-                            <h3 className="text-[24px] font-bold text-primary mb-3">{feature.title}</h3>
-                            <p className="text-slate-500 leading-relaxed">{feature.desc}</p>
+                            <div className="text-accent mb-6 bg-accent/10 w-fit p-3 md:p-4 rounded-2xl md:rounded-3xl">{feature.icon}</div>
+                            <h3 className="text-xl md:text-[24px] font-bold text-primary mb-3">{feature.title}</h3>
+                            <p className="text-slate-500 text-sm md:text-base leading-relaxed">{feature.desc}</p>
                         </motion.div>
                     ))}
                 </div>

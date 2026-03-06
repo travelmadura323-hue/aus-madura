@@ -159,7 +159,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -80 }}
               transition={{ duration: 0.9, ease: "easeOut" }}
-              style={{ fontSize: 'clamp(3.5rem, 12vw, 14rem)', lineHeight: 1 }}
+              style={{ fontSize: 'clamp(2.5rem, 15vw, 35rem)', lineHeight: 0.9 }}
               className="font-black uppercase tracking-tight drop-shadow-2xl"
             >
               <span className="text-white">
@@ -370,13 +370,13 @@ export default function Home() {
               <div className="relative inline-block mb-8">
 
                 {/* Red box */}
-                <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent rounded-2xl z-0"></div>
+                <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 w-32 h-32 md:w-48 md:h-48 bg-accent rounded-2xl z-0"></div>
 
                 {/* Image */}
                 <img
                   src={Chairmanimage}
                   alt="Chairman V.K.T Balan"
-                  className="relative z-10 w-80 h-80 object-cover rounded-2xl shadow-2xl border-4 border-white"
+                  className="relative z-10 w-full max-w-[280px] sm:max-w-xs md:max-w-md aspect-square object-cover rounded-2xl shadow-2xl border-4 border-white"
                 />
 
               </div>
@@ -386,9 +386,9 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Quote className="w-16 h-16 text-accent mb-8 opacity-50" />
-              <h2 className="text-[24px] font-bold mb-6">A Message from Our Chairman</h2>
-              <p className="text-slate-300 text-lg leading-relaxed mb-8 italic">
+              <Quote className="w-12 h-12 md:w-16 md:h-16 text-accent mb-6 md:mb-8 opacity-50" />
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">A Message from Our Chairman</h2>
+              <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-8 italic">
                 "For over four decades,we have carried the dreams of millions .Trusted by more than 4 million travelers,we believe travel is not a transaction,it is a responsibility.Every journey we create is backed by experience,care,and an uncompromising promise: Client happiness and true value for every penny spent.This is not our slogan ;it is our promise."
               </p>
               <div>
@@ -422,7 +422,7 @@ export default function Home() {
           </p>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
             {[
               { number: "4M+", label: "Happy Travelers" },
               { number: "28K+", label: "Destinations Covered" },
@@ -431,9 +431,9 @@ export default function Home() {
             ].map((item, index) => (
               <div
                 key={index}
-                className="bg-[#f3ece3] rounded-3xl p-14 shadow-sm hover:shadow-2xl transition-all duration-300 group"
+                className="bg-[#f3ece3] rounded-3xl p-8 md:p-14 shadow-sm hover:shadow-2xl transition-all duration-300 group"
               >
-                <h3 className="text-[32px] font-extrabold text-slate-900 mb-4 group-hover:text-primary transition-colors">
+                <h3 className="text-3xl md:text-[32px] font-extrabold text-slate-900 mb-2 md:mb-4 group-hover:text-primary transition-colors">
                   {item.number}
                 </h3>
                 <p className="text-slate-700 text-lg font-medium">
