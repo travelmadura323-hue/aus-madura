@@ -26,26 +26,33 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     setIsSubmitting(true);
 
     try {
-      // Note: To make this send a real email, we can use a service like EmailJS or Formspree
-      // Here we simulate the process. 
-      // You can replace this with: 
-      /*
-      await fetch('https://formspree.io/f/your-form-id', {
+      // ✅ Web3Forms integration - Directly sends to your email
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: JSON.stringify({...formData, recipient: 'travelmadura323@gmail.com'}),
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: "YOUR_ACCESS_KEY_HERE", // Get this from https://web3forms.com/
+          subject: `New Enquiry: ${formData.type} from ${formData.name}`,
+          from_name: "Madura Travel Advisor",
+          name: formData.name,
+          email: formData.email,
+          phone: `${formData.countryCode} ${formData.phone}`,
+          travel_date: formData.date,
+          enquiry_type: formData.type,
+          recipient: "travelmadura323@gmail.com"
+        })
       });
-      */
-      
-      console.log('Enquiry for travelmadura323@gmail.com:', formData);
-      
-      // Artificial delay for premium feel
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      setIsSubmitted(true);
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        throw new Error(result.message || 'Submission failed');
+      }
     } catch (error) {
       console.error('Submission error:', error);
-      alert('Something went wrong. Please try again.');
+      alert('Something went wrong. Please try again or contact us directly.');
     } finally {
       setIsSubmitting(false);
     }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, User, Mail, Phone, Calendar, Briefcase, CheckCircle } from 'lucide-react';
+import { cn } from '../lib/utils';
 
 interface FormData {
   name: string;
@@ -22,11 +23,41 @@ export default function ContactForm() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('Enquiry Submitted:', formData);
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: "YOUR_ACCESS_KEY_HERE", // Get this from https://web3forms.com/
+          subject: `Contact Form Enquiry: ${formData.type} from ${formData.name}`,
+          from_name: "Madura Travel Contact Form",
+          name: formData.name,
+          email: formData.email,
+          phone: `${formData.countryCode} ${formData.phone}`,
+          travel_date: formData.date,
+          enquiry_type: formData.type,
+          recipient: "travelmadura323@gmail.com"
+        })
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Error sending message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -171,9 +202,14 @@ export default function ContactForm() {
         {/* Submit */}
         <button
           type="submit"
-          className="w-full bg-accent text-white font-bold py-4 rounded-xl hover:bg-primary transition-all flex items-center justify-center gap-2 group shadow-lg shadow-accent/20"
+          disabled={isSubmitting}
+          className={cn(
+            "w-full bg-accent text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 group shadow-lg shadow-accent/20",
+            isSubmitting && "opacity-70 cursor-not-allowed"
+          )}
         >
-          Submit Enquiry <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          {isSubmitting ? "Processing..." : "Submit Enquiry"}
+          {!isSubmitting && <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
         </button>
       </form>
     </motion.div>

@@ -78,8 +78,8 @@ export default function Header() {
             <div className={cn(
               "relative transition-all duration-300",
               (isScrolled || location.pathname !== '/')
-                ? "w-10 h-10 md:w-14 md:h-14"
-                : "w-12 h-12 md:w-20 md:h-20"
+                ? "w-14 h-14 md:w-16 md:h-16"
+                : "w-16 h-16 md:w-22 md:h-22"
             )}>
               <img
                 src={Image}
@@ -183,11 +183,11 @@ export default function Header() {
 
                 {/* Logo */}
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 sm:h-11 sm:w-11 bg-primary rounded-full flex items-center justify-center p-2 border border-slate-100 shadow-sm">
+                  <div className="h-14 w-14 sm:h-16 sm:w-16 bg-primary rounded-full flex items-center justify-center p-2 border border-slate-100 shadow-sm">
                     <img
                       src={Image}
                       alt="Logo"
-                      className="h-6 sm:h-7 md:h-8 w-auto object-contain"
+                      className="h-8 sm:h-10 md:h-12 w-auto object-contain"
                     />
                   </div>
 
