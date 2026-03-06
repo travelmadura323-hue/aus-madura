@@ -86,14 +86,19 @@ export default function OurStoryPage() {
           <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-2">
             <div>
               <h4 className="font-Arial text-3xl font-bold text-foreground">Discover about
-                Madura Travel Service (P) Ltd</h4>
+                Madura Global</h4>
               <h6 className="text-3xl  text-primary">
                 Establishment
               </h6>
 
               <p className="mt-4 leading-relaxed text-muted-foreground">
-                The journey of our company commenced on January 17th, 1986, right in the heart of Chennai Egmore, nestled within the vibrant state of Tamil Nadu, India. It marked the inception of a visionary's dream, dedicated to delivering authentic travel services to our valued customers.
+About Madura Global
 
+Madura Global is a premium travel and advisory platform connecting Australia with India and select international destinations through curated, intelligently designed journeys. Built upon the 40-year legacy of Madura Travel in India, our foundation is rooted in operational depth, long-standing regional partnerships and multi-generational expertise.
+
+We specialise in crafting structured travel experiences that balance cultural authenticity with refined execution. From heritage landscapes and spiritual circuits to contemporary luxury itineraries, every journey is thoughtfully designed for Australian travellers seeking clarity, comfort and meaningful engagement.
+
+Madura Global does not operate as a transactional tour reseller. We function as a strategic bridge — combining Australian consultation standards with on-ground precision across India and beyond. Our commitment is to deliver travel experiences defined by discretion, structure and enduring quality.
               </p>
               <h6 className="text-3xl  text-primary">
                 Awards & Recognition
