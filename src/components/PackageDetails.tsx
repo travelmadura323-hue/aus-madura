@@ -31,18 +31,18 @@ export default function PackageDetails() {
   const displayCurrency = (typeof tour.price === 'object' && tour.price.currency === 'INR') ? '₹' : '$';
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
 
       {/* LEFT CONTENT */}
-      <div className="md:col-span-2 space-y-6">
+      <div className="md:col-span-2 space-y-6 sm:space-y-8">
 
         <img
           src={tour.image}
           alt={tour.title}
-          className="w-full h-[400px] object-cover rounded-2xl shadow"
+          className="w-full h-[250px] sm:h-[400px] object-cover rounded-2xl shadow"
         />
 
-        <h1 className="text-3xl font-bold">{tour.title}</h1>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold">{tour.title}</h1>
 
         <div className="flex flex-wrap gap-6 text-gray-600 text-sm">
           <p>📍 {displayLocation}</p>
@@ -81,7 +81,7 @@ export default function PackageDetails() {
       </div>
 
       {/* RIGHT FORM */}
-      <div className="bg-white shadow-xl rounded-2xl p-6 h-fit sticky top-10">
+      <div className="bg-white shadow-xl rounded-2xl p-6 sm:p-8 h-fit lg:sticky top-28">
 
         <h3 className="text-lg font-semibold mb-2">From</h3>
         <p className="text-3xl font-bold text-red-600 mb-6">

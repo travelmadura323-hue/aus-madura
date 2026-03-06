@@ -12,13 +12,13 @@ export default function MICE() {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-primary/70" />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 text-white">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">MICE Services</h1>
-            <p className="text-xl text-slate-300 max-w-2xl">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6">MICE Services</h1>
+            <p className="text-lg sm:text-xl text-slate-300 max-w-2xl px-4 sm:px-0">
               Meetings, Incentives, Conferences, and Exhibitions. We deliver world-class corporate travel and event management solutions.
             </p>
           </motion.div>
@@ -26,16 +26,16 @@ export default function MICE() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-primary mb-4">Our Corporate Solutions</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-4">Our Corporate Solutions</h2>
+            <p className="text-slate-500 max-w-2xl mx-auto px-4 sm:px-0">
               From small executive meetings to large-scale international conferences, we handle every detail with precision.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
               { icon: <Users className="w-10 h-10 text-accent" />, title: 'Meetings', desc: 'Seamlessly organized corporate meetings in premium venues worldwide.' },
               { icon: <Award className="w-10 h-10 text-accent" />, title: 'Incentives', desc: 'Reward your top performers with unforgettable luxury travel experiences.' },
@@ -53,11 +53,11 @@ export default function MICE() {
       </section>
 
       {/* Why MICE with us */}
-      <section className="py-24 bg-primary text-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <section className="py-12 sm:py-16 lg:py-24 bg-primary text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <h2 className="text-4xl font-bold mb-8">Why Choose Our MICE Services?</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold mb-8">Why Choose Our MICE Services?</h2>
               <div className="space-y-6">
                 {[
                   'Global network of premium hotel partners and venues',
@@ -82,11 +82,11 @@ export default function MICE() {
       </section>
 
       {/* Inquiry */}
-      <section className="py-24 bg-secondary">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <section className="py-12 sm:py-16 lg:py-24 bg-secondary">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             <div>
-              <h2 className="text-4xl font-bold text-primary mb-6">Request a Proposal</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold text-primary mb-6">Request a Proposal</h2>
               <p className="text-slate-500 mb-10 text-lg">
                 Tell us about your upcoming corporate event, and our MICE experts will get back to you with a customized proposal within 24 hours.
               </p>
@@ -99,11 +99,11 @@ export default function MICE() {
                 </div>
               </div>
             </div>
-            <div className="bg-white p-10 rounded-3xl shadow-xl border border-slate-100 flex flex-col items-center justify-center text-center">
-              <Briefcase className="w-16 h-16 text-accent mb-6" />
+            <div className="bg-white p-6 sm:p-10 rounded-3xl shadow-xl border border-slate-100 flex flex-col items-center justify-center text-center">
+              <Briefcase className="w-12 h-12 sm:w-16 sm:h-16 text-accent mb-6" />
               <h3 className="text-2xl font-bold text-primary mb-4">Corporate Proposal Request</h3>
               <p className="text-slate-500 mb-8">Click the button below to open our corporate enquiry form.</p>
-              <button 
+              <button
                 onClick={() => {
                   const btn = document.querySelector('button[onClick*="setIsEnquiryModalOpen(true)"]') as HTMLButtonElement;
                   if (btn) btn.click();

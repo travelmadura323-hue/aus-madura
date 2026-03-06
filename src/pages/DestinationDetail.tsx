@@ -20,21 +20,21 @@ export default function DestinationDetail() {
         />
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 flex items-center">
-          <div className="max-w-7xl mx-auto px-4 w-full text-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
             >
-              <h1 className="text-[32px] font-bold text-white mb-6 uppercase">{destination.name}</h1>
-              <p className="text-xl text-slate-200 max-w-2xl mx-auto">{destination.description}</p>
+              <h1 className="text-3xl sm:text-4xl md:text-[32px] font-bold text-white mb-6 uppercase">{destination.name}</h1>
+              <p className="text-lg sm:text-xl text-slate-200 max-w-2xl mx-auto px-4">{destination.description}</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-12 lg:gap-16">
             <div className="lg:col-span-3">
               <div className="mb-16">
                 <h2 className="text-[24px] font-bold text-primary mb-6">About {destination.name}</h2>

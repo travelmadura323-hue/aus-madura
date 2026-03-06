@@ -2,7 +2,7 @@ import React from "react"
 import { Award, Globe, Users, Heart } from "lucide-react"
 import { image } from "framer-motion/client";
 
- const OurStory = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+const OurStory = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 });
@@ -24,11 +24,11 @@ const stats = [
 
 export default function OurStoryPage() {
   return (
-    <div className="pt-28">
+    <div className="pt-20 sm:pt-28">
 
       {/* Hero Section */}
-      <div className="bg-primary py-20 text-center">
-        <div className="mx-auto max-w-3xl px-6">
+      <div className="bg-primary py-12 sm:py-20 text-center">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <span className="text-sm font-semibold uppercase tracking-widest text-accent">
             About Us
           </span>
@@ -43,9 +43,9 @@ export default function OurStoryPage() {
       </div>
 
       {/* Vision / Mission Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="py-12 sm:py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
 
             {[
               {
@@ -82,215 +82,215 @@ export default function OurStoryPage() {
       </section>
 
       {/* About Content Section */}<section className="w-full bg-white">
-        <div className="mx-auto max-w-7xl  px-6 py-16">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div>
-            <h4 className="font-Arial text-3xl font-bold text-foreground">Discover about
-Madura Travel Service (P) Ltd</h4>
-          <h6 className="text-3xl  text-primary">
- Establishment
-</h6>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-2">
+            <div>
+              <h4 className="font-Arial text-3xl font-bold text-foreground">Discover about
+                Madura Travel Service (P) Ltd</h4>
+              <h6 className="text-3xl  text-primary">
+                Establishment
+              </h6>
 
-<p className="mt-4 leading-relaxed text-muted-foreground">
-  The journey of our company commenced on January 17th, 1986, right in the heart of Chennai Egmore, nestled within the vibrant state of Tamil Nadu, India. It marked the inception of a visionary's dream, dedicated to delivering authentic travel services to our valued customers.
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                The journey of our company commenced on January 17th, 1986, right in the heart of Chennai Egmore, nestled within the vibrant state of Tamil Nadu, India. It marked the inception of a visionary's dream, dedicated to delivering authentic travel services to our valued customers.
 
-</p>
-            <h6 className="text-3xl  text-primary">
- Awards & Recognition
-</h6>
+              </p>
+              <h6 className="text-3xl  text-primary">
+                Awards & Recognition
+              </h6>
 
-<p className="mt-4 leading-relaxed text-muted-foreground">
-  Over the years, our company has earned recognition from numerous esteemed government and private institutions. Notably, we are honored to have received the prestigious Kalaimamani Award from the Government of Tamil Nadu, a testament to our commitment and excellence in the travel industry. We take pride in being the sole recipient of the Kalaimamani Award within the entire travel fraternity. Additionally, our achievements include securing two Limca Records for orchestrating the largest cultural groups from India to destinations worldwide, and pioneering the entry into the digital market during the early 2000s. Furthermore, we have consistently ranked as a top seller for various airlines, including Air India, Oman Air, Jet Airways, SriLankan Airlines, among others.
-</p>
-           <h6 className="text-3xl  text-primary">
-  Travel & Visa
-</h6>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                Over the years, our company has earned recognition from numerous esteemed government and private institutions. Notably, we are honored to have received the prestigious Kalaimamani Award from the Government of Tamil Nadu, a testament to our commitment and excellence in the travel industry. We take pride in being the sole recipient of the Kalaimamani Award within the entire travel fraternity. Additionally, our achievements include securing two Limca Records for orchestrating the largest cultural groups from India to destinations worldwide, and pioneering the entry into the digital market during the early 2000s. Furthermore, we have consistently ranked as a top seller for various airlines, including Air India, Oman Air, Jet Airways, SriLankan Airlines, among others.
+              </p>
+              <h6 className="text-3xl  text-primary">
+                Travel & Visa
+              </h6>
 
-<p className="mt-4 leading-relaxed text-muted-foreground">
-Your trusted travel partner in seamless travel experiences for over 39 years. Established in 1986, we have been committed to providing unparalleled service for both international and domestic Air Ticketing, Train and bus Services & Cruise Transport and expertise in visa facilitation for across 195 Countries.</p>
- <h6 className="text-3xl  text-primary">
-Tourism and Ancillary Services
-</h6>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                Your trusted travel partner in seamless travel experiences for over 39 years. Established in 1986, we have been committed to providing unparalleled service for both international and domestic Air Ticketing, Train and bus Services & Cruise Transport and expertise in visa facilitation for across 195 Countries.</p>
+              <h6 className="text-3xl  text-primary">
+                Tourism and Ancillary Services
+              </h6>
 
-<p className="mt-4 leading-relaxed text-muted-foreground">
-Your premier choice for unforgettable travel experiences backed by 39 years of expertise and the esteemed approval of the Ministry of Tourism, Government of India. We have been dedicated to curating exceptional journeys for millions of passengers including Families, Honeymooners, Corporate & Business travellers, Solo Travellers, Student Educational Trips and many more.</p>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                Your premier choice for unforgettable travel experiences backed by 39 years of expertise and the esteemed approval of the Ministry of Tourism, Government of India. We have been dedicated to curating exceptional journeys for millions of passengers including Families, Honeymooners, Corporate & Business travellers, Solo Travellers, Student Educational Trips and many more.</p>
+            </div>
+            <div className="relative  w-full h-[800px] overflow-hidden rounded-2xl">
+              <img src={OurStory['/images/WhatsApp-Image-2024-11-21-at-16.41.41_0f849961-767x1024 (1).jpg']}
+                alt="Our team on a tour"
+                fill className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw" />
+            </div>
           </div>
-          <div className="relative  w-full h-[800px] overflow-hidden rounded-2xl">
-            <img src={OurStory['/images/WhatsApp-Image-2024-11-21-at-16.41.41_0f849961-767x1024 (1).jpg']} 
-            alt="Our team on a tour" 
-            fill className="object-cover" 
-            sizes="(max-width: 1024px) 100vw, 50vw" />
-          </div>
+
+
+
         </div>
 
-         
-
-        </div>
-        
 
         {/* Why Choose Us */}
-       <section className="w-full bg-white">
-        <div className="mt-16 text-center">
-    <p className="text-sm font-semibold text-accent uppercase tracking-wider">
-      Experience. Quality. Trust.
-    </p>
-    <h2 className="mt-2 text-4xl font-bold text-[#cc1715] md:text-5xl">
-      Why Choose Us?
-    </h2>
-    <p className="mt-4 max-w-2xl mx-auto text-muted-foreground">
-      Join millions of happy travelers who trust Madura Travel Service...
-    </p>
-  </div>
-        <div className="mt-20 grid gap-6 md:grid-cols-4">
-          {stats.map((stat) => (
-            <div key={stat.label} className="rounded-2xl border border-border bg-card p-8 text-center">
-              <stat.icon className="mx-auto h-8 w-8 text-accent" />
-              <div className="mt-3 font-arial text-3xl font-bold text-card-foreground">{stat.value}</div>
-              <div className="mt-1 text-sm text-muted-foreground">{stat.label}</div>
+        <section className="w-full bg-white">
+          <div className="mt-16 text-center">
+            <p className="text-sm font-semibold text-accent uppercase tracking-wider">
+              Experience. Quality. Trust.
+            </p>
+            <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-[#cc1715] md:text-5xl">
+              Why Choose Us?
+            </h2>
+            <p className="mt-4 max-w-2xl mx-auto px-4 text-muted-foreground text-sm sm:text-base">
+              Join millions of happy travelers who trust Madura Travel Service...
+            </p>
+          </div>
+          <div className="mt-20 grid gap-6 md:grid-cols-4">
+            {stats.map((stat) => (
+              <div key={stat.label} className="rounded-2xl border border-border bg-card p-8 text-center">
+                <stat.icon className="mx-auto h-8 w-8 text-accent" />
+                <div className="mt-3 font-arial text-3xl font-bold text-card-foreground">{stat.value}</div>
+                <div className="mt-1 text-sm text-muted-foreground">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </section>
+      {/* Clients Section */}
+      <section className="py-12 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* 🔹 Heading Section */}
+          <div className="text-center mb-14">
+            <h4 className="text-sm font-semibold tracking-widest text-[#cc1715] uppercase mb-3">
+              Our Esteemed Clients
+            </h4>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-[#191975] mb-4">
+              Trusted by the Best
+            </h2>
+
+            <p className="max-w-3xl mx-auto text-gray-600 text-lg leading-relaxed">
+              Join millions of happy travelers who trust Madura Travel Service (P) Ltd.,
+              one of India’s leading travel companies, for exceptional tour planning
+              and unforgettable journeys.
+            </p>
+          </div>
+
+          {/* 🔹 Image Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {Array.from({ length: 40 }).map((_, index) => (
+              <div
+                key={index}
+                className="bg-gray-50 rounded-xl p-6 flex items-center justify-center hover:shadow-md transition"
+              >
+                <img
+                  src={gal[`/src/gallery/img-${index + 1}.jpg`]}
+                  alt={`Client ${index + 1}`}
+                  className="max-h-28 object-contain"
+                />
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+      <section className="py-12 sm:py-24 bg-gray-50 text-center">
+
+        {/* Main Heading */}
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-indigo-900 mb-10 sm:mb-16">
+          Awards & Recognitions
+        </h2>
+
+        {/* Top Logos */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-70 mb-24">
+          <img
+            src={im['/images/im/rsh_100cg_truem-4.png']}
+            alt="Incredible India"
+            className="h-24 object-contain"
+          />
+          <img
+            src={im['/images/im/rsh_100cg_truem-10.jpeg']}
+            alt="Enchanting Tamil Nadu"
+            className="h-24 object-contain"
+          />
+        </div>
+
+        {/* Government Recognitions Grid */}
+        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-indigo-900 mb-8 sm:mb-12">
+          Government Recognitions
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10 max-w-6xl mx-auto px-4 sm:px-6 mb-16 sm:mb-24">
+          {[
+            { img: im['/images/im/111.png'], label: "Primary Host" },
+            { img: im['/images/im/22-1.png'], label: "Record Holder" },
+            { img: im['/images/im/33-1.png'], label: "M.I.C.E Leader" },
+            { img: im['/images/im/44-1.png'], label: "Record Holder" },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition"
+            >
+              <img
+                src={item.img}
+                alt={item.label}
+                className="h-20 mx-auto mb-6 object-contain"
+              />
+              <span className="inline-block px-4 py-2 text-indigo-900 border border-indigo-200 rounded-full font-semibold">
+                {item.label}
+              </span>
             </div>
           ))}
         </div>
-        </section>
-</section>
-        {/* Clients Section */}
-        <section className="py-20 bg-white">
-  <div className="max-w-7xl mx-auto px-6">
 
-    {/* 🔹 Heading Section */}
-    <div className="text-center mb-14">
-      <h4 className="text-sm font-semibold tracking-widest text-[#cc1715] uppercase mb-3">
-        Our Esteemed Clients
-      </h4>
+        {/* Subsidiaries Section */}
+        <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-16">
+          Our Subsidiaries
+        </h3>
 
-      <h2 className="text-3xl md:text-4xl font-bold text-[#191975] mb-4">
-        Trusted by the Best
-      </h2>
-
-      <p className="max-w-3xl mx-auto text-gray-600 text-lg leading-relaxed">
-        Join millions of happy travelers who trust Madura Travel Service (P) Ltd., 
-        one of India’s leading travel companies, for exceptional tour planning 
-        and unforgettable journeys.
-      </p>
-    </div>
-
-    {/* 🔹 Image Grid */}
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-      {Array.from({ length: 40 }).map((_, index) => (
-        <div
-          key={index}
-          className="bg-gray-50 rounded-xl p-6 flex items-center justify-center hover:shadow-md transition"
-        >
-          <img
-            src={gal[`/src/gallery/img-${index + 1}.jpg`]}
-            alt={`Client ${index + 1}`}
-            className="max-h-28 object-contain"
-          />
+        <div className="flex flex-wrap items-center justify-center gap-30 max-w-7xl mx-auto px-4 mb-24">
+          {[
+            im['/images/im/rsh_100cg_true.png'],
+            im['/images/im/MADURAGLOBALIMMIGRATION-300x300.png'],
+            im['/images/im/madura-intitute-300x300.png'],
+            im['/images/im/Madura-Global-Logo-150x150.png'],
+            im['/images/im/111.png'],
+          ].map((logo, index) => (
+            <img
+              key={index}
+              src={logo}
+              alt="Subsidiary Logo"
+              className="h-24 object-contain transition duration-300"
+            />
+          ))}
         </div>
-      ))}
+
+        {/* Second Recognition Row */}
+        <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">
+          Our Accreditations
+        </h3>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-9 max-w-6xl mx-auto px-4">
+          {[
+            im['/images/im/iata.png'],
+            im['/images/im/iaai.jpg'],
+            im['/images/im/download.png'],
+            im['/images/im/taai.png'],
+            im['/images/im/tafi.jpg'],
+          ].map((logo, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition"
+            >
+              <img
+                src={logo}
+                alt="Association Logo"
+                className="h-20 mx-auto object-contain"
+              />
+            </div>
+          ))}
+        </div>
+
+      </section>
+
+
     </div>
-
-  </div>
-</section>
-<section className="py-24 bg-gray-50 text-center">
-
-  {/* Main Heading */}
-  <h2 className="text-4xl md:text-5xl font-extrabold text-indigo-900 mb-16">
-    Awards & Recognitions
-  </h2>
-
-  {/* Top Logos */}
-  <div className="flex flex-col md:flex-row items-center justify-center gap-70 mb-24">
-    <img
-      src={im['/images/im/rsh_100cg_truem-4.png']}
-      alt="Incredible India"
-      className="h-24 object-contain"
-    />
-    <img
-      src={im['/images/im/rsh_100cg_truem-10.jpeg']}
-      alt="Enchanting Tamil Nadu"
-      className="h-24 object-contain"
-    />
-  </div>
-
-  {/* Government Recognitions Grid */}
-  <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">
-    Government Recognitions
-  </h3>
-
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 max-w-6xl mx-auto px-4 mb-24">
-    {[
-      { img: im['/images/im/111.png'], label: "Primary Host" },
-      { img: im['/images/im/22-1.png'], label: "Record Holder" },
-      { img: im['/images/im/33-1.png'], label: "M.I.C.E Leader" },
-      { img: im['/images/im/44-1.png'], label: "Record Holder" },
-    ].map((item, index) => (
-      <div
-        key={index}
-        className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition"
-      >
-        <img
-          src={item.img}
-          alt={item.label}
-          className="h-20 mx-auto mb-6 object-contain"
-        />
-        <span className="inline-block px-4 py-2 text-indigo-900 border border-indigo-200 rounded-full font-semibold">
-          {item.label}
-        </span>
-      </div>
-    ))}
-  </div>
-
-  {/* Subsidiaries Section */}
-  <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-16">
-    Our Subsidiaries
-  </h3>
-
-  <div className="flex flex-wrap items-center justify-center gap-30 max-w-7xl mx-auto px-4 mb-24">
-    {[
-      im['/images/im/rsh_100cg_true.png'],
-      im['/images/im/MADURAGLOBALIMMIGRATION-300x300.png'],
-      im['/images/im/madura-intitute-300x300.png'],
-      im['/images/im/Madura-Global-Logo-150x150.png'],
-      im['/images/im/111.png'],
-    ].map((logo, index) => (
-      <img
-        key={index}
-        src={logo}
-        alt="Subsidiary Logo"
-        className="h-24 object-contain transition duration-300"
-      />
-    ))}
-  </div>
-
-  {/* Second Recognition Row */}
-  <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">
- Our Accreditations
-  </h3>
-
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-9 max-w-6xl mx-auto px-4">
-    {[
-      im['/images/im/iata.png'],
-      im['/images/im/iaai.jpg'],
-      im['/images/im/download.png'],
-      im['/images/im/taai.png'],
-      im['/images/im/tafi.jpg'],
-    ].map((logo, index) => (
-      <div
-        key={index}
-        className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition"
-      >
-        <img
-          src={logo}
-          alt="Association Logo"
-          className="h-20 mx-auto object-contain"
-        />
-      </div>
-    ))}
-  </div>
-
-</section>
-
-      
-     </div>
   )
 }

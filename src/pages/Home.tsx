@@ -136,10 +136,11 @@ export default function Home() {
           </motion.div>
         ))}
 
+
         {/* Content */}
         <motion.div
           style={{ opacity }}
-          className="relative z-10 max-w-7xl mx-auto px-4 text-center pt-10"
+          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-10"
         >
           <motion.div
             key={currentSlide}
@@ -152,9 +153,21 @@ export default function Home() {
             </span> */}
 
             {/* Title */}
-            <h1 className="text-[32px] font-bold text-white mb-6 leading-tight uppercase">
-              {slides[currentSlide].title}
-            </h1>
+            <motion.h1
+              key={slides[currentSlide].title}
+              initial={{ opacity: 0, y: 80 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -80 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+              className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase leading-none tracking-tight"
+            >
+              <span className="text-primary">
+                {slides[currentSlide].title.split(" ")[0]}
+              </span>{" "}
+              <span className="text-secondary">
+                {slides[currentSlide].title.split(" ").slice(1).join(" ")}
+              </span>
+            </motion.h1>
 
             {/* Subtitle */}
             <p className="text-lg text-slate-200 max-w-2xl mx-auto mb-10">
@@ -190,8 +203,8 @@ export default function Home() {
         </div>
       </section>
       {/* Trending Destinations */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">Global Favorites</span>
             <h2 className="text-[24px] font-bold text-primary">Trending Destinations</h2>
@@ -242,8 +255,8 @@ export default function Home() {
 
 
       {/* Popular India Tours */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
               <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">International Highlights</span>
@@ -259,7 +272,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {tours.filter(t => t.id.includes('kerala') || t.id.includes('rajasthan')).map((tour, idx) => (
+            {tours.filter(t => (typeof t.location === 'string' ? t.location : t.location.country).toLowerCase().includes('india')).map((tour, idx) => (
               <motion.div
                 key={tour.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -275,9 +288,9 @@ export default function Home() {
       </section>
 
       {/* Australia Specials - Highlight the 5 new tours */}
-      <section className="py-24 bg-slate-50 relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-24 bg-slate-50 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 px-4">
             <div>
               <span className="text-accent font-bold uppercase tracking-[0.4em] text-[10px] mb-2 block">Exclusive Feature</span>
@@ -345,8 +358,8 @@ export default function Home() {
           </div>
         </div>
       </section> */}
-      <section className="py-24 bg-primary text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-12 sm:py-16 lg:py-24 bg-primary text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -387,8 +400,8 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us with Badges */}
-      <section className="py-28 bg-gradient-to-b from-white to-slate-50">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
           {/* Top Tagline */}
           <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
@@ -433,8 +446,8 @@ export default function Home() {
       </section>
 
       {/* Feedbacks Section */}
-      <section className="py-32 bg-gradient-to-b from-secondary to-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-secondary to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
 
           {/* Header */}
@@ -540,8 +553,8 @@ export default function Home() {
       </section>
 
       {/* Logo Carousel Section */}
-      <section className="py-24 bg-white border-y border-slate-100 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 mb-20 text-center">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white border-y border-slate-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 lg:mb-20 text-center">
           <span className="text-accent font-bold uppercase tracking-[0.4em] text-xs mb-3 block">Global Network</span>
           <h2 className="text-[24px] font-bold text-primary mb-6">Our Trusted Partners</h2>
           <p className="text-slate-500 max-w-2xl mx-auto text-lg">

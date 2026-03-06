@@ -102,9 +102,9 @@ export default function TourDetail() {
         </div>
       </section>
 
-      <section className="py-20 relative z-10 -mt-10">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <section className="py-12 sm:py-16 lg:py-20 relative z-10 -mt-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
 
             {/* Main Content Area */}
             <div className="lg:col-span-2 space-y-12">
@@ -130,12 +130,12 @@ export default function TourDetail() {
               </div>
 
               {/* Highlights Section */}
-              <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
-                <h2 className="text-[24px] font-bold text-primary mb-8 flex items-center gap-3">
-                  <span className="w-2 h-8 bg-accent rounded-full" />
+              <div className="bg-white p-6 sm:p-10 rounded-3xl sm:rounded-[2.5rem] border border-slate-100 shadow-sm">
+                <h2 className="text-xl sm:text-[24px] font-bold text-primary mb-6 sm:mb-8 flex items-center gap-3">
+                  <span className="w-2 h-6 sm:h-8 bg-accent rounded-full" />
                   Tour Highlights
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   {((tour as any).highlights || [
                     "Breathtaking scenery and photo opportunities",
                     "Expert local English-speaking guides",
@@ -154,9 +154,9 @@ export default function TourDetail() {
 
 
               {/* Overview */}
-              <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
-                <h2 className="text-[24px] font-bold text-primary mb-6 flex items-center gap-3">
-                  <span className="w-2 h-8 bg-accent rounded-full" />
+              <div className="bg-white p-6 sm:p-10 rounded-3xl sm:rounded-[2.5rem] border border-slate-100 shadow-sm">
+                <h2 className="text-xl sm:text-[24px] font-bold text-primary mb-6 flex items-center gap-3">
+                  <span className="w-2 h-6 sm:h-8 bg-accent rounded-full" />
                   Tour Overview
                 </h2>
                 <p className="text-slate-600 leading-relaxed text-lg italic">

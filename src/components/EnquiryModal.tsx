@@ -36,10 +36,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             onClick={onClose}
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
           />
-            <div 
-    onClick={onClose}
-    className="fixed inset-0 bg-black/60 backdrop-blur-sm"
-  />
+            
 
  
           <motion.div
@@ -55,7 +52,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
               >
                 <X className="w-6 h-6" />
               </button>
-              <h2 className="text-3xl font-bold mb-2">Enquiry Form</h2>
+              <h2 className="text-3xl text-white font-bold mb-2">Enquiry Form</h2>
               <p className="text-white/60 text-sm">Fill in the details and our experts will contact you.</p>
             </div>
 
@@ -75,7 +72,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+         <div className="space-y-5">
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Email Address</label>
                   <div className="relative">
@@ -124,7 +121,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+             <div className="space-y-5">
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Date of Travel</label>
                   <div className="relative">

@@ -55,7 +55,6 @@
   h2,
   .page-header {
     @apply font-extrabold text-primary;
-    font-size: 32px !important;
   }
 
   /* Subheadings */
