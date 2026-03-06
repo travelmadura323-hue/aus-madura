@@ -28,7 +28,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+       <div className="fixed inset-0 z-[9999] flex items-start justify-center overflow-y-auto p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -36,13 +36,18 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             onClick={onClose}
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
           />
-          
+            <div 
+    onClick={onClose}
+    className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+  />
+
+ 
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden"
-          >
+             className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl max-h-[90vh] overflow-y-auto mt-10">
+          
             <div className="bg-primary p-8 text-white relative">
               <button 
                 onClick={onClose}
