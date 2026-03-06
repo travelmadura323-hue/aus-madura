@@ -1,62 +1,56 @@
-import React, { useState } from "react"
-import { motion } from "motion/react"
-import { Send } from "lucide-react"
-import PhoneInput from "react-phone-input-2"
-import "react-phone-input-2/lib/style.css"
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Send, User, Mail, Phone, Calendar, Briefcase, CheckCircle } from 'lucide-react';
 
 interface FormData {
-  name: string
-  email: string
-  phone: string
-  subject: string
-  message: string
+  name: string;
+  email: string;
+  phone: string;
+  countryCode: string;
+  date: string;
+  type: string;
 }
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "General Inquiry",
-    message: "",
-  })
+    name: '',
+    email: '',
+    phone: '',
+    countryCode: '+61',
+    date: '',
+    type: 'tours',
+  });
 
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(formData)
-    setSubmitted(true)
-  }
+    e.preventDefault();
+    console.log('Enquiry Submitted:', formData);
+    setSubmitted(true);
+  };
 
   if (submitted) {
     return (
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="glass-card p-8 md:p-12 text-center flex flex-col items-center"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-white rounded-3xl shadow-lg border border-slate-100 p-12 text-center flex flex-col items-center justify-center min-h-[400px]"
       >
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/20">
-          <Send className="h-8 w-8 text-primary" />
+        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
+          <CheckCircle className="w-10 h-10 text-green-500" />
         </div>
-        <h3 className="mt-4 text-xl font-bold text-primary">
-          Message Sent!
-        </h3>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Thank you for reaching out. We'll respond within 24 hours.
+        <h3 className="text-2xl font-bold text-primary mb-3">Enquiry Sent!</h3>
+        <p className="text-slate-500 max-w-xs leading-relaxed">
+          Thank you for reaching out. Our travel experts will get back to you within 24 hours.
         </p>
+        <button
+          onClick={() => setSubmitted(false)}
+          className="mt-8 text-sm font-bold text-accent hover:text-primary transition-colors"
+        >
+          Send another enquiry →
+        </button>
       </motion.div>
-    )
+    );
   }
 
   return (
@@ -64,102 +58,124 @@ export default function ContactForm() {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="glass-card p-8 md:p-12"
+      className="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden"
     >
-      <form className="space-y-6" onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-primary">
-              Full Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              placeholder="John Doe"
-              className="w-full bg-background border border-primary/30 rounded-xl px-4 py-3 text-primary placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
-            />
-          </div>
+      {/* Header */}
+      <div className="bg-primary p-8 text-white">
+        <h2 className="text-3xl font-bold text-white mb-2">Enquiry Form</h2>
+        <p className="text-white/60 text-sm">Fill in the details and our experts will contact you.</p>
+      </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-primary">
-              Email Address
-            </label>
+      {/* Form */}
+      <form onSubmit={handleSubmit} className="p-8 space-y-5">
+
+        {/* Full Name */}
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Full Name</label>
+          <div className="relative">
+            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
               required
-              placeholder="john@example.com"
-              className="w-full bg-background border border-primary/30 rounded-xl px-4 py-3 text-primary placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
+              type="text"
+              placeholder="John Doe"
+              className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-  <label className="text-sm font-medium text-primary">
-    Phone Number
-  </label>
-
-  <PhoneInput
-    country={"au"} // default country (Australia)
-    enableSearch={true}
-    value={formData.phone}
-    onChange={(phone) =>
-      setFormData((prev) => ({
-        ...prev,
-        phone,
-      }))
-    }
-    inputClass="!w-full !h-[52px] !bg-background !border !border-primary/30 !rounded-xl !text-primary"
-    buttonClass="!border-primary/30 !rounded-l-xl"
-  />
+        {/* Email */}
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Email Address</label>
+          <div className="relative">
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <input
+              required
+              type="email"
+              placeholder="john@example.com"
+              className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            />
           </div>
+        </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-primary">
-              Subject
-            </label>
+        {/* Phone */}
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Phone Number</label>
+          <div className="flex gap-2">
             <select
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              className="w-full bg-background border border-primary/30 rounded-xl px-4 py-3 text-primary focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors appearance-none"
+              className="bg-slate-50 border border-slate-100 rounded-xl py-3 px-2 text-xs focus:outline-none focus:border-accent"
+              value={formData.countryCode}
+              onChange={(e) => setFormData({ ...formData, countryCode: e.target.value })}
             >
-              <option>General Inquiry</option>
-              <option>Tour Package Booking</option>
-              <option>Customized Trip</option>
-              <option>Corporate Travel</option>
+              <option value="+61">+61 (AU)</option>
+              <option value="+91">+91 (IN)</option>
+              <option value="+1">+1 (US)</option>
+              <option value="+44">+44 (UK)</option>
+              <option value="+65">+65 (SG)</option>
+              <option value="+60">+60 (MY)</option>
+              <option value="+84">+84 (VN)</option>
+              <option value="+94">+94 (LK)</option>
+              <option value="+971">+971 (UAE)</option>
+            </select>
+            <div className="relative flex-1">
+              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <input
+                required
+                type="tel"
+                placeholder="9876543210"
+                className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Date of Travel */}
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Date of Travel</label>
+          <div className="relative">
+            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <input
+              required
+              type="date"
+              className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
+              value={formData.date}
+              onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+            />
+          </div>
+        </div>
+
+        {/* Type of Enquiry */}
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Type of Enquiry</label>
+          <div className="relative">
+            <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <select
+              className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent appearance-none transition-colors"
+              value={formData.type}
+              onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+            >
+              <option value="air-ticket">Air Ticket</option>
+              <option value="visa">Visa</option>
+              <option value="tours">Tours</option>
+              <option value="forex">Forex</option>
+              <option value="passport">Passport</option>
             </select>
           </div>
         </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-primary">
-            Message
-          </label>
-          <textarea
-            rows={5}
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            placeholder="Tell us about your dream trip..."
-            className="w-full bg-background border border-primary/30 rounded-xl px-4 py-3 text-primary placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors resize-none"
-          />
-        </div>
-
+        {/* Submit */}
         <button
           type="submit"
-          className="w-full bg-primary hover:bg-[#cc1217] text-primary-foreground font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02]"
+          className="w-full bg-accent text-white font-bold py-4 rounded-xl hover:bg-primary transition-all flex items-center justify-center gap-2 group shadow-lg shadow-accent/20"
         >
-          Send Message <Send size={18} />
+          Submit Enquiry <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
         </button>
       </form>
     </motion.div>
-  )
+  );
 }

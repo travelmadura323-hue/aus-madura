@@ -12,25 +12,19 @@ export default function DestinationDetail() {
   return (
     <div className="pt-20">
       {/* Hero */}
-      <section className="relative h-[60vh] overflow-hidden">
-        <img
-          src={destination.image}
-          alt={destination.name}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute inset-0 flex items-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-            >
-              <h1 className="text-3xl sm:text-4xl md:text-[32px] font-bold text-white mb-6 uppercase">{destination.name}</h1>
-              <p className="text-lg sm:text-xl text-slate-200 max-w-2xl mx-auto px-4">{destination.description}</p>
-            </motion.div>
-          </div>
+      <div className="bg-primary py-12 sm:py-20 text-center">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+          <span className="text-sm font-semibold uppercase tracking-widest text-white/70">
+            Destinations
+          </span>
+          <h1 className="mt-3 text-4xl font-bold text-white md:text-5xl">
+            {destination.name}
+          </h1>
+          <p className="mt-4 text-white/80 leading-relaxed">
+            {destination.description}
+          </p>
         </div>
-      </section>
+      </div>
 
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

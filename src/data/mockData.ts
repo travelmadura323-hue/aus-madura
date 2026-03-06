@@ -87,7 +87,7 @@ export const tours = [
     startingPlace: "Gold Coast",
     image: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&h=600&q=80',
     description: "Discover the best of Australia with iconic landmarks, stunning beaches, and vibrant city life.",
-    category: 'Group Tourism',
+    category: ['Group Tourism', 'Honeymoon Tourism'],
     rating: 4.8,
     reviews: 124,
     highlights: [
@@ -151,8 +151,9 @@ export const tours = [
     reviews: 210,
     highlights: ["Munnar Tea Gardens", "Periyar Wildlife Sanctuary", "Overnight Houseboat stay", "Traditional Kerala Cuisine"],
     gallery: [
-      "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1620005720188-75cbaae741aa?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80"
+
     ],
     overview: 'Kerala, known as “God’s Own Country,” is a picturesque state in southern India, celebrated for its serene backwaters, lush greenery, tranquil beaches, and vibrant culture. Explore historic landmarks, indulge in Ayurvedic treatments, savor delicious cuisine, and experience warm hospitality, making Kerala a must-visit destination for unforgettable tourism experiences.We offer Best Kerala Tour Packages.',
     tourPlan: [
@@ -167,6 +168,40 @@ export const tours = [
     included: ["Accommodation in well-appointed rooms as mentioned in the above hotels or equivalent", "Driver allowances, toll taxes", "Sightseeing as per itinerary by private tourist vehicle"],
     excluded: ["Air tickets and airport taxe", "Entry Fee at the Monuments", "Items of personal nature like laundry, phone calls, tips to guides/drivers, etc", "Camera / Video camera fees applicable at monuments"],
     relatedPackages: [],
+    faqs: [
+      { question: "What is the physical intensity of this tour?", answer: "Very low, strictly leisure." },
+      { question: "Are infant meals provided?", answer: "You must request these ahead of time during booking." }
+    ]
+  },
+  {
+    id: 'thiruvannamalai-girivalam-tour-01-day',
+    numericId: 1,
+    slug: 'thiruvannamalai-girivalam-tour-01-day',
+    title: 'Thiruvannamalai Girivalam Tour 01 Day',
+    location: { country: 'India', cities: ['thiruvanamalai', 'chennai'] },
+    duration: { days: 1, nights: 0 },
+    price: { startingFrom: 850, currency: "USD", perPerson: true },
+    travelers: { adults: 9, children: 0, infants: 0 },
+    minimumAge: 1,
+    startingPlace: "Chennai",
+    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80',
+    description: "A serene journey through God’s Own Country.",
+    category: ['Family Tourism', "Group Tourism"],
+    rating: 4.9,
+    reviews: 210,
+    highlights: ["Munnar Tea Gardens", "Periyar Wildlife Sanctuary", "Overnight Houseboat stay", "Traditional Kerala Cuisine"],
+    gallery: [
+      gallery['/images/thiruvannamalai2.webp'] as string,
+      gallery['/images/thiruvannamalai3.webp'] as string,
+
+    ],
+    overview: 'Experience the profound spiritual journey of Girivalam with Madura Travel Service Pvt Ltd in Chennai. The term Girivalam is a combination of the Tamil words giri (hill) and valam (coming around), signifying the devotional ritual of circling Annamalai Hill. Every full moon, thousands of pilgrims assemble at the Arunachaleswarar Temple in Thiruvannamalai to undertake the sacred 14-kilometer trek around the hill. Madura Travel Service offers seamless and comfortable travel packages from Chennai, ensuring you can focus entirely on this deeply spiritual experience. Book your Girivalam pilgrimage with us and connect with this ancient tradition.',
+    tourPlan: [
+      { day: 1, title: 'Chennai to Tiruvannamalai', description: 'Its a one-day tour that starts early in the morning.01:30 PM Travel from the Chennai to the Thiruvannamalai 06:00 AM Return to Chennai' }
+
+    ],
+    included: ["Guide services from day one meeting point till the dropping point", "Tourists can relax and refresh at Hotel Tamil Nadu", "Friendly guest services by hotel staffs, coach drivers and assistants"],
+    excluded: ["Cost of insurance & medical expenses, if any", "Cost of pre/ post tour hotel accommodation", "Coach driver will follow the travel route as directed by the tour manager"],
     faqs: [
       { question: "What is the physical intensity of this tour?", answer: "Very low, strictly leisure." },
       { question: "Are infant meals provided?", answer: "You must request these ahead of time during booking." }

@@ -159,12 +159,13 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -80 }}
               transition={{ duration: 0.9, ease: "easeOut" }}
-              className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase leading-none tracking-tight"
+              style={{ fontSize: 'clamp(3.5rem, 12vw, 14rem)', lineHeight: 1 }}
+              className="font-black uppercase tracking-tight drop-shadow-2xl"
             >
-              <span className="text-primary">
+              <span className="text-white">
                 {slides[currentSlide].title.split(" ")[0]}
               </span>{" "}
-              <span className="text-secondary">
+              <span className="text-accent">
                 {slides[currentSlide].title.split(" ").slice(1).join(" ")}
               </span>
             </motion.h1>

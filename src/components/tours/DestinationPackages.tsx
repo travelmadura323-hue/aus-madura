@@ -38,7 +38,7 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
                         alt={country}
                         className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent" />
+                    <div className="absolute inset-0 bg-black/55" />
                 </motion.div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 w-full text-center">
@@ -47,11 +47,11 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                     >
-                        <span className="text-accent font-bold uppercase tracking-[0.4em] text-sm mb-6 block">
+                        <span className="text-white font-bold uppercase tracking-[0.4em] text-sm md:text-base mb-6 block drop-shadow-lg">
                             {tagline}
                         </span>
-                        <h1 className="text-[32px] font-bold text-white mb-8 leading-tight uppercase">
-                            {titlePrefix} <span className="text-accent italic font-serif">{country}</span>
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight uppercase drop-shadow-2xl">
+                            {titlePrefix}{" "}<span className="text-white italic font-serif">{country}</span>
                         </h1>
                         <p className="text-xl text-slate-200 max-w-3xl mx-auto mb-10 leading-relaxed drop-shadow-lg">
                             {description}
