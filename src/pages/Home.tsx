@@ -16,6 +16,10 @@ const cel = import.meta.glob('/images/celebrity/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 });
+const im = import.meta.glob('../../images/im/*.{png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+});
 
 // export default function Home() {
 //   const heroRef = useRef(null);
@@ -91,7 +95,7 @@ export default function Home() {
         ref={heroRef}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="relative h-[85vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24"
       >
         {/* Floating Consultation Button - Sliding Tab */}
         {/* <motion.div
@@ -160,7 +164,7 @@ export default function Home() {
         {/* Content */}
         <motion.div
           style={{ opacity }}
-          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-10"
+          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 md:pt-40"
         >
           <motion.div
             key={currentSlide}
@@ -423,6 +427,33 @@ export default function Home() {
 
         </div>
       </section>
+      <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-secondary to-white">
+
+        <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">
+          Our Accreditations
+        </h3>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-9 max-w-6xl mx-auto px-4">
+          {[
+            im['../../images/im/iata.png'],
+            im['../../images/im/iaai.jpg'],
+            im['../../images/im/download.png'],
+            im['../../images/im/taai.png'],
+            im['../../images/im/tafi.jpg'],
+          ].map((logo, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition"
+            >
+              <img
+                src={logo}
+                alt="Association Logo"
+                className="h-20 mx-auto object-contain"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Feedbacks Section */}
       <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-secondary to-white">
@@ -557,14 +588,14 @@ export default function Home() {
       <section className="py-12 sm:py-16 lg:py-24 bg-white border-y border-slate-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 lg:mb-20 text-center">
           <span className="text-accent font-bold uppercase tracking-[0.4em] text-xs mb-3 block">Global Network</span>
-          <h2 className="text-[24px] font-bold text-primary mb-6">Our Trusted Partners</h2>
+          <h2 className="text-[24px] font-bold text-primary mb-6">Our Trusted Clients</h2>
           <p className="text-slate-500 max-w-2xl mx-auto text-lg">
             Collaborating with leading airlines, hotels, and tourism boards worldwide to deliver excellence.
           </p>
         </div>
 
         {/* Marquee Container */}
-        <div className="relative flex flex-col gap-12">
+        <div className="hidden md:flex relative flex-col gap-12">
           {/* Row 1 */}
           <div className="flex w-full overflow-hidden select-none">
             <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee hover:[animation-play-state:paused]">
@@ -631,6 +662,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+
 
       {/* Global Enquiry Form Section for better visibility */}
       {/* <section className="py-12 sm:py-16 lg:py-24 bg-slate-50">

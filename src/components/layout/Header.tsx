@@ -12,42 +12,16 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
-  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
-  const location = useLocation();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-    setActiveMegaMenu(null);
-  }, [location]);
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   const navLinks = [
     {
-      name: 'Our Company',
+      name: 'About',
       dropdown: [
         { name: 'Our Story', path: '/company/our-story' },
-        // { name: 'Careers', path: '/company/careers' },
-        { name: 'Media', path: '/company/media' },
         { name: 'Testimonials', path: '/company/testimonials' },
-      ]
-    },
-    {
-      name: 'Categories',
-      dropdown: [
-        { name: 'Family Tourism', path: '/categories/family-tourism' },
-        { name: 'Honeymoon Tourism', path: '/categories/honeymoon-tourism' },
-        { name: 'Spiritual Tourism', path: '/categories/spiritual-tourism' },
-        { name: 'Group Tourism', path: '/categories/group-tourism' },
-
-
-
+        { name: 'Media', path: '/company/media' },
+        { name: 'Contact Us', path: '/contact' },
       ]
     },
     {
@@ -59,10 +33,18 @@ export default function Header() {
         { name: 'Singapore', path: '/destinations/singapore' },
         { name: 'Sri Lanka', path: '/destinations/sri-lanka' },
         { name: 'Vietnam', path: '/destinations/vietnam' },
-
       ]
     },
-    { name: 'Contact Us', path: '/contact' },
+    {
+      name: 'Categories',
+      dropdown: [
+        { name: 'Family Tourism', path: '/categories/family-tourism' },
+        { name: 'Honeymoon Tourism', path: '/categories/honeymoon-tourism' },
+        { name: 'Spiritual Tourism', path: '/categories/spiritual-tourism' },
+        { name: 'Group Tourism', path: '/categories/group-tourism' },
+      ]
+    },
+    { name: 'Contact Us', path: '/contact' }
   ];
 
   return (
@@ -86,15 +68,6 @@ export default function Header() {
                 alt="Madura Global Logo"
                 className="w-full h-full object-contain"
               />
-            </div>
-
-            <div className="flex flex-col">
-              {/* <span className={cn(
-              "text-xl font-black tracking-tighter leading-none transition-colors",
-              (isScrolled || location.pathname !== '/') ? "text-white" : "text-primary transition-colors"
-            )}>
-              Madura<span className="text-accent pl-1">Global</span>
-            </span> */}
             </div>
           </Link>
 
@@ -133,7 +106,7 @@ export default function Header() {
                       <Link
                         key={item.name}
                         to={item.path}
-                        className="block px-4 py-2 text-black text-slate-600 hover:bg-secondary hover:text-primary"
+                        className="block px-4 py-2 text-black text-slate-600 hover:bg-secondary hover:text-primary transition-colors"
                       >
                         {item.name}
                       </Link>
@@ -147,18 +120,18 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsEnquiryModalOpen(true)}
-              className="hidden lg:flex items-center gap-2 bg-accent text-white font-bold px-5 py-2.5 rounded-full text-xs md:text-sm hover:bg-primary transition-all shadow-lg shadow-accent/40 animate-pulse-subtle"
+              className="hidden lg:flex items-center gap-2 bg-accent text-white font-bold px-6 py-3 rounded-full text-xs md:text-sm hover:bg-white hover:text-primary transition-all shadow-lg shadow-accent/40"
             >
               Enquiry
             </button>
             <button
-              className="lg:hidden p-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20"
+              className="lg:hidden p-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
                 <X className="text-white w-6 h-6" />
               ) : (
-                <Menu className={cn("w-6 h-6 transition-colors drop-shadow-md", (isScrolled || location.pathname !== '/') ? "text-white" : "text-white")} />
+                <Menu className="text-white w-6 h-6" />
               )}
             </button>
           </div>
@@ -177,132 +150,114 @@ export default function Header() {
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="fixed inset-0 bg-white z-50 lg:hidden overflow-y-auto w-full"
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 bg-white z-[60] lg:hidden overflow-y-auto w-full h-screen"
           >
-            <div className="px-6 py-8 sm:px-8 max-w-2xl mx-auto">
-
-              {/* Header */}
-              <div className="flex justify-between items-center mb-10">
-
-                {/* Logo */}
-                <div className="flex items-center gap-3">
-                  <div className="h-14 w-14 bg-white rounded-full flex items-center justify-center p-2 border border-slate-100 shadow-sm">
-                    <img
-                      src={Image}
-                      alt="Logo"
-                      className="h-10 w-auto object-contain"
-                    />
-                  </div>
+            <div className="flex flex-col h-full">
+              {/* Header Container */}
+              <div className="sticky top-0 bg-white/80 backdrop-blur-md z-10 px-6 py-6 border-b border-slate-100 flex justify-between items-center">
+                <div className="h-12 w-12 bg-white rounded-2xl flex items-center justify-center p-2 border border-slate-100 shadow-sm">
+                  <img src={Image} alt="Logo" className="h-full w-auto object-contain" />
                 </div>
-
-                {/* Close Button */}
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-primary shadow-sm active:scale-90 transition"
+                  className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-primary active:scale-95 transition-transform"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-6 h-6" />
                 </button>
-
               </div>
 
-              {/* Navigation Links */}
-              <div className="space-y-4">
+              {/* Navigation Content */}
+              <div className="flex-grow px-6 py-8">
+                <div className="space-y-4">
+                  {navLinks.map((link) => (
+                    <div key={link.name} className="overflow-hidden">
+                      {link.path ? (
+                        <Link
+                          to={link.path}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="w-full flex items-center justify-between p-5 rounded-2xl bg-slate-50 text-primary border border-slate-100 transition-all duration-300"
+                        >
+                          <span className="text-lg font-bold uppercase tracking-wider">{link.name}</span>
+                        </Link>
+                      ) : (
+                        <button
+                          onClick={() => setExpandedSection(expandedSection === link.name ? null : link.name)}
+                          className={cn(
+                            "w-full flex items-center justify-between p-5 rounded-2xl transition-all duration-300",
+                            expandedSection === link.name ? "bg-primary text-white" : "bg-slate-50 text-primary border border-slate-100"
+                          )}
+                        >
+                          <span className="text-lg font-bold uppercase tracking-wider">{link.name}</span>
+                          {link.dropdown && <ChevronDown className={cn("w-5 h-5 transition-transform duration-300", expandedSection === link.name ? "rotate-180" : "")} />}
+                        </button>
+                      )}
 
-                {navLinks.map((link) => (
-                  <div
-                    key={link.name}
-                    className="bg-slate-50 rounded-2xl p-5 border border-slate-100"
-                  >
-
-                    <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
-                      {link.name}
-                    </div>
-
-                    {link.dropdown ? (
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-
-                        {link.dropdown.map((item) => (
-                          <Link
-                            key={item.name}
-                            to={item.path}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="flex items-center justify-between text-primary font-semibold text-base sm:text-lg hover:text-accent transition group"
+                      <AnimatePresence>
+                        {expandedSection === link.name && link.dropdown && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="bg-slate-50/50 rounded-b-2xl -mt-4 pt-8 pb-4 px-4 border-x border-b border-slate-100"
                           >
-                            {item.name}
-
-                            <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center shadow opacity-0 group-hover:opacity-100 transition">
-                              <ChevronDown className="w-4 h-4 -rotate-90 text-accent" />
+                            <div className="grid grid-cols-1 gap-2">
+                              {link.dropdown?.map((item, idx) => (
+                                <Link
+                                  key={item.name}
+                                  to={item.path}
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                  className="flex items-center justify-between p-4 rounded-xl bg-white shadow-sm border border-slate-100 group active:bg-accent transition-all"
+                                >
+                                  <span className="font-semibold text-primary group-active:text-white">{item.name}</span>
+                                  <div className="w-6 h-6 rounded-full bg-slate-50 flex items-center justify-center group-active:bg-white/20">
+                                    <ChevronDown className="w-4 h-4 -rotate-90 text-accent group-active:text-white" />
+                                  </div>
+                                </Link>
+                              ))}
                             </div>
-                          </Link>
-                        ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  ))}
+                </div>
 
-                      </div>
+                {/* Main CTA */}
+                <div className="mt-10">
+                  <button
+                    onClick={() => {
+                      setIsEnquiryModalOpen(true);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="w-full bg-accent text-white font-black py-5 rounded-[2rem] shadow-xl shadow-accent/20 flex items-center justify-center gap-3 text-lg hover:brightness-110 active:scale-95 transition-all"
+                  >
+                    <Send className="w-6 h-6" />
+                    Book a free consultation
+                  </button>
+                </div>
 
-                    ) : (
-
-                      <Link
-                        to={link.path || "#"}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-primary font-semibold text-base sm:text-lg block hover:text-accent transition"
-                      >
-                        {link.name}
-                      </Link>
-
-                    )}
-                  </div>
-                ))}
-
-              </div>
-
-              {/* Enquiry Button for Mobile Menu */}
-              <div className="mt-8 px-2">
-                <button
-                  onClick={() => {
-                    setIsEnquiryModalOpen(true);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full bg-accent text-white font-bold py-5 rounded-2xl shadow-xl shadow-accent/30 flex items-center justify-center gap-3 text-lg"
-                >
-                  <Send className="w-5 h-5" />
-                  Request a Free Quote
-                </button>
-              </div>
-
-              {/* Contact Card */}
-              <div className="mt-10 bg-primary text-white p-6 sm:p-8 rounded-3xl shadow-lg relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-28 h-28 bg-accent/20 rounded-full translate-x-1/2 -translate-y-1/2 blur-2xl" />
-                <div className="relative z-10">
-                  <h4 className="font-bold text-accent mb-5 text-lg">
-                    Contact Our Specialists
-                  </h4>
-                  <div className="space-y-4">
-                    <a
-                      href="tel:+61434500743"
-                      className="flex items-center gap-4 text-sm sm:text-base font-medium hover:text-accent transition"
-                    >
-                      <div className="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center">
-                        <Phone className="w-4 h-4 text-accent" />
-                      </div>
-                      +61 434 500 743
-                    </a>
-                    <a
-                      href="mailto:australia@maduraglobal.com"
-                      className="flex items-center gap-4 text-sm sm:text-base font-medium hover:text-accent transition"
-                    >
-                      <div className="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center">
-                        <Mail className="w-4 h-4 text-accent" />
-                      </div>
-                      australia@maduraglobal.com
-                    </a>
+                {/* Contact Quick Link */}
+                <div className="mt-8 bg-primary text-white p-8 rounded-[2.5rem] relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-accent opacity-10 rounded-full translate-x-8 -translate-y-8" />
+                  <div className="relative z-10">
+                    <h4 className="font-bold text-accent text-lg mb-6">Need expert help?</h4>
+                    <div className="space-y-4">
+                      <a href="tel:+61434500743" className="flex items-center gap-4 group/item">
+                        <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center group-hover/item:bg-accent transition-colors">
+                          <Phone className="w-5 h-5 text-accent group-hover/item:text-white" />
+                        </div>
+                        <span className="font-medium">+61 434 500 743</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
         )}
-      </AnimatePresence >
+      </AnimatePresence>
     </>
   );
 }
