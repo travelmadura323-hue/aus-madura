@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { tours } from "../data/mockData";
 import EnquiryModal from "./EnquiryModal";
-import { div } from "framer-motion/client";
+
 
 export default function PackageDetails() {
   const { id } = useParams();
