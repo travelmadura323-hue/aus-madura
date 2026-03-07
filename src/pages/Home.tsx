@@ -221,7 +221,6 @@ export default function Home() {
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">Global Favorites</span>
             <h2 className="text-[24px] font-bold text-primary">Trending Destinations</h2>
           </div>
 
@@ -241,9 +240,8 @@ export default function Home() {
       {/* Popular India Tours */}
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <div>
-              <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">International Highlights</span>
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6">
+            <div className="text-center md:text-left">
               <h2 className="text-[24px] font-bold text-primary">Popular India Tours</h2>
             </div>
             <Link
@@ -263,9 +261,8 @@ export default function Home() {
       <section className="py-12 sm:py-16 lg:py-24 bg-slate-50 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 px-4">
-            <div>
-              <span className="text-accent font-bold uppercase tracking-[0.4em] text-[10px] mb-2 block">Exclusive Feature</span>
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-6 px-4">
+            <div className="text-center md:text-left">
               <h2 className="text-[24px] font-bold text-primary">Iconic Australia </h2>
             </div>
             <p className="text-slate-500 max-w-sm text-right hidden md:block italic">
@@ -411,34 +408,25 @@ export default function Home() {
 
 
           {/* Header */}
-          <div className="relative mb-16">
-
-            {/* View All - aligned with Testimonials label */}
-            <div className="absolute right-0 top-6">
-              <Link
-                to="/company/testimonials" onClick={() => window.scrollTo(0, 0)}
-                className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group"
-              >
-                View All
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-
-            {/* Center Content */}
-            <div className="text-center max-w-3xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-6">
+            <div className="text-center md:text-left flex-1">
               <span className="text-sm tracking-[0.3em] uppercase text-accent font-semibold">
                 Testimonials
               </span>
-
-              <h2 className="text-[24px] font-extrabold text-primary mt-4 mb-6">
+              <h2 className="text-[24px] font-extrabold text-primary mt-4 mb-2">
                 What Our Travelers Say
               </h2>
-
               <p className="text-lg text-slate-500 leading-relaxed">
                 Real stories from real people who trusted us to plan their journeys.
               </p>
             </div>
-
+            <Link
+              to="/company/testimonials" onClick={() => window.scrollTo(0, 0)}
+              className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group shrink-0"
+            >
+              View All
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
 
 
@@ -570,7 +558,7 @@ export default function Home() {
       </section>
 
       {/* Global Enquiry Form Section for better visibility */}
-      <section className="py-12 sm:py-16 lg:py-24 bg-slate-50">
+      {/* <section className="py-12 sm:py-16 lg:py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -605,7 +593,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
