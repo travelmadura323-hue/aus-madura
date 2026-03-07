@@ -181,7 +181,7 @@ export default function Home() {
             ].map((badge, idx) => (
               <div
                 key={idx}
-                className="absolute top-36 left-1/2 -translate-x-1/2 w-12 h-12 md:w-12 md:h-12 flex items-center justify-center 
+                className="absolute top-30 left-1/2 -translate-x-1/2 w-12 h-12 md:w-12 md:h-12 flex items-center justify-center 
       transform transition-all duration-500 hover:scale-110 hover:-translate-y-2
       [transform-style:preserve-3d] rounded-full overflow-hidden"
                 style={{
