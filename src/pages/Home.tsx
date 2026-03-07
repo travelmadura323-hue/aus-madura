@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote, Images } from 'lucide-react';
+import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote, Images, MessageCircle } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { tours } from '../data/mockData';
@@ -130,7 +130,7 @@ export default function Home() {
             onClick={() => setIsEnquiryModalOpen(true)}
             className="bg-accent text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center border-2 border-white/20"
           >
-            <Phone className="w-6 h-6" />
+            <MessageCircle className="w-6 h-6" />
           </button>
         </div>
 
