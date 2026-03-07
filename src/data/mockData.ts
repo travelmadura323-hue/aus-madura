@@ -134,8 +134,8 @@ export const tours = [
     ]
   },
   {
-    id: "australia-queensland",
-    slug: "australia-queensland",
+    id: "australia-11Days",
+    slug: "australia-11Days",
     title: "Australia 11 Days Group Tour Package",
     location: {
       country: "Australia",
@@ -202,6 +202,113 @@ export const tours = [
       { question: "Best time to visit Australia?", answer: "September to November and March to May are ideal seasons." },
       { question: "Is travel insurance mandatory?", answer: "It is highly recommended for international travel." }
     ]
+  },
+  {
+    id: "australia-5Days",
+    slug: "australia-5Days",
+    title: "Whitsundays Couples Retreat 05 Days Tour Package",
+    location: {
+      country: "Australia",
+      cities: ["Sydney", "Cairns", "Brisbane", "Queenslad", "Australia"]
+    },
+
+    overview: "Hamilton Island offers a refined tropical escape in the Whitsundays, combining luxury resorts, palm-fringed beaches, and crystal-clear waters. Relaxed island living meets adventure through sailing, snorkeling, and hiking, all framed by coral reefs, stunning sunsets, and effortless access to the Great Barrier Reef for couples, families, honeymooners, explorers, and dreamers.",
+
+    duration: { days: 5, nights: 4 },
+
+    price: {
+      startingFrom: 12000,
+      currency: "USD",
+      perPerson: true
+    },
+
+    travelers: {
+      adults: 2,
+      children: 0,
+      infants: 0
+    },
+
+    minimumAge: 0,
+
+    startingPlace: "Hamilton Island",
+
+    image: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&h=600&q=80',
+
+    description: "Hamilton Island offers a refined tropical escape in the Whitsundays",
+
+    category: ["Honeymoon Tourism"],
+
+    rating: 4,
+
+    reviews: 0,
+
+    highlights: [
+      "Visit the iconic Sydney Opera House",
+      "Explore the Great Barrier Reef",
+      "Drive along the Great Ocean Road",
+      "Meet unique wildlife at Kangaroo Island"
+    ],
+
+    gallery: [
+      gallery['/images/Tours/quuensland1.png'] as string,
+      gallery['/images/Tours/queensland2.png'] as string,
+      gallery['/images/Tours/queensland3.png'] as string,
+      gallery['/images/Tours/queensland4.webp'] as string,
+    ],
+
+    tourPlan: [
+      {
+        day: 1,
+        title: " Arrival at Hamilton Island and Sunset Romance",
+        description: "G'day! Arrive at Hamilton Island Airport or Ferry Terminal, where you will be transferred to your resort. After check-in, spend the afternoon relaxing by the beach or pool, soaking in the serene island atmosphere. Later, explore Hamilton Island Marina Village, a charming waterfront area with boutique shops, cafés, and restaurants. In the evening, visit One Tree Hill Lookout, the most romantic viewpoint on the island, offering panoramic sunset views over the Whitsundays—perfect for anniversary photographs and quiet moments together. You may choose to enjoy a romantic dinner at one of the marina’s waterfront restaurants at your own expense.Overnight stay at Hamilton Island"
+      },
+      {
+        day: 2,
+        title: "Whitehaven Beach and Hll Inlet- Iconic whitsundays",
+        description: "After breakfast, embark on a Whitehaven Beach cruise, one of the most iconic experiences in Australia. Cruise through the turquoise waters of the Whitsunday Islands to reach Whitehaven Beach, famous for its pure white silica sand and crystal-clear sea. Visit the breathtaking Hill Inlet Lookout, where swirling patterns of sand and water create a world-famous natural masterpiece. Enjoy couple beach time, swimming, and relaxing on the shore before returning to Hamilton Island. The evening is free to unwind, take a peaceful stroll, or enjoy a spa experience (optional).Overnight stay at Hamilton Island"
+      },
+      {
+        day: 3,
+        title: "Great Barrier Reef exprecience",
+        description: "After breakfast, set out on a full-day Great Barrier Reef cruise, offering an unforgettable opportunity to explore one of the world’s greatest natural wonders. Enjoy snorkeling and swimming among vibrant coral reefs and tropical marine life. Optional activities such as glass-bottom boat tours or introductory diving may be available depending on the operator. Return to Hamilton Island by evening. Celebrate your special occasion with a romantic anniversary dinner at a beachfront or marina-side restaurant, creating a memorable night under the stars.Overnight stay at Hamilton Island"
+      },
+      {
+        day: 4,
+        title: "Heart Reef Scenic flight and Airlie Beach Sunset Cruise",
+        description: "Begin the day with a once-in-a-lifetime scenic flight over the Whitsundays, often considered the highlight of any anniversary or honeymoon trip. Enjoy aerial views of Heart Reef, Whitehaven Beach, Hill Inlet, and the surrounding Whitsunday Islands—an unforgettable “wow” moment perfect for proposals and celebrations. After the flight, transfer by ferry to Airlie Beach, the lively mainland gateway to the Whitsundays. Check in to your hotel and relax at the Airlie Beach Lagoon, a popular waterfront spot. In the evening, enjoy a sunset sailing cruise, offering romantic ocean views as the sun sets over the Coral Sea.Overnight stay at Airlie Beach"
+      },
+      {
+        day: 5,
+        title: " Leisure Morning and departure",
+        description: "After breakfast, enjoy a relaxed morning with a stroll around Coral Sea Marina, a picturesque harbor lined with yachts, cafés, and ocean views. After check-out, proceed for your onward journey, concluding your couple escape with unforgettable memories of island luxury and romance.End of Services!!"
+      }
+    ],
+
+    included: [
+      "14 nights accommodation with Breakfast",
+      "Return Island transfers",
+      "Sightseeing as per the itinerary",
+      "1 hour Scenic flight over heart reef and Whitsundays",
+      "Sunset sailing cruise at Airlie Beach",
+      "Great Barrier Reef full- day Cruise"
+
+    ],
+
+    excluded: [
+      "International and domestic flights",
+      "Lunches and dinners on tour",
+      "Visa issuance and Travel Insurance services",
+      "Tips, portages and gratitude",
+      "GST and TCS taxes"
+    ],
+
+    relatedPackages: ["Queensland Coastal Experience 07 Days Tour Package", "Australia 11 days Tour Package"],
+    faqs: [
+      { question: "Do Indian citizens need a visa for Australia?", answer: "Yes, Indian passport holders must apply for an Australian tourist visa." },
+      { question: "Best time to visit Australia?", answer: "September to November and March to May are ideal seasons." },
+      { question: "Is travel insurance mandatory?", answer: "It is highly recommended for international travel." }
+    ]
+
   },
   {
     id: 'kerala-Scenic 06 Days Best Of Kerala Tour Package',

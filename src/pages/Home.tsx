@@ -95,7 +95,7 @@ export default function Home() {
         ref={heroRef}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="relative h-[80vh] flex items-center justify-center overflow-hidden pt-24"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24"
       >
         {/* Floating Consultation Button - Sliding Tab */}
         {/* <motion.div
@@ -149,6 +149,7 @@ export default function Home() {
             className="absolute inset-0 z-0"
           >
             <motion.div style={{ y }} className="absolute inset-0">
+
               {/* ✅ Dynamic Image */}
               <img
                 src={slide.image}
@@ -164,17 +165,44 @@ export default function Home() {
         {/* Content */}
         <motion.div
           style={{ opacity }}
-          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pt-24"
+          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16 md:py-24"
         >
+          {/* Top Trust Badges */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="flex justify-center items-center gap-2 mt-10 mb-6 md:mb-6"
+          >
+            {[
+              // { src: im['../../images/im/Ministry of Tourism.jpg'], alt: 'Ministry of Tourism India' },
+              { src: im['../../images/im/Aussie1.png'], alt: 'Aussie Specialist' },
+              // { src: im['../../images/im/iata1.png'], alt: 'IATA' }
+            ].map((badge, idx) => (
+              <div
+                key={idx}
+                className="absolute top-36 left-1/2 -translate-x-1/2 w-12 h-12 md:w-12 md:h-12 flex items-center justify-center 
+      transform transition-all duration-500 hover:scale-110 hover:-translate-y-2
+      [transform-style:preserve-3d] rounded-full overflow-hidden"
+                style={{
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.25)"
+                }}
+              >
+                <img
+                  src={badge.src as string}
+                  alt={badge.alt}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            ))}
+          </motion.div>
           <motion.div
             key={currentSlide}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block bg-accent/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-4 border border-accent/30">
-              Since -1986
-            </span>
+
 
             {/* Multi-layered Premium Hero Title */}
             <motion.div
@@ -182,7 +210,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, ease: "circOut" }}
-              className="relative flex flex-col items-center justify-center py-4 md:py-6"
+              className="relative flex flex-col items-center justify-center py-10"
             >
               <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/5 font-black text-[15vw] leading-none uppercase select-none pointer-events-none whitespace-nowrap">
                 {slides[currentSlide].title.replace("Explore ", "")}
@@ -205,7 +233,7 @@ export default function Home() {
             </motion.div>
 
             {/* Subtitle */}
-            <p className="text-lg text-white max-w-2xl mx-auto mb-6 md:mb-8">
+            <p className="text-lg text-white max-w-2xl mx-auto mb-10">
               {slides[currentSlide].subtitle}
             </p>
 
@@ -439,7 +467,7 @@ export default function Home() {
             im['../../images/im/iaai.jpg'],
             im['../../images/im/download.png'],
             im['../../images/im/taai.png'],
-            im['../../images/im/tafi.jpg'],
+            im['../../images/im/Ministry of Tourism.jpg'],
           ].map((logo, index) => (
             <div
               key={index}

@@ -38,7 +38,7 @@ export default function Header() {
         { name: 'Our Story', path: '/company/our-story' },
         { name: 'Testimonials', path: '/company/testimonials' },
         { name: 'Media', path: '/company/media' },
-        { name: 'Contact Us', path: '/contact' },
+
       ]
     },
     {
@@ -73,24 +73,30 @@ export default function Header() {
         )}
       >
         <div className="w-full px-4 md:px-10 h-full flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 md:gap-4 shrink-0">
-            {/* Main Logo */}
-            <Link to="/" className="flex items-center">
-              <div className={cn(
-                "relative transition-all duration-300 rounded-lg bg-white p-1 shadow-sm border border-slate-100 flex items-center justify-center overflow-hidden shrink-0",
-                (isScrolled || location.pathname !== '/')
+          {/* <div className="flex items-center gap-2 md:gap-4 shrink-0"> */}
+          {/* Main Logo */}
+          <Link to="/" className="flex flex-col items-center">
+            <div
+              className={cn(
+                "relative transition-all duration-300 flex items-center justify-center overflow-hidden shrink-0",
+                (isScrolled || location.pathname !== "/")
                   ? "w-10 h-10 md:w-14 md:h-14"
                   : "w-12 h-12 md:w-20 md:h-20"
-              )}>
-                <img
-                  src={Image}
-                  alt="Madura Global Logo"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            </Link>
+              )}
+            >
+              <img
+                src={Image}
+                alt="Madura Global Logo"
+                className="w-full h-full object-contain"
+              />
+            </div>
 
-            {/* Trust Logos */}
+            <span className="mt-1 bg-accent text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-full tracking-widest shadow-md">
+              Since 1986
+            </span>
+          </Link>
+
+          {/* Trust Logos
             {[
               { src: im['../../../images/im/Ministry of Tourism.jpg'], alt: 'Ministry of Tourism India' },
               { src: im['../../../images/im/Aussie.jpg'], alt: 'Aussie Specialist' },
@@ -99,7 +105,7 @@ export default function Header() {
               <div
                 key={idx}
                 className={cn(
-                  "bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center overflow-hidden shrink-0 transition-all duration-300 p-1",
+                  "rounded-lg shadow-sm border border-slate-100 flex items-center justify-center overflow-hidden shrink-0 transition-all duration-300 p-1",
                   (isScrolled || location.pathname !== '/')
                     ? "w-10 h-10 md:w-14 md:h-14"
                     : "w-12 h-12 md:w-20 md:h-20"
@@ -111,8 +117,9 @@ export default function Header() {
                   className="w-full h-full object-contain"
                 />
               </div>
-            ))}
-          </div>
+            }
+  
+          {/* </div> */}
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">

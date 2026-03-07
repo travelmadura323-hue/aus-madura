@@ -21,9 +21,9 @@ const privacy = () => {
           {/* <h1 className="text-4xl md:text-5xl font-extrabold text-indigo-900 mb-10">
           Privacy Policy
         </h1> */}
-          <p>At Madura Travel Service (P) Ltd (“we”, “our”, “us”), we are committed to safeguarding the privacy and security of the personal information entrusted to us by our customers, website visitors, and partners. This Privacy Policy outlines how we collect, use, disclose, and protect your data in compliance with applicable Indian laws and global privacy standards.
+          <p>At Madura Global(“we”, “our”, “us”), we are committed to safeguarding the privacy and security of the personal information entrusted to us by our customers, website visitors, and partners. This Privacy Policy outlines how we collect, use, disclose, and protect your data in compliance with applicable Indian laws and global privacy standards.
 
-            By accessing https://maduraglobal.com or using our services, you consent to the practices described in this policy.</p>
+            By accessing  or using our services, you consent to the practices described in this policy.</p>
 
           {/* Paragraph 1 */}
           <div className="mb-8">
@@ -162,7 +162,7 @@ const privacy = () => {
             <h2 className="text-2xl font-bold text-indigo-900 mb-3">
               The contact details for our privacy officer are:
             </h2>
-            <p className="text-gray-700 leading-relaxed">Madura Travel Service Pvt Ltd. australia@maduraglobal.com & Phone: +61 434 500 743
+            <p className="text-gray-700 leading-relaxed">Madura Global. australiamaduraglobal.com & Phone: +61 434 500 743
 
               We may alter this Privacy Statement as needed for certain products and services and to abide by local laws or regulations. We reserve the right to amend or modify this Privacy Statement from time to time. We urge you to review this Privacy Statement whenever you visit in order to obtain the most current statement.</p>
 
@@ -171,7 +171,7 @@ const privacy = () => {
             <h2 className="text-2xl font-bold text-indigo-900 mb-3">
               Intellectual Property
             </h2>
-            <p className="text-gray-700 leading-relaxed">All present and future rights in and to trade secrets, patents, copyright, trademarks, service marks, know-how and other proprietary rights of any type arising at law, including rights in and to all applications and registrations relating to this website (including but not limited to all data contained on this website relating to you and your associated customer (“Data”), information, text, look and feel, material, graphics, software and advertisements) (the “Intellectual Property Rights”) shall, as between you and us, at all times be and remain the sole and exclusive property of Madura Travel Service Pvt Ltd. You assign upon creation all Intellectual Property Rights to us.
+            <p className="text-gray-700 leading-relaxed">All present and future rights in and to trade secrets, patents, copyright, trademarks, service marks, know-how and other proprietary rights of any type arising at law, including rights in and to all applications and registrations relating to this website (including but not limited to all data contained on this website relating to you and your associated customer (“Data”), information, text, look and feel, material, graphics, software and advertisements) (the “Intellectual Property Rights”) shall, as between you and us, at all times be and remain the sole and exclusive property of Madura Global. You assign upon creation all Intellectual Property Rights to us.
 
               You do not acquire any rights or licences in or to the Intellectual Property Rights, this website and materials contained within this website other than the limited right to use this website in accordance with the Terms of Use.</p>
 
@@ -182,7 +182,7 @@ const privacy = () => {
             </h2>
             <p className="text-gray-700 leading-relaxed">You and Your associated customer are responsible for all revisions to the Data executed by you. You accept responsibility as a representative of your Associated Customer and represent your Associated Customer in all access and use of this website. You acknowledge and agree that
 
-              Madura Travel Service (P) Ltd relies in good faith on any revisions to the Data executed by you and does not take any steps to verify the accuracy of any revisions to the Data executed by you.</p>
+              Madura Global relies in good faith on any revisions to the Data executed by you and does not take any steps to verify the accuracy of any revisions to the Data executed by you.</p>
 
           </div>
           <div>
@@ -190,23 +190,23 @@ const privacy = () => {
               Introduction:
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              Madura Travel Service (P) Ltd (India) Private Limited recognizes the importance of privacy of its users and also of maintaining confidentiality of the information provided by its users as a responsible data controller and data processer.
+              Madura Global recognizes the importance of privacy of its users and also of maintaining confidentiality of the information provided by its users as a responsible data controller and data processer.
 
-              This Privacy Policy provides for the practices for handling and securing user’s Personal Information (defined hereunder) by MADURA TRAVEL SERVICE (P) LTD and its subsidiaries and affiliates.
+              This Privacy Policy provides for the practices for handling and securing user’s Personal Information (defined hereunder) by Madura Global(P) LTD and its subsidiaries and affiliates.
 
-              This Privacy Policy is applicable to any person (‘User’) who purchase, intend to purchase, or inquire about any product(s) or service(s) made available by MADURA TRAVEL SERVICE (P) LTD through any of MADURA TRAVEL SERVICE (P) LTD’s customer interface channels including its website, mobile site, mobile app & offline channels including call centers and offices (collectively referred herein as “Sales Channels”).
+              This Privacy Policy is applicable to any person (‘User’) who purchase, intend to purchase, or inquire about any product(s) or service(s) made available by Madura Global(P) LTD through any of Madura Global(P) LTD’s customer interface channels including its website, mobile site, mobile app & offline channels including call centers and offices (collectively referred herein as “Sales Channels”).
 
-              For the purpose of this Privacy Policy, wherever the context so requires “you” or “your” shall mean User and the term “we”, “us”, “our” shall mean MADURA TRAVEL SERVICE (P) LTD. For the purpose of this Privacy Policy, Website means the website(s), mobile site(s) and mobile app(s).
+              For the purpose of this Privacy Policy, wherever the context so requires “you” or “your” shall mean User and the term “we”, “us”, “our” shall mean Madura Global(P) LTD. For the purpose of this Privacy Policy, Website means the website(s), mobile site(s) and mobile app(s).
 
               By using or accessing the Website or other Sales Channels, the User hereby agrees with the terms of this Privacy Policy and the contents herein. If you disagree with this Privacy Policy please do not use or access our Website or other Sales Channels.
 
-              This Privacy Policy does not apply to any website(s), mobile sites and mobile apps of third parties, even if their websites/products are linked to our Website. User should take note that information and privacy practices of MADURA TRAVEL SERVICE (P) LTD’s business partners, advertisers, sponsors or other sites to which MADURA TRAVEL SERVICE (P) LTD provides hyperlink(s), may be materially different from this Privacy Policy. Accordingly, it is recommended that you review the privacy statements and policies of any such third parties with whom they interact.
+              This Privacy Policy does not apply to any website(s), mobile sites and mobile apps of third parties, even if their websites/products are linked to our Website. User should take note that information and privacy practices of Madura Global(P) LTD’s business partners, advertisers, sponsors or other sites to which Madura Global(P) LTD provides hyperlink(s), may be materially different from this Privacy Policy. Accordingly, it is recommended that you review the privacy statements and policies of any such third parties with whom they interact.
 
-              This Privacy Policy is an integral part of your User Agreement with MADURA TRAVEL SERVICE (P) LTD and all capitalized terms used, but not otherwise defined herein, shall have the respective meanings as ascribed to them in the User Agreement.
+              This Privacy Policy is an integral part of your User Agreement with MADURA GLOBAL and all capitalized terms used, but not otherwise defined herein, shall have the respective meanings as ascribed to them in the User Agreement.
             </p>
 
           </div>
-          <h6>You may always submit concerns regarding this Privacy Policy via email to us at australia@maduraglobal.com. MADURA TRAVEL SERVICE (P) LTD shall endeavor to respond to all reasonable concerns and inquires.</h6>
+          <h6>You may always submit concerns regarding this Privacy Policy via email to us at australia@maduraglobal.com. Madura Global shall endeavor to respond to all reasonable concerns and inquires.</h6>
 
         </div>
       </section>

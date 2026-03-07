@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import React from "react"
 import {
   Clock, Users, MapPin, Check, X, ChevronRight,
   Calendar, Info, Wallet, Map, Star, MessageSquarePlus,
