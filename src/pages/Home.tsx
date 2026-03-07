@@ -95,7 +95,7 @@ export default function Home() {
         ref={heroRef}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24"
+        className="relative h-[80vh] flex items-center justify-center overflow-hidden pt-24"
       >
         {/* Floating Consultation Button - Sliding Tab */}
         {/* <motion.div
@@ -164,7 +164,7 @@ export default function Home() {
         {/* Content */}
         <motion.div
           style={{ opacity }}
-          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-32 md:pt-40"
+          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-16 md:pt-24"
         >
           <motion.div
             key={currentSlide}
@@ -172,7 +172,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="inline-block bg-accent/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-accent/30">
+            <span className="inline-block bg-accent/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-4 border border-accent/30">
               Since -1986
             </span>
 
@@ -182,7 +182,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, ease: "circOut" }}
-              className="relative flex flex-col items-center justify-center py-10"
+              className="relative flex flex-col items-center justify-center py-4 md:py-6"
             >
               <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/5 font-black text-[15vw] leading-none uppercase select-none pointer-events-none whitespace-nowrap">
                 {slides[currentSlide].title.replace("Explore ", "")}
@@ -205,7 +205,7 @@ export default function Home() {
             </motion.div>
 
             {/* Subtitle */}
-            <p className="text-lg text-white max-w-2xl mx-auto mb-10">
+            <p className="text-lg text-white max-w-2xl mx-auto mb-6 md:mb-8">
               {slides[currentSlide].subtitle}
             </p>
 

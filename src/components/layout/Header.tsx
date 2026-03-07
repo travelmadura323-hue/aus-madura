@@ -6,13 +6,30 @@ import { cn } from '../../lib/utils';
 import EnquiryModal from '../EnquiryModal';
 import Image from '/images/logo.png';
 
+const im = import.meta.glob('../../../images/im/*.{png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+});
 
-
+const trustLogos = [
+  { src: '../../../images/im/Ministry of Tourism.jpg', alt: 'Ministry of Tourism India' },
+  { src: '../../../images/im/Aussie.jpg', alt: 'Aussie Specialist' },
+  { src: '../../../images/im/iata.png', alt: 'IATA' }
+];
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navLinks = [
     {
@@ -55,21 +72,47 @@ export default function Header() {
           (isScrolled || location.pathname !== '/') ? 'bg-primary/95 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-5'
         )}
       >
-        <div className="w-full px-4 md:px-10 h-full flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-4">
-            <div className={cn(
-              "relative transition-all duration-300 rounded-full bg-white p-1 shadow-sm border border-slate-100 flex items-center justify-center overflow-hidden",
-              (isScrolled || location.pathname !== '/')
-                ? "w-14 h-14"
-                : "w-16 h-16 md:w-20 md:h-20"
-            )}>
-              <img
-                src={Image}
-                alt="Madura Global Logo"
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </Link>
+        <div className="w-full px-4 md:px-10 h-full flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 md:gap-4 shrink-0">
+            {/* Main Logo */}
+            <Link to="/" className="flex items-center">
+              <div className={cn(
+                "relative transition-all duration-300 rounded-lg bg-white p-1 shadow-sm border border-slate-100 flex items-center justify-center overflow-hidden shrink-0",
+                (isScrolled || location.pathname !== '/')
+                  ? "w-10 h-10 md:w-14 md:h-14"
+                  : "w-12 h-12 md:w-20 md:h-20"
+              )}>
+                <img
+                  src={Image}
+                  alt="Madura Global Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </Link>
+
+            {/* Trust Logos */}
+            {[
+              { src: im['../../../images/im/Ministry of Tourism.jpg'], alt: 'Ministry of Tourism India' },
+              { src: im['../../../images/im/Aussie.jpg'], alt: 'Aussie Specialist' },
+              { src: im['../../../images/im/iata.png'], alt: 'IATA' }
+            ].map((badge, idx) => (
+              <div
+                key={idx}
+                className={cn(
+                  "bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center overflow-hidden shrink-0 transition-all duration-300 p-1",
+                  (isScrolled || location.pathname !== '/')
+                    ? "w-10 h-10 md:w-14 md:h-14"
+                    : "w-12 h-12 md:w-20 md:h-20"
+                )}
+              >
+                <img
+                  src={badge.src as string}
+                  alt={badge.alt}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            ))}
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
