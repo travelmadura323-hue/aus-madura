@@ -32,7 +32,7 @@ export default function TourDetail() {
 
     try {
       // ✅ Web3Forms integration - Directly sends to your email
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('https://api.maduratravel.com/api/lead/website', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
