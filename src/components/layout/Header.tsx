@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Menu, X, Phone, Mail, MapPin, Globe, Building2, Users, Briefcase, Send } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import EnquiryModal from '../EnquiryModal';
-import Image from '/images/logo.png';
+import Image from '/images/New logo.png';
 
 const im = import.meta.glob('../../../images/im/*.{png,jpg,jpeg,svg}', {
   eager: true,
@@ -91,9 +91,9 @@ export default function Header() {
               />
             </div>
 
-            <span className="mt-1 bg-accent text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-full tracking-widest shadow-md">
+            {/* <span className="mt-1 bg-accent text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-full tracking-widest shadow-md">
               Since 1986
-            </span>
+            </span> */}
           </Link>
 
           {/* Trust Logos
