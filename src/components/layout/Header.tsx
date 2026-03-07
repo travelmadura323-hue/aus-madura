@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Menu, X, Phone, Mail, MapPin, Globe, Building2, Users, Briefcase, Send } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import EnquiryModal from '../EnquiryModal';
-import Image from '/images/New logo.png';
+import Image from '/images/new new logo.png';
 
 const im = import.meta.glob('../../../images/im/*.{png,jpg,jpeg,svg}', {
   eager: true,
