@@ -25,13 +25,38 @@ export default function TourDetail() {
     message: ''
   });
 
-  const handleBookingSubmit = (e: any) => {
+  const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setBookingStatus('submitting');
-    setTimeout(() => {
-      setBookingStatus('success');
-      setFormData({ name: '', email: '', phone: '', date: '', travelers: '1', message: '' });
-    }, 1500);
+
+    try {
+      // ✅ Web3Forms integration - Directly sends to your email
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: "43dd3943-e03b-40eb-af68-3a2618020a2e", // Same Access Key as EnquiryForm
+          subject: `New Tour Booking: ${tour.title} from ${formData.name}`,
+          from_name: "Madura Travel Booking System",
+          tour_name: tour.title,
+          ...formData, // includes name, email, phone, date, travelers, message
+          recipient: "travelmadura323@gmail.com"
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setBookingStatus('success');
+        setFormData({ name: '', email: '', phone: '', date: '', travelers: '1', message: '' });
+      } else {
+        throw new Error(result.message || 'Submission failed');
+      }
+    } catch (error) {
+      console.error('Booking submission error:', error);
+      alert('Something went wrong. Please try again or contact us directly.');
+      setBookingStatus('idle');
+    }
   };
 
   const displayLocation = typeof tour.location === 'string'

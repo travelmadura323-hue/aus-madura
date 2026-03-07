@@ -134,6 +134,76 @@ export const tours = [
     ]
   },
   {
+    id: "australia-queensland",
+    slug: "australia-queensland",
+    title: "Australia 11 Days Group Tour Package",
+    location: {
+      country: "Australia",
+      cities: ["Sydney", "Canberra", "Melbourne", "Gold Coast", "Brisbane", "Queenslad", "Australia"]
+    },
+    overview: "Gold Coast and Cairns showcase Australia’s coastal beauty. Gold Coast is known for golden beaches, vibrant city life, theme parks, and surfing culture, while Cairns is the gateway to the Great Barrier Reef, tropical rainforests, crystal-clear waters, and unforgettable nature-based adventures.",
+    duration: { days: 11, nights: 10 },
+    price: { startingFrom: 1750, currency: "USD", perPerson: true },
+    travelers: { adults: 50, children: 0, infants: 0 },
+    minimumAge: 2,
+    startingPlace: "Sydney",
+    image: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&h=600&q=80',
+    description: "Discover Australia’s top destinations with an unforgettable journey through Sydney, Canberra, and Melbourne, Gold coast and Brisbane. Experience iconic city landmarks, rich culture, and scenic landscapes. From vibrant urban life to historical attractions, Australia offers the perfect mix of adventure, relaxation, and memorable travel experiences for every kind of traveler.",
+    category: ['Group Tourism', 'Family Tourism'],
+    rating: 4.8,
+    reviews: 124,
+    highlights: [
+      "Visit the iconic Sydney Opera House",
+      "Explore the Great Barrier Reef",
+      "Drive along the Great Ocean Road",
+      "Meet unique wildlife at Kangaroo Island"
+    ],
+    gallery: [
+      gallery['/images/Tours/quuensland1.png'] as string,
+      gallery['/images/Tours/queensland2.png'] as string,
+      gallery['/images/Tours/queensland3.png'] as string,
+      gallery['/images/Tours/queensland4.webp'] as string,
+    ],
+    tourPlan: [
+      { day: 1, title: "Sydney Arrival", description: "G'day!Welcome to Australia- upon arrival clear immigration and security procedures then- meet up our representative then transfer to hotel.Hotel check in standard time- 14:00 hrs and the time is for leisure followed by indian dinnerOvernight stay at hotel" },
+      { day: 2, title: " Highlights of Sydney", description: "Morning after breakfast- Orientation Tour of Sydney City Visit The Rocks Area, Darling Harbour, Parliament House, Rum Hospital, Royal Botanic Garden, St. Mary's Cathedral, Mrs. Macquaries Chair, Bondi Beach, followed by that Admission to Guided Tour of Sydney Opera House and then Indian Lunch. followed by that Admission to 02 in 01 Attraction Pass (Visit any two - Sealife Aquarium, Wildlife Zoo, Madame Tussauds or Tower Eye and then Free time to visit temples - on your own.Late evening Admission to Showboat Dinner cruise.Overnight stay at hotel" },
+      { day: 3, title: "A Day at Blue Mountains", description: "Morning Breakfast,Then visit to Sydney Zoo, Admission to Syndey Zoo, followed by that Indian Lunch and then proceed to Blue Mountains, Visit Eco Point, view of Three Sisters rock, Admission to Scenic World - Ultimate Discovery Pass for 3 Rides (Cableway, Skyway & Scenic Railway) and then drop at Sydney city and then followed by Indian Dinner.Overnight stay at hotel" },
+      { day: 4, title: " Canberra Arrival- Highlights of Canberra", description: "Morning Breakfast- check out from hotel before 10:00hrs- proceed to Canberra- upon arrival Orientation Tour of Canberra City- Mount Ainslie Lookout, Lake Burley Griffin,Captain Cook Memorial, Old Parliament House, New Parliament House, Australian War Memorial and then followed by Indian Lunch, and then check in to hotel after 14:00 hrs, followed by that Indian DinnerOvernight stay at hotel" },
+      { day: 5, title: " Melbourne Arrival- Highlights of Melbourne", description: "Morning Breakfast and then check out from hotel before 10:00 hrs and then transfer to Canberra Airport- Depart Canberra- upon arrival to Melbourne- Orientation Tour of Melbourne City- Federation Square, Flinders Street Station, St. Paul's Cathedral, Yarra River, Southbank Precinct, Shrine of Remembrance, Parliament House, Hosier Art Mural Lane, followed by that Indian Lunch and then drop at hotel, and check in hotel after 14:00 hrs, followed by that Indian dinner.Overnight stay at hotel" },
+      { day: 6, title: " A Day at Phillip Island", description: "Morning breakfast and then Proceed to Phillip Island enroute Admission to Guided Tour of Melbourne Cricket Ground and then followed by Indian Lunch and then Proceed to Phillip Island, Admission to Penguin Parade - Standard Viewing and then Proceed back to city followed by that Indian dinner.Overnight stay at Hotel" },
+      { day: 7, title: "Great Ocean Tour", description: "Morning Breakfast and then full day Great Ocean road tour folowed by Lunch in Apollo bay and then in evening proceed back to the city, upon arrival Indian dinner and back to hotel Overnight stay at hotel" },
+      { day: 8, title: " Melbourne Departure- Gold Coast Arrival", description: "After breakfast, check out from the hotel before 1000 hrs and proceed with a one-way airport transfer to Melbourne (Tullamarine) Airport. Depart Melbourne and arrive in Brisbane, followed by a one-way airport transfer. En route, enjoy lunch at an Indian restaurant. Continue the journey to the Gold Coast and check in at the hotel after 1400 hrs. In the evening , first stop visit to Sky point Oservation Deck and followed by that, enjoy dinner at an Indian restaurant within walking distance of the hotel. Overnight stay at the hotel." },
+      { day: 9, title: "  A day in Sea world", description: "After breakfast, proceed by walk for admission to a 30-minute jet boat ride. Later, enjoy a return coach transfer to Sea World, followed by admission to the park. Sea World is one of Australia’s most popular marine theme parks, offering a mix of exciting rides, live shows, and up-close encounters with marine life, making it an enjoyable experience for visitors of all ages. A maxi meal voucher will be provided at Sea World. After the visit, you will be dropped back at the hotel. In the evening, enjoy dinner at an Indian restaurant within walking distance of the hotel. Overnight stay at the hotel." },
+      { day: 10, title: "  Brisbane Arrival- Kuala Sanctuary Visit", description: "Begin the day with a relaxed morning breakfast, followed by an exciting AquaDuck Tour, a unique amphibious experience that travels by road and then splashes into the water, offering fun commentary and scenic views of the city skyline and waterways—perfect for both adults and children. After the tour, transfer to Brisbane, and upon arrival enjoy a delicious Indian lunch. Later, visit the famous Lone Pine Koala Sanctuary, one of Australia’s most iconic wildlife attractions, where you can see koalas, kangaroos, wombats, and other native animals in a natural setting while learning about Australian wildlife conservation. After the visit, proceed to the hotel for check-in and some rest. The evening is free for leisure and shopping, allowing you to explore local markets or shopping precincts at your own pace, before concluding the day with a comforting Indian dinner.Overnight stay at hotel." },
+      { day: 11, title: " Departure", description: "After enjoying a pleasant morning breakfast, proceed to check out from the hotel before 10:00 hrs and transfer to Brisbane Airport. Upon arrival, complete the required immigration and security formalities, and then board your return flight, carrying with you wonderful memories of your Australian journey and experiences that will be cherished long after the trip ends.End of services!" }
+    ],
+    included: [
+      "Accommodation with breakfast",
+      "Arrival and departure transfer",
+      "Indian Lunches and Indian Dinner",
+      "Sightseeing as per the itinerary",
+      "Admission to Blue Mountains with ultimate discovery pass for 3 rides",
+      "Admission to Guided Tour of Melbourne Cricket Ground",
+      "Admission to Penguin Parade - Standard Viewing",
+      "visit to 12 Apostles",
+      "visit to Kuala Sanctuary",
+      "Visa services"
+    ],
+    excluded: [
+      "Early check in and late check out",
+      "Tips, portages and gratitude",
+      "GST and TCS taxes",
+      "Travel insurance services",
+      "International and domestic flights"
+    ],
+    relatedPackages: ["Queensland Coastal Experience 07 Days Tour Package"],
+    faqs: [
+      { question: "Do Indian citizens need a visa for Australia?", answer: "Yes, Indian passport holders must apply for an Australian tourist visa." },
+      { question: "Best time to visit Australia?", answer: "September to November and March to May are ideal seasons." },
+      { question: "Is travel insurance mandatory?", answer: "It is highly recommended for international travel." }
+    ]
+  },
+  {
     id: 'kerala-Scenic 06 Days Best Of Kerala Tour Package',
     numericId: 1,
     slug: '6-days-kerala',
