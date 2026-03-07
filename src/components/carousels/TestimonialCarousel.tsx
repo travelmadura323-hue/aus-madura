@@ -9,6 +9,8 @@ import 'swiper/css/pagination';
 interface Testimonial {
     name: string;
     text: string;
+    image: string;
+    Designation: string;
 }
 
 export default function TestimonialCarousel({ testimonials }: { testimonials: Testimonial[] }) {
@@ -56,9 +58,9 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: Te
                                     <div className="font-semibold text-primary text-sm">
                                         {feedback.name}
                                     </div>
-                                    <div className="text-xs text-slate-400">
-                                        Verified Traveler
-                                    </div>
+                                    {/* <div className="text-xs text-slate-400">
+                                       
+                                    </div> */}
                                 </div>
                             </div>
                         </motion.div>

@@ -147,7 +147,7 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsEnquiryModalOpen(true)}
-              className="flex items-center gap-2 bg-accent text-white font-bold px-5 py-2.5 rounded-full text-xs md:text-sm hover:bg-primary transition-all shadow-lg shadow-accent/40 animate-pulse-subtle"
+              className="hidden lg:flex items-center gap-2 bg-accent text-white font-bold px-5 py-2.5 rounded-full text-xs md:text-sm hover:bg-primary transition-all shadow-lg shadow-accent/40 animate-pulse-subtle"
             >
               Enquiry
             </button>

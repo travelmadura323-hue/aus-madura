@@ -5,50 +5,78 @@ const cel = import.meta.glob('/images/celebrity/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 });
+const gal = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+});
+
+
 
 const testimonials = [
-  { 
+  {
+    name: "Mr.YB Wong Hon Wai",
+    Designation: "Minister of Tourism, Malaysia",
+    text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
+    image: gal["images/YB.jpg"] as string
+  },
+  {
     name: "Mr. Anbil Mahesh",
     designation: "Minister for Education - Government of Tamilnadu",
     rating: 5,
     image: cel["/images/celebrity/Anbil mahesh.jpg"] as string,
     text: "I extend my heartfelt thanks to the entire Madura Travel Service team for their professional assistance in organizing international trips for the students of Tamil Nadu's government schools..."
   },
-  { 
+  {
     name: "Mr. Napoleon",
     designation: "Cine Actor & Politician",
     rating: 5,
     image: cel["/images/celebrity/nepolean.jpg"] as string,
     text: "Mr. Sriharan Balan and his exceptional team provided seamless service..."
   },
-  { 
+  {
     name: "Mr. Kamal Haasan",
     designation: "Cine Actor & Director",
     rating: 5,
     image: cel["/images/celebrity/Kamalhasan.jpg"] as string,
     text: "Mr. V.K.T. Balan was more than just a travel consultant..."
   },
-  { 
+  {
     name: "Mr. Venkatesh Bhat",
     designation: "TCDC Fame & CEO, Accord Hotels",
     rating: 5,
     image: cel["/images/celebrity/Venkatesh-Bhat.jpg"] as string,
     text: "My long-standing association with Madura Travel Service has made my global travels seamless..."
   },
-  { 
+  {
     name: "Mrs. P. Susheela",
     designation: "Legendary Singer",
     rating: 5,
     image: cel["/images/celebrity/susheela.jpg"] as string,
     text: "My journey with Madura Travel Service began when Mr. VKT Balan helped me obtain my first passport..."
   },
-  { 
+  {
     name: "Mr. Sandy",
     designation: "Dance Master",
     rating: 5,
     image: cel['/images/celebrity/sandy.jpg'] as string,
     text: "Mr. Sriharan Balan has been a tremendous support during my international shows..."
   },
+  {
+    name: "Mr.Vijay",
+    text: "We had a wonderful experience for our Sri Lanka trip. All arrangements were seamless and Mr. Sudharsan ensured we were comfortable throughout."
+  },
+  {
+    name: "Hariharan Balasubramanian",
+    text: "Systematic and careful VISA processing. Timely updates were provided and my family is delighted with the customer service."
+  },
+  {
+    name: "Subhashini Srivatsan",
+    text: "Excellent, personalised, professional and patient service by Ms. Deepa and her team."
+  },
+  {
+    name: "Jagadeesh Jayaraman",
+    text: "They understood our requirements perfectly and gave us a well-planned tour. Wonderful coordination and experience!"
+  }
 ]
 
 export default function TestimonialsPage() {

@@ -10,7 +10,12 @@ import TrendingDestinationsCarousel from '../components/carousels/TrendingDestin
 import TourCarousel from '../components/carousels/TourCarousel';
 import TestimonialCarousel from '../components/carousels/TestimonialCarousel';
 import ContactForm from '../components/ContactForm';
+import EnquiryModal from '../components/EnquiryModal';
 
+const cel = import.meta.glob('/images/celebrity/*.{png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+});
 
 // export default function Home() {
 //   const heroRef = useRef(null);
@@ -23,6 +28,10 @@ const images = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
   import: 'default',
 });
 const gallery = import.meta.glob('/src/gallery/*.{png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
+});
+const gal = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 });
@@ -41,6 +50,7 @@ export default function Home() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
 
   // ✅ Slides = DATA ONLY
   const slides = [
@@ -112,12 +122,18 @@ export default function Home() {
 
         {/* Mobile Floating Button */}
         <div className="fixed bottom-6 right-6 z-50 md:hidden">
-          <Link to="/contact">
-            <button className="bg-accent text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center border-2 border-white/20">
-              <Phone className="w-6 h-6" />
-            </button>
-          </Link>
+          <button
+            onClick={() => setIsEnquiryModalOpen(true)}
+            className="bg-accent text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center border-2 border-white/20"
+          >
+            <Phone className="w-6 h-6" />
+          </button>
         </div>
+
+        <EnquiryModal
+          isOpen={isEnquiryModalOpen}
+          onClose={() => setIsEnquiryModalOpen(false)}
+        />
 
         {/* Background Slides */}
         {slides.map((slide, index) => (
@@ -152,9 +168,9 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* <span className="inline-block bg-accent/20 backdrop-blur-md text-accent px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-accent/30">
-              Welcome to Madura Global
-            </span> */}
+            <span className="inline-block bg-accent/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-6 border border-accent/30">
+              Since -1986
+            </span>
 
             {/* Multi-layered Premium Hero Title */}
             <motion.div
@@ -220,8 +236,10 @@ export default function Home() {
       {/* Trending Destinations */}
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-[24px] font-bold text-primary">Trending Destinations</h2>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+            <div className="text-left">
+              <h2 className="text-[24px] font-bold text-primary">Trending Destinations</h2>
+            </div>
           </div>
 
           <TrendingDestinationsCarousel
@@ -240,13 +258,13 @@ export default function Home() {
       {/* Popular India Tours */}
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6">
-            <div className="text-center md:text-left">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+            <div className="text-left">
               <h2 className="text-[24px] font-bold text-primary">Popular India Tours</h2>
             </div>
             <Link
               to="/destinations/india" onClick={() => window.scrollTo(0, 0)}
-              className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group"
+              className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group self-end md:self-auto"
             >
               View All India Tours
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -342,14 +360,15 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Quote className="w-12 h-12 md:w-16 md:h-16 text-accent mb-6 md:mb-8 opacity-50" />
+              <Quote className="w-12 h-12 md:w-16 md:h-16 text-white mb-6 md:mb-8 " />
               <h2 className="text-2xl md:text-3xl text-white font-bold mb-6">A Message from Our Chairman</h2>
               <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-8 italic">
-                "For over four decades,we have carried the dreams of millions .Trusted by more than 4 million travelers,we believe travel is not a transaction,it is a responsibility.Every journey we create is backed by experience,care,and an uncompromising promise: Client happiness and true value for every penny spent.This is not our slogan ;it is our promise."
+                "For over four decades,we have carried the dreams of millions .Trusted by more than 4 million travelers,we believe travel is not a transaction,it is a responsibility.Every journey we create is backed by experience,care,and an uncompromising promise: Client happiness and true value for every penny spent.
+                This is not our slogan ;it is our promise."
               </p>
               <div>
-                <div className="text-2xl text-[#cc1715] font-bold text-accent">Kalaimamani V.K.T Balan</div>
-                <div className="text-slate-400">Chairman - Madura Travel Service</div>
+                <div className="text-2xl text-[#cc1715] font-bold text-white">“Kalaimamani” V.K.T. Balan</div>
+                <div className="text-slate-400">Chairman - madura travel service (P) Ltd.</div>
               </div>
             </motion.div>
           </div>
@@ -360,15 +379,18 @@ export default function Home() {
       <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-          {/* Top Tagline */}
+          {/* Top Tagline
           <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
             Experience. Quality. Trust.
-          </span>
+          </span> */}
 
           {/* Heading */}
           <h2 className="text-[32px] font-bold text-primary mt-6 mb-6">
             Advantage of Choosing Us
           </h2>
+          <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
+            Experience. Quality. Trust.
+          </span>
 
           {/* Description */}
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-20">
@@ -408,8 +430,8 @@ export default function Home() {
 
 
           {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-6">
-            <div className="text-center md:text-left flex-1">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+            <div className="text-left flex-1">
               <span className="text-sm tracking-[0.3em] uppercase text-accent font-semibold">
                 Testimonials
               </span>
@@ -422,7 +444,7 @@ export default function Home() {
             </div>
             <Link
               to="/company/testimonials" onClick={() => window.scrollTo(0, 0)}
-              className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group shrink-0"
+              className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group shrink-0 self-end md:self-auto"
             >
               View All
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -434,42 +456,95 @@ export default function Home() {
           {(() => {
             const testimonials = [
               {
-                name: "S. Vijay",
-                text: "We had a wonderful experience for our Sri Lanka trip. All arrangements were seamless and Mr. Sudharsan ensured we were comfortable throughout."
+                name: "Mr.YB Wong Hon Wai",
+                Designation: "Minister of Tourism, Malaysia",
+                text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
+                image: gal["images/YB.jpg"] as string
               },
               {
-                name: "Hariharan Balasubramanian",
-                text: "Systematic and careful VISA processing. Timely updates were provided and my family is delighted with the customer service."
+                name: "Mr. Anbil Mahesh",
+                designation: "Minister for Education - Government of Tamilnadu",
+                image: cel["/images/celebrity/Anbil mahesh.jpg"] as string,
+                text: "I extend my heartfelt thanks to the entire Madura Travel Service team for their professional assistance in organizing international trips for the students of Tamil Nadu's government schools..."
               },
               {
-                name: "Subhashini Srivatsan",
-                text: "Excellent, personalised, professional and patient service by Ms. Deepa and her team."
+                name: "Mr. Napoleon",
+                designation: "Cine Actor & Politician",
+                image: cel["/images/celebrity/nepolean.jpg"] as string,
+                text: "Mr. Sriharan Balan and his exceptional team provided seamless service..."
               },
               {
-                name: "Jagadeesh Jayaraman",
-                text: "They understood our requirements perfectly and gave us a well-planned tour. Wonderful coordination and experience!"
-              }
+                name: "Mr. Kamal Haasan",
+                designation: "Cine Actor & Director",
+                image: cel["/images/celebrity/Kamalhasan.jpg"] as string,
+                text: "Mr. V.K.T. Balan was more than just a travel consultant..."
+              },
+              {
+                name: "Mr. Venkatesh Bhat",
+                designation: "TCDC Fame & CEO, Accord Hotels",
+                image: cel["/images/celebrity/Venkatesh-Bhat.jpg"] as string,
+                text: "My long-standing association with Madura Travel Service has made my global travels seamless..."
+              },
+              {
+                name: "Mrs. P. Susheela",
+                designation: "Legendary Singer",
+                image: cel["/images/celebrity/susheela.jpg"] as string,
+                text: "My journey with Madura Travel Service began when Mr. VKT Balan helped me obtain my first passport..."
+              },
+              {
+                name: "Mr. Sandy",
+                designation: "Dance Master",
+                image: cel['/images/celebrity/sandy.jpg'] as string,
+                text: "Mr. Sriharan Balan has been a tremendous support during my international shows..."
+              },
+
             ]
 
             return (
               <TestimonialCarousel
                 testimonials={[
                   {
-                    name: "S. Vijay",
-                    text: "We had a wonderful experience for our Sri Lanka trip. All arrangements were seamless and Mr. Sudharsan ensured we were comfortable throughout."
+                    name: "Mr.YB Wong Hon Wai",
+                    Designation: "Minister of Tourism, Malaysia",
+                    text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
+                    image: gal["images/YB.jpg"] as string
                   },
                   {
-                    name: "Hariharan Balasubramanian",
-                    text: "Systematic and careful VISA processing. Timely updates were provided and my family is delighted with the customer service."
+                    name: "Mr. Anbil Mahesh",
+                    Designation: "Minister for Education - Government of Tamilnadu",
+                    image: cel["/images/celebrity/Anbil mahesh.jpg"] as string,
+                    text: "I extend my heartfelt thanks to the entire Madura Travel Service team for their professional assistance in organizing international trips for the students of Tamil Nadu's government schools..."
                   },
                   {
-                    name: "Subhashini Srivatsan",
-                    text: "Excellent, personalised, professional and patient service by Ms. Deepa and her team."
+                    name: "Mr. Napoleon",
+                    Designation: "Cine Actor & Politician",
+                    image: cel["/images/celebrity/nepolean.jpg"] as string,
+                    text: "Mr. Sriharan Balan and his exceptional team provided seamless service..."
                   },
                   {
-                    name: "Jagadeesh Jayaraman",
-                    text: "They understood our requirements perfectly and gave us a well-planned tour. Wonderful coordination and experience!"
-                  }
+                    name: "Mr. Kamal Haasan",
+                    Designation: "Cine Actor & Director",
+                    image: cel["/images/celebrity/Kamalhasan.jpg"] as string,
+                    text: "Mr. V.K.T. Balan was more than just a travel consultant..."
+                  },
+                  {
+                    name: "Mr. Venkatesh Bhat",
+                    Designation: "TCDC Fame & CEO, Accord Hotels",
+                    image: cel["/images/celebrity/Venkatesh-Bhat.jpg"] as string,
+                    text: "My long-standing association with Madura Travel Service has made my global travels seamless..."
+                  },
+                  {
+                    name: "Mrs. P. Susheela",
+                    Designation: "Legendary Singer",
+                    image: cel["/images/celebrity/susheela.jpg"] as string,
+                    text: "My journey with Madura Travel Service began when Mr. VKT Balan helped me obtain my first passport..."
+                  },
+                  {
+                    name: "Mr. Sandy",
+                    Designation: "Dance Master",
+                    image: cel['/images/celebrity/sandy.jpg'] as string,
+                    text: "Mr. Sriharan Balan has been a tremendous support during my international shows..."
+                  },
                 ]}
               />
             )
