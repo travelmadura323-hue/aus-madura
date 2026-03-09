@@ -28,9 +28,30 @@ import Terms from "./pages/Terms";
 import Disclaimer from "./pages/Disclaimer"
 import ComplaintPolicy from "./pages/complaint-policy";
 import CareersPage from "./pages/CareersPage";
-
+import { doc } from "firebase/firestore";
+import { db } from "./firebase-config";
+import { useEffect } from "react";    
+import { collection, getDocs } from "firebase/firestore";
 
 export default function App() {
+
+  const docRef = doc(db, "users","UhHXaXitavSsa9w37RFl")
+  const getData = async () => {
+  try {
+    const snapshot = await getDocs(collection(db, "users"));
+
+    snapshot.forEach((doc) => {
+      console.log(doc.id, doc.data());
+    });
+
+  } catch (error) {
+    console.error("Firestore error:", error);
+  }
+};
+  useEffect(() => {
+    getData()
+  }, [])
+
   return (
     <Router>
       <ScrollToTop />

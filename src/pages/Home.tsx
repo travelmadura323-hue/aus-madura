@@ -12,6 +12,7 @@ import TestimonialCarousel from '../components/carousels/TestimonialCarousel';
 import ContactForm from '../components/ContactForm';
 import EnquiryModal from '../components/EnquiryModal';
 
+
 const cel = import.meta.glob('/images/celebrity/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
@@ -20,6 +21,38 @@ const im = import.meta.glob('../../images/im/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 });
+const logos = [
+  {
+    image: im['../../images/im/Aussie1.png'],
+    title: "Aussie Specialist",
+    description: "An Aussie Specialist is a travel agent who has completed official training about Australia’s destinations, attractions, and travel planning. This certification shows that the agent has expert knowledge of Australian travel."
+  },
+  {
+    image: im['../../images/im/iata.png'],
+    title: "IATA",
+    description: "The International Air Transport Association (IATA) is a global organization that represents and supports airlines worldwide. It helps coordinate international air travel by setting common standards for airlines, travel agencies, and aviation operations."
+  },
+  {
+    image: im['../../images/im/iaai.jpg'],
+    title: "IAAI",
+    description: "The Indian Association of Accredited Travel Agents (IAAI) is a professional organization representing accredited travel agencies in India. It works to promote high standards, professionalism, and ethical practices in the travel and tourism industry."
+  },
+  {
+    image: im['../../images/im/download.png'],
+    title: "Tourism Partner",
+    description: "The Outbound Tour Operators Association of India (OTOAI) is a national organization that represents travel companies in India specializing in outbound tourism—helping Indian travelers visit destinations around the world."
+  },
+  {
+    image: im['../../images/im/taai.png'],
+    title: "TAAI",
+    description: "The Travel Agents Association of India (TAAI) is one of the oldest and most respected travel industry organizations in India. It represents travel agencies, tour operators, and travel professionals across the country."
+  },
+  {
+    image: im['../../images/im/Ministry of Tourism.jpg'],
+    title: "Ministry of Tourism",
+    description: "The Ministry of Tourism, Government of India is the central government body responsible for promoting, developing, and regulating tourism in India."
+  }
+];
 
 // export default function Home() {
 //   const heroRef = useRef(null);
@@ -42,6 +75,8 @@ const gal = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
 
 
 export default function Home() {
+  // const [selectedLogo, setSelectedLogo] = useState<any>(null);
+  const [selectedLogo, setSelectedLogo] = useState<(typeof logos)[0] | null>(null);
   const heroRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -168,7 +203,7 @@ export default function Home() {
           className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16 md:py-24"
         >
           {/* Top Trust Badges */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
@@ -195,7 +230,7 @@ export default function Home() {
                 />
               </div>
             ))}
-          </motion.div>
+          </motion.div> */}
           <motion.div
             key={currentSlide}
             initial={{ opacity: 0, y: 30 }}
@@ -461,27 +496,62 @@ export default function Home() {
           Our Accreditations
         </h3>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-9 max-w-6xl mx-auto px-4">
-          {[
-            im['../../images/im/iata.png'],
-            im['../../images/im/iaai.jpg'],
-            im['../../images/im/download.png'],
-            im['../../images/im/taai.png'],
-            im['../../images/im/Ministry of Tourism.jpg'],
-          ].map((logo, index) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-9 max-w-6xl mx-auto px-4">
+          {logos.map((logo, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition"
+              onClick={() => setSelectedLogo(logo)}
+              className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer"
             >
               <img
-                src={logo}
-                alt="Association Logo"
+                src={logo.image}
+                alt={logo.title}
                 className="h-20 mx-auto object-contain"
               />
             </div>
           ))}
         </div>
       </section>
+      {selectedLogo && (
+  <div
+    className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200]"
+    onClick={() => setSelectedLogo(null)}
+  >
+    <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.8, opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      onClick={(e) => e.stopPropagation()}
+      className="bg-white rounded-2xl p-8 max-w-md w-full text-center relative shadow-2xl"
+    >
+      {/* Close Button */}
+      <button
+        onClick={() => setSelectedLogo(null)}
+        className="absolute top-4 right-4 text-gray-500 hover:text-black text-xl"
+      >
+        ✕
+      </button>
+
+      {/* Logo */}
+      <img
+        src={selectedLogo.image}
+        alt={selectedLogo.title}
+        className="h-24 mx-auto mb-6 object-contain"
+      />
+
+      {/* Title */}
+      <h4 className="text-2xl font-bold text-primary mb-3">
+        {selectedLogo.title}
+      </h4>
+
+      {/* Description */}
+      <p className="text-gray-600 leading-relaxed">
+        {selectedLogo.description}
+      </p>
+    </motion.div>
+  </div>
+)}
 
       {/* Feedbacks Section */}
       <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-secondary to-white">
