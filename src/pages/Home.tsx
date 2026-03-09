@@ -500,7 +500,7 @@ export default function Home() {
           {logos.map((logo, index) => (
             <div
               key={index}
-              onClick={() => setSelectedLogo(logo)}
+               onMouseEnter={() => setSelectedLogo(logo)}
               className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer"
             >
               <img
@@ -512,23 +512,18 @@ export default function Home() {
           ))}
         </div>
       </section>
-      {selectedLogo && (
-  <div
-    className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200]"
-    onClick={() => setSelectedLogo(null)}
-  >
+   {selectedLogo && (
+  <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200]">
     <motion.div
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0.8, opacity: 0 }}
       transition={{ duration: 0.3 }}
-      onClick={(e) => e.stopPropagation()}
       className="bg-white rounded-2xl p-8 max-w-md w-full text-center relative shadow-2xl"
     >
       {/* Close Button */}
       <button
         onClick={() => setSelectedLogo(null)}
-        className="absolute top-4 right-4 text-gray-500 hover:text-black text-xl"
+        className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
       >
         ✕
       </button>
