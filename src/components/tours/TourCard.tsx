@@ -35,7 +35,7 @@ export default function TourCard({ tour }: TourCardProps) {
   return (
     <motion.div
       whileHover={{ y: -10 }}
-      className="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 group flex flex-col"
+      className="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 group flex flex-col h-full"
     >
       <div className="relative h-48 sm:h-64 overflow-hidden">
         <Link to={`/tours/${tour.slug}`} onClick={() => window.scrollTo(0, 0)}>
@@ -57,7 +57,7 @@ export default function TourCard({ tour }: TourCardProps) {
 
       <div className="p-4 sm:p-6 flex flex-col flex-1">
         <h3 className="text-base sm:text-lg font-bold text-primary mb-2">{tour.title}</h3>
-        <p className="text-slate-500 text-xs sm:text-sm line-clamp-2 mb-4 leading-relaxed">
+        <p className="text-slate-500 text-xs sm:text-sm line-clamp-3 mb-4 leading-relaxed min-h-[3.75rem]">
           {tour.description || "Discover the hidden gems and iconic landmarks of this breathtaking destination with our expert-led tour."}
         </p>
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">

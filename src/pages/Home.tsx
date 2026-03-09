@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote, Images, MessageCircle } from 'lucide-react';
+import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote, Images, MessageCircle, ChevronRight } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { tours } from '../data/mockData';
@@ -11,6 +11,10 @@ import TourCarousel from '../components/carousels/TourCarousel';
 import TestimonialCarousel from '../components/carousels/TestimonialCarousel';
 import ContactForm from '../components/ContactForm';
 import EnquiryModal from '../components/EnquiryModal';
+import React from 'react';
+
+
+
 
 
 const cel = import.meta.glob('/images/celebrity/*.{png,jpg,jpeg,svg}', {
@@ -75,6 +79,9 @@ const gal = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
 
 
 export default function Home() {
+const [currentSlide, setCurrentSlide] = useState(0);
+const [isPaused, setIsPaused] = useState(false);
+const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
   // const [selectedLogo, setSelectedLogo] = useState<any>(null);
   const [selectedLogo, setSelectedLogo] = useState<(typeof logos)[0] | null>(null);
   const heroRef = useRef(null);
@@ -86,10 +93,6 @@ export default function Home() {
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
 
   // ✅ Slides = DATA ONLY
   const slides = [
@@ -110,7 +113,26 @@ export default function Home() {
       buttons: [
         { text: "Explore Australia Tours", link: "/destinations/australia" }
       ]
-    }
+    },
+    {
+      image: images['/images/10.png'],
+      title: "Explore Vietnam",
+      subtitle:
+        "Discover the beauty of Vietnam - from bustling Hanoi to serene Halong Bay and vibrant Ho Chi Minh City.",
+      buttons: [
+        { text: "Explore Vietnam Tours", link: "/destinations/vietnam" }
+      ]
+    },
+    {
+      image: images['/images/11.png'],
+      title: "Explore Sri Lanka",
+      subtitle:
+        "Experience the pearl of the Indian Ocean - ancient cities, pristine beaches, and lush tea plantations await.",
+      buttons: [
+        { text: "Explore Sri Lanka Tours", link: "/destinations/sri-lanka" }
+      ]
+    },
+   
   ];
 
   // Auto slide
@@ -127,11 +149,11 @@ export default function Home() {
   return (
     <div className="overflow-x-hidden">
       <section
-        ref={heroRef}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24"
-      >
+  ref={heroRef}
+  onMouseEnter={() => setIsPaused(true)}
+  onMouseLeave={() => setIsPaused(false)}
+  className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24"
+>
         {/* Floating Consultation Button - Sliding Tab */}
         {/* <motion.div
           initial={{ x: 100 }}
@@ -186,11 +208,13 @@ export default function Home() {
             <motion.div style={{ y }} className="absolute inset-0">
 
               {/* ✅ Dynamic Image */}
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="w-full h-full object-cover"
-              />
+              
+                 <img
+      src={slide.image}
+      alt={slide.title}
+      className="w-full h-full object-cover pointer-events-none"
+    />
+              
               <div className="absolute inset-0 bg-black/55" />
             </motion.div>
           </motion.div>
@@ -286,8 +310,8 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* Slide Indicators */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20 mt -3">
+        {/* Simple Bubble Indicators */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20">
           {slides.map((_, i) => (
             <button
               key={i}
@@ -350,9 +374,13 @@ export default function Home() {
             <div className="text-center md:text-left">
               <h2 className="text-[24px] font-bold text-primary">Iconic Australia </h2>
             </div>
-            <p className="text-slate-500 max-w-sm text-right hidden md:block italic">
-              Explore the Great Outback, the Great Barrier Reef, and the vibrant cities of the land down under.
-            </p>
+             <Link
+              to="/destinations/australia" onClick={() => window.scrollTo(0, 0)}
+              className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group self-end md:self-auto"
+            >
+              View All Australia Tours
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
 
           <TourCarousel tours={tours.filter((t: any) => {
@@ -451,13 +479,24 @@ export default function Home() {
             Experience. Quality. Trust.
           </span> */}
 
-          {/* Heading */}
-          <h2 className="text-[32px] font-bold text-primary mt-6 mb-6">
-            Advantage of Choosing Us
-          </h2>
-          <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
-            Experience. Quality. Trust.
-          </span>
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+            <div className="text-left flex-1">
+              <h2 className="text-[32px] font-bold text-primary mb-4">
+                Advantage of Choosing Us
+              </h2>
+              <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
+                Experience. Quality. Trust.
+              </span>
+            </div>
+            <Link
+              to="/company/our-story" onClick={() => window.scrollTo(0, 0)}
+              className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group shrink-0"
+            >
+              Know more about us
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
 
           {/* Description */}
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-20">
@@ -500,7 +539,7 @@ export default function Home() {
           {logos.map((logo, index) => (
             <div
               key={index}
-               onMouseEnter={() => setSelectedLogo(logo)}
+               onClick={() => setSelectedLogo(logo)}
               className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer"
             >
               <img
@@ -581,7 +620,7 @@ export default function Home() {
             const testimonials = [
               {
                 name: "Mr.YB Wong Hon Wai",
-                Designation: "Minister of Tourism, Malaysia",
+                designation: "Minister of Tourism, Malaysia",
                 text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
                 image: gal["images/YB.jpg"] as string
               },
@@ -629,43 +668,43 @@ export default function Home() {
                 testimonials={[
                   {
                     name: "Mr.YB Wong Hon Wai",
-                    Designation: "Minister of Tourism, Malaysia",
+                    designation: "Minister of Tourism, Malaysia",
                     text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
                     image: gal["images/YB.jpg"] as string
                   },
                   {
                     name: "Mr. Anbil Mahesh",
-                    Designation: "Minister for Education - Government of Tamilnadu",
+                    designation: "Minister for Education - Government of Tamilnadu",
                     image: cel["/images/celebrity/Anbil mahesh.jpg"] as string,
                     text: "I extend my heartfelt thanks to the entire Madura Travel Service team for their professional assistance in organizing international trips for the students of Tamil Nadu's government schools..."
                   },
                   {
                     name: "Mr. Napoleon",
-                    Designation: "Cine Actor & Politician",
+                    designation: "Cine Actor & Politician",
                     image: cel["/images/celebrity/nepolean.jpg"] as string,
                     text: "Mr. Sriharan Balan and his exceptional team provided seamless service..."
                   },
                   {
                     name: "Mr. Kamal Haasan",
-                    Designation: "Cine Actor & Director",
+                    designation: "Cine Actor & Director",
                     image: cel["/images/celebrity/Kamalhasan.jpg"] as string,
                     text: "Mr. V.K.T. Balan was more than just a travel consultant..."
                   },
                   {
                     name: "Mr. Venkatesh Bhat",
-                    Designation: "TCDC Fame & CEO, Accord Hotels",
+                    designation: "TCDC Fame & CEO, Accord Hotels",
                     image: cel["/images/celebrity/Venkatesh-Bhat.jpg"] as string,
                     text: "My long-standing association with Madura Travel Service has made my global travels seamless..."
                   },
                   {
                     name: "Mrs. P. Susheela",
-                    Designation: "Legendary Singer",
+                    designation: "Legendary Singer",
                     image: cel["/images/celebrity/susheela.jpg"] as string,
                     text: "My journey with Madura Travel Service began when Mr. VKT Balan helped me obtain my first passport..."
                   },
                   {
                     name: "Mr. Sandy",
-                    Designation: "Dance Master",
+                    designation: "Dance Master",
                     image: cel['/images/celebrity/sandy.jpg'] as string,
                     text: "Mr. Sriharan Balan has been a tremendous support during my international shows..."
                   },
@@ -798,3 +837,4 @@ export default function Home() {
     </div>
   );
 }
+

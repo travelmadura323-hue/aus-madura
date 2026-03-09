@@ -1,26 +1,24 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import 'swiper/css';
-import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 interface Testimonial {
     name: string;
     text: string;
     image: string;
-    Designation: string;
+    designation: string;
 }
 
 export default function TestimonialCarousel({ testimonials }: { testimonials: Testimonial[] }) {
     return (
         <div className="w-full relative px-4 sm:px-0">
             <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
+                modules={[Pagination, Autoplay]}
                 spaceBetween={24}
                 slidesPerView={1}
-                navigation
                 pagination={{ clickable: true }}
                 breakpoints={{
                     640: { slidesPerView: 2 },
@@ -36,10 +34,6 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: Te
                             transition={{ duration: 0.3 }}
                             className="h-full bg-white p-8 rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 border border-slate-100 flex flex-col justify-between relative"
                         >
-                            <div className="absolute -top-5 left-6 bg-accent text-white px-3 py-1 rounded-full text-xl shadow-md">
-                                “
-                            </div>
-
                             <div className="flex gap-1 text-accent mt-6">
                                 {[1, 2, 3, 4, 5].map((s) => (
                                     <Star key={s} className="w-4 h-4 fill-current" />
@@ -58,9 +52,9 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: Te
                                     <div className="font-semibold text-primary text-sm">
                                         {feedback.name}
                                     </div>
-                                    {/* <div className="text-xs text-slate-400">
-                                       
-                                    </div> */}
+                                    <div className="text-xs text-slate-400">
+                                        {feedback.designation}
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
@@ -68,19 +62,6 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: Te
                 ))}
             </Swiper>
             <style>{`
-        .swiper-button-next, .swiper-button-prev {
-          color: #cc1715 !important;
-          background: rgba(255, 255, 255, 0.8);
-          width: 40px !important;
-          height: 40px !important;
-          border-radius: 50%;
-          transform: scale(0.8);
-          box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-        }
-        .swiper-button-next::after, .swiper-button-prev::after {
-          font-size: 18px !important;
-          font-weight: bold;
-        }
         .swiper-pagination-bullet-active {
           background: #cc1715 !important;
         }
