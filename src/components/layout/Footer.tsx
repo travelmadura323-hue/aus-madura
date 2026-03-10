@@ -22,7 +22,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-white text-sm leading-relaxed mb-6 max-w-xs">
-              Madura Travel Service - Your trusted partner for global travel solutions for over 40 years. Excellence in service, every step of the way.
+              Madura Global - Your trusted partner for global travel solutions for over 40 years. Excellence in service, every step of the way.
             </p>
             <div className="flex gap-4">
               <a href="https://www.facebook.com/maduratravel/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
@@ -86,7 +86,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-white/60 text-xs text-center md:text-left">
-          <p>© 2026 Madura Travel Service Pvt Ltd. All rights reserved.</p>
+          <p>© 2026 Madura Global. All rights reserved.</p>
           <div className="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2">
             <Link to="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</Link>
             <Link to="/terms-conditions" className="hover:text-accent transition-colors">Terms of Service</Link>
