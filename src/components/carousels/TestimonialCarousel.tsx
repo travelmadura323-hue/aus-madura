@@ -14,7 +14,7 @@ interface Testimonial {
 
 export default function TestimonialCarousel({ testimonials }: { testimonials: Testimonial[] }) {
     return (
-        <div className="w-full relative px-4 sm:px-0">
+        <div className="w-full relative px-4 sm:px-0 ">
             <Swiper
                 modules={[Pagination, Autoplay]}
                 spaceBetween={24}

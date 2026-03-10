@@ -512,7 +512,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
               <Quote className="w-12 h-12 md:w-16 md:h-16 text-white mb-6 md:mb-8 " />
               <h2 className="text-2xl md:text-3xl text-white font-bold mb-6">A Message from Our Chairman</h2>
               <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-8 italic">
-                "For over four decades, we have carried the dreams of millions. Trusted by more than 4 million travelers, we believe travel is not merely a transaction — it is a responsibility. Every journey we create is guided by experience, care, and an uncompromising promise: client happiness and true value for every penny spent. This is not just our slogan; it is our promise."
+                "For over four decades, we have carried the dreams of millions. Trusted by more than 4 million travelers, we believe travel is not merely a transaction — it is a responsibility.  Every journey we create is guided by experience, care, and an uncompromising promise: client happiness and true value for every penny spent. This is not just our slogan; it is our promise."
               </p>
               <div>
                 <div className="text-2xl text-[#cc1715] font-bold text-white">“Kalaimamani” V.K.T. Balan</div>
@@ -630,12 +630,12 @@ const handleTouchEnd = (e: React.TouchEvent) => {
 )}
 
       {/* Feedbacks Section */}
-      <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-secondary to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 lg:py-24  bg-gradient-to-b from-secondary to-white">
+        <div className="max-w-7xl mx-auto px-4  sm:px-6 lg:px-8">
 
 
           {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+          <div className="flex flex-col md:flex-row justify-between mt-50 items-start md:items-end mb-16 gap-6">
             <div className="text-left flex-1">
               <span className="text-sm tracking-[0.3em] uppercase text-accent font-semibold">
                 Testimonials
@@ -753,7 +753,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
     image: cel['/images/celebrity/sandy.jpg'] as string,
     text: "Mr. Sriharan Balan has been a tremendous support during my international shows. His professional team is always available 24/7, ensuring that my travel experiences are smooth and enjoyable. I truly appreciate their dedication and commitment to making every journey a seamless and positive experience"
   },
-                ]}
+           ]}
               />
             )
           })()}
@@ -828,7 +828,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
         <div className="md:hidden mt-16 px-6">
           <div className="grid grid-cols-2 gap-4">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
-              <div key={`mobile-logo-${i}`} className="bg-slate-50 rounded-2xl p-6 flex items-center justify-center h-24 border border-slate-100">
+              <div key={`mobile-logo-${i}`} className="bg-slate-50 rounded-2xl p-6 flex items-center transition-all duration-500 justify-center h-24 border border-slate-100">
                 <img
                   src={gallery[`/src/gallery/img-${i}.jpg`]}
                   alt={`Partner ${i}`}

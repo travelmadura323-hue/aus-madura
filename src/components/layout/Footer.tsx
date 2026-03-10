@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin, Send } from 'lucide-react';
-import Image from '/images/logo.png';
+import Image from '/images/logo8.png';
 
 export default function Footer() {
   return (
@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Column 1: About */}
           <div className="flex flex-col items-start px-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden p-1">
+              <div className="w-25 h-25 rounded-full flex items-center justify-center shadow-sm overflow-hidden p-1">
                 <img
                   src={Image}
                   alt="Madura Travel Logo"

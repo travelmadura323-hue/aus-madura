@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Menu, X, Phone, Mail, MapPin, Globe, Building2, Users, Briefcase, Send } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import EnquiryModal from '../EnquiryModal';
-import Image from '/images/logo3.png';
+import Image from '/images/logo8.png';
 
 const im = import.meta.glob('../../../images/im/*.{png,jpg,jpeg,svg}', {
   eager: true,
@@ -80,8 +80,8 @@ export default function Header() {
               className={cn(
                 "relative transition-all duration-300 flex items-center justify-center overflow-hidden shrink-0",
                 (isScrolled || location.pathname !== "/")
-                  ? "w-10 h-10 md:w-14 md:h-14"
-                  : "w-12 h-12 md:w-20 md:h-20"
+                  ? "w-12 h-12 md:w-20 md:h-20"
+                  : "w-14 h-14 md:w-24 md:h-24"
               )}
             >
               <img
