@@ -151,7 +151,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
       ]
     },
     {
-      image: images['/images/vietnam'],
+      image: images['/images/vietnam.png'],
       title: "Explore Vietnam",
       subtitle:
         "From coastlines to desert interiors, Vietnam revealed through thoughtful design and disciplined execution.",
@@ -656,7 +656,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                 name: "Mr. Anbil Mahesh",
                 designation: "Minister for Education - Government of Tamilnadu",
                 image: cel["/images/celebrity/Anbil mahesh.jpg"] as string,
-                text: "I extend my heartfelt thanks to the entire Madura Travel Service team for their professional assistance in organizing international trips for the students of Tamil Nadu's government schools..."
+                text: "I extend my heartfelt thanks to the entire Madura Travel Service team for their professional assistance in organizing international trips for the students of Tamil Nadu's government schools, helping them realize their dreams. Traveling with the students made me feel like a young boy again, as I thoroughly enjoyed the beautifully planned tours to destinations like Singapore, Malaysia, Japan, South Korea, and more. Kudos to Madura Travel Service for their incredible efforts."
               },
               {
                 name: "Mr. Napoleon",
