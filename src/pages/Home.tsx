@@ -548,7 +548,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
           {logos.map((logo, index) => (
             <div
               key={index}
-               onMouseEnter={() => setSelectedLogo(logo)}
+               onClick={() => setSelectedLogo(logo)}
               className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer"
             >
               <img
