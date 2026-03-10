@@ -2,7 +2,7 @@ import React from "react"
 
 export default function Disclaimer() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white pt-28 pb-20">
       <div className="max-w-5xl mx-auto px-6">
 
         {/* Page Title */}
@@ -14,6 +14,7 @@ export default function Disclaimer() {
 
           {/* 1 */}
           <div>
+            
             <h2 className="text-xl font-semibold text-[#191975] mb-3">
               1. General Disclaimer
             </h2>
