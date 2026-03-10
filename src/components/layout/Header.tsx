@@ -69,7 +69,7 @@ export default function Header() {
       <header
         className={cn(
           'fixed top-0 left-0 w-full z-50 transition-all duration-300',
-          (isScrolled || location.pathname !== '/') ? 'bg-primary/95 backdrop-blur-md py-3 shadow-lg' : 'bg-transparent py-5'
+          (isScrolled || location.pathname !== '/') ? 'bg-primary/95 backdrop-blur-md py-3' : 'bg-transparent py-5'
         )}
       >
         <div className="w-full px-4 md:px-10 h-full flex items-center justify-between gap-4">
