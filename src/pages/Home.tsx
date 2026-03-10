@@ -456,7 +456,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
       {/* Popular India Tours */}
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-4">
             <div className="text-left">
               <h2 className="text-[24px] font-bold text-primary">Popular India Tours</h2>
             </div>
