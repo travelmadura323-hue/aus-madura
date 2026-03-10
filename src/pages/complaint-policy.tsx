@@ -6,10 +6,7 @@ export default function complaintPolicy() {
       <div className="max-w-5xl mx-auto px-6">
 
         {/* Title */}
-        <h1 className="text-4xl font-bold text-[#191975] mb-10">
-          Customer Complaint Policy
-        </h1>
-
+        
         <div className="space-y-10 text-gray-700 leading-relaxed">
 
           {/* Core Value */}
