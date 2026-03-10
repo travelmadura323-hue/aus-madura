@@ -92,7 +92,7 @@ export default function OurStoryPage() {
               </h6>
 
               <p className="mt-4 leading-relaxed text-muted-foreground">
-About Madura Global
+
 
 Madura Global is a premium travel and advisory platform connecting Australia with India and select international destinations through curated, intelligently designed journeys. Built upon the 40-year legacy of Madura Travel in India, our foundation is rooted in operational depth, long-standing regional partnerships and multi-generational expertise.
 
