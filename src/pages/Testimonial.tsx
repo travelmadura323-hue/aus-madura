@@ -85,7 +85,7 @@ const testimonials = [
     name: "Jagadeesh Jayaraman",
     rating:5,
     text: "They understood our requirements perfectly and gave us a well-planned tour. Wonderful coordination and experience!",
-    image:"/images/jaga.png"
+   image: gal["/images/jaga.png"] as string
   }
 ]
 
