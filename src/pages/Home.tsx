@@ -80,6 +80,9 @@ const gallery = import.meta.glob('/src/gallery/*.{png,jpg,jpeg,svg}', {
 const gal = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
+});const own = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+  eager: true,
+  import: 'default',
 });
 
 
@@ -580,22 +583,26 @@ const handleTouchEnd = (e: React.TouchEvent) => {
 
 
       {/* Leadership Messages Section */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-slate-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-slate-50 to-white relative overflow-hidden">
+        {/* Background Decorations */}
+        <div className="absolute top-10 left-10 w-32 h-32 bg-accent/5 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-primary/5 rounded-full blur-2xl"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 sm:mb-16">
             <span className="text-accent font-bold uppercase tracking-[0.4em] text-xs mb-3 block">Leadership Insights</span>
-            <h2 className="text-[32px] sm:text-[40px] font-bold text-primary mb-6">
+            <h2 className="text-[28px] sm:text-[32px] lg:text-[40px] font-bold text-primary mb-6">
               Messages From Our Leaders
             </h2>
-            <p className="text-slate-600 max-w-3xl mx-auto text-lg leading-relaxed">
+            <p className="text-slate-600 max-w-3xl mx-auto text-lg leading-relaxed px-4">
               Hear from the visionary leaders who guide our commitment to excellence in travel services, 
               each bringing unique expertise and passion to create unforgettable journeys.
             </p>
           </div>
 
-          {/* Messages Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          {/* Messages Grid - Single Cards */}
+          <div className="grid grid-cols-1 gap-8 lg:gap-12 max-w-4xl mx-auto">
             
             {/* MD Message */}
             <motion.div
@@ -603,39 +610,62 @@ const handleTouchEnd = (e: React.TouchEvent) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative bg-white rounded-3xl shadow-xl p-8 lg:p-10 border border-slate-100 hover:shadow-2xl transition-all duration-300"
+              className="relative bg-white rounded-3xl shadow-xl p-6 sm:p-8 lg:p-10 border border-slate-100 hover:shadow-2xl transition-all duration-300 overflow-hidden"
             >
-              {/* Decorative Element */}
-              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent to-accent/60 rounded-t-3xl"></div>
+              {/* Mobile-First Decorative Elements */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-accent/60"></div>
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent/10 rounded-full blur-xl"></div>
               
-              <div className="flex items-start gap-6">
+              {/* Single Card Layout with Image */}
+              <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+                {/* Image Section */}
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-to-br from-accent/20 to-accent/10 rounded-2xl flex items-center justify-center">
-                    <Users className="w-8 h-8 text-accent" />
+                  <div className="relative">
+                    <img
+                       src={own["/images/Sri sir.jpg"] as string}
+                      alt="Managing Director"
+                      className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-2xl object-cover border-4 border-accent/20 shadow-xl"
+                    />
+                    <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-accent rounded-full border-3 border-white shadow-lg"></div>
+                  </div>
+                  <div className="text-center mt-3">
+                    <div className="font-bold text-primary text-lg">Mr. Sriharan Balan</div>
+                    <div className="text-sm text-slate-500">Managing Director</div>
+                    <div className="text-xs text-slate-400">Madura Travel Service</div>
                   </div>
                 </div>
+                
+                {/* Content Section */}
                 <div className="flex-1">
+                  {/* Mobile Enhanced Header */}
                   <div className="flex items-center gap-3 mb-4">
-                    <h3 className="text-2xl font-bold text-primary">Message from Our MD</h3>
-                    <div className="px-3 py-1 bg-accent/10 rounded-full">
-                      <span className="text-xs font-semibold text-accent uppercase tracking-wider">Managing Director</span>
+                    <div className="w-12 h-12 bg-gradient-to-br from-accent/20 to-accent/10 rounded-2xl flex items-center justify-center">
+                      <Users className="w-6 h-6 text-accent" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-primary">Message from Our MD</h3>
+                      <div className="inline-block px-2 py-1 bg-accent/10 rounded-full mt-1">
+                        <span className="text-[10px] font-semibold text-accent uppercase tracking-wider">Managing Director</span>
+                      </div>
                     </div>
                   </div>
-                  <Quote className="w-8 h-8 text-accent/30 mb-4" />
-                  <p className="text-slate-600 text-lg leading-relaxed mb-6 italic">
+                  
+                  <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-accent/30 mb-4" />
+                  <p className="text-slate-600 text-sm sm:text-lg leading-relaxed mb-6 italic">
                     "Our journey continues to evolve with innovation at its core. We embrace cutting-edge technology 
                     and sustainable practices while maintaining the personal touch that defines us. Every client's 
                     dream becomes our mission, and every destination becomes a story of excellence."
                   </p>
-                  <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
-                    <img
-                      src={image}
-                      alt="Managing Director"
-                      className="w-20 h-20 rounded-full object-cover border-3 border-accent/20 shadow-lg"
-                    />
-                    <div>
-                      <div className="font-bold text-primary">Managing Director</div>
-                      <div className="text-sm text-slate-500">Madura Travel Service (P) Ltd.</div>
+                  
+                  {/* Enhanced Footer */}
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-100 bg-gradient-to-r from-accent/5 to-transparent -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10 py-4 -mb-6 sm:-mb-8 lg:-mb-10">
+                    <div className="text-right">
+                      <div className="flex items-center gap-1 text-accent mb-1 justify-end">
+                        <span className="text-xs font-medium">Excellence</span>
+                        <span className="text-xs">•</span>
+                        <span className="text-xs font-medium">Innovation</span>
+                      </div>
+                      <div className="text-xs text-slate-400">Leadership Since 1986</div>
                     </div>
                   </div>
                 </div>
@@ -648,39 +678,63 @@ const handleTouchEnd = (e: React.TouchEvent) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative bg-white rounded-3xl shadow-xl p-8 lg:p-10 border border-slate-100 hover:shadow-2xl transition-all duration-300"
+              className="relative bg-white rounded-3xl shadow-xl p-6 sm:p-8 lg:p-10 border border-slate-100 hover:shadow-2xl transition-all duration-300 overflow-hidden"
             >
-              {/* Decorative Element */}
-              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary/80 to-primary rounded-t-3xl"></div>
+              {/* Mobile-First Decorative Elements */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/80 to-primary"></div>
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/10 rounded-full blur-xl"></div>
               
-              <div className="flex items-start gap-6">
+              {/* Single Card Layout with Image */}
+              <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+                {/* Image Section */}
                 <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center">
-                    <Building2 className="w-8 h-8 text-primary" />
+                  <div className="relative">
+                    <img
+                        src={own["/images/Guru sir.jpeg"] as string}
+                      alt="Vice President"
+                      className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-2xl object-cover border-4 border-primary/20 shadow-xl"
+                    />
+                    <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-primary rounded-full border-3 border-white shadow-lg"></div>
+                  </div>
+                  <div className="text-center mt-3">
+                    <div className="font-bold text-primary text-lg">Guru Chandar</div>
+                    <div className="text-sm text-slate-500">Director</div>
+                    <div className="text-xs text-slate-400">Madura Global Australia</div>
                   </div>
                 </div>
+                
+                {/* Content Section */}
                 <div className="flex-1">
+                  {/* Mobile Enhanced Header */}
                   <div className="flex items-center gap-3 mb-4">
-                    <h3 className="text-2xl font-bold text-primary">Message from Our VP</h3>
-                    <div className="px-3 py-1 bg-primary/10 rounded-full">
-                      <span className="text-xs font-semibold text-primary uppercase tracking-wider">Vice President</span>
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center">
+                      <Building2 className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-primary">Director’s Note</h3>
+                      <div className="inline-block px-2 py-1 bg-primary/10 rounded-full mt-1">
+                        <span className="text-[10px] font-semibold text-primary uppercase tracking-wider">Director</span>
+                      </div>
                     </div>
                   </div>
-                  <Quote className="w-8 h-8 text-primary/30 mb-4" />
-                  <p className="text-slate-600 text-lg leading-relaxed mb-6 italic">
-                    "Excellence in service is not just about meeting expectations—it's about exceeding them. 
-                    Our dedicated team works tirelessly to ensure every journey is seamless, every detail is 
-                    perfect, and every client returns with memories that last a lifetime."
+                  
+                  <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-primary/30 mb-4" />
+                  <p className="text-slate-600 text-sm sm:text-lg leading-relaxed mb-6 italic">
+                    "When we set out to build Madura Global Australia, the intention was simple — to create a travel platform people could truly trust.
+In a world where travel choices are endless, what matters most is guidance you can rely on and experiences that are thoughtfully crafted. I believe journeys should do more than move people between destinations; they should connect cultures, inspire new perspectives, and bring people together.
+From Australia, our focus is to curate meaningful travel experiences — from group journeys to corporate and incentive travel — across India, Asia, and beyond.
+This is only the beginning of what we are building here. My vision is for Madura to become a trusted gateway for journeys that are not just well organised, but truly memorable."
                   </p>
-                  <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
-                    <img
-                      src={image}
-                      alt="Vice President"
-                      className="w-20 h-20 rounded-full object-cover border-3 border-primary/20 shadow-lg"
-                    />
-                    <div>
-                      <div className="font-bold text-primary">Vice President</div>
-                      <div className="text-sm text-slate-500">Madura Travel Service (P) Ltd.</div>
+                  
+                  {/* Enhanced Footer */}
+                  <div className="flex items-center justify-between pt-4 border-t border-slate-100 bg-gradient-to-r from-primary/5 to-transparent -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10 py-4 -mb-6 sm:-mb-8 lg:-mb-10">
+                    <div className="text-right">
+                      <div className="flex items-center gap-1 text-primary mb-1 justify-end">
+                        <span className="text-xs font-medium">Service</span>
+                        <span className="text-xs">•</span>
+                        <span className="text-xs font-medium">Quality</span>
+                      </div>
+                      <div className="text-xs text-slate-400">Committed to Excellence</div>
                     </div>
                   </div>
                 </div>
@@ -688,15 +742,15 @@ const handleTouchEnd = (e: React.TouchEvent) => {
             </motion.div>
           </div>
 
-          {/* Call to Action */}
-          <div className="text-center mt-16">
+          {/* Enhanced Mobile CTA */}
+          <div className="text-center mt-12 sm:mt-16">
             <Link
               to="/company/our-story"
               onClick={() => window.scrollTo(0, 0)}
-              className="inline-flex items-center gap-3 bg-primary text-white font-bold px-8 py-4 rounded-full hover:bg-accent transition-all shadow-lg hover:shadow-xl group"
+              className="inline-flex items-center gap-3 bg-primary text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-accent transition-all shadow-lg hover:shadow-xl group text-sm sm:text-base"
             >
-              Meet Our Leadership Team
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <span>Meet Our Leadership Team</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
@@ -872,7 +926,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
     name: "Mr.YB Wong Hon Wai",
     designation: "Minister of Tourism, Malaysia",
     text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
-    image: gal["images/YB.jpg"] as string
+    image: gal["/images/YB.jpg"] as string
   },
   {
     name: "Mr. Anbil Mahesh",
