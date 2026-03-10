@@ -149,7 +149,26 @@ const handleTouchEnd = (e: React.TouchEvent) => {
       buttons: [
         { text: "Explore Australia Tours", link: "/destinations/australia" }
       ]
-    }
+    },
+    {
+      image: images['/images/vietnam'],
+      title: "Explore Vietnam",
+      subtitle:
+        "From coastlines to desert interiors, Vietnam revealed through thoughtful design and disciplined execution.",
+      buttons: [
+        { text: "Explore Vietnam Tours", link: "/destinations/vietnam" }
+      ]
+    },
+     {
+      image: images['/images/sri-lanka.png'],
+      title: "Explore Sri Lanka",
+      subtitle:
+        "From coastlines to desert interiors, Sri lanka revealed through thoughtful design and disciplined execution.",
+      buttons: [
+        { text: "Explore Sri Lanka Tours", link: "/destinations/sri-lanka" }
+      ]
+    },
+
   ];
 
   // Auto slide
@@ -483,7 +502,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
               </p>
               <div>
                 <div className="text-2xl text-[#cc1715] font-bold text-white">“Kalaimamani” V.K.T. Balan</div>
-                <div className="text-slate-400">Chairman - madura travel service (P) Ltd.</div>
+                <div className="text-slate-400">Chairman - Madura Travel Service (P) Ltd.</div>
               </div>
             </motion.div>
           </div>
