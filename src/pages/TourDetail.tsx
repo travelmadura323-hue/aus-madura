@@ -370,7 +370,7 @@ export default function TourDetail() {
                             required
                             type="text"
                             placeholder="Full Name"
-                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           />
@@ -378,13 +378,13 @@ export default function TourDetail() {
                             required
                             type="email"
                             placeholder="Email Address"
-                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           />
                           <div className="grid grid-cols-3 gap-2">
                             <select
-                              className="bg-white/10 border border-white/10 rounded-xl px-2 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                              className="bg-white/10 border border-white/10 rounded-xl px-2 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
                               value={formData.countryCode}
                               onChange={(e) => setFormData({ ...formData, countryCode: e.target.value })}
                             >
@@ -424,7 +424,7 @@ export default function TourDetail() {
                               required
                               type="tel"
                               placeholder="Phone Number"
-                              className="col-span-2 bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                              className="col-span-2 bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
                               value={formData.phone}
                               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                             />
@@ -432,12 +432,12 @@ export default function TourDetail() {
                           <input
                             required
                             type="date"
-                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
                             value={formData.date}
                             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                           />
                           <select
-                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
                             value={formData.travelers}
                             onChange={(e) => setFormData({ ...formData, travelers: e.target.value })}
                           >
@@ -446,7 +446,7 @@ export default function TourDetail() {
                           <textarea
                             placeholder="Special Requests"
                             rows={3}
-                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors resize-none"
+                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors resize-none"
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                           />
