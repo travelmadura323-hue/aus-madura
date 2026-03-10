@@ -81,37 +81,51 @@ const gal = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
 export default function Home() {
 const [touchStart, setTouchStart] = useState<number | null>(null);
 const [touchStartY, setTouchStartY] = useState<number | null>(null);
+const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
 const [isDragging, setIsDragging] = useState(false);
 const minSwipeDistance = 50;
 
+// 1. Intha functions-ah component-oda top-la (Home function kulla) replace pannunga
 const handleTouchStart = (e: React.TouchEvent) => {
   setTouchStart(e.touches[0].clientX);
   setTouchStartY(e.touches[0].clientY);
+  setTouchEnd(null); // Reset previous data
   setIsDragging(true);
 };
 
-const handleTouchMove = () => {};
+// handleTouchMove-ah veliya define pannunga
+const handleTouchMove = (e: React.TouchEvent) => {
+  setTouchEnd(e.touches[0].clientX);
+};
 
 const handleTouchEnd = (e: React.TouchEvent) => {
+  // Check if we have all necessary starting points
   if (touchStart === null || touchStartY === null) return;
 
-  const touchEnd = e.changedTouches[0].clientX;
-  const touchEndY = e.changedTouches[0].clientY;
+  // Touch move aagala-na handleTouchMove set panna touchEnd irukkathu.
+  // Appo changedTouches-ah backup-ah eduthukalam.
+  const finalTouchX = touchEnd !== null ? touchEnd : e.changedTouches[0].clientX;
+  const finalTouchY = e.changedTouches[0].clientY;
 
-  const distance = touchStart - touchEnd;
-  const distanceY = Math.abs(touchStartY - touchEndY);
+  const distanceX = touchStart - finalTouchX;
+  const distanceY = Math.abs(touchStartY - finalTouchY);
 
-  if (distanceY < 50) {
-    if (distance > minSwipeDistance) {
+  // Diagonal swipe-ah thavirkka (Vertical scroll restriction)
+  if (distanceY < 100) { 
+    if (distanceX > minSwipeDistance) {
+      // Swipe Left -> Next Slide
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }
-
-    if (distance < -minSwipeDistance) {
+    } else if (distanceX < -minSwipeDistance) {
+      // Swipe Right -> Previous Slide
       setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
     }
   }
 
+  // Reset states
+  setTouchStart(null);
+  setTouchEnd(null);
+  setTouchStartY(null);
   setIsDragging(false);
 };
   // const [selectedLogo, setSelectedLogo] = useState<any>(null);
