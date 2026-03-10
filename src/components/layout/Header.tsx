@@ -205,7 +205,7 @@ export default function Header() {
           >
             <div className="flex flex-col h-full">
               {/* Header Container */}
-              <div className="sticky top-0 bg-white/80 backdrop-blur-md z-10 px-6 py-6 border-b border-slate-100 flex justify-between items-center">
+              <div className="sticky top-0 bg-white/80 backdrop-blur-md z-10 px-6 py-6 flex justify-between items-center">
                 <div className="h-12 w-12 bg-white rounded-2xl flex items-center justify-center p-2 border border-slate-100 shadow-sm">
                   <img src={Image} alt="Logo" className="h-full w-auto object-contain" />
                 </div>
@@ -250,7 +250,7 @@ export default function Header() {
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="bg-slate-50/50 rounded-b-2xl -mt-4 pt-8 pb-4 px-4 border-x border-b border-slate-100"
+                            className="bg-slate-50/50 rounded-b-2xl -mt-4 pt-8 pb-4 px-4"
                           >
                             <div className="grid grid-cols-1 gap-2">
                               {link.dropdown?.map((item, idx) => (

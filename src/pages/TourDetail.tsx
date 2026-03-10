@@ -21,6 +21,7 @@ export default function TourDetail() {
     name: '',
     email: '',
     phone: '',
+    countryCode: '+91',
     date: '',
     travelers: '1',
     message: ''
@@ -49,7 +50,7 @@ export default function TourDetail() {
 
       if (result.success) {
         setBookingStatus('success');
-        setFormData({ name: '', email: '', phone: '', date: '', travelers: '1', message: '' });
+        setFormData({ name: '', email: '', phone: '', countryCode: '+91', date: '', travelers: '1', message: '' });
       } else {
         throw new Error(result.message || 'Submission failed');
       }
@@ -267,17 +268,17 @@ export default function TourDetail() {
                   </ul>
                 </div>
 
-                <div className="bg-[#cc1217]/5 p-10 rounded-[2.5rem] border border-[#cc1217]/20">
-                  <h3 className="text-xl font-bold text-[#cc1217] mb-8 flex items-center gap-3">
-                    <div className="w-10 h-10 bg-[#cc1217] rounded-2xl flex items-center justify-center text-white">
+                <div className="bg-slate-100 p-10 rounded-[2.5rem] border border-slate-200">
+                  <h3 className="text-xl font-bold text-slate-700 mb-8 flex items-center gap-3">
+                    <div className="w-10 h-10 bg-slate-400 rounded-2xl flex items-center justify-center text-white">
                       <X className="w-6 h-6" />
                     </div>
                     What's Excluded
                   </h3>
                   <ul className="space-y-5">
                     {(tour.excluded || ['International Airfare', 'Visa Processing Charges', 'Travel & Health Insurance', 'Additional Activities', 'Private Shopping']).map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-4 text-[#cc1217] font-medium">
-                        <div className="w-2 h-2 bg-[#cc1217] rounded-full" /> {item}
+                      <li key={idx} className="flex items-center gap-4 text-slate-600 font-medium">
+                        <div className="w-2 h-2 bg-slate-400 rounded-full" /> {item}
                       </li>
                     ))}
                   </ul>
@@ -381,29 +382,66 @@ export default function TourDetail() {
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           />
-                          <div className="grid grid-cols-2 gap-4">
+                          <div className="grid grid-cols-3 gap-2">
+                            <select
+                              className="bg-white/10 border border-white/10 rounded-xl px-2 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                              value={formData.countryCode}
+                              onChange={(e) => setFormData({ ...formData, countryCode: e.target.value })}
+                            >
+                              <option value="+91" className="bg-primary">+91</option>
+                              <option value="+1" className="bg-primary">+1</option>
+                              <option value="+44" className="bg-primary">+44</option>
+                              <option value="+971" className="bg-primary">+971</option>
+                              <option value="+965" className="bg-primary">+965</option>
+                              <option value="+966" className="bg-primary">+966</option>
+                              <option value="+968" className="bg-primary">+968</option>
+                              <option value="+973" className="bg-primary">+973</option>
+                              <option value="+974" className="bg-primary">+974</option>
+                              <option value="+880" className="bg-primary">+880</option>
+                              <option value="+60" className="bg-primary">+60</option>
+                              <option value="+65" className="bg-primary">+65</option>
+                              <option value="+62" className="bg-primary">+62</option>
+                              <option value="+63" className="bg-primary">+63</option>
+                              <option value="+90" className="bg-primary">+90</option>
+                              <option value="+20" className="bg-primary">+20</option>
+                              <option value="+27" className="bg-primary">+27</option>
+                              <option value="+39" className="bg-primary">+39</option>
+                              <option value="+33" className="bg-primary">+33</option>
+                              <option value="+81" className="bg-primary">+81</option>
+                              <option value="+82" className="bg-primary">+82</option>
+                              <option value="+86" className="bg-primary">+86</option>
+                              <option value="+852" className="bg-primary">+852</option>
+                              <option value="+61" className="bg-primary">+61</option>
+                              <option value="+7" className="bg-primary">+7</option>
+                              <option value="+49" className="bg-primary">+49</option>
+                              <option value="+31" className="bg-primary">+31</option>
+                              <option value="+46" className="bg-primary">+46</option>
+                              <option value="+47" className="bg-primary">+47</option>
+                              <option value="+48" className="bg-primary">+48</option>
+                              <option value="+358" className="bg-primary">+358</option>
+                            </select>
                             <input
                               required
                               type="tel"
-                              placeholder="Phone"
-                              className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                              placeholder="Phone Number"
+                              className="col-span-2 bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
                               value={formData.phone}
                               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                             />
-                            <input
-                              required
-                              type="date"
-                              className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
-                              value={formData.date}
-                              onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                            />
                           </div>
+                          <input
+                            required
+                            type="date"
+                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
+                            value={formData.date}
+                            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                          />
                           <select
                             className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-accent transition-colors"
                             value={formData.travelers}
                             onChange={(e) => setFormData({ ...formData, travelers: e.target.value })}
                           >
-                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => <option key={n} value={n} className="bg-primary">{n} Travelers</option>)}
+                            {[...Array(50)].map((_, i) => i + 1).map(n => <option key={n} value={n} className="bg-primary">{n} Traveler{n > 1 ? 's' : ''}</option>)}
                           </select>
                           <textarea
                             placeholder="Special Requests"
