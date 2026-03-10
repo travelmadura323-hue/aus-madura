@@ -56,7 +56,7 @@ export default function TourCard({ tour }: TourCardProps) {
       </div>
 
       <div className="p-4 sm:p-6 flex flex-col flex-1">
-        <h3 className="text-base sm:text-lg font-bold text-primary mb-2">{tour.title}</h3>
+        <h3 className="text-base sm:text-lg font-bold text-primary mb-2 truncate">{tour.title}</h3>
         <p className="text-slate-500 text-xs sm:text-sm line-clamp-3 mb-4 leading-relaxed min-h-[3.75rem]">
           {tour.description || "Discover the hidden gems and iconic landmarks of this breathtaking destination with our expert-led tour."}
         </p>

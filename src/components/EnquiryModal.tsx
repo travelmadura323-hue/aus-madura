@@ -94,7 +94,7 @@ const crmResponse = await fetch(crmUrl, {
               >
                 <X className="w-6 h-6" />
               </button>
-              <h2 className="text-3xl text-white font-bold mb-2">Enquiry Form</h2>
+              <h2 className="text-3xl text-white font-bold mb-2">Turn Your Travel Dreams Into Reality</h2>
               <p className="text-white/60 text-sm">Fill in the details and our experts will contact you.</p>
             </div>
 
