@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote, Images, MessageCircle, ChevronRight } from 'lucide-react';
+import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote, Images, MessageCircle } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { tours } from '../data/mockData';
@@ -79,9 +79,41 @@ const gal = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
 
 
 export default function Home() {
-const [currentSlide, setCurrentSlide] = useState(0);
-const [isPaused, setIsPaused] = useState(false);
-const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
+const [touchStart, setTouchStart] = useState<number | null>(null);
+const [touchStartY, setTouchStartY] = useState<number | null>(null);
+
+const [isDragging, setIsDragging] = useState(false);
+const minSwipeDistance = 50;
+
+const handleTouchStart = (e: React.TouchEvent) => {
+  setTouchStart(e.touches[0].clientX);
+  setTouchStartY(e.touches[0].clientY);
+  setIsDragging(true);
+};
+
+const handleTouchMove = () => {};
+
+const handleTouchEnd = (e: React.TouchEvent) => {
+  if (touchStart === null || touchStartY === null) return;
+
+  const touchEnd = e.changedTouches[0].clientX;
+  const touchEndY = e.changedTouches[0].clientY;
+
+  const distance = touchStart - touchEnd;
+  const distanceY = Math.abs(touchStartY - touchEndY);
+
+  if (distanceY < 50) {
+    if (distance > minSwipeDistance) {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }
+
+    if (distance < -minSwipeDistance) {
+      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    }
+  }
+
+  setIsDragging(false);
+};
   // const [selectedLogo, setSelectedLogo] = useState<any>(null);
   const [selectedLogo, setSelectedLogo] = useState<(typeof logos)[0] | null>(null);
   const heroRef = useRef(null);
@@ -93,6 +125,10 @@ const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
 
   // ✅ Slides = DATA ONLY
   const slides = [
@@ -113,26 +149,7 @@ const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
       buttons: [
         { text: "Explore Australia Tours", link: "/destinations/australia" }
       ]
-    },
-    {
-      image: images['/images/10.png'],
-      title: "Explore Vietnam",
-      subtitle:
-        "Discover the beauty of Vietnam - from bustling Hanoi to serene Halong Bay and vibrant Ho Chi Minh City.",
-      buttons: [
-        { text: "Explore Vietnam Tours", link: "/destinations/vietnam" }
-      ]
-    },
-    {
-      image: images['/images/11.png'],
-      title: "Explore Sri Lanka",
-      subtitle:
-        "Experience the pearl of the Indian Ocean - ancient cities, pristine beaches, and lush tea plantations await.",
-      buttons: [
-        { text: "Explore Sri Lanka Tours", link: "/destinations/sri-lanka" }
-      ]
-    },
-   
+    }
   ];
 
   // Auto slide
@@ -152,6 +169,10 @@ const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
   ref={heroRef}
   onMouseEnter={() => setIsPaused(true)}
   onMouseLeave={() => setIsPaused(false)}
+  onTouchStart={handleTouchStart}
+  onTouchMove={handleTouchMove}
+  onTouchEnd={handleTouchEnd}
+  style={{ touchAction: "pan-y" }}
   className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24"
 >
         {/* Floating Consultation Button - Sliding Tab */}
@@ -310,8 +331,8 @@ const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
           </motion.div>
         </motion.div>
 
-        {/* Simple Bubble Indicators */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+        {/* Slide Indicators */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20 mt -3">
           {slides.map((_, i) => (
             <button
               key={i}
@@ -374,11 +395,11 @@ const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
             <div className="text-center md:text-left">
               <h2 className="text-[24px] font-bold text-primary">Iconic Australia </h2>
             </div>
-             <Link
-              to="/destinations/australia" onClick={() => window.scrollTo(0, 0)}
+           <Link
+              to="/destinations/india" onClick={() => window.scrollTo(0, 0)}
               className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group self-end md:self-auto"
             >
-              View All Australia Tours
+              View All Aus Tours
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -458,8 +479,7 @@ const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
               <Quote className="w-12 h-12 md:w-16 md:h-16 text-white mb-6 md:mb-8 " />
               <h2 className="text-2xl md:text-3xl text-white font-bold mb-6">A Message from Our Chairman</h2>
               <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-8 italic">
-                "For over four decades,we have carried the dreams of millions .Trusted by more than 4 million travelers,we believe travel is not a transaction,it is a responsibility.Every journey we create is backed by experience,care,and an uncompromising promise: Client happiness and true value for every penny spent.
-                This is not our slogan ;it is our promise."
+                "For over four decades, we have carried the dreams of millions. Trusted by more than 4 million travelers, we believe travel is not merely a transaction — it is a responsibility. Every journey we create is guided by experience, care, and an uncompromising promise: client happiness and true value for every penny spent. This is not just our slogan; it is our promise."
               </p>
               <div>
                 <div className="text-2xl text-[#cc1715] font-bold text-white">“Kalaimamani” V.K.T. Balan</div>
@@ -479,24 +499,13 @@ const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
             Experience. Quality. Trust.
           </span> */}
 
-          {/* Section Header */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
-            <div className="text-left flex-1">
-              <h2 className="text-[32px] font-bold text-primary mb-4">
-                Advantage of Choosing Us
-              </h2>
-              <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
-                Experience. Quality. Trust.
-              </span>
-            </div>
-            <Link
-              to="/company/our-story" onClick={() => window.scrollTo(0, 0)}
-              className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group shrink-0"
-            >
-              Know more about us
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
+          {/* Heading */}
+          <h2 className="text-[32px] font-bold text-primary mt-6 mb-6">
+            Advantage of Choosing Us
+          </h2>
+          <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
+            Experience. Quality. Trust.
+          </span>
 
           {/* Description */}
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-20">
@@ -539,7 +548,7 @@ const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
           {logos.map((logo, index) => (
             <div
               key={index}
-               onClick={() => setSelectedLogo(logo)}
+               onMouseEnter={() => setSelectedLogo(logo)}
               className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer"
             >
               <img
@@ -620,7 +629,7 @@ const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
             const testimonials = [
               {
                 name: "Mr.YB Wong Hon Wai",
-                designation: "Minister of Tourism, Malaysia",
+                Designation: "Minister of Tourism, Malaysia",
                 text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
                 image: gal["images/YB.jpg"] as string
               },
@@ -756,7 +765,7 @@ const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
           {/* Row 2 (Reverse) */}
           <div className="flex w-full overflow-hidden select-none">
             <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee-reverse hover:[animation-play-state:paused]">
-              {[19, 20, 21, 22, 23, 24, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((i) => (
+              {[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33].map((i) => (
                 <div key={`logo-2-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 ">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
@@ -766,7 +775,7 @@ const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
                 </div>
               ))}
               {/* Duplicate for seamless effect */}
-              {[19, 20, 21, 22, 23, 24, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((i) => (
+              {[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33].map((i) => (
                 <div key={`logo-2-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 ">
                   <img
                     src={gallery[`/src/gallery/img-${i}.jpg`]}
