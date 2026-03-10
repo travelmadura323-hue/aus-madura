@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote, Images, MessageCircle } from 'lucide-react';
+import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote, Images, MessageCircle, ChevronRight } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { tours } from '../data/mockData';
@@ -12,6 +12,10 @@ import TestimonialCarousel from '../components/carousels/TestimonialCarousel';
 import ContactForm from '../components/ContactForm';
 import EnquiryModal from '../components/EnquiryModal';
 import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 
 
@@ -378,6 +382,54 @@ const handleTouchEnd = (e: React.TouchEvent) => {
           ))}
         </div>
       </section>
+
+      {/* Our Accreditations - Prominent Position */}
+      <section className="py-12 sm:py-16 bg-gradient-to-b from-white to-slate-50 border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-accent font-bold uppercase tracking-[0.4em] text-xs mb-3 block">Official Certifications</span>
+            <h2 className="text-[28px] sm:text-[32px] font-bold text-primary mb-4">
+              Our Accreditations
+            </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+              Recognized by leading tourism and aviation authorities worldwide, ensuring your travel experience meets the highest standards of quality and safety.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 lg:gap-8">
+            {logos.map((logo, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -5, scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSelectedLogo(logo)}
+                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-slate-100 group"
+              >
+                <div className="relative overflow-hidden">
+                  <img
+                    src={logo.image}
+                    alt={logo.title}
+                    className="h-16 sm:h-20 mx-auto object-contain transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link
+              to="/company/our-story"
+              onClick={() => window.scrollTo(0, 0)}
+              className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors group"
+            >
+              View our certifications
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Trending Destinations */}
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -571,28 +623,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
 
         </div>
       </section>
-      <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-secondary to-white">
 
-        <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">
-          Our Accreditations
-        </h3>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-9 max-w-6xl mx-auto px-4">
-          {logos.map((logo, index) => (
-            <div
-              key={index}
-               onClick={() => setSelectedLogo(logo)}
-              className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer"
-            >
-              <img
-                src={logo.image}
-                alt={logo.title}
-                className="h-20 mx-auto object-contain"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
    {selectedLogo && (
   <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200]">
     <motion.div
@@ -630,7 +661,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
 )}
 
       {/* Feedbacks Section */}
-      <section className="py-12 sm:py-16 lg:py-24  bg-gradient-to-b from-secondary to-white">
+      <section className="testimonials-section py-12 sm:py-16 lg:py-24  bg-gradient-to-b from-secondary to-white">
         <div className="max-w-7xl mx-auto px-4  sm:px-6 lg:px-8">
 
 
@@ -824,19 +855,69 @@ const handleTouchEnd = (e: React.TouchEvent) => {
           </div>
         </div>
 
-        {/* Mobile Grid (Static on Small Screens for Stability) */}
+        {/* Mobile Carousel */}
         <div className="md:hidden mt-16 px-6">
-          <div className="grid grid-cols-2 gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
-              <div key={`mobile-logo-${i}`} className="bg-slate-50 rounded-2xl p-6 flex items-center transition-all duration-500 justify-center h-24 border border-slate-100">
-                <img
-                  src={gallery[`/src/gallery/img-${i}.jpg`]}
-                  alt={`Partner ${i}`}
-                  className="max-w-full max-h-full object-contain opacity-70"
-                />
-              </div>
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            spaceBetween={16}
+            slidesPerView={2}
+            pagination={{ 
+              clickable: true,
+              el: '.client-pagination',
+              bulletClass: 'client-bullet',
+              bulletActiveClass: 'client-bullet-active'
+            }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true
+            }}
+            className="pb-12"
+            breakpoints={{
+              320: { slidesPerView: 2, spaceBetween: 12 },
+              480: { slidesPerView: 3, spaceBetween: 16 }
+            }}
+          >
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((i) => (
+              <SwiperSlide key={`mobile-logo-${i}`}>
+                <div className="bg-slate-50 rounded-2xl p-6 flex items-center transition-all duration-500 justify-center h-24 border border-slate-100 hover:shadow-md hover:bg-white">
+                  <img
+                    src={gallery[`/src/gallery/img-${i}.jpg`]}
+                    alt={`Partner ${i}`}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              </SwiperSlide>
             ))}
-          </div>
+          </Swiper>
+          
+          {/* Custom Pagination for Mobile */}
+          <div className="client-pagination flex justify-center gap-2 mt-4"></div>
+          
+          <style>{`
+            .client-bullet {
+              width: 6px !important;
+              height: 6px !important;
+              background: #cbd5e1 !important;
+              border-radius: 50% !important;
+              opacity: 1 !important;
+              transition: all 0.3s ease !important;
+              margin: 0 3px !important;
+            }
+            
+            .client-bullet-active {
+              width: 20px !important;
+              height: 6px !important;
+              background: #cc1715 !important;
+              border-radius: 3px !important;
+              transform: scale(1) !important;
+            }
+            
+            .client-pagination {
+              position: relative !important;
+              bottom: auto !important;
+            }
+          `}</style>
         </div>
       </section>
 

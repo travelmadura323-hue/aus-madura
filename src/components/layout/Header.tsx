@@ -287,22 +287,6 @@ export default function Header() {
                     Book a free consultation
                   </button>
                 </div>
-
-                {/* Contact Quick Link */}
-                <div className="mt-8 bg-primary text-white p-8 rounded-[2.5rem] relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-accent opacity-10 rounded-full translate-x-8 -translate-y-8" />
-                  <div className="relative z-10">
-                    <h4 className="font-bold text-accent text-lg mb-6">Need expert help?</h4>
-                    <div className="space-y-4">
-                      <a href="tel:+61434500743" className="flex items-center gap-4 group/item">
-                        <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center group-hover/item:bg-accent transition-colors">
-                          <Phone className="w-5 h-5 text-accent group-hover/item:text-white" />
-                        </div>
-                        <span className="font-medium">+61 434 500 743</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </motion.div>
