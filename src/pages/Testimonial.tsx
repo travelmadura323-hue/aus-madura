@@ -1,5 +1,6 @@
 import React from "react"
 import { Star } from "lucide-react"
+import { image } from "framer-motion/client";
 
 const cel = import.meta.glob('/images/celebrity/*.{png,jpg,jpeg,svg}', {
   eager: true,
@@ -63,19 +64,23 @@ const testimonials = [
   },
   {
     name: "Mr.Vijay",
-    text: "We had a wonderful experience for our Sri Lanka trip. All arrangements were seamless and Mr. Sudharsan ensured we were comfortable throughout."
+    text: "We had a wonderful experience for our Sri Lanka trip. All arrangements were seamless and Mr. Sudharsan ensured we were comfortable throughout.",
+    image:"/images/v.png"
   },
   {
     name: "Hariharan Balasubramanian",
-    text: "Systematic and careful VISA processing. Timely updates were provided and my family is delighted with the customer service."
+    text: "Systematic and careful VISA processing. Timely updates were provided and my family is delighted with the customer service.",
+    image:"/images/hari.png"
   },
   {
     name: "Subhashini Srivatsan",
-    text: "Excellent, personalised, professional and patient service by Ms. Deepa and her team."
+    text: "Excellent, personalised, professional and patient service by Ms. Deepa and her team.",
+    image:"/images/suba.png"
   },
   {
     name: "Jagadeesh Jayaraman",
-    text: "They understood our requirements perfectly and gave us a well-planned tour. Wonderful coordination and experience!"
+    text: "They understood our requirements perfectly and gave us a well-planned tour. Wonderful coordination and experience!",
+    image:"/images/jaga.png"
   }
 ]
 
