@@ -6,6 +6,7 @@ import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
 import { cn } from '../lib/utils';
 import Chairmanimage from '../../images/VKT-BALAN.png';
+import image from '../../images/image.png';
 import TrendingDestinationsCarousel from '../components/carousels/TrendingDestinationsCarousel';
 import TourCarousel from '../components/carousels/TourCarousel';
 import TestimonialCarousel from '../components/carousels/TestimonialCarousel';
@@ -537,7 +538,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
       <section className="py-12 sm:py-16 lg:py-24 bg-primary text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
+             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -571,11 +572,137 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                 <div className="text-slate-400">Chairman - Madura Travel Service (P) Ltd.</div>
               </div>
             </motion.div>
+           
+          </div>
+        </div>
+      </section>
+     
+
+
+      {/* Leadership Messages Section */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-slate-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <span className="text-accent font-bold uppercase tracking-[0.4em] text-xs mb-3 block">Leadership Insights</span>
+            <h2 className="text-[32px] sm:text-[40px] font-bold text-primary mb-6">
+              Messages From Our Leaders
+            </h2>
+            <p className="text-slate-600 max-w-3xl mx-auto text-lg leading-relaxed">
+              Hear from the visionary leaders who guide our commitment to excellence in travel services, 
+              each bringing unique expertise and passion to create unforgettable journeys.
+            </p>
+          </div>
+
+          {/* Messages Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+            
+            {/* MD Message */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative bg-white rounded-3xl shadow-xl p-8 lg:p-10 border border-slate-100 hover:shadow-2xl transition-all duration-300"
+            >
+              {/* Decorative Element */}
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-accent to-accent/60 rounded-t-3xl"></div>
+              
+              <div className="flex items-start gap-6">
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 bg-gradient-to-br from-accent/20 to-accent/10 rounded-2xl flex items-center justify-center">
+                    <Users className="w-8 h-8 text-accent" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-4">
+                    <h3 className="text-2xl font-bold text-primary">Message from Our MD</h3>
+                    <div className="px-3 py-1 bg-accent/10 rounded-full">
+                      <span className="text-xs font-semibold text-accent uppercase tracking-wider">Managing Director</span>
+                    </div>
+                  </div>
+                  <Quote className="w-8 h-8 text-accent/30 mb-4" />
+                  <p className="text-slate-600 text-lg leading-relaxed mb-6 italic">
+                    "Our journey continues to evolve with innovation at its core. We embrace cutting-edge technology 
+                    and sustainable practices while maintaining the personal touch that defines us. Every client's 
+                    dream becomes our mission, and every destination becomes a story of excellence."
+                  </p>
+                  <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
+                    <img
+                      src={image}
+                      alt="Managing Director"
+                      className="w-20 h-20 rounded-full object-cover border-3 border-accent/20 shadow-lg"
+                    />
+                    <div>
+                      <div className="font-bold text-primary">Managing Director</div>
+                      <div className="text-sm text-slate-500">Madura Travel Service (P) Ltd.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* VP Message */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative bg-white rounded-3xl shadow-xl p-8 lg:p-10 border border-slate-100 hover:shadow-2xl transition-all duration-300"
+            >
+              {/* Decorative Element */}
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-primary/80 to-primary rounded-t-3xl"></div>
+              
+              <div className="flex items-start gap-6">
+                <div className="flex-shrink-0">
+                  <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center">
+                    <Building2 className="w-8 h-8 text-primary" />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-4">
+                    <h3 className="text-2xl font-bold text-primary">Message from Our VP</h3>
+                    <div className="px-3 py-1 bg-primary/10 rounded-full">
+                      <span className="text-xs font-semibold text-primary uppercase tracking-wider">Vice President</span>
+                    </div>
+                  </div>
+                  <Quote className="w-8 h-8 text-primary/30 mb-4" />
+                  <p className="text-slate-600 text-lg leading-relaxed mb-6 italic">
+                    "Excellence in service is not just about meeting expectations—it's about exceeding them. 
+                    Our dedicated team works tirelessly to ensure every journey is seamless, every detail is 
+                    perfect, and every client returns with memories that last a lifetime."
+                  </p>
+                  <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
+                    <img
+                      src={image}
+                      alt="Vice President"
+                      className="w-20 h-20 rounded-full object-cover border-3 border-primary/20 shadow-lg"
+                    />
+                    <div>
+                      <div className="font-bold text-primary">Vice President</div>
+                      <div className="text-sm text-slate-500">Madura Travel Service (P) Ltd.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center mt-16">
+            <Link
+              to="/company/our-story"
+              onClick={() => window.scrollTo(0, 0)}
+              className="inline-flex items-center gap-3 bg-primary text-white font-bold px-8 py-4 rounded-full hover:bg-accent transition-all shadow-lg hover:shadow-xl group"
+            >
+              Meet Our Leadership Team
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us with Badges */}
+       {/* Why Choose Us with Badges */}
       <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
@@ -661,12 +788,12 @@ const handleTouchEnd = (e: React.TouchEvent) => {
 )}
 
       {/* Feedbacks Section */}
-      <section className="testimonials-section py-12 sm:py-16 lg:py-24  bg-gradient-to-b from-secondary to-white">
+      <section className="testimonials-section py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-secondary to-white">
         <div className="max-w-7xl mx-auto px-4  sm:px-6 lg:px-8">
 
 
           {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between mt-50 items-start md:items-end mb-16 gap-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-6">
             <div className="text-left flex-1">
               <span className="text-sm tracking-[0.3em] uppercase text-accent font-semibold">
                 Testimonials
@@ -696,7 +823,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
     name: "Mr.YB Wong Hon Wai",
     Designation: "Minister of Tourism, Malaysia",
     text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
-    image: gal["images/YB.jpg"] as string
+    image: gal["/images/YB.jpg"] as string
   },
   {
     name: "Mr. Anbil Mahesh",

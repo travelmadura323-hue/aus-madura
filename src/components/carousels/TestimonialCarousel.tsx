@@ -59,8 +59,12 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: Te
 
                             {/* Author Info */}
                             <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
-                                <div className="w-12 h-12 bg-gradient-to-br from-accent/20 to-accent/10 rounded-full flex items-center justify-center font-bold text-primary text-sm sm:text-base border-2 border-accent/20">
-                                    {feedback.name[0]}
+                                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-accent/20 shadow-sm">
+                                    <img
+                                        src={feedback.image}
+                                        alt={feedback.name}
+                                        className="w-full h-full object-cover"
+                                    />
                                 </div>
                                 <div className="flex-1">
                                     <div className="font-semibold text-primary text-sm sm:text-base">
