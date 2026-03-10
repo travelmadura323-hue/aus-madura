@@ -16,9 +16,7 @@ const Terms = () => {
         <div className="max-w-5xl mx-auto px-6">
 
           {/* Page Title */}
-          <h1 className="text-4xl md:text-5xl font-extrabold text-indigo-900 mb-10">
-            Terms & Conditions
-          </h1>
+          
 
           {/* Introduction */}
           <div className="space-y-8 text-gray-700 leading-relaxed">
