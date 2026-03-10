@@ -100,7 +100,7 @@ export default function TestimonialsPage() {
             Happy Travelers
           </span>
 
-          <h1 className="mt-4 text-4xl md:text-5xl font-bold">
+          <h1 className="mt-4 text-4xl md:text-5xl font-bold text-white">
             Testimonials
           </h1>
 
