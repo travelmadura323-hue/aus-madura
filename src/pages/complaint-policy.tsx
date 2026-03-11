@@ -4,9 +4,7 @@ export default function complaintPolicy() {
   return (
     <><div className="bg-primary py-20 text-center">
       <div className="mx-auto max-w-3xl px-6">
-        <span className="text-sm font-semibold uppercase tracking-widest text-accent">
-          Complaint Policy is Our Priority at Madura Global
-        </span>
+       
         <h1 className="mt-3 text-4xl font-bold text-white md:text-5xl">
         Compliant Policy
         </h1>

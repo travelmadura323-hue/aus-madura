@@ -31,9 +31,6 @@ export default function MediaPage() {
       {/* ---------------- HEADER ---------------- */}
       <div className="bg-[#191975] py-24 text-center text-white">
         <div className="mx-auto max-w-3xl px-6">
-          <span className="text-sm font-semibold uppercase tracking-widest text-red-500">
-            Press & News
-          </span>
 
           <h1 className="mt-4 text-4xl text-white md:text-5xl font-bold">
             Media
@@ -47,24 +44,31 @@ export default function MediaPage() {
       </div>
 
       {/* ---------------- LIVE VIDEO ---------------- */}
-      <div className="mx-auto max-w-5xl px-6 py-20">
-        <h2 className="text-3xl font-bold mb-8 text-center">
-          Live on YouTube
-        </h2>
+      <section>
+  <div className="mx-auto max-w-5xl px-6 py-20">
+    
+    <h2 className="text-3xl font-bold mb-8 text-center">
+      Live on YouTube
+    </h2>
 
-        <div className="aspect-video w-full overflow-hidden rounded-2xl mt-25">
-          <iframe
-            src="https://www.youtube.com/embed/8_cnSln4qsE"
-            title="YouTube Live Stream"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full"
-          ></iframe>
-          <h3>
-The Viral Video Interview of Our Chairman Crossing 3 Million Views and more</h3>
-        </div>
-      </div>
+    <div className="aspect-video w-full overflow-hidden rounded-2xl mt-8">
+      <iframe
+        src="https://www.youtube.com/embed/8_cnSln4qsE"
+        title="YouTube Live Stream"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        className="w-full h-full"
+      ></iframe>
+    </div>
 
+    <div className="mt-6">
+      <h3 className="text-center text-xl font-semibold text-black">
+        The Viral Video Interview of Our Chairman Crossing 3 Million Views and more
+      </h3>
+    </div>
+
+  </div>
+</section>
       {/* ---------------- VIDEO GRID ---------------- */}
       <div className="mx-auto max-w-7xl px-6 pb-24">
         <h2 className="text-3xl font-bold mb-12 text-center">
@@ -100,5 +104,7 @@ The Viral Video Interview of Our Chairman Crossing 3 Million Views and more</h3>
       </div>
 
     </div>
+    
+
   )
 }
