@@ -47,7 +47,7 @@ export default function ContactPage() {
           {contactInfo.map((info) => (
             <div
               key={info.title}
-              className="rounded-2xl border border-border bg-card p-8 text-center shadow-sm hover:shadow-lg transition-all duration-300"
+              className="rounded-2xl border mt-25 border-border bg-card p-8 text-center hover:shadow-lg transition-all duration-300"
             >
 
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-xl bg-accent/10">

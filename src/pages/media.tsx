@@ -35,7 +35,7 @@ export default function MediaPage() {
           Live on YouTube
         </h2>
 
-        <div className="aspect-video w-full overflow-hidden rounded-2xl shadow-xl">
+        <div className="aspect-video w-full overflow-hidden rounded-2xl mt-25">
           <iframe
             src="https://www.youtube.com/embed/8_cnSln4qsE"
             title="YouTube Live Stream"
@@ -43,6 +43,8 @@ export default function MediaPage() {
             allowFullScreen
             className="w-full h-full"
           ></iframe>
+          <h3>
+The Viral Video Interview of Our Chairman Crossing 3 Million Views and more</h3>
         </div>
       </div>
 
@@ -56,7 +58,7 @@ export default function MediaPage() {
           {youtubeVideos.map((id) => (
             <div
               key={id}
-              className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition"
+              className="overflow-hidden rounded-2xl border border-gray-200 hover:shadow-lg transition"
             >
               <div className="aspect-video w-full overflow-hidden">
                 <iframe
