@@ -63,6 +63,7 @@ export default function Footer() {
 
           {/* Column 4: News & Contact */}
           <div className="px-2">
+          {/* <div className="px-2">
             <h4 className="text-lg font-bold mb-6 text-accent">Newsletter</h4>
             <p className="text-white/80 text-sm mb-6 max-w-xs">Subscribe to get the latest travel deals and updates.</p>
             <form className="relative mb-8">
@@ -74,14 +75,15 @@ export default function Footer() {
               <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-accent text-white p-1.5 rounded-md hover:bg-white hover:text-primary transition-colors">
                 <Send className="w-4 h-4" />
               </button>
-            </form>
+            </form> */}
+            <h1 className="text-lg font-bold mb-6 text-accent">Contact</h1>
             <div className="space-y-3">
-              {/* <div className="flex items-center gap-3 text-sm text-white/80">
+              <div className="flex items-center gap-3 text-sm text-white/80">
                 <Phone className="w-4 h-4 text-accent shrink-0" /> +61 434 500 743
               </div>
               <div className="flex items-center gap-3 text-sm text-white/80">
                 <Mail className="w-4 h-4 text-accent shrink-0" /> australia@maduraglobal.com
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

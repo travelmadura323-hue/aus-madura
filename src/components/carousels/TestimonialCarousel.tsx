@@ -43,9 +43,7 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: Te
                         <motion.div
                             whileHover={{ y: -8 }}
                             transition={{ duration: 0.3, ease: "easeOut" }}
-                            className="h-full bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 flex flex-col justify-between relative min-h-[320px]"
-                        >
-                            {/* Stars */}
+className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-slate-100 flex flex-col relative md:h-full">                            {/* Stars */}
                             <div className="flex gap-1 text-accent mb-4">
                                 {[1, 2, 3, 4, 5].map((s) => (
                                     <Star key={s} className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
@@ -53,7 +51,7 @@ export default function TestimonialCarousel({ testimonials }: { testimonials: Te
                             </div>
 
                             {/* Testimonial Text */}
-                            <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 flex-grow italic line-clamp-4">
+                            <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 flex-grow italic ">
                                 "{feedback.text}"
                             </p>
 

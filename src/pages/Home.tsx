@@ -1043,7 +1043,7 @@ This is only the beginning of what we are building here. My vision is for Madura
   {/* Row 1 */}
   <div className="flex gap-6 w-max animate-marquee">
     {[1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9].map((i,index)=>(
-      <div key={index} className="w-24 h-16 flex items-center justify-center bg-slate-50 rounded-xl border shrink-0">
+      <div key={index} className="w-24 h-16 flex items-center justify-center bg-slate-50 rounded-xl  shrink-0">
         <img
           src={gallery[`/src/gallery/img-${i}.jpg`]}
           alt={`Partner ${i}`}
@@ -1056,7 +1056,7 @@ This is only the beginning of what we are building here. My vision is for Madura
   {/* Row 2 */}
   <div className="flex gap-6 w-max animate-marquee-reverse">
     {[10,11,12,13,14,15,16,17,18,10,11,12,13,14,15,16,17,18].map((i,index)=>(
-      <div key={index} className="w-24 h-16 flex items-center justify-center bg-slate-50 rounded-xl border shrink-0">
+      <div key={index} className="w-24 h-16 flex items-center justify-center bg-slate-50 rounded-xl  shrink-0">
         <img
           src={gallery[`/src/gallery/img-${i}.jpg`]}
           alt={`Partner ${i}`}

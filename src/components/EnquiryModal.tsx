@@ -72,7 +72,7 @@ const crmResponse = await fetch(crmUrl, {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-start justify-center overflow-y-auto p-4">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -85,16 +85,15 @@ const crmResponse = await fetch(crmUrl, {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl max-h-[90vh] overflow-y-auto mt-10"
-          >
-            <div className="bg-primary p-8 text-white relative">
+className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl mt-10"          >
+           <div className="bg-primary p-5 sm:p-6 text-white relative rounded-t-3xl">
               <button
                 onClick={onClose}
-                className="absolute top-6 right-6 text-white/60 hover:text-white transition-colors"
+                className="absolute top-6 right-3 text-white/60 hover:text-white transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
-              <h2 className="text-3xl text-white font-bold mb-2">Turn Your Travel Dreams Into Reality</h2>
+            <h2 className="text-lg sm:text-xl lg:text-2xl text-white font-bold mb-2 leading-snug">Turn Your Travel Dreams Into Reality</h2>
               <p className="text-white/60 text-sm">Fill in the details and our experts will contact you.</p>
             </div>
 
@@ -124,7 +123,7 @@ const crmResponse = await fetch(crmUrl, {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="p-8 space-y-5">
+          <form onSubmit={handleSubmit} className="p-5 sm:p-6 space-y-4">
 
                 {/* Full Name */}
                 <div className="space-y-1">
