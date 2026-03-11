@@ -30,7 +30,7 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('https://api.maduratravel.com/api/lead/website', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -93,8 +93,8 @@ export default function ContactForm() {
     >
       {/* Header */}
       <div className="bg-primary p-8 text-white">
-        <h2 className="text-3xl font-bold text-white mb-2">Enquiry Form</h2>
-        <p className="text-white/60 text-sm">Fill in the details and our experts will contact you.</p>
+        <h2 className="text-3xl font-bold text-white mb-2">Turn Your Travel Dreams Into Reality</h2>
+        <p className="text-white/60 text-sm"></p>
       </div>
 
       {/* Form */}
