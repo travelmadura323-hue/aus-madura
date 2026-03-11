@@ -593,7 +593,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
           <div className="text-center mb-12 sm:mb-16">
             <span className="text-accent font-bold uppercase tracking-[0.4em] text-xs mb-3 block">Leadership Insights</span>
             <h2 className="text-[28px] sm:text-[32px] lg:text-[40px] font-bold text-primary mb-6">
-              Messages From Our Leaders
+              Message from our Managing Director and Director
             </h2>
             <p className="text-slate-600 max-w-3xl mx-auto text-lg leading-relaxed px-4">
               Hear from the visionary leaders who guide our commitment to excellence in travel services, 
@@ -626,9 +626,8 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                       alt="Managing Director"
                       className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-2xl object-cover border-4 border-accent/20 shadow-xl"
                     />
-                    <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-accent rounded-full border-3 border-white shadow-lg"></div>
                   </div>
-                  <div className="text-center mt-3">
+                  <div className="text-left mt-3">
                     <div className="font-bold text-primary text-lg">Mr. Sriharan Balan</div>
                     <div className="text-sm text-slate-500">Managing Director</div>
                     <div className="text-xs text-slate-400">Madura Travel Service</div>
@@ -658,7 +657,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                   </p>
                   
                   {/* Enhanced Footer */}
-                  <div className="flex items-center justify-between pt-4 border-t border-slate-100 bg-gradient-to-r from-accent/5 to-transparent -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10 py-4 -mb-6 sm:-mb-8 lg:-mb-10">
+                  {/* <div className="flex items-center justify-between pt-4 border-t border-slate-100 bg-gradient-to-r from-accent/5 to-transparent -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10 py-4 -mb-6 sm:-mb-8 lg:-mb-10">
                     <div className="text-right">
                       <div className="flex items-center gap-1 text-accent mb-1 justify-end">
                         <span className="text-xs font-medium">Excellence</span>
@@ -667,7 +666,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                       </div>
                       <div className="text-xs text-slate-400">Leadership Since 1986</div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </motion.div>
@@ -692,11 +691,11 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                     <img
                         src={own["/images/Guru sir.jpeg"] as string}
                       alt="Vice President"
-                      className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-2xl object-cover border-4 border-primary/20 shadow-xl"
+                      className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-2xl object-cover border-4 border-primary/20 "
                     />
-                    <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-primary rounded-full border-3 border-white shadow-lg"></div>
+                    
                   </div>
-                  <div className="text-center mt-3">
+                  <div className="text-left mt-3">
                     <div className="font-bold text-primary text-lg">Guru Chandar</div>
                     <div className="text-sm text-slate-500">Director</div>
                     <div className="text-xs text-slate-400">Madura Global Australia</div>
@@ -727,7 +726,7 @@ This is only the beginning of what we are building here. My vision is for Madura
                   </p>
                   
                   {/* Enhanced Footer */}
-                  <div className="flex items-center justify-between pt-4 border-t border-slate-100 bg-gradient-to-r from-primary/5 to-transparent -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10 py-4 -mb-6 sm:-mb-8 lg:-mb-10">
+                  {/* <div className="flex items-center justify-between pt-4 border-t border-slate-100 bg-gradient-to-r from-primary/5 to-transparent -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10 py-4 -mb-6 sm:-mb-8 lg:-mb-10">
                     <div className="text-right">
                       <div className="flex items-center gap-1 text-primary mb-1 justify-end">
                         <span className="text-xs font-medium">Service</span>
@@ -736,7 +735,7 @@ This is only the beginning of what we are building here. My vision is for Madura
                       </div>
                       <div className="text-xs text-slate-400">Committed to Excellence</div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </motion.div>
