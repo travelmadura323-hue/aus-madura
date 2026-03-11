@@ -7,8 +7,7 @@ const privacy = () => {
             Privacy Policy
           </h1>
           <p className="mt-4 text-white/80 leading-relaxed italic">
-            "Your trust is our most valuable asset. We are dedicated to protecting your personal information and ensuring a secure travel experience."
-          </p>
+"Effective Date: 11th March 2026"          </p>
         </div>
       </div>
       <section className="bg-gray-50 py-20">

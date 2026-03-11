@@ -783,10 +783,10 @@ This is only the beginning of what we are building here. My vision is for Madura
           {/* Stats Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
             {[
-              { number: "4M+", label: "Happy Travelers" },
-              { number: "28K+", label: "Destinations Covered" },
+              { number: "4Million+", label: "Happy Travelers" },
+              { number: "195+", label: "Countries Covered" },
               { number: "40+", label: "Years of Excellence" },
-              { number: "200K+", label: "5-Star Client Ratings" }
+              { number: "10K+", label: "5-Star Client Ratings" }
             ].map((item, index) => (
               <div
                 key={index}

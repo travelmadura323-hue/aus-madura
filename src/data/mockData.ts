@@ -4,22 +4,22 @@ const gallery = import.meta.glob('/images/**/*.{png,jpg,jpeg,svg,webp}', {
 });
 
 export const destinations = [
-  {
-    id: 'kerala',
-    name: 'Kerala',
-    type: 'domestic',
-    image: gallery['/images/3.png'] as string,
-    description: 'Experience the serene backwaters and lush greenery of Gods Own Country.',
-    region: 'South India'
-  },
-  {
-    id: 'rajasthan',
-    name: 'Rajasthan',
-    type: 'domestic',
-    image: gallery['/images/4.png'] as string,
-    description: 'Discover the royal heritage and majestic forts of the Land of Kings.',
-    region: 'North India'
-  },
+  // {
+  //   id: 'kerala',
+  //   name: 'Kerala',
+  //   type: 'domestic',
+  //   image: gallery['/images/3.png'] as string,
+  //   description: 'Experience the serene backwaters and lush greenery of Gods Own Country.',
+  //   region: 'South India'
+  // },
+  // {
+  //   id: 'rajasthan',
+  //   name: 'Rajasthan',
+  //   type: 'domestic',
+  //   image: gallery['/images/4.png'] as string,
+  //   description: 'Discover the royal heritage and majestic forts of the Land of Kings.',
+  //   region: 'North India'
+  // },
   {
     id: 'vietnam',
     name: 'Vietnam',
@@ -32,7 +32,7 @@ export const destinations = [
     id: 'malaysia',
     name: 'Malaysia',
     type: 'international',
-    image: 'https://images.unsplash.com/photo-1596422846543-75c6fc18a593?auto=format&fit=crop&w=600&h=800&q=80',
+    image: gallery['/images/landscape.png'] as string,
     description: 'A vibrant mix of cultures, modern cities, and lush rainforests.',
     region: 'Southeast Asia'
   },
@@ -56,7 +56,7 @@ export const destinations = [
     id: 'india',
     name: 'India',
     type: 'domestic',
-    image: 'https://images.unsplash.com/photo-1524492707947-2f85a1a24d3c?auto=format&fit=crop&w=600&h=800&q=80',
+    image: gallery['/images/1.png'] as string,
     description: 'A land of diverse landscapes, ancient history, and vibrant traditions.',
     region: 'South Asia'
   },

@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
+
 import Home from './pages/Home';
 import TourDetail from './pages/TourDetail';
 import DestinationDetail from './pages/DestinationDetail';
@@ -32,6 +33,7 @@ import { doc } from "firebase/firestore";
 import { db } from "./firebase-config";
 import { useEffect } from "react";    
 import { collection, getDocs } from "firebase/firestore";
+import Destinations from "./pages/TourPackage";
 
 export default function App() {
 
@@ -64,6 +66,12 @@ export default function App() {
             <Route path="/tours/:slug" element={<TourDetail />} />
             <Route path="/pages/:country" element={<DestinationDetail />} />
             <Route path="/categories/:category" element={<CategoryDetail />} />
+            <Route path="/destinations" element={<Destinations />} />
+
+<Route
+  path="/destinations/:id"
+  element={<Destinations />}
+/>
             <Route path="/mice" element={<MICE />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/company/our-story" element={<OurStory />} />

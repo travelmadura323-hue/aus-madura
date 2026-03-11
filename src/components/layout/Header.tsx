@@ -167,10 +167,10 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <button
               onClick={() => setIsEnquiryModalOpen(true)}
-              className="hidden lg:flex items-center gap-2 mt-12 bg-accent text-white font-bold px-6 py-3 rounded-full text-xs md:text-sm hover:bg-white hover:text-primary transition-all"
+              className="hidden lg:flex items-center gap-2 mt-1 bg-accent text-white font-bold px-6 py-3 rounded-full text-xs md:text-sm hover:bg-white hover:text-primary transition-all"
             >
               Enquiry
             </button>
@@ -250,7 +250,7 @@ export default function Header() {
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="bg-slate-50/50 rounded-b-2xl -mt-4 pt-8 pb-4 px-4"
+                            className="pt-4 pb-4 px-4"
                           >
                             <div className="grid grid-cols-1 gap-2">
                               {link.dropdown?.map((item, idx) => (

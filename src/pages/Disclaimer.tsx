@@ -5,12 +5,11 @@ export default function Disclaimer() {
        <><div className="bg-primary py-20 text-center">
       <div className="mx-auto max-w-3xl px-6">
         
-        <h1 className="mt-3 text-4xl font-bold text-white md:text-5xl">
+        <h1 className="mt-10 text-4xl font-bold text-white md:text-5xl">
           Disclaimer
         </h1>
         <p className="mt-4 text-white/80 leading-relaxed italic">
-          "Your trust is our most valuable asset. We are dedicated to protecting your personal information and ensuring a secure travel experience."
-        </p>
+"Effective Date: 11th March 2026"        </p>
       </div>
     </div>
     <section className="bg-white pt-28 pb-20">

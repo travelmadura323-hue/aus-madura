@@ -12,7 +12,7 @@ const Terms = () => {
               </h1>
 
               <p className="mt-4 text-white/80 leading-relaxed italic">
-                "Clear and transparent terms to ensure a smooth and reliable travel partnership between us and our valued travelers."
+                "Effective Date: 11th March 2026."
               </p>
             </div>
           </div>

@@ -336,9 +336,9 @@ export default function TourDetail() {
                   <div className="absolute top-0 right-0 w-32 h-32 bg-accent opacity-10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
 
                   <div className="relative z-10">
-                    <div className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mb-2">Exclusive Pricing</div>
+                    <div className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mb-2">Starting From</div>
                     <div className="flex items-baseline gap-2 mb-8">
-                      <span className="text-[32px] font-black text-accent">{displayCurrency}{displayPrice.toLocaleString()}</span>
+                      <span className="text-[32px] font-black text-white">{displayCurrency}{displayPrice.toLocaleString()}</span>
                       <span className="text-slate-400 text-sm">/ person</span>
                     </div>
 
@@ -440,12 +440,28 @@ export default function TourDetail() {
                             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                           />
                           <select
-                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
-                            value={formData.travelers}
-                            onChange={(e) => setFormData({ ...formData, travelers: e.target.value })}
-                          >
-                            {[...Array(50)].map((_, i) => i + 1).map(n => <option key={n} value={n} className="bg-primary">{n} Traveler{n > 1 ? 's' : ''}</option>)}
-                          </select>
+  className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
+  value={formData.travelers}
+  onChange={(e) => setFormData({ ...formData, travelers: e.target.value })}
+>
+  {[...Array(10)].map((_, i) => i + 1).map(n => (
+    <option key={n} value={n} className="bg-primary">
+      {n} Traveler{n > 1 ? 's' : ''}
+    </option>
+  ))}
+  <option value="others" className="bg-primary">Others</option>
+</select>
+
+{formData.travelers === "others" && (
+  <input
+    type="number"
+    min="10"
+    max="99"
+    placeholder="Enter number of travelers"
+    className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors mt-3"
+    onChange={(e) => setFormData({ ...formData, travelers: e.target.value })}
+  />
+)}
                           <textarea
                             placeholder="Special Requests"
                             rows={3}
@@ -456,7 +472,7 @@ export default function TourDetail() {
                           <button
                             type="submit"
                             disabled={bookingStatus === 'submitting'}
-                            className="w-full bg-accent text-primary font-black py-4 rounded-xl hover:bg-white transition-all flex items-center justify-center gap-2 shadow-xl shadow-accent/20 disabled:opacity-50"
+                            className="w-full bg-white text-Black font-black py-4 rounded-xl hover:bg-primary transition-all flex items-center justify-center gap-2 shadow-xl shadow-accent/20 disabled:opacity-50"
                           >
                             {bookingStatus === 'submitting' ? 'Processing...' : (
                               <>
@@ -499,7 +515,7 @@ export default function TourDetail() {
                 <span className="text-accent font-bold uppercase tracking-widest text-[10px] mb-2 block">Our Collection</span>
                 <h2 className="text-[24px] font-bold text-primary">Similar Experiences</h2>
               </div>
-              <Link to="/destinations/india" className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-all group">
+              <Link to="/destinations" className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-all group">
                 View All Collection
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
