@@ -15,6 +15,7 @@ import EnquiryModal from '../components/EnquiryModal';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -619,15 +620,15 @@ const handleTouchEnd = (e: React.TouchEvent) => {
               {/* Single Card Layout with Image */}
               <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
                 {/* Image Section */}
-                <div className="flex-shrink-0">
-                  <div className="relative">
+                <div className="flex-shrink-0 ">
+                  <div className="relative flex justify-center ">
                     <img
                        src={own["/images/Sri sir.jpg"] as string}
                       alt="Managing Director"
                       className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-2xl object-cover border-4 border-accent/20 shadow-xl"
                     />
                   </div>
-                  <div className="text-left mt-3">
+                  <div className="text-center mt-3">
                     <div className="font-bold text-primary text-lg">Mr. Sriharan Balan</div>
                     <div className="text-sm text-slate-500">Managing Director</div>
                     <div className="text-xs text-slate-400">Madura Travel Service</div>
@@ -686,8 +687,8 @@ const handleTouchEnd = (e: React.TouchEvent) => {
               {/* Single Card Layout with Image */}
               <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
                 {/* Image Section */}
-                <div className="flex-shrink-0">
-                  <div className="relative">
+                <div className="flex-shrink-0 ">
+                  <div className="relative flex justify-center">
                     <img
                         src={own["/images/Guru sir.jpeg"] as string}
                       alt="Vice President"
@@ -695,7 +696,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                     />
                     
                   </div>
-                  <div className="text-left mt-3">
+                  <div className="text-center mt-3">
                     <div className="font-bold text-primary text-lg">Guru Chandar</div>
                     <div className="text-sm text-slate-500">Director</div>
                     <div className="text-xs text-slate-400">Madura Global Australia</div>
@@ -1035,70 +1036,37 @@ This is only the beginning of what we are building here. My vision is for Madura
           </div>
         </div>
 
-        {/* Mobile Carousel */}
-        <div className="md:hidden mt-16 px-6">
-          <Swiper
-            modules={[Autoplay, Pagination]}
-            spaceBetween={16}
-            slidesPerView={2}
-            pagination={{ 
-              clickable: true,
-              el: '.client-pagination',
-              bulletClass: 'client-bullet',
-              bulletActiveClass: 'client-bullet-active'
-            }}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true
-            }}
-            className="pb-12"
-            breakpoints={{
-              320: { slidesPerView: 2, spaceBetween: 12 },
-              480: { slidesPerView: 3, spaceBetween: 16 }
-            }}
-          >
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((i) => (
-              <SwiperSlide key={`mobile-logo-${i}`}>
-                <div className="bg-slate-50 rounded-2xl p-6 flex items-center transition-all duration-500 justify-center h-24 border border-slate-100 hover:shadow-md hover:bg-white">
-                  <img
-                    src={gallery[`/src/gallery/img-${i}.jpg`]}
-                    alt={`Partner ${i}`}
-                    className="max-w-full max-h-full object-contain"
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          
-          {/* Custom Pagination for Mobile */}
-          <div className="client-pagination flex justify-center gap-2 mt-4"></div>
-          
-          <style>{`
-            .client-bullet {
-              width: 6px !important;
-              height: 6px !important;
-              background: #cbd5e1 !important;
-              border-radius: 50% !important;
-              opacity: 1 !important;
-              transition: all 0.3s ease !important;
-              margin: 0 3px !important;
-            }
-            
-            .client-bullet-active {
-              width: 20px !important;
-              height: 6px !important;
-              background: #cc1715 !important;
-              border-radius: 3px !important;
-              transform: scale(1) !important;
-            }
-            
-            .client-pagination {
-              position: relative !important;
-              bottom: auto !important;
-            }
-          `}</style>
-        </div>
+  {/* Mobile Carousel */}
+{/* Mobile Logos */}
+<div className="md:hidden flex flex-col gap-6 overflow-hidden px-4">
+
+  {/* Row 1 */}
+  <div className="flex gap-6 w-max animate-marquee">
+    {[1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9].map((i,index)=>(
+      <div key={index} className="w-24 h-16 flex items-center justify-center bg-slate-50 rounded-xl border shrink-0">
+        <img
+          src={gallery[`/src/gallery/img-${i}.jpg`]}
+          alt={`Partner ${i}`}
+          className="max-h-12 object-contain"
+        />
+      </div>
+    ))}
+  </div>
+
+  {/* Row 2 */}
+  <div className="flex gap-6 w-max animate-marquee-reverse">
+    {[10,11,12,13,14,15,16,17,18,10,11,12,13,14,15,16,17,18].map((i,index)=>(
+      <div key={index} className="w-24 h-16 flex items-center justify-center bg-slate-50 rounded-xl border shrink-0">
+        <img
+          src={gallery[`/src/gallery/img-${i}.jpg`]}
+          alt={`Partner ${i}`}
+          className="max-h-12 object-contain"
+        />
+      </div>
+    ))}
+  </div>
+
+</div>
       </section>
 
 
