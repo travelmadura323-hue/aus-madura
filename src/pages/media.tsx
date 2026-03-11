@@ -1,10 +1,27 @@
 import React from "react"
 
 const youtubeVideos = [
-  "ffZYphMCC14",
-  "75v5qpFK204",
-  "LGNmQ1iYGIw",
-  "02gXuRoKT7Q",
+  {
+    id: "8_cnSln4qsE",
+    title: "The Viral Video Interview of Our Chairman Part 2"
+  },
+
+  {
+    id: "ffZYphMCC14",
+    title: "Chairman interview for News7 Channel"
+  },
+  {
+    id: "75v5qpFK204", 
+    title: "Chairman Interview for Behindwoods Channel"
+  },
+  {
+    id: "LGNmQ1iYGIw",
+    title: "Interview of our Chairman for IBC Tamil Channel"
+  },
+  {
+    id: "02gXuRoKT7Q",
+    title: "Interview of our Managing Director, Mr. Sriharan Balan for Business Thamizha Channel"
+  }
 ]
 
 export default function MediaPage() {
@@ -55,19 +72,27 @@ The Viral Video Interview of Our Chairman Crossing 3 Million Views and more</h3>
         </h2>
 
         <div className="grid gap-10 md:grid-cols-2">
-          {youtubeVideos.map((id) => (
+          {youtubeVideos.map((video) => (
             <div
-              key={id}
+              key={video.id}
               className="overflow-hidden rounded-2xl border border-gray-200 hover:shadow-lg transition"
             >
               <div className="aspect-video w-full overflow-hidden">
                 <iframe
-                  src={`https://www.youtube.com/embed/${id}`}
-                  title="YouTube video"
+                  src={`https://www.youtube.com/embed/${video.id}`}
+                  title={video.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   className="w-full h-full"
                 ></iframe>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  {video.title}
+                </h3>
+              
+                  
+            
               </div>
             </div>
           ))}

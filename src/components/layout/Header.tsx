@@ -151,7 +151,7 @@ export default function Header() {
 
                 {/* Dropdown */}
                 {link.dropdown && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white shadow-xl rounded-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-slate-100">
+                  <div className="absolute top-full left-0 mt-2 w-56 bg-white  rounded-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-slate-100">
                     {link.dropdown.map((item) => (
                       <Link
                         key={item.name}
@@ -170,7 +170,7 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setIsEnquiryModalOpen(true)}
-              className="hidden lg:flex items-center gap-2 mt-25 bg-accent text-white font-bold px-6 py-3 rounded-full text-xs md:text-sm hover:bg-white hover:text-primary transition-all"
+              className="hidden lg:flex items-center gap-2 mt-12 bg-accent text-white font-bold px-6 py-3 rounded-full text-xs md:text-sm hover:bg-white hover:text-primary transition-all"
             >
               Enquiry
             </button>
