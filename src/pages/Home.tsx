@@ -467,7 +467,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
               to="/destinations/india" onClick={() => window.scrollTo(0, 0)}
               className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group self-end md:self-auto"
             >
-              View All India Tours
+              View All Tours
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -485,10 +485,10 @@ const handleTouchEnd = (e: React.TouchEvent) => {
               <h2 className="text-[24px] font-bold text-primary">Iconic Australia </h2>
             </div>
            <Link
-              to="/destinations/india" onClick={() => window.scrollTo(0, 0)}
+              to="/destinations/australia" onClick={() => window.scrollTo(0, 0)}
               className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group self-end md:self-auto"
             >
-              View All Aus Tours
+              View All Tours
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
