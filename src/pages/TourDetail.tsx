@@ -258,14 +258,14 @@ export default function TourDetail() {
                 <div className="bg-[#191975]/5 p-10 rounded-[2.5rem] border border-[#191975]/20">
                   <h3 className="text-xl font-bold text-[#191975] mb-8 flex items-center gap-3">
                     <div className="w-10 h-10 bg-[#191975] rounded-2xl flex items-center justify-center text-white">
-                      <Check className="w-6 h-6" />
+                   <Check className="w-5 h-5 text-[#191715]-600" />
                     </div>
                     What's Included
                   </h3>
-                  <ul className="space-y-5">
+                  <ul className="space-y-5 list-none">
                     {(tour.included || ['Premium Hotel Stay', 'Luxury Transportation', 'Guided Cultural Tours', 'Full Board Meals', 'Activity Charges']).map((item, idx) => (
                       <li key={idx} className="flex items-center gap-4 text-[#191975] font-medium">
-                        <div className="w-2 h-2 bg-[#191975] rounded-full" /> {item}
+                         <Check className="w-5 h-5 text-[#191715]-600" />{item}
                       </li>
                     ))}
                   </ul>
@@ -274,14 +274,14 @@ export default function TourDetail() {
                 <div className="bg-slate-100 p-10 rounded-[2.5rem] border border-slate-200">
                   <h3 className="text-xl font-bold text-slate-700 mb-8 flex items-center gap-3">
                     <div className="w-10 h-10 bg-slate-400 rounded-2xl flex items-center justify-center text-white">
-                      <X className="w-6 h-6" />
+                      <X className="w-5 h-5 text-[#cc1715]-500" />
                     </div>
                     What's Excluded
                   </h3>
                   <ul className="space-y-5">
                     {(tour.excluded || ['International Airfare', 'Visa Processing Charges', 'Travel & Health Insurance', 'Additional Activities', 'Private Shopping']).map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-4 text-slate-600 font-medium">
-                        <div className="w-2 h-2 bg-slate-400 rounded-full" /> {item}
+                      <li key={idx} className="flex items-center gap-4 text-[#cc1715] font-medium">
+                        <X className="w-5 h-5 text-[#cc1715]-500" />{item}
                       </li>
                     ))}
                   </ul>
@@ -332,7 +332,7 @@ export default function TourDetail() {
               <div className="sticky top-24 space-y-8">
 
                 {/* Booking Card */}
-                <div className="bg-primary p-8 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
+                <div className="bg-primary p-5 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-accent opacity-10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700" />
 
                   <div className="relative z-10">
@@ -343,7 +343,7 @@ export default function TourDetail() {
                     </div>
 
 
-                    <div id="booking-form" className="bg-white/5 p-6 rounded-2xl border border-white/10">
+                    <div id="booking-form" className="bg-white/5 p-2 rounded-xl border border-white/10">
                       <h4 className="text-white font-bold mb-4 flex items-center gap-2">
                         <Calendar className="w-5 h-5 text-accent" />
                         Book This Tour
@@ -368,7 +368,7 @@ export default function TourDetail() {
                           </button>
                         </motion.div>
                       ) : (
-                        <form onSubmit={handleBookingSubmit} className="space-y-4">
+                        <form onSubmit={handleBookingSubmit} className="space-y-3">
                           <input
                             required
                             type="text"
@@ -469,7 +469,7 @@ export default function TourDetail() {
                       )}
                     </div>
 
-                    <p className="text-center text-[10px] text-slate-500 mt-6 font-medium">No hidden fees. Best price guarantee.</p>
+                   
                   </div>
                 </div>
 
@@ -482,7 +482,7 @@ export default function TourDetail() {
                     <a href="tel:+91" className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-all text-primary">
                       <ShieldCheck className="w-6 h-6" />
                     </a>
-                    <a href="mailto:info@" className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-all text-primary">
+                    <a href="mailto:australia@maduraglobal.com" className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-all text-primary">
                       <Info className="w-6 h-6" />
                     </a>
                   </div>
@@ -499,7 +499,7 @@ export default function TourDetail() {
                 <span className="text-accent font-bold uppercase tracking-widest text-[10px] mb-2 block">Our Collection</span>
                 <h2 className="text-[24px] font-bold text-primary">Similar Experiences</h2>
               </div>
-              <Link to="/tours" className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-all group">
+              <Link to="/destinations/india" className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-all group">
                 View All Collection
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>

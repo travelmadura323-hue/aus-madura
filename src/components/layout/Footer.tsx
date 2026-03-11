@@ -42,9 +42,10 @@ export default function Footer() {
             <h4 className="text-lg font-bold mb-6 text-accent">Quick Links</h4>
             <ul className="space-y-4 text-white/80 text-sm">
               <li><Link to="/company/our-story" className="hover:text-white transition-colors">Our Story</Link></li>
-              <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
               <li><Link to="/company/testimonials" className="hover:text-white transition-colors">Testimonials</Link></li>
-              <li><Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/privacy-policy" className="hover:text-white transition-colors">Media</Link></li>
+               <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
+
             </ul>
           </div>
 
@@ -75,12 +76,12 @@ export default function Footer() {
               </button>
             </form>
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-sm text-white/80">
+              {/* <div className="flex items-center gap-3 text-sm text-white/80">
                 <Phone className="w-4 h-4 text-accent shrink-0" /> +61 434 500 743
               </div>
               <div className="flex items-center gap-3 text-sm text-white/80">
                 <Mail className="w-4 h-4 text-accent shrink-0" /> australia@maduraglobal.com
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
