@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Column 1: About */}
           <div className="flex flex-col items-start px-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-25 h-25 rounded-full flex items-center justify-center shadow-sm overflow-hidden p-1">
+              <Link to="/" className="w-25 h-25 rounded-full flex items-center justify-center shadow-sm overflow-hidden p-1 hover:opacity-80 transition-opacity">
                 <img
                   src={Image}
                   alt="Madura Travel Logo"
@@ -19,7 +19,7 @@ export default function Footer() {
                     e.currentTarget.src = "https://picsum.photos/seed/madura/100/100";
                   }}
                 />
-              </div>
+              </Link>
             </div>
             <p className="text-white text-sm leading-relaxed mb-6 max-w-xs">
               Madura Global - Your trusted partner for global travel solutions for over 40 years. Excellence in service, every step of the way.

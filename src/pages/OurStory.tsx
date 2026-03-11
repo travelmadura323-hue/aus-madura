@@ -1,6 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
 import { Award, Globe, Users, Heart } from "lucide-react"
-import { image } from "framer-motion/client";
+import { motion } from "framer-motion";
 
 const images = import.meta.glob('../../images/*.{png,jpg,jpeg,svg}', {
   eager: true,
@@ -15,6 +15,24 @@ const im = import.meta.glob('../../images/im/*.{png,jpg,jpeg,svg}', {
   import: 'default',
 });
 
+const logos = [
+  {
+    image: im['../../images/im/Aussie1.png'],
+    title: "Aussie Specialist",
+    description: "An Aussie Specialist is a travel agent who has completed official training about Australia's destinations, attractions, and travel planning. This certification shows that the agent has expert knowledge of Australian travel."
+  },
+  {
+    image: im['../../images/im/iata.png'],
+    title: "IATA",
+    description: "The International Air Transport Association (IATA) is a global organization that represents and supports airlines worldwide. It helps coordinate international air travel by setting common standards for airlines, travel agencies, and aviation operations."
+  },
+  {
+    image: im['../../images/im/Ministry of Tourism.jpg'],
+    title: "Ministry of Tourism India",
+    description: "Official recognition from India's Ministry of Tourism, certifying our commitment to promoting tourism and maintaining high standards in travel services."
+  }
+];
+
 const stats = [
   { icon: Globe, value: "28K+", label: "Total Destinations" },
   { icon: Users, value: "4M+", label: "Happy Travelers" },
@@ -22,7 +40,37 @@ const stats = [
   { icon: Heart, value: "200K+", label: "Satisfaction Rate" },
 ]
 
+const accreditationDetails = [
+  {
+    image: im['../../images/im/iata.png'],
+    title: "IATA",
+    description: "The International Air Transport Association (IATA) is a global organization that represents and supports airlines worldwide. It helps coordinate international air travel by setting common standards for airlines, travel agencies, and aviation operations."
+  },
+  {
+    image: im['../../images/im/iaai.jpg'],
+    title: "IAAI",
+    description: "Indian Association of Tour Operators (IAAI) is a premier organization representing tour operators and travel agencies in India, promoting ethical business practices and professional standards in the tourism industry."
+  },
+  {
+    image: im['../../images/im/download.png'],
+    title: "Ministry of Tourism",
+    description: "Official recognition from India's Ministry of Tourism, certifying our commitment to promoting tourism and maintaining high standards in travel services."
+  },
+  {
+    image: im['../../images/im/taai.png'],
+    title: "TAAI",
+    description: "Travel Agents Association of India (TAAI) is one of the oldest and most respected associations of travel agents in India, ensuring professional excellence and consumer protection."
+  },
+  {
+    image: im['../../images/im/tafi.jpg'],
+    title: "TAFI",
+    description: "Travel Agents Federation of India (TAFI) is a national body representing travel agents and tour operators, working towards the growth and development of the travel industry in India."
+  }
+];
+
 export default function OurStoryPage() {
+  const [selectedLogo, setSelectedLogo] = useState<any>(null);
+
   return (
     <div className="pt-20 sm:pt-28">
 
@@ -64,7 +112,7 @@ export default function OurStoryPage() {
                 text: "Embracing innovation, prioritizing honesty, accountability, and professionalism while fostering inclusivity and teamwork."
               }
             ].map((item, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-md p-8 text-center hover:shadow-xl transition">
+              <div key={index} className="bg-white rounded-2xl  p-8 text-center hover:shadow-xl transition">
                 <div className="w-14 h-14 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full text-2xl">
                   {item.icon}
                 </div>
@@ -72,7 +120,7 @@ export default function OurStoryPage() {
                   {item.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  {item.text}
+                  {item.text}         
                 </p>
               </div>
             ))}
@@ -134,7 +182,7 @@ Madura Global does not operate as a transactional tour reseller. We function as 
 
 
         {/* Why Choose Us */}
-        <section className="w-full bg-white">
+        {/* <section className="w-full bg-white">
           <div className="mt-16 text-center">
             <p className="text-sm font-semibold text-accent uppercase tracking-wider">
               Experience. Quality. Trust.
@@ -155,7 +203,7 @@ Madura Global does not operate as a transactional tour reseller. We function as 
               </div>
             ))}
           </div>
-        </section>
+        </section> */}
       </section>
       {/* Clients Section */}
       <section className="py-12 sm:py-20 bg-white">
@@ -250,7 +298,7 @@ Madura Global does not operate as a transactional tour reseller. We function as 
           Our Subsidiaries
         </h3>
 
-        <div className="flex flex-wrap items-center justify-center gap-30 max-w-7xl mx-auto px-4 mb-24">
+        <div className="flex flex-wrap items-center justify-center gap-35 max-w-7xl mx-auto px-4 mb-24">
           {[
             im['../../images/im/rsh_100cg_true.png'],
             im['../../images/im/MADURAGLOBALIMMIGRATION-300x300.png'],
@@ -262,10 +310,11 @@ Madura Global does not operate as a transactional tour reseller. We function as 
               key={index}
               src={logo}
               alt="Subsidiary Logo"
-              className="h-24 object-contain transition duration-300"
+              className="h-26 object-contain transition duration-300"
             />
           ))}
         </div>
+        
 
         {/* Second Recognition Row */}
         <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">
@@ -273,27 +322,61 @@ Madura Global does not operate as a transactional tour reseller. We function as 
         </h3>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-9 max-w-6xl mx-auto px-4">
-          {[
-            im['../../images/im/iata.png'],
-            im['../../images/im/iaai.jpg'],
-            im['../../images/im/download.png'],
-            im['../../images/im/taai.png'],
-            im['../../images/im/tafi.jpg'],
-          ].map((logo, index) => (
-            <div
+          {accreditationDetails.map((logo, index) => (
+            <motion.div
               key={index}
-              className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition"
+              whileHover={{ y: -5, scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setSelectedLogo(logo)}
+              className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer"
             >
               <img
-                src={logo}
-                alt="Association Logo"
+                src={logo.image}
+                alt={logo.title}
                 className="h-20 mx-auto object-contain"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
 
       </section>
+
+      {/* Accreditation Modal */}
+      {selectedLogo && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200]">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white rounded-2xl p-8 max-w-md w-full text-center relative shadow-2xl"
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedLogo(null)}
+              className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+            >
+              ✕
+            </button>
+
+            {/* Logo */}
+            <img
+              src={selectedLogo.image}
+              alt={selectedLogo.title}
+              className="h-24 mx-auto mb-6 object-contain"
+            />
+
+            {/* Title */}
+            <h4 className="text-2xl font-bold text-primary mb-3">
+              {selectedLogo.title}
+            </h4>
+
+            {/* Description */}
+            <p className="text-gray-600 leading-relaxed">
+              {selectedLogo.description}
+            </p>
+          </motion.div>
+        </div>
+      )}
 
 
     </div>
