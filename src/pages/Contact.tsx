@@ -1,6 +1,6 @@
 // import { MapPin, Phone, Mail, Clock } from "lucide-react"
 import ContactForm from "../components/ContactForm"
-import { MapPin, Globe, Phone ,Mail,Clock} from "lucide-react"
+import { MapPin, Globe, Phone, Mail, Clock } from "lucide-react"
 
 
 
@@ -26,11 +26,11 @@ const contactInfo = [
     ],
   },
 ];
-  
+
 
 export default function ContactPage() {
   return (
-    <div className="pt-28">
+    <div className="pt-20">
 
       {/* Hero */}
       <div className="bg-primary py-20 text-center">
@@ -85,9 +85,9 @@ export default function ContactPage() {
 
         {/* Form + Map */}
         <div className="mt-16 grid gap-10 lg:grid-cols-2"> <ContactForm /> <div className="overflow-hidden rounded-2xl border border-border"> <iframe title="Office location" src="https://www.google.com/maps/embed?origin=mfe&pb=!1m2!2m1!1s1-11+Rosa+Crescent+Castle+Hill+2154+NSW+Australia" width="100%" height="100%" style={{ border: 0, minHeight: 480 }} allowFullScreen loading="lazy" />
-         </div> 
-         </div>
-          </div> 
-</div>
-)
+        </div>
+        </div>
+      </div>
+    </div>
+  )
 }
