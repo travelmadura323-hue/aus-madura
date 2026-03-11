@@ -24,7 +24,7 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
     titlePrefix = 'Explore'
 }) => {
     return (
-        <div className="pt-28 bg-slate-50 min-h-screen">
+        <div className="pt-20 bg-slate-50 min-h-screen">
             {/* 🔹 Premium Hero Section */}
             <section className="relative h-[60vh] flex items-center overflow-hidden">
                 <motion.div
