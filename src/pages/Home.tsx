@@ -81,62 +81,62 @@ const gallery = import.meta.glob('/src/gallery/*.{png,jpg,jpeg,svg}', {
 const gal = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
-});const own = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+}); const own = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
 });
 
 
 export default function Home() {
-const [touchStart, setTouchStart] = useState<number | null>(null);
-const [touchStartY, setTouchStartY] = useState<number | null>(null);
-const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchStartY, setTouchStartY] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-const [isDragging, setIsDragging] = useState(false);
-const minSwipeDistance = 50;
+  const [isDragging, setIsDragging] = useState(false);
+  const minSwipeDistance = 50;
 
-// 1. Intha functions-ah component-oda top-la (Home function kulla) replace pannunga
-const handleTouchStart = (e: React.TouchEvent) => {
-  setTouchStart(e.touches[0].clientX);
-  setTouchStartY(e.touches[0].clientY);
-  setTouchEnd(null); // Reset previous data
-  setIsDragging(true);
-};
+  // 1. Intha functions-ah component-oda top-la (Home function kulla) replace pannunga
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+    setTouchStartY(e.touches[0].clientY);
+    setTouchEnd(null); // Reset previous data
+    setIsDragging(true);
+  };
 
-// handleTouchMove-ah veliya define pannunga
-const handleTouchMove = (e: React.TouchEvent) => {
-  setTouchEnd(e.touches[0].clientX);
-};
+  // handleTouchMove-ah veliya define pannunga
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.touches[0].clientX);
+  };
 
-const handleTouchEnd = (e: React.TouchEvent) => {
-  // Check if we have all necessary starting points
-  if (touchStart === null || touchStartY === null) return;
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    // Check if we have all necessary starting points
+    if (touchStart === null || touchStartY === null) return;
 
-  // Touch move aagala-na handleTouchMove set panna touchEnd irukkathu.
-  // Appo changedTouches-ah backup-ah eduthukalam.
-  const finalTouchX = touchEnd !== null ? touchEnd : e.changedTouches[0].clientX;
-  const finalTouchY = e.changedTouches[0].clientY;
+    // Touch move aagala-na handleTouchMove set panna touchEnd irukkathu.
+    // Appo changedTouches-ah backup-ah eduthukalam.
+    const finalTouchX = touchEnd !== null ? touchEnd : e.changedTouches[0].clientX;
+    const finalTouchY = e.changedTouches[0].clientY;
 
-  const distanceX = touchStart - finalTouchX;
-  const distanceY = Math.abs(touchStartY - finalTouchY);
+    const distanceX = touchStart - finalTouchX;
+    const distanceY = Math.abs(touchStartY - finalTouchY);
 
-  // Diagonal swipe-ah thavirkka (Vertical scroll restriction)
-  if (distanceY < 100) { 
-    if (distanceX > minSwipeDistance) {
-      // Swipe Left -> Next Slide
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    } else if (distanceX < -minSwipeDistance) {
-      // Swipe Right -> Previous Slide
-      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    // Diagonal swipe-ah thavirkka (Vertical scroll restriction)
+    if (distanceY < 100) {
+      if (distanceX > minSwipeDistance) {
+        // Swipe Left -> Next Slide
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+      } else if (distanceX < -minSwipeDistance) {
+        // Swipe Right -> Previous Slide
+        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+      }
     }
-  }
 
-  // Reset states
-  setTouchStart(null);
-  setTouchEnd(null);
-  setTouchStartY(null);
-  setIsDragging(false);
-};
+    // Reset states
+    setTouchStart(null);
+    setTouchEnd(null);
+    setTouchStartY(null);
+    setIsDragging(false);
+  };
   // const [selectedLogo, setSelectedLogo] = useState<any>(null);
   const [selectedLogo, setSelectedLogo] = useState<(typeof logos)[0] | null>(null);
   const heroRef = useRef(null);
@@ -182,7 +182,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
         { text: "Explore Vietnam Tours", link: "/destinations/vietnam" }
       ]
     },
-     {
+    {
       image: images['/images/sri-lanka.png'],
       title: "Explore Sri Lanka",
       subtitle:
@@ -208,15 +208,15 @@ const handleTouchEnd = (e: React.TouchEvent) => {
   return (
     <div className="overflow-x-hidden">
       <section
-  ref={heroRef}
-  onMouseEnter={() => setIsPaused(true)}
-  onMouseLeave={() => setIsPaused(false)}
-  onTouchStart={handleTouchStart}
-  onTouchMove={handleTouchMove}
-  onTouchEnd={handleTouchEnd}
-  style={{ touchAction: "pan-y" }}
-  className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24"
->
+        ref={heroRef}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        style={{ touchAction: "pan-y" }}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24"
+      >
         {/* Floating Consultation Button - Sliding Tab */}
         {/* <motion.div
           initial={{ x: 100 }}
@@ -271,13 +271,13 @@ const handleTouchEnd = (e: React.TouchEvent) => {
             <motion.div style={{ y }} className="absolute inset-0">
 
               {/* ✅ Dynamic Image */}
-              
-                 <img
-      src={slide.image}
-      alt={slide.title}
-      className="w-full h-full object-cover pointer-events-none"
-    />
-              
+
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-full object-cover pointer-events-none"
+              />
+
               <div className="absolute inset-0 bg-black/55" />
             </motion.div>
           </motion.div>
@@ -485,7 +485,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
             <div className="text-center md:text-left">
               <h2 className="text-[24px] font-bold text-primary">Iconic Australia </h2>
             </div>
-           <Link
+            <Link
               to="/destinations/australia" onClick={() => window.scrollTo(0, 0)}
               className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group self-end md:self-auto"
             >
@@ -542,7 +542,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
       <section className="py-12 sm:py-16 lg:py-24 bg-primary text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-             <motion.div
+            <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -576,11 +576,11 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                 <div className="text-slate-400">Chairman - Madura Travel Service (P) Ltd.</div>
               </div>
             </motion.div>
-           
+
           </div>
         </div>
       </section>
-     
+
 
 
       {/* Leadership Messages Section */}
@@ -588,7 +588,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
         {/* Background Decorations */}
         <div className="absolute top-10 left-10 w-32 h-32 bg-accent/5 rounded-full blur-2xl"></div>
         <div className="absolute bottom-10 right-10 w-40 h-40 bg-primary/5 rounded-full blur-2xl"></div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
           <div className="text-center mb-12 sm:mb-16">
@@ -597,14 +597,14 @@ const handleTouchEnd = (e: React.TouchEvent) => {
               Message from our Managing Director and Director
             </h2>
             <p className="text-slate-600 max-w-3xl mx-auto text-lg leading-relaxed px-4">
-              Hear from the visionary leaders who guide our commitment to excellence in travel services, 
+              Hear from the visionary leaders who guide our commitment to excellence in travel services,
               each bringing unique expertise and passion to create unforgettable journeys.
             </p>
           </div>
 
           {/* Messages Grid - Single Cards */}
           <div className="grid grid-cols-1 gap-8 lg:gap-12 max-w-4xl mx-auto">
-            
+
             {/* MD Message */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -616,14 +616,14 @@ const handleTouchEnd = (e: React.TouchEvent) => {
               {/* Mobile-First Decorative Elements */}
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-accent/60"></div>
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-accent/10 rounded-full blur-xl"></div>
-              
+
               {/* Single Card Layout with Image */}
               <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
                 {/* Image Section */}
                 <div className="flex-shrink-0 ">
                   <div className="relative flex justify-center ">
                     <img
-                       src={own["/images/Sri sir.jpg"] as string}
+                      src={own["/images/Sri sir.jpg"] as string}
                       alt="Managing Director"
                       className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-2xl object-cover border-4 border-accent/20 shadow-xl"
                     />
@@ -634,7 +634,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                     <div className="text-xs text-slate-400">Madura Travel Service (P) Ltd</div>
                   </div>
                 </div>
-                
+
                 {/* Content Section */}
                 <div className="flex-1">
                   {/* Mobile Enhanced Header */}
@@ -645,18 +645,18 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                     <div>
                       <h3 className="text-xl sm:text-2xl font-bold text-primary">Message from Our MD</h3>
                       <div className="inline-block px-2 py-1 bg-accent/10 rounded-full mt-1">
-                        <span className="text-[10px] font-semibold text-accent uppercase tracking-wider">Managing Director (P) Ltd</span>
+                        <span className="text-[10px] font-semibold text-accent uppercase tracking-wider">Managing Director</span>
                       </div>
                     </div>
                   </div>
-                  
+
                   <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-accent/30 mb-4" />
                   <p className="text-slate-600 text-sm sm:text-lg leading-relaxed mb-6 italic">
-                    "Our journey continues to evolve with innovation at its core. We embrace cutting-edge technology 
-                    and sustainable practices while maintaining the personal touch that defines us. Every client's 
+                    "Our journey continues to evolve with innovation at its core. We embrace cutting-edge technology
+                    and sustainable practices while maintaining the personal touch that defines us. Every client's
                     dream becomes our mission, and every destination becomes a story of excellence."
                   </p>
-                  
+
                   {/* Enhanced Footer */}
                   {/* <div className="flex items-center justify-between pt-4 border-t border-slate-100 bg-gradient-to-r from-accent/5 to-transparent -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10 py-4 -mb-6 sm:-mb-8 lg:-mb-10">
                     <div className="text-right">
@@ -683,18 +683,18 @@ const handleTouchEnd = (e: React.TouchEvent) => {
               {/* Mobile-First Decorative Elements */}
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/80 to-primary"></div>
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-primary/10 rounded-full blur-xl"></div>
-              
+
               {/* Single Card Layout with Image */}
               <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
                 {/* Image Section */}
                 <div className="flex-shrink-0 ">
                   <div className="relative flex justify-center">
                     <img
-                        src={own["/images/Guru sir.jpeg"] as string}
+                      src={own["/images/Guru sir.jpeg"] as string}
                       alt="Vice President"
                       className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-2xl object-cover border-4 border-primary/20 "
                     />
-                    
+
                   </div>
                   <div className="text-center mt-3">
                     <div className="font-bold text-primary text-lg">Guru Chandar</div>
@@ -702,7 +702,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                     <div className="text-xs text-slate-400">Madura Global Australia</div>
                   </div>
                 </div>
-                
+
                 {/* Content Section */}
                 <div className="flex-1">
                   {/* Mobile Enhanced Header */}
@@ -717,15 +717,15 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-primary/30 mb-4" />
                   <p className="text-slate-600 text-sm sm:text-lg leading-relaxed mb-6 italic">
                     "When we set out to build Madura Global Australia, the intention was simple — to create a travel platform people could truly trust.
-In a world where travel choices are endless, what matters most is guidance you can rely on and experiences that are thoughtfully crafted. I believe journeys should do more than move people between destinations; they should connect cultures, inspire new perspectives, and bring people together.
-From Australia, our focus is to curate meaningful travel experiences — from group journeys to corporate and incentive travel — across India, Asia, and beyond.
-This is only the beginning of what we are building here. My vision is for Madura to become a trusted gateway for journeys that are not just well organised, but truly memorable."
+                    In a world where travel choices are endless, what matters most is guidance you can rely on and experiences that are thoughtfully crafted. I believe journeys should do more than move people between destinations; they should connect cultures, inspire new perspectives, and bring people together.
+                    From Australia, our focus is to curate meaningful travel experiences — from group journeys to corporate and incentive travel — across India, Asia, and beyond.
+                    This is only the beginning of what we are building here. My vision is for Madura to become a trusted gateway for journeys that are not just well organised, but truly memorable."
                   </p>
-                  
+
                   {/* Enhanced Footer */}
                   {/* <div className="flex items-center justify-between pt-4 border-t border-slate-100 bg-gradient-to-r from-primary/5 to-transparent -mx-6 sm:-mx-8 lg:-mx-10 px-6 sm:px-8 lg:px-10 py-4 -mb-6 sm:-mb-8 lg:-mb-10">
                     <div className="text-right">
@@ -756,7 +756,7 @@ This is only the beginning of what we are building here. My vision is for Madura
         </div>
       </section>
 
-       {/* Why Choose Us with Badges */}
+      {/* Why Choose Us with Badges */}
       <section className="py-12 sm:py-16 lg:py-24 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
@@ -805,41 +805,41 @@ This is only the beginning of what we are building here. My vision is for Madura
         </div>
       </section>
 
-   {selectedLogo && (
-  <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200]">
-    <motion.div
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.3 }}
-      className="bg-white rounded-2xl p-8 max-w-md w-full text-center relative shadow-2xl"
-    >
-      {/* Close Button */}
-      <button
-        onClick={() => setSelectedLogo(null)}
-        className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
-      >
-        ✕
-      </button>
+      {selectedLogo && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200]">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white rounded-2xl p-8 max-w-md w-full text-center relative shadow-2xl"
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedLogo(null)}
+              className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+            >
+              ✕
+            </button>
 
-      {/* Logo */}
-      <img
-        src={selectedLogo.image}
-        alt={selectedLogo.title}
-        className="h-24 mx-auto mb-6 object-contain"
-      />
+            {/* Logo */}
+            <img
+              src={selectedLogo.image}
+              alt={selectedLogo.title}
+              className="h-24 mx-auto mb-6 object-contain"
+            />
 
-      {/* Title */}
-      <h4 className="text-2xl font-bold text-primary mb-3">
-        {selectedLogo.title}
-      </h4>
+            {/* Title */}
+            <h4 className="text-2xl font-bold text-primary mb-3">
+              {selectedLogo.title}
+            </h4>
 
-      {/* Description */}
-      <p className="text-gray-600 leading-relaxed">
-        {selectedLogo.description}
-      </p>
-    </motion.div>
-  </div>
-)}
+            {/* Description */}
+            <p className="text-gray-600 leading-relaxed">
+              {selectedLogo.description}
+            </p>
+          </motion.div>
+        </div>
+      )}
 
       {/* Feedbacks Section */}
       <section className="testimonials-section py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-secondary to-white">
@@ -872,100 +872,100 @@ This is only the beginning of what we are building here. My vision is for Madura
           {/* Testimonials Data */}
           {(() => {
             const testimonials = [
-            
-               {
-    name: "Mr.YB Wong Hon Wai",
-    Designation: "Minister of Tourism, Malaysia",
-    text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
-    image: gal["/images/YB.jpg"] as string
-  },
-  {
-    name: "Mr. Anbil Mahesh",
-    designation: "Minister for Education - Government of Tamilnadu",
-    image: cel["/images/celebrity/Anbil mahesh.jpg"] as string,
-    text: "I extend my heartfelt thanks to the entire Madura Travel Service team for their professional assistance in organizing international trips for the students of Tamil Nadu's government schools, helping them realize their dreams. Traveling with the students made me feel like a young boy again, as I thoroughly enjoyed the beautifully planned tours to destinations like Singapore, Malaysia, Japan, South Korea, and more. Kudos to Madura Travel Service for their incredible efforts."
-  },
-  {
-    name: "Mr. Napoleon",
-    designation: "Cine Actor & Politician",
-    image: cel["/images/celebrity/nepolean.jpg"] as string,
-    text: "Mr. Sriharan Balan and his exceptional team provided seamless service, taking on the monumental task of organizing my son’s wedding in Tokyo, Japan, in November 2024, with absolute ease. Every guest was treated like a VIP from start to finish, ensuring a memorable and stress-free experience for all involved."
-  },
-  {
-    name: "Mr. Kamal Haasan",
-    designation: "Cine Actor & Director",
-    image: cel["/images/celebrity/Kamalhasan.jpg"] as string,
-    text: "Mr. V.K.T. Balan was more than just a travel consultant; he was a cherished friend and pillar of support throughout my decades-long journey in cinema, right from my early days. His guidance and expertise enriched numerous travel programs and shoots. I extend my heartfelt wishes for continued success and prosperity to his entire team."
-  },
-  {
-    name: "Mr. Venkatesh Bhat",
-    designation: "TCDC Fame & CEO, Accord Hotels",
-    image: cel["/images/celebrity/Venkatesh-Bhat.jpg"] as string,
-    text: "My long-standing association with Madura Travel Service has made my global travels seamless and stress-free. Their expertise in handling visas ensures timely approvals without any delays, making them my trusted travel partner. Truly exceptional service every time!"
-  },
-  {
-    name: "Mrs. P. Susheela",
-    designation: "Legendary Singer",
-    image: cel["/images/celebrity/susheela.jpg"] as string,
-    text: "My journey with Madura Travel Service began when Mr. VKT Balan helped me obtain my first passport. Since then, he has been a constant support, helping me travel the world and share my voice globally. He is like a son to me, and Madura Travel Service feels like family."
-  },
-  {
-    name: "Mr. Sandy",
-    designation: "Dance Master",
-    image: cel['/images/celebrity/sandy.jpg'] as string,
-    text: "Mr. Sriharan Balan has been a tremendous support during my international shows. His professional team is always available 24/7, ensuring that my travel experiences are smooth and enjoyable. I truly appreciate their dedication and commitment to making every journey a seamless and positive experience"
-  },
+
+              {
+                name: "Mr.YB Wong Hon Wai",
+                Designation: "Minister of Tourism, Malaysia",
+                text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
+                image: gal["/images/YB.jpg"] as string
+              },
+              {
+                name: "Mr. Anbil Mahesh",
+                designation: "Minister for Education - Government of Tamilnadu",
+                image: cel["/images/celebrity/Anbil mahesh.jpg"] as string,
+                text: "I extend my heartfelt thanks to the entire Madura Travel Service team for their professional assistance in organizing international trips for the students of Tamil Nadu's government schools, helping them realize their dreams. Traveling with the students made me feel like a young boy again, as I thoroughly enjoyed the beautifully planned tours to destinations like Singapore, Malaysia, Japan, South Korea, and more. Kudos to Madura Travel Service for their incredible efforts."
+              },
+              {
+                name: "Mr. Napoleon",
+                designation: "Cine Actor & Politician",
+                image: cel["/images/celebrity/nepolean.jpg"] as string,
+                text: "Mr. Sriharan Balan and his exceptional team provided seamless service, taking on the monumental task of organizing my son’s wedding in Tokyo, Japan, in November 2024, with absolute ease. Every guest was treated like a VIP from start to finish, ensuring a memorable and stress-free experience for all involved."
+              },
+              {
+                name: "Mr. Kamal Haasan",
+                designation: "Cine Actor & Director",
+                image: cel["/images/celebrity/Kamalhasan.jpg"] as string,
+                text: "Mr. V.K.T. Balan was more than just a travel consultant; he was a cherished friend and pillar of support throughout my decades-long journey in cinema, right from my early days. His guidance and expertise enriched numerous travel programs and shoots. I extend my heartfelt wishes for continued success and prosperity to his entire team."
+              },
+              {
+                name: "Mr. Venkatesh Bhat",
+                designation: "TCDC Fame & CEO, Accord Hotels",
+                image: cel["/images/celebrity/Venkatesh-Bhat.jpg"] as string,
+                text: "My long-standing association with Madura Travel Service has made my global travels seamless and stress-free. Their expertise in handling visas ensures timely approvals without any delays, making them my trusted travel partner. Truly exceptional service every time!"
+              },
+              {
+                name: "Mrs. P. Susheela",
+                designation: "Legendary Singer",
+                image: cel["/images/celebrity/susheela.jpg"] as string,
+                text: "My journey with Madura Travel Service began when Mr. VKT Balan helped me obtain my first passport. Since then, he has been a constant support, helping me travel the world and share my voice globally. He is like a son to me, and Madura Travel Service feels like family."
+              },
+              {
+                name: "Mr. Sandy",
+                designation: "Dance Master",
+                image: cel['/images/celebrity/sandy.jpg'] as string,
+                text: "Mr. Sriharan Balan has been a tremendous support during my international shows. His professional team is always available 24/7, ensuring that my travel experiences are smooth and enjoyable. I truly appreciate their dedication and commitment to making every journey a seamless and positive experience"
+              },
 
             ]
 
             return (
               <TestimonialCarousel
                 testimonials={[
-                 
-                  {
-    name: "Mr.YB Wong Hon Wai",
-    designation: "Minister of Tourism, Malaysia",
-    text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
-    image: gal["/images/YB.jpg"] as string
-  },
-  {
-    name: "Mr. Anbil Mahesh",
-    designation: "Minister for Education - Government of Tamilnadu",
 
-    image: cel["/images/celebrity/Anbil mahesh.jpg"] as string,
-    text: "I extend my heartfelt thanks to the entire Madura Travel Service team for their professional assistance in organizing international trips for the students of Tamil Nadu's government schools, helping them realize their dreams. Traveling with the students made me feel like a young boy again, as I thoroughly enjoyed the beautifully planned tours to destinations like Singapore, Malaysia, Japan, South Korea, and more. Kudos to Madura Travel Service for their incredible efforts."
-  },
-  {
-    name: "Mr. Napoleon",
-    designation: "Cine Actor & Politician",
-    image: cel["/images/celebrity/nepolean.jpg"] as string,
-    text: "Mr. Sriharan Balan and his exceptional team provided seamless service, taking on the monumental task of organizing my son’s wedding in Tokyo, Japan, in November 2024, with absolute ease. Every guest was treated like a VIP from start to finish, ensuring a memorable and stress-free experience for all involved."
-  },
-  {
-    name: "Mr. Kamal Haasan",
-    designation: "Cine Actor & Director",
-    image: cel["/images/celebrity/Kamalhasan.jpg"] as string,
-    text: "Mr. V.K.T. Balan was more than just a travel consultant; he was a cherished friend and pillar of support throughout my decades-long journey in cinema, right from my early days. His guidance and expertise enriched numerous travel programs and shoots. I extend my heartfelt wishes for continued success and prosperity to his entire team."
-  },
-  {
-    name: "Mr. Venkatesh Bhat",
-    designation: "TCDC Fame & CEO, Accord Hotels",
-    image: cel["/images/celebrity/Venkatesh-Bhat.jpg"] as string,
-    text: "My long-standing association with Madura Travel Service has made my global travels seamless and stress-free. Their expertise in handling visas ensures timely approvals without any delays, making them my trusted travel partner. Truly exceptional service every time!"
-  },
-  {
-    name: "Mrs. P. Susheela",
-    designation: "Legendary Singer",
-    image: cel["/images/celebrity/susheela.jpg"] as string,
-    text: "My journey with Madura Travel Service began when Mr. VKT Balan helped me obtain my first passport. Since then, he has been a constant support, helping me travel the world and share my voice globally. He is like a son to me, and Madura Travel Service feels like family."
-  },
-  {
-    name: "Mr. Sandy",
-    designation: "Dance Master",
-    image: cel['/images/celebrity/sandy.jpg'] as string,
-    text: "Mr. Sriharan Balan has been a tremendous support during my international shows. His professional team is always available 24/7, ensuring that my travel experiences are smooth and enjoyable. I truly appreciate their dedication and commitment to making every journey a seamless and positive experience"
-  },
-           ]}
+                  {
+                    name: "Mr.YB Wong Hon Wai",
+                    designation: "Minister of Tourism, Malaysia",
+                    text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
+                    image: gal["/images/YB.jpg"] as string
+                  },
+                  {
+                    name: "Mr. Anbil Mahesh",
+                    designation: "Minister for Education - Government of Tamilnadu",
+
+                    image: cel["/images/celebrity/Anbil mahesh.jpg"] as string,
+                    text: "I extend my heartfelt thanks to the entire Madura Travel Service team for their professional assistance in organizing international trips for the students of Tamil Nadu's government schools, helping them realize their dreams. Traveling with the students made me feel like a young boy again, as I thoroughly enjoyed the beautifully planned tours to destinations like Singapore, Malaysia, Japan, South Korea, and more. Kudos to Madura Travel Service for their incredible efforts."
+                  },
+                  {
+                    name: "Mr. Napoleon",
+                    designation: "Cine Actor & Politician",
+                    image: cel["/images/celebrity/nepolean.jpg"] as string,
+                    text: "Mr. Sriharan Balan and his exceptional team provided seamless service, taking on the monumental task of organizing my son’s wedding in Tokyo, Japan, in November 2024, with absolute ease. Every guest was treated like a VIP from start to finish, ensuring a memorable and stress-free experience for all involved."
+                  },
+                  {
+                    name: "Mr. Kamal Haasan",
+                    designation: "Cine Actor & Director",
+                    image: cel["/images/celebrity/Kamalhasan.jpg"] as string,
+                    text: "Mr. V.K.T. Balan was more than just a travel consultant; he was a cherished friend and pillar of support throughout my decades-long journey in cinema, right from my early days. His guidance and expertise enriched numerous travel programs and shoots. I extend my heartfelt wishes for continued success and prosperity to his entire team."
+                  },
+                  {
+                    name: "Mr. Venkatesh Bhat",
+                    designation: "TCDC Fame & CEO, Accord Hotels",
+                    image: cel["/images/celebrity/Venkatesh-Bhat.jpg"] as string,
+                    text: "My long-standing association with Madura Travel Service has made my global travels seamless and stress-free. Their expertise in handling visas ensures timely approvals without any delays, making them my trusted travel partner. Truly exceptional service every time!"
+                  },
+                  {
+                    name: "Mrs. P. Susheela",
+                    designation: "Legendary Singer",
+                    image: cel["/images/celebrity/susheela.jpg"] as string,
+                    text: "My journey with Madura Travel Service began when Mr. VKT Balan helped me obtain my first passport. Since then, he has been a constant support, helping me travel the world and share my voice globally. He is like a son to me, and Madura Travel Service feels like family."
+                  },
+                  {
+                    name: "Mr. Sandy",
+                    designation: "Dance Master",
+                    image: cel['/images/celebrity/sandy.jpg'] as string,
+                    text: "Mr. Sriharan Balan has been a tremendous support during my international shows. His professional team is always available 24/7, ensuring that my travel experiences are smooth and enjoyable. I truly appreciate their dedication and commitment to making every journey a seamless and positive experience"
+                  },
+                ]}
               />
             )
           })()}
@@ -1036,37 +1036,37 @@ This is only the beginning of what we are building here. My vision is for Madura
           </div>
         </div>
 
-  {/* Mobile Carousel */}
-{/* Mobile Logos */}
-<div className="md:hidden flex flex-col gap-6 overflow-hidden px-4">
+        {/* Mobile Carousel */}
+        {/* Mobile Logos */}
+        <div className="md:hidden flex flex-col gap-6 overflow-hidden px-4">
 
-  {/* Row 1 */}
-  <div className="flex gap-6 w-max animate-marquee">
-    {[1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9].map((i,index)=>(
-      <div key={index} className="w-24 h-16 flex items-center justify-center bg-slate-50 rounded-xl  shrink-0">
-        <img
-          src={gallery[`/src/gallery/img-${i}.jpg`]}
-          alt={`Partner ${i}`}
-          className="max-h-12 object-contain"
-        />
-      </div>
-    ))}
-  </div>
+          {/* Row 1 */}
+          <div className="flex gap-6 w-max animate-marquee">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => (
+              <div key={index} className="w-24 h-16 flex items-center justify-center bg-slate-50 rounded-xl  shrink-0">
+                <img
+                  src={gallery[`/src/gallery/img-${i}.jpg`]}
+                  alt={`Partner ${i}`}
+                  className="max-h-12 object-contain"
+                />
+              </div>
+            ))}
+          </div>
 
-  {/* Row 2 */}
-  <div className="flex gap-6 w-max animate-marquee-reverse">
-    {[10,11,12,13,14,15,16,17,18,10,11,12,13,14,15,16,17,18].map((i,index)=>(
-      <div key={index} className="w-24 h-16 flex items-center justify-center bg-slate-50 rounded-xl  shrink-0">
-        <img
-          src={gallery[`/src/gallery/img-${i}.jpg`]}
-          alt={`Partner ${i}`}
-          className="max-h-12 object-contain"
-        />
-      </div>
-    ))}
-  </div>
+          {/* Row 2 */}
+          <div className="flex gap-6 w-max animate-marquee-reverse">
+            {[10, 11, 12, 13, 14, 15, 16, 17, 18, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((i, index) => (
+              <div key={index} className="w-24 h-16 flex items-center justify-center bg-slate-50 rounded-xl  shrink-0">
+                <img
+                  src={gallery[`/src/gallery/img-${i}.jpg`]}
+                  alt={`Partner ${i}`}
+                  className="max-h-12 object-contain"
+                />
+              </div>
+            ))}
+          </div>
 
-</div>
+        </div>
       </section>
 
 
