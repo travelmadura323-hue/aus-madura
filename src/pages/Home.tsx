@@ -460,7 +460,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
       {/* Popular India Tours */}
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
             <div className="text-left">
               <h2 className="text-[24px] font-bold text-primary">Popular India Tours</h2>
             </div>
@@ -481,7 +481,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
       <section className="py-12 sm:py-16 lg:py-24 bg-slate-50 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-6 px-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6 px-4">
             <div className="text-center md:text-left">
               <h2 className="text-[24px] font-bold text-primary">Iconic Australia </h2>
             </div>
@@ -631,7 +631,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                   <div className="text-center mt-3">
                     <div className="font-bold text-primary text-lg">Mr. Sriharan Balan</div>
                     <div className="text-sm text-slate-500">Managing Director</div>
-                    <div className="text-xs text-slate-400">Madura Travel Service</div>
+                    <div className="text-xs text-slate-400">Madura Travel Service (P) Ltd</div>
                   </div>
                 </div>
                 
@@ -645,7 +645,7 @@ const handleTouchEnd = (e: React.TouchEvent) => {
                     <div>
                       <h3 className="text-xl sm:text-2xl font-bold text-primary">Message from Our MD</h3>
                       <div className="inline-block px-2 py-1 bg-accent/10 rounded-full mt-1">
-                        <span className="text-[10px] font-semibold text-accent uppercase tracking-wider">Managing Director</span>
+                        <span className="text-[10px] font-semibold text-accent uppercase tracking-wider">Managing Director (P) Ltd</span>
                       </div>
                     </div>
                   </div>
@@ -783,7 +783,7 @@ This is only the beginning of what we are building here. My vision is for Madura
           {/* Stats Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
             {[
-              { number: "4Million+", label: "Happy Travelers" },
+              { number: "4 Million+", label: "Happy Travelers" },
               { number: "195+", label: "Countries Covered" },
               { number: "40+", label: "Years of Excellence" },
               { number: "10K+", label: "5-Star Client Ratings" }

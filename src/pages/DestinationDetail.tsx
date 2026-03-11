@@ -3,11 +3,31 @@ import { motion } from 'framer-motion';
 import { MapPin, ArrowRight, Info, Camera } from 'lucide-react';
 import { destinations, tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
+import TourFilters from '../components/TourFilters';
+import FilteredTourList from '../components/FilteredTourList';
+import { useTourFilters } from '../hooks/useTourFilters';
 
 export default function DestinationDetail() {
   const { country } = useParams();
+  const { filters, updateFilters } = useTourFilters();
   const destination = destinations.find(d => d.id === country) || destinations[0];
   const relatedTours = tours.filter(t => t.location.country.toLowerCase().includes(destination.name.toLowerCase()));
+
+  // Filter tours based on current filters
+  const filteredTours = relatedTours.filter(tour => {
+    const price = typeof tour.price === 'number' ? tour.price : tour.price.startingFrom;
+    const matchesPrice = price >= filters.priceRange[0] && price <= filters.priceRange[1];
+    const matchesRating = filters.rating === 0 || true; // Assuming all tours have good ratings
+    const matchesSearch = filters.searchTerm === '' || 
+      tour.title.toLowerCase().includes(filters.searchTerm.toLowerCase()) ||
+      (typeof tour.location === 'string' ? tour.location : tour.location.country).toLowerCase().includes(filters.searchTerm.toLowerCase());
+    const matchesDestination = filters.destinations.length === 0 || 
+      filters.destinations.some(dest => 
+        (typeof tour.location === 'string' ? tour.location : tour.location.country).toLowerCase().includes(dest.toLowerCase())
+      );
+
+    return matchesPrice && matchesRating && matchesSearch && matchesDestination;
+  });
 
   return (
     <div className="pt-20">
@@ -59,13 +79,14 @@ export default function DestinationDetail() {
 
               <div className="mb-16">
                 <h2 className="text-[24px] font-bold text-primary mb-10">Top Tour Packages</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {relatedTours.length > 0 ? (
-                    relatedTours.map(tour => <TourCard key={tour.id} tour={tour} />)
-                  ) : (
-                    tours.slice(0, 3).map(tour => <TourCard key={tour.id} tour={tour} />)
-                  )}
+                
+                {/* Tour Filters */}
+                <div className="mb-8">
+                  <TourFilters onFiltersChange={updateFilters} />
                 </div>
+                
+                {/* Filtered Tour List */}
+                <FilteredTourList tours={filteredTours} />
               </div>
 
               <div>

@@ -19,6 +19,8 @@ export default function TourDetail() {
   const tour = tours.find(t => t.slug === slug) || tours[0];
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [otherTravelers, setOtherTravelers] = useState("");
+  const [isOtherSelected, setIsOtherSelected] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -337,14 +339,14 @@ export default function TourDetail() {
 
                   <div className="relative z-10">
                     <div className="text-slate-400 font-bold uppercase tracking-widest text-[10px] mb-2">Starting From</div>
-                    <div className="flex items-baseline gap-2 mb-8">
+                    <div className="flex items-baseline gap-2 mb-2">
                       <span className="text-[32px] font-black text-white">{displayCurrency}{displayPrice.toLocaleString()}</span>
                       <span className="text-slate-400 text-sm">/ person</span>
                     </div>
 
 
-                    <div id="booking-form" className="bg-white/5 p-2 rounded-xl border border-white/10">
-                      <h4 className="text-white font-bold mb-4 flex items-center gap-2">
+                    <div id="booking-form" className="bg-white/5 p-1 rounded-xl border border-white/10">
+                      <h4 className="text-white font-bold mb-2 flex items-center gap-2">
                         <Calendar className="w-5 h-5 text-accent" />
                         Book This Tour
                       </h4>
@@ -439,10 +441,18 @@ export default function TourDetail() {
                             value={formData.date}
                             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                           />
-                          <select
+                       <select
   className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
-  value={formData.travelers}
-  onChange={(e) => setFormData({ ...formData, travelers: e.target.value })}
+  value={isOtherSelected ? "others" : formData.travelers}
+  onChange={(e) => {
+    if (e.target.value === "others") {
+      setIsOtherSelected(true);
+      setFormData({ ...formData, travelers: "" });
+    } else {
+      setIsOtherSelected(false);
+      setFormData({ ...formData, travelers: e.target.value });
+    }
+  }}
 >
   {[...Array(10)].map((_, i) => i + 1).map(n => (
     <option key={n} value={n} className="bg-primary">
@@ -452,14 +462,18 @@ export default function TourDetail() {
   <option value="others" className="bg-primary">Others</option>
 </select>
 
-{formData.travelers === "others" && (
+{isOtherSelected && (
   <input
     type="number"
-    min="10"
+    min="11"
     max="99"
+    value={otherTravelers}
     placeholder="Enter number of travelers"
     className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors mt-3"
-    onChange={(e) => setFormData({ ...formData, travelers: e.target.value })}
+    onChange={(e) => {
+      setOtherTravelers(e.target.value);
+      setFormData({ ...formData, travelers: e.target.value });
+    }}
   />
 )}
                           <textarea
@@ -472,7 +486,7 @@ export default function TourDetail() {
                           <button
                             type="submit"
                             disabled={bookingStatus === 'submitting'}
-                            className="w-full bg-white text-Black font-black py-4 rounded-xl hover:bg-primary transition-all flex items-center justify-center gap-2 shadow-xl shadow-accent/20 disabled:opacity-50"
+                            className="w-full bg-white text-Black font-black py-4 rounded-xl hover:bg-primary transition-all flex items-center justify-center gap-2 shadow-xl shadow-accent/20 disabled:opacity-50 sticky bottom-0"
                           >
                             {bookingStatus === 'submitting' ? 'Processing...' : (
                               <>
