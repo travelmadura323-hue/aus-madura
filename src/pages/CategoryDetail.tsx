@@ -22,11 +22,11 @@ export default function CategoryDetail() {
     const price = typeof tour.price === 'number' ? tour.price : tour.price.startingFrom;
     const matchesPrice = price >= filters.priceRange[0] && price <= filters.priceRange[1];
     const matchesRating = filters.rating === 0 || true; // Assuming all tours have good ratings
-    const matchesSearch = filters.searchTerm === '' || 
+    const matchesSearch = filters.searchTerm === '' ||
       tour.title.toLowerCase().includes(filters.searchTerm.toLowerCase()) ||
       (typeof tour.location === 'string' ? tour.location : tour.location.country).toLowerCase().includes(filters.searchTerm.toLowerCase());
-    const matchesDestination = filters.destinations.length === 0 || 
-      filters.destinations.some(dest => 
+    const matchesDestination = filters.destinations.length === 0 ||
+      filters.destinations.some(dest =>
         (typeof tour.location === 'string' ? tour.location : tour.location.country).toLowerCase().includes(dest.toLowerCase())
       );
 
@@ -54,12 +54,12 @@ export default function CategoryDetail() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-16">
             <div className="lg:col-span-3">
               <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-8 sm:mb-10">Available Packages</h2>
-              
-              {/* Tour Filters */}
+              {/* 
+              Tour Filters */}
               <div className="mb-8">
                 <TourFilters onFiltersChange={updateFilters} />
               </div>
-              
+
               {/* Filtered Tour List */}
               <FilteredTourList tours={filteredTours} />
             </div>

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Globe, Heart, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import TourCard from './TourCard';
-
+import TourFilters from '../TourFilters';
 interface DestinationPackagesProps {
     country: string;
     heroImage: string;
@@ -13,6 +13,9 @@ interface DestinationPackagesProps {
     tours: any[];
     titlePrefix?: string;
 }
+const handleFilters = (filters: any) => {
+    console.log("Filters selected:", filters);
+};
 
 const DestinationPackages: React.FC<DestinationPackagesProps> = ({
     country,
@@ -85,9 +88,13 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
                         <span className="text-accent font-bold uppercase tracking-widest text-[10px] mb-2 block">Our Collection</span>
                         <h2 className="text-3xl md:text-[40px] font-bold text-primary">Signature {country} Tours</h2>
                     </div>
-                    <p className="text-slate-500 max-w-md text-right hidden md:block italic">
-                        "Travel is the only thing you buy that makes you richer." - Experience {country} like never before.
-                    </p>
+                    <TourFilters
+                        onFiltersChange={handleFilters}
+                        showPrice={true}
+                        showRating={true}
+                        showDestination={false}
+                        showDuration={false}
+                    />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
