@@ -10,6 +10,9 @@ import {
 import { useState } from 'react';
 import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
+import TourFilters from '../components/TourFilters';
+import FilteredTourList from '../components/FilteredTourList';
+import { useTourFilters } from '../hooks/useTourFilters';
 
 export default function TourDetail() {
   const { slug } = useParams();
