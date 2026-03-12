@@ -24,6 +24,22 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    try {
+      // your existing logic (API / firebase / email etc)
+
+      setSubmittedEmail(formData.email);
+      setIsSubmitted(true);
+
+      // 👇 ADD THIS PART
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setSubmittedEmail("");
+      }, 3000);
+
+    } catch (error) {
+      console.error(error);
+    }
+
     setIsSubmitting(true);
 
     try {
