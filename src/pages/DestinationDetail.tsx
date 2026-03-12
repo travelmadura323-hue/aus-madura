@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { MapPin, ArrowRight, Info, Camera } from 'lucide-react';
 import { destinations, tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
-import TourFilters from '../components/TourFilters';
+
 import FilteredTourList from '../components/FilteredTourList';
 import { useTourFilters } from '../hooks/useTourFilters';
 
@@ -18,11 +18,11 @@ export default function DestinationDetail() {
     const price = typeof tour.price === 'number' ? tour.price : tour.price.startingFrom;
     const matchesPrice = price >= filters.priceRange[0] && price <= filters.priceRange[1];
     const matchesRating = filters.rating === 0 || true; // Assuming all tours have good ratings
-    const matchesSearch = filters.searchTerm === '' || 
+    const matchesSearch = filters.searchTerm === '' ||
       tour.title.toLowerCase().includes(filters.searchTerm.toLowerCase()) ||
       (typeof tour.location === 'string' ? tour.location : tour.location.country).toLowerCase().includes(filters.searchTerm.toLowerCase());
-    const matchesDestination = filters.destinations.length === 0 || 
-      filters.destinations.some(dest => 
+    const matchesDestination = filters.destinations.length === 0 ||
+      filters.destinations.some(dest =>
         (typeof tour.location === 'string' ? tour.location : tour.location.country).toLowerCase().includes(dest.toLowerCase())
       );
 
@@ -79,12 +79,10 @@ export default function DestinationDetail() {
 
               <div className="mb-16">
                 <h2 className="text-[24px] font-bold text-primary mb-10">Top Tour Packages</h2>
-                
+
                 {/* Tour Filters */}
-                <div className="mb-8">
-                  <TourFilters onFiltersChange={updateFilters} />
-                </div>
-                
+
+
                 {/* Filtered Tour List */}
                 <FilteredTourList tours={filteredTours} />
               </div>
