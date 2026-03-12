@@ -8,7 +8,7 @@ interface EnquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
+const [formStartTime] = useState(Date.now());
 export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   const [formData, setFormData] = useState({
     name: "",
@@ -26,8 +26,12 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (Date.now() - formStartTime < 3000) {
+      console.log("Bot detected (too fast)");
+      return;
+    }
     // Honeypot spam protection
-    if (formData.website) {
+    if (formData.website.trim() !== "") {
       console.log("Bot detected. Submission blocked.");
       return;
     }
