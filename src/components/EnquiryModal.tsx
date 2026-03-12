@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, Calendar, User, Mail, Phone, Briefcase, CheckCircle } from "lucide-react";
 import React, { useState } from "react";
 import { cn } from "../lib/utils";
+import { source } from "framer-motion/client";
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -93,6 +94,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         countryCode: "+61",
         date: "",
         type: "Tours",
+        source: "Madura Global",
+        website: ""
       });
     } catch (error) {
       console.error("Submission error:", error);
