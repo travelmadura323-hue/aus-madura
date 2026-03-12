@@ -652,7 +652,7 @@ export default function Home() {
 
                   <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-accent/30 mb-4" />
                   <p className="text-slate-600 text-sm sm:text-lg leading-relaxed mb-6 italic">
-                  From the Desk of the Managing Director
+                  <span className="font-bold">From the Desk of the Managing Director</span>
                   <br />
                   We are delighted to expand our footprint beyond India and take our strong legacy of expertise, ethics, and service excellence to customers across the globe. At Madura Travel Service, our mission has always been to help people explore the world safely, comfortably, and with complete trust.
                   <br />
