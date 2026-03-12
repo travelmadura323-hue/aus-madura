@@ -34,15 +34,17 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       // Format date
       const formattedDate = new Date(formData.date).toISOString().split("T")[0];
 
-      const payload = {
+      const data = {
         name: formData.name,
         phone: phone,
         date: formattedDate,
         email: formData.email,
         enquiry: formData.type,
+        nationality: "Australia",
+        destination: "Website enquiry"
       };
 
-      console.log("Sending payload:", payload);
+      console.log("Sending payload:", data);
 
       const response = await fetch(
         "https://api.maduratravel.com/api/lead/website",
@@ -51,7 +53,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(payload),
+          body: JSON.stringify(data),
         }
       );
 
