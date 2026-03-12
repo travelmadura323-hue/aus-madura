@@ -490,6 +490,7 @@ export default function TourDetail() {
                               <input
                                 type="number"
                                 min="0"
+                                max="10"
                                 placeholder="0"
                                 className="w-full bg-white/10 border border-white/10 rounded-xl px-3 py-3 text-white text-sm focus:outline-none focus:border-white"
                                 value={formData.infants}
@@ -504,8 +505,8 @@ export default function TourDetail() {
                           {isOtherSelected && (
                             <input
                               type="number"
-                              min="11"
-                              max="99"
+                              min="0"
+                              max="10"
                               value={otherTravelers}
                               placeholder="Enter number of travelers"
                               className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors mt-3"
