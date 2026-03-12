@@ -2,9 +2,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Calendar, User, Mail, Phone, Briefcase, CheckCircle } from 'lucide-react';
 import React, { useState } from 'react';
 import { cn } from '../lib/utils';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../firebase-config';
-import { data } from 'react-router-dom';
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -25,54 +22,54 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
+    e.preventDefault();
+    setIsSubmitting(true);
 
-  const payload = {
-    full_name: formData.name,
-    email: formData.email,
-    phone_number: `${formData.countryCode} ${formData.phone}`,
-    date_of_travel: formData.date,
-    enquiry_type: formData.type,
-    branch_id: 1
+    try {
+      const response = await fetch("https://api.maduratravel.com/api/lead/website", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          subject: `New Enquiry: ${formData.type} from ${formData.name}`,
+          from_name: "Madura Travel Advisor",
+          name: formData.name,
+          email: formData.email,
+          phone: `${formData.countryCode} ${formData.phone}`,
+          travel_date: formData.date,
+          enquiry_type: formData.type,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit enquiry");
+      }
+
+      const data = await response.json();
+
+      setIsSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        countryCode: "+61",
+        date: "",
+        type: "tours",
+      });
+
+    } catch (error) {
+      console.error("Submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  try {
-    // Save to Firestore
-    await addDoc(collection(db, "enquiries"), {
-      ...payload,
-      created_at: serverTimestamp()
-    });
-
-    // Send to CRM
-    const crmUrl = import.meta.env.VITE_CRM_URL;
-
-const crmResponse = await fetch(crmUrl, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(payload)
-});
-
-    if (!crmResponse.ok) {
-      throw new Error(`CRM error: ${crmResponse.status}`);
-    }
-
-    setIsSubmitted(true);
-
-  } catch (error) {
-    console.error("Submission error:", error);
-    alert("Something went wrong. Please try again.");
-  } finally {
-    setIsSubmitting(false);
-  }
-};
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[9999] flex items-start justify-center overflow-y-auto p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -85,15 +82,18 @@ const crmResponse = await fetch(crmUrl, {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl mt-10"          >
-           <div className="bg-primary p-5 sm:p-6 text-white relative rounded-t-3xl">
+            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl max-h-[90vh] overflow-y-auto mt-10"
+          >
+            <div className="bg-primary p-8 text-white relative">
               <button
                 onClick={onClose}
-                className="absolute top-6 right-3 text-white/60 hover:text-white transition-colors"
+                className="absolute top-6 right-6 text-white/60 hover:text-white transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
-            <h2 className="text-lg sm:text-xl lg:text-2xl text-white font-bold mb-2 leading-snug">Turn Your Travel Dreams Into Reality</h2>
+              <h2 className="text-3xl text-white font-bold mb-2">
+
+                Turn Your Travel Dreams Into Reality</h2>
               <p className="text-white/60 text-sm">Fill in the details and our experts will contact you.</p>
             </div>
 
@@ -111,8 +111,7 @@ className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl mt-10"      
                 <div>
                   <h3 className="text-2xl font-bold text-primary mb-2">Thank You!</h3>
                   <p className="text-slate-500 leading-relaxed">
-                    Your enquiry has been received. Our specialists will contact you at{' '}
-                    <span className="text-primary font-bold">{formData.email}</span> shortly.
+                    Your enquiry has been received. Our specialists will contact you at <span className="text-primary font-bold">{formData.email}</span> shortly.
                   </p>
                 </div>
                 <button
@@ -123,9 +122,7 @@ className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl mt-10"      
                 </button>
               </div>
             ) : (
-          <form onSubmit={handleSubmit} className="p-5 sm:p-6 space-y-4">
-
-                {/* Full Name */}
+              <form onSubmit={handleSubmit} className="p-8 space-y-5">
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Full Name</label>
                   <div className="relative">
@@ -142,99 +139,99 @@ className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl mt-10"      
                   </div>
                 </div>
 
-                {/* Email */}
-                <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Email Address</label>
-                  <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <input
-                      name="email"
-                      type="email"
-                      placeholder="john@example.com"
-                      className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    />
-                  </div>
-                </div>
-
-                {/* Phone */}
-                <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Phone Number</label>
-                  <div className="flex gap-2">
-                    <select
-                      name="countryCode"
-                      className="bg-slate-50 border border-slate-100 rounded-xl py-3 px-2 text-xs focus:outline-none focus:border-accent"
-                      value={formData.countryCode}
-                      onChange={(e) => setFormData({ ...formData, countryCode: e.target.value })}
-                    >
-                      <option value="+61">+61 (AU)</option>
-                      <option value="+91">+91 (IN)</option>
-                      <option value="+1">+1 (US)</option>
-                      <option value="+44">+44 (UK)</option>
-                      <option value="+65">+65 (SG)</option>
-                      <option value="+60">+60 (MY)</option>
-                      <option value="+84">+84 (VN)</option>
-                      <option value="+94">+94 (LK)</option>
-                      <option value="+971">+971 (UAE)</option>
-                    </select>
-                    <div className="relative flex-1">
-                      <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <div className="space-y-5">
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Email Address</label>
+                    <div className="relative">
+                      <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                       <input
                         required
-                        name="phone"
-                        type="tel"
-                        placeholder={
-                          formData.countryCode === '+91' ? '98765 43210' :
-                          formData.countryCode === '+61' ? '0412 345 678' :
-                          formData.countryCode === '+65' ? '8123 4567' :
-                          'Enter phone number'
-                        }
+                        name="email"
+                        type="email"
+                        placeholder="john@example.com"
                         className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Phone Number</label>
+                    <div className="flex gap-2">
+                      <select
+                        name="countryCode"
+                        className="bg-slate-50 border border-slate-100 rounded-xl py-3 px-2 text-xs focus:outline-none focus:border-accent"
+                        value={formData.countryCode}
+                        onChange={(e) => setFormData({ ...formData, countryCode: e.target.value })}
+                      >
+                        <option value="+61">+61 (AU)</option>
+                        <option value="+91">+91 (IN)</option>
+                        <option value="+1">+1 (US)</option>
+                        <option value="+44">+44 (UK)</option>
+                        <option value="+65">+65 (SG)</option>
+                        <option value="+60">+60 (MY)</option>
+                        <option value="+84">+84 (VN)</option>
+                        <option value="+94">+94 (LK)</option>
+                        <option value="+971">+971 (UAE)</option>
+                      </select>
+                      <div className="relative flex-1">
+                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                        <input
+                          required
+                          name="phone"
+                          type="tel"
+                          placeholder={
+                            formData.countryCode === '+91' ? '98765 43210' :
+                              formData.countryCode === '+61' ? '0412 345 678' :
+                                formData.countryCode === '+65' ? '8123 4567' :
+                                  'Enter phone number'
+                          }
+                          className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Date of Travel */}
-                <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Date of Travel</label>
-                  <div className="relative">
-                    <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <input
-                      required
-                      name="date"
-                      type="date"
-                      className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
-                      value={formData.date}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    />
+                <div className="space-y-5">
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Date of Travel</label>
+                    <div className="relative">
+                      <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <input
+                        required
+                        name="date"
+                        type="date"
+                        className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
+                        value={formData.date}
+                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Type of Enquiry</label>
+                    <div className="relative">
+                      <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <select
+                        name="type"
+                        className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent appearance-none transition-colors"
+                        value={formData.type}
+                        onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                      >
+                        <option value="air-ticket">Air Ticket</option>
+                        <option value="visa">Visa</option>
+                        <option value="tours">Tours</option>
+                        <option value="forex">Forex</option>
+                        <option value="passport">Passport</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
 
-                {/* Type of Enquiry */}
-                <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Type of Enquiry</label>
-                  <div className="relative">
-                    <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <select
-                      name="type"
-                      className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent appearance-none transition-colors"
-                      value={formData.type}
-                      onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                    >
-                      <option value="air-ticket">Air Ticket</option>
-                      <option value="visa">Visa</option>
-                      <option value="tours">Tours</option>
-                      <option value="forex">Forex</option>
-                      <option value="passport">Passport</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Submit */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
