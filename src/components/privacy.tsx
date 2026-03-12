@@ -7,7 +7,7 @@ const privacy = () => {
             Privacy Policy
           </h1>
           <p className="mt-4 text-white/80 leading-relaxed italic">
-"Effective Date: 11th March 2026"          </p>
+            "Effective Date: 11th March 2026"          </p>
         </div>
       </div>
       <section className="bg-gray-50 py-20">
@@ -202,7 +202,7 @@ const privacy = () => {
             </p>
 
           </div>
-          <h6>You may always submit concerns regarding this Privacy Policy via email to us at australia@maduraglobal.com. Madura Global shall endeavor to respond to all reasonable concerns and inquires.</h6>
+          <h6>You may always submit concerns regarding this Privacy Policy via email to us at mail@maduratravel.com. Madura Global shall endeavor to respond to all reasonable concerns and inquires.</h6>
 
         </div>
       </section>

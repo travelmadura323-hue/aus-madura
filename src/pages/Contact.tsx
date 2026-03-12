@@ -22,7 +22,7 @@ const contactInfo = [
     details: [
       { label: "1-11 Rosa Crescent, Castle Hill NSW 2154, Australia" },
       { label: "+61 434 500 743", link: "tel:+61 434 500 743" },
-      { label: "australia@maduraglobal.com", link: "mailto:australia@maduraglobal.com" },
+      { label: "mail@maduratravel.com", link: "mailto:mail@maduratravel.com" },
     ],
   },
 ];

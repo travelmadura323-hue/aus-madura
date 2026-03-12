@@ -271,14 +271,14 @@ export default function TourDetail() {
                 <div className="bg-[#191975]/5 p-10 rounded-[2.5rem] border border-[#191975]/20">
                   <h3 className="text-xl font-bold text-[#191975] mb-8 flex items-center gap-3">
                     <div className="w-10 h-10 bg-[#191975] rounded-2xl flex items-center justify-center text-white">
-                   <Check className="w-5 h-5 text-[#191715]-600" />
+                      <Check className="w-5 h-5 text-[#191715]-600" />
                     </div>
                     What's Included
                   </h3>
                   <ul className="space-y-5 list-none">
                     {(tour.included || ['Premium Hotel Stay', 'Luxury Transportation', 'Guided Cultural Tours', 'Full Board Meals', 'Activity Charges']).map((item, idx) => (
                       <li key={idx} className="flex items-center gap-4 text-[#191975] font-medium">
-                         <Check className="w-5 h-5 text-[#191715]-600" />{item}
+                        <Check className="w-5 h-5 text-[#191715]-600" />{item}
                       </li>
                     ))}
                   </ul>
@@ -452,41 +452,41 @@ export default function TourDetail() {
                             value={formData.date}
                             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                           />
-                       <select
-  className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
-  value={isOtherSelected ? "others" : formData.travelers}
-  onChange={(e) => {
-    if (e.target.value === "others") {
-      setIsOtherSelected(true);
-      setFormData({ ...formData, travelers: "" });
-    } else {
-      setIsOtherSelected(false);
-      setFormData({ ...formData, travelers: e.target.value });
-    }
-  }}
->
-  {[...Array(10)].map((_, i) => i + 1).map(n => (
-    <option key={n} value={n} className="bg-primary">
-      {n} Traveler{n > 1 ? 's' : ''}
-    </option>
-  ))}
-  <option value="others" className="bg-primary">Others</option>
-</select>
+                          <select
+                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
+                            value={isOtherSelected ? "others" : formData.travelers}
+                            onChange={(e) => {
+                              if (e.target.value === "others") {
+                                setIsOtherSelected(true);
+                                setFormData({ ...formData, travelers: "" });
+                              } else {
+                                setIsOtherSelected(false);
+                                setFormData({ ...formData, travelers: e.target.value });
+                              }
+                            }}
+                          >
+                            {[...Array(10)].map((_, i) => i + 1).map(n => (
+                              <option key={n} value={n} className="bg-primary">
+                                {n} Traveler{n > 1 ? 's' : ''}
+                              </option>
+                            ))}
+                            <option value="others" className="bg-primary">Others</option>
+                          </select>
 
-{isOtherSelected && (
-  <input
-    type="number"
-    min="11"
-    max="99"
-    value={otherTravelers}
-    placeholder="Enter number of travelers"
-    className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors mt-3"
-    onChange={(e) => {
-      setOtherTravelers(e.target.value);
-      setFormData({ ...formData, travelers: e.target.value });
-    }}
-  />
-)}
+                          {isOtherSelected && (
+                            <input
+                              type="number"
+                              min="11"
+                              max="99"
+                              value={otherTravelers}
+                              placeholder="Enter number of travelers"
+                              className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors mt-3"
+                              onChange={(e) => {
+                                setOtherTravelers(e.target.value);
+                                setFormData({ ...formData, travelers: e.target.value });
+                              }}
+                            />
+                          )}
                           <textarea
                             placeholder="Special Requests"
                             rows={3}
@@ -510,7 +510,7 @@ export default function TourDetail() {
                       )}
                     </div>
 
-                   
+
                   </div>
                 </div>
 
@@ -523,7 +523,7 @@ export default function TourDetail() {
                     <a href="tel:+91" className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-all text-primary">
                       <ShieldCheck className="w-6 h-6" />
                     </a>
-                    <a href="mailto:australia@maduraglobal.com" className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-all text-primary">
+                    <a href="mailto:mail@maduratravel.com" className="w-12 h-12 bg-secondary rounded-full flex items-center justify-center hover:bg-accent hover:text-white transition-all text-primary">
                       <Info className="w-6 h-6" />
                     </a>
                   </div>

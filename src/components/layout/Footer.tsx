@@ -82,7 +82,7 @@ export default function Footer() {
                 <Phone className="w-4 h-4 text-accent shrink-0" /> +61 434 500 743
               </div>
               <div className="flex items-center gap-3 text-sm text-white/80">
-                <Mail className="w-4 h-4 text-accent shrink-0" /> australia@maduraglobal.com
+                <Mail className="w-4 h-4 text-accent shrink-0" /> mail@maduratravel.com
               </div>
             </div>
           </div>

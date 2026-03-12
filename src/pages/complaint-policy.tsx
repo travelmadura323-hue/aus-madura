@@ -4,12 +4,12 @@ export default function complaintPolicy() {
   return (
     <><div className="bg-primary py-20 text-center -mt-12">
       <div className="mx-auto max-w-3xl px-6">
-       
+
         <h1 className="mt-10 text-4xl font-bold text-white md:text-5xl">
-        Compliant Policy
+          Compliant Policy
         </h1>
         <p className="mt-4 text-white/80 leading-relaxed italic">
-"Effective Date: 11th March 2026"        </p>
+          "Effective Date: 11th March 2026"        </p>
       </div>
     </div><section className="bg-white py-20">
         <div className="max-w-5xl mx-auto px-6">
@@ -49,7 +49,7 @@ export default function complaintPolicy() {
               </p>
 
               <p className="mt-3 font-medium text-[#cc1715]">
-                australia@maduraglobal.com
+                mail@maduratravel.com
               </p>
 
               <p className="mt-3">
