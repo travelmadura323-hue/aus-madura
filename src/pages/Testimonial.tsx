@@ -17,7 +17,7 @@ const testimonials = [
   {
     name: "Mr.YB Wong Hon Wai",
     Designation: "Minister of Tourism, Malaysia",
-    rating:5,
+    rating: 5,
     text: "I'm Happy For the Arrangement by the Madura Travel Service For past two weeks.I have the opportunityto travel to a few places an interesting Attraction one other the Unesco monuments Chennai .I m happy with the services rendered Thank you",
     image: gal["/images/YB.jpg"] as string
   },
@@ -32,7 +32,7 @@ const testimonials = [
     name: "Mr. Napoleon",
     designation: "Cine Actor & Politician",
     rating: 5,
-    image: cel["/images/celebrity/nepolean.jpg"] as string,
+    image: cel["/images/celebrity/nepoleon.jpg"] as string,
     text: "Mr. Sriharan Balan and his exceptional team provided seamless service, taking on the monumental task of organizing my son’s wedding in Tokyo, Japan, in November 2024, with absolute ease. Every guest was treated like a VIP from start to finish, ensuring a memorable and stress-free experience for all involved."
   },
   {
@@ -65,27 +65,27 @@ const testimonials = [
   },
   {
     name: "Mr.Vijay",
-    rating:5,
+    rating: 5,
     text: "We had a wonderful experience for our Sri Lanka trip. All arrangements were seamless and Mr. Sudharsan ensured we were comfortable throughout.",
     image: gal["/images/v.png"] as string
   },
   {
     name: "Hariharan Balasubramanian",
-    rating:5,
+    rating: 5,
     text: "Systematic and careful VISA processing. Timely updates were provided and my family is delighted with the customer service.",
-  image: gal["/images/hari.png"] as string
+    image: gal["/images/hari.png"] as string
   },
   {
     name: "Subhashini Srivatsan",
-    rating:5,
+    rating: 5,
     text: "Excellent, personalised, professional and patient service by Ms. Deepa and her team.",
-  image: gal["/images/suba.png"] as string
+    image: gal["/images/suba.png"] as string
   },
   {
     name: "Jagadeesh Jayaraman",
-    rating:5,
+    rating: 5,
     text: "They understood our requirements perfectly and gave us a well-planned tour. Wonderful coordination and experience!",
-   image: gal["/images/jaga.png"] as string
+    image: gal["/images/jaga.png"] as string
   }
 ]
 

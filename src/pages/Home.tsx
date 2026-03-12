@@ -888,7 +888,7 @@ export default function Home() {
               {
                 name: "Mr. Napoleon",
                 designation: "Cine Actor & Politician",
-                image: cel["/images/celebrity/nepolean.jpg"] as string,
+                image: cel["/images/celebrity/nepoleon.jpg"] as string,
                 text: "Mr. Sriharan Balan and his exceptional team provided seamless service, taking on the monumental task of organizing my son’s wedding in Tokyo, Japan, in November 2024, with absolute ease. Every guest was treated like a VIP from start to finish, ensuring a memorable and stress-free experience for all involved."
               },
               {
@@ -938,7 +938,7 @@ export default function Home() {
                   {
                     name: "Mr. Napoleon",
                     designation: "Cine Actor & Politician",
-                    image: cel["/images/celebrity/nepolean.jpg"] as string,
+                    image: cel["/images/celebrity/nepoleon.jpg"] as string,
                     text: "Mr. Sriharan Balan and his exceptional team provided seamless service, taking on the monumental task of organizing my son’s wedding in Tokyo, Japan, in November 2024, with absolute ease. Every guest was treated like a VIP from start to finish, ensuring a memorable and stress-free experience for all involved."
                   },
                   {
