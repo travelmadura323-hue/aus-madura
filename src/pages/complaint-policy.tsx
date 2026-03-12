@@ -2,7 +2,7 @@ import React from "react"
 
 export default function complaintPolicy() {
   return (
-    <><div className="bg-primary py-20 text-center">
+    <><div className="bg-primary py-20 text-center -mt-12">
       <div className="mx-auto max-w-3xl px-6">
        
         <h1 className="mt-10 text-4xl font-bold text-white md:text-5xl">
