@@ -9,8 +9,7 @@ interface EnquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-const [captchaValue, setCaptchaValue] = useState<string | null>(null);
-const [formStartTime] = useState(Date.now());
+
 export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   const [formData, setFormData] = useState({
     name: "",
@@ -21,7 +20,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     type: "Tours",
     website: ""
   });
-
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
+  const [formStartTime] = useState(Date.now());
   const [submittedEmail, setSubmittedEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
