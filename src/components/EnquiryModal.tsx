@@ -16,6 +16,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     countryCode: "+61",
     date: "",
     type: "Tours",
+    website: " "
   });
 
   const [submittedEmail, setSubmittedEmail] = useState("");
@@ -24,6 +25,11 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Honeypot spam protection
+    if (formData.website) {
+      console.log("Bot detected. Submission blocked.");
+      return;
+    }
     try {
       // your existing logic (API / firebase / email etc)
 
@@ -151,6 +157,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                     shortly.
                   </p>
                 </div>
+
 
                 <button
                   onClick={onClose}
@@ -289,6 +296,19 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                       <option value="Passport">Passport</option>
                     </select>
                   </div>
+                </div>
+                {/* Honeypot field (hidden from users) */}
+                <div className="hidden">
+                  <input
+                    type="text"
+                    name="website"
+                    autoComplete="off"
+                    tabIndex={-1}
+                    value={formData.website}
+                    onChange={(e) =>
+                      setFormData({ ...formData, website: e.target.value })
+                    }
+                  />
                 </div>
 
                 {/* Submit */}

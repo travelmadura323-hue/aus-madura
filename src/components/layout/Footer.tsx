@@ -44,7 +44,7 @@ export default function Footer() {
               <li><Link to="/company/our-story" className="hover:text-white transition-colors">Our Story</Link></li>
               <li><Link to="/company/testimonials" className="hover:text-white transition-colors">Testimonials</Link></li>
               <li><Link to="/privacy-policy" className="hover:text-white transition-colors">Media</Link></li>
-               <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
+              <li><Link to="/contact" className="hover:text-white transition-colors">Contact Us</Link></li>
 
             </ul>
           </div>
@@ -63,7 +63,7 @@ export default function Footer() {
 
           {/* Column 4: News & Contact */}
           <div className="px-2">
-          {/* <div className="px-2">
+            {/* <div className="px-2">
             <h4 className="text-lg font-bold mb-6 text-accent">Newsletter</h4>
             <p className="text-white/80 text-sm mb-6 max-w-xs">Subscribe to get the latest travel deals and updates.</p>
             <form className="relative mb-8">
@@ -79,10 +79,17 @@ export default function Footer() {
             <h1 className="text-lg font-bold mb-6 text-accent">Contact</h1>
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-sm text-white/80">
-                <Phone className="w-4 h-4 text-accent shrink-0" /> +61 434 500 743
+                <Phone className="w-4 h-4 text-accent shrink-0" />
+                <a href="tel:+61434500743" className="hover:text-accent transition-colors">
+                  +61 434 500 743
+                </a>
               </div>
+
               <div className="flex items-center gap-3 text-sm text-white/80">
-                <Mail className="w-4 h-4 text-accent shrink-0" /> mail@maduratravel.com
+                <Mail className="w-4 h-4 text-accent shrink-0" />
+                <a href="mailto:mail@maduratravel.com" className="hover:text-accent transition-colors">
+                  mail@maduratravel.com
+                </a>
               </div>
             </div>
           </div>
