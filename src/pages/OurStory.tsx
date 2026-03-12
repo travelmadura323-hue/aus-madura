@@ -134,7 +134,7 @@ export default function OurStoryPage() {
               <p className="mt-4 leading-relaxed text-muted-foreground">
 
 
-                Madura Global is a premium travel and advisory platform connecting Australia with India and select international destinations through curated, intelligently designed journeys. Built upon the 40-year legacy of Madura Travel in India, our foundation is rooted in operational depth, long-standing regional partnerships and multi-generational expertise.
+                Madura Global is a premium travel and advisory platform connecting Australia with India and select international destinations through curated, intelligently designed journeys. Built upon the 40-year legacy of Madura Travel Service (P) Ltd in India, our foundation is rooted in operational depth, long-standing regional partnerships and multi-generational expertise.
 
                 We specialise in crafting structured travel experiences that balance cultural authenticity with refined execution. From heritage landscapes and spiritual circuits to contemporary luxury itineraries, every journey is thoughtfully designed for Australian travellers seeking clarity, comfort and meaningful engagement.
 
