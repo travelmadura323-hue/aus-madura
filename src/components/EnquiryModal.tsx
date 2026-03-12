@@ -35,7 +35,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
           name: formData.name,
           email: formData.email,
           phone: `${formData.countryCode} ${formData.phone}`,
-          travel_date: formData.date,
+          travelDate: formData.date,
           enquiry_type: formData.type,
         }),
       });
