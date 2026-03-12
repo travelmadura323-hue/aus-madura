@@ -166,6 +166,10 @@ export default function Header() {
               </div>
             ))}
           </nav>
+          <Link
+          to="/admin/login"
+          className="bg-black text-white px-4 py-2 rounded"
+        ></Link>
 
           <div className="flex items-center gap-3">
             <button
