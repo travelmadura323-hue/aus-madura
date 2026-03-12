@@ -31,34 +31,34 @@ import ComplaintPolicy from "./pages/complaint-policy";
 import CareersPage from "./pages/CareersPage";
 import { doc } from "firebase/firestore";
 import { db } from "./firebase-config";
-import { useEffect } from "react";    
+import { useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import Destinations from "./pages/TourPackage";
-import Dashboard from "./pages/admin/dashboard";
-import Login from "./pages/admin/Login";
-import AddTour from "./pages/admin/AddTourPage";
-import DeleteTour from "./pages/admin/DeleteTourPage";
-import AddDestination from "./pages/admin/DestinationsAddPage";
-import DeleteDestination from "./pages/admin/DestinationsDeletePage";
-import EditDestination from "./pages/admin/DestinationsEditPage";
-import EditTour from "./pages/admin/EditTourPage";
-import Tours from "./pages/admin/TourPage";
+// import Dashboard from "./pages/admin/dashboard";
+// import Login from "./pages/admin/Login";
+// import AddTour from "./pages/admin/AddTourPage";
+// import DeleteTour from "./pages/admin/DeleteTourPage";
+// import AddDestination from "./pages/admin/DestinationsAddPage";
+// import DeleteDestination from "./pages/admin/DestinationsDeletePage";
+// import EditDestination from "./pages/admin/DestinationsEditPage";
+// import EditTour from "./pages/admin/EditTourPage";
+// import Tours from "./pages/admin/TourPage";
 
 export default function App() {
 
-  const docRef = doc(db, "users","UhHXaXitavSsa9w37RFl")
+  const docRef = doc(db, "users", "UhHXaXitavSsa9w37RFl")
   const getData = async () => {
-  try {
-    const snapshot = await getDocs(collection(db, "users"));
+    try {
+      const snapshot = await getDocs(collection(db, "users"));
 
-    snapshot.forEach((doc) => {
-      console.log(doc.id, doc.data());
-    });
+      snapshot.forEach((doc) => {
+        console.log(doc.id, doc.data());
+      });
 
-  } catch (error) {
-    console.error("Firestore error:", error);
-  }
-};
+    } catch (error) {
+      console.error("Firestore error:", error);
+    }
+  };
   useEffect(() => {
     getData()
   }, [])
@@ -77,10 +77,10 @@ export default function App() {
             <Route path="/categories/:category" element={<CategoryDetail />} />
             <Route path="/destinations" element={<Destinations />} />
 
-<Route
-  path="/destinations/:id"
-  element={<Destinations />}
-/>
+            <Route
+              path="/destinations/:id"
+              element={<Destinations />}
+            />
             <Route path="/mice" element={<MICE />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/company/our-story" element={<OurStory />} />
@@ -100,7 +100,7 @@ export default function App() {
             <Route path="/destinations/malaysia" element={<Malaysia />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
             <Route path="/complaint-policy" element={<ComplaintPolicy />} />
-            <Route path="/admin/dashboard" element={<Dashboard />} />
+            {/* <Route path="/admin/dashboard" element={<Dashboard />} />
             <Route path="/admin/login" element={<Login />} />
             <Route path="/admin/destinations" element={<Destinations />} />
 
@@ -117,11 +117,11 @@ export default function App() {
 <Route path="/admin/tours/edit/:id" element={<EditTour />} />
 
 <Route path="/admin/tours/delete/:id" element={<DeleteTour />} />
-
+ */}
 
           </Routes>
         </main>
-       
+
         <Footer />
       </div>
     </Router>
