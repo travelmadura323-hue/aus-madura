@@ -36,6 +36,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         date: formData.date,
         email: formData.email,
         enquiry: formData.type,
+        source: "Global website"
         // nationality: "Australia",
         // destination: "Website enquiry"
       };
@@ -294,3 +295,5 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     </AnimatePresence>
   );
 }
+
+
