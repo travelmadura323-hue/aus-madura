@@ -221,11 +221,11 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                         value={formData.type}
                         onChange={(e) => setFormData({ ...formData, type: e.target.value })}
                       >
-                        <option value="air-ticket">Air Ticket</option>
-                        <option value="visa">Visa</option>
-                        <option value="tours">Tours</option>
-                        <option value="forex">Forex</option>
-                        <option value="passport">Passport</option>
+                        <option value="Air Ticket">Air Ticket</option>
+                        <option value="Visa">Visa</option>
+                        <option value="Tours">Tours</option>
+                        <option value="Forex">Forex</option>
+                        <option value="Passport">Passport</option>
                       </select>
                     </div>
                   </div>
