@@ -17,6 +17,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     date: '',
     type: 'Tours'
   });
+  const formattedDate = new Date(formData.date).toISOString().split("T")[0];
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -33,7 +34,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         body: JSON.stringify({
           name: formData.name,
           phone: `${formData.countryCode}${formData.phone.replace(/^0+/, "").replace(/\D/g, "")}`,
-          date: formData.date,
+          date: formattedDate,
           enquiry: formData.type,
           email: formData.email
         }),
