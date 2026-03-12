@@ -66,9 +66,9 @@ export default function CategoryDetail() {
   }, [baseTours, destinationQuery, minPrice, maxPrice, minRating, sortBy]);
 
   return (
-    <div className="pt-25 sm:pt-28 bg-secondary min-h-screen">
+    <div className="pt-20 sm:pt-28 bg-secondary min-h-screen">
       {/* Header (match Our Story / Media / Privacy style) */}
-      <div className="bg-primary py-12 sm:py-20 text-center">
+      <div className="bg-primary py-12 sm:py-20 text-center -mt-12">
         <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <span className="text-sm font-semibold uppercase tracking-widest text-accent">
             Travel Categories
