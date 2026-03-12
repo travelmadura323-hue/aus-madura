@@ -94,7 +94,7 @@ export default function TestimonialsPage() {
     <div className="pt-28 bg-white min-h-screen">
 
       {/* HEADER */}
-      <div className="bg-[#191975] py-24 text-center text-white">
+      <div className="bg-[#191975] py-24 text-center text-white -mt-12">
         <div className="mx-auto max-w-3xl px-6">
           <span className="text-sm font-semibold uppercase tracking-widest text-red-500">
             Happy Travelers
