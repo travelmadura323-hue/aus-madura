@@ -28,16 +28,16 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
     try {
       // Format phone
-      const cleanedPhone = formData.phone.replace(/\D/g, "").replace(/^0+/, "");
-      const phone = `${formData.countryCode}${cleanedPhone}`;
+      // const cleanedPhone = formData.phone.replace(/\D/g, "").replace(/^0+/, "");
+      // const phone = `${formData.countryCode}${cleanedPhone}`;
 
       // Format date
-      const formattedDate = new Date(formData.date).toISOString().split("T")[0];
+      // const formattedDate = new Date(formData.date).toISOString().split("T")[0];
 
       const data = {
         name: formData.name,
-        phone: phone,
-        date: formattedDate,
+        phone: formData.phone,
+        date: formData.date,
         email: formData.email,
         enquiry: formData.type,
         nationality: "Australia",

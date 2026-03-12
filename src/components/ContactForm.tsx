@@ -33,18 +33,18 @@ export default function ContactForm() {
       const response = await fetch('https://api.maduratravel.com/api/lead/website', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+
         body: JSON.stringify({
-          access_key: "43dd3943-e03b-40eb-af68-3a2618020a2e", // Web3Forms Access Key
-          subject: `Contact Form Enquiry: ${formData.type} from ${formData.name}`,
-          from_name: "Madura Travel Contact Form",
           name: formData.name,
+          phone: `${formData.countryCode}${formData.phone}`,
+          date: formData.date,
+          enquiry: formData.type,
           email: formData.email,
-          phone: `${formData.countryCode} ${formData.phone}`,
-          travel_date: formData.date,
-          enquiry_type: formData.type,
-          recipient: "travelmadura323@gmail.com"
+          nationality: "Australia",
+          destination: "Website enquiry"
         })
       });
+
 
       const result = await response.json();
       if (result.success) {
