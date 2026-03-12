@@ -497,7 +497,7 @@ export default function TourDetail() {
                           <button
                             type="submit"
                             disabled={bookingStatus === 'submitting'}
-                            className="w-full bg-white text-Black font-black py-4 rounded-xl hover:bg-primary transition-all flex items-center justify-center gap-2 shadow-xl shadow-accent/20 disabled:opacity-50 sticky bottom-0"
+                            className="w-full bg-white text-Black font-black py-4 rounded-xl hover:bg-accent transition-all flex items-center justify-center gap-2 shadow-xl shadow-accent/20 disabled:opacity-50 sticky bottom-0"
                           >
                             {bookingStatus === 'submitting' ? 'Processing...' : (
                               <>
