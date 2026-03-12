@@ -24,7 +24,6 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       const response = await fetch("https://api.maduratravel.com/api/lead/website", {
         method: "POST",
@@ -32,22 +31,23 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          subject: `New Enquiry: ${formData.type} from ${formData.name}`,
           name: formData.name,
-          email: formData.email,
-          phone: `${formData.countryCode} ${formData.phone}`,
+          phone: `${formData.countryCode}${formData.phone.replace(/\D/g, "")}`,
           date: formData.date,
           enquiry: formData.type,
+          email: formData.email
         }),
       });
 
+      const text = await response.text();
+      console.log("Server response:", text);
+
       if (!response.ok) {
-        throw new Error("Failed to submit enquiry");
+        throw new Error(`CRM error: ${response.status}`);
       }
 
-      const data = await response.json();
-
       setIsSubmitted(true);
+
       setFormData({
         name: "",
         email: "",
@@ -63,8 +63,6 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       setIsSubmitting(false);
     }
   };
-
-
   return (
     <AnimatePresence>
       {isOpen && (
