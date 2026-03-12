@@ -35,9 +35,9 @@ export default function ContactForm() {
 
       const response = await fetch('https://api.maduratravel.com/api/lead/website', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 
-        body: JSON.stringify({
+        body: new URLSearchParams({
           name: formData.name,
           phone,
           date: formData.date,
@@ -45,7 +45,7 @@ export default function ContactForm() {
           email: formData.email,
           nationality: "Australia",
           destination: "Website enquiry"
-        })
+        }).toString()
       });
 
       const text = await response.text();

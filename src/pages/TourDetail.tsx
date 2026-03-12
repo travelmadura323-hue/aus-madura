@@ -40,8 +40,8 @@ export default function TourDetail() {
       // ✅ CRM integration - sends lead to CRM
       const response = await fetch('https://api.maduratravel.com/api/lead/website', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
           name: formData.name,
           email: formData.email,
           phone,
@@ -49,7 +49,7 @@ export default function TourDetail() {
           enquiry: "Tours",
           nationality: "Australia",
           destination: `Tour Booking: ${tour.title}`
-        })
+        }).toString()
       });
 
       const text = await response.text();
