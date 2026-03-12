@@ -16,7 +16,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     countryCode: "+61",
     date: "",
     type: "Tours",
-    website: " "
+    website: ""
   });
 
   const [submittedEmail, setSubmittedEmail] = useState("");
