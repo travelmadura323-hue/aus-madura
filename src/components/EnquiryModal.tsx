@@ -3,11 +3,13 @@ import { X, Send, Calendar, User, Mail, Phone, Briefcase, CheckCircle } from "lu
 import React, { useState } from "react";
 import { cn } from "../lib/utils";
 import { source } from "framer-motion/client";
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface EnquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 const [formStartTime] = useState(Date.now());
 export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   const [formData, setFormData] = useState({
@@ -26,6 +28,10 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!captchaValue) {
+      alert("Please verify the captcha");
+      return;
+    }
     if (Date.now() - formStartTime < 3000) {
       console.log("Bot detected (too fast)");
       return;
@@ -315,6 +321,12 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                     onChange={(e) =>
                       setFormData({ ...formData, website: e.target.value })
                     }
+                  />
+                </div>
+                <div className="flex justify-center">
+                  <ReCAPTCHA
+                    sitekey="6LeDJYgsAAAAANjpSqE61aoXdJ7aM8onE1mOYGoT"
+                    onChange={(value) => setCaptchaValue(value)}
                   />
                 </div>
 
