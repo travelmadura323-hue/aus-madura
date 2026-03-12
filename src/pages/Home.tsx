@@ -652,9 +652,15 @@ export default function Home() {
 
                   <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-accent/30 mb-4" />
                   <p className="text-slate-600 text-sm sm:text-lg leading-relaxed mb-6 italic">
-                    "Our journey continues to evolve with innovation at its core. We embrace cutting-edge technology
-                    and sustainable practices while maintaining the personal touch that defines us. Every client's
-                    dream becomes our mission, and every destination becomes a story of excellence."
+                  From the Desk of the Managing Director
+                  <br />
+                  We are delighted to expand our footprint beyond India and take our strong legacy of expertise, ethics, and service excellence to customers across the globe. At Madura Travel Service, our mission has always been to help people explore the world safely, comfortably, and with complete trust.
+                  <br />
+                  As a Ministry of Tourism–approved travel company from India, we are proud to have strong affiliations with several governments and tourism boards including Singapore, Malaysia, South Korea, the United Arab Emirates, Great Britain, Vietnam, and many more. We are also honored to be an official partner in tourism promotion initiatives with the Australian Government.
+                  <br />
+                  Having served over four million customers during the past four decades, our experience, industry knowledge, and global network position us strongly to serve travelers and partners in Australia and beyond.
+                  <br />
+                  We look forward to building lasting relationships and delivering exceptional travel experiences worldwide.
                   </p>
 
                   {/* Enhanced Footer */}
