@@ -15,7 +15,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     phone: '',
     countryCode: '+61',
     date: '',
-    type: 'tours'
+    type: 'Tours'
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,7 +32,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         },
         body: JSON.stringify({
           name: formData.name,
-          phone: `${formData.countryCode}${formData.phone.replace(/\D/g, "")}`,
+          phone: `${formData.countryCode}${formData.phone.replace(/^0+/, "").replace(/\D/g, "")}`,
           date: formData.date,
           enquiry: formData.type,
           email: formData.email
@@ -54,7 +54,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         phone: "",
         countryCode: "+61",
         date: "",
-        type: "tours",
+        type: "Tours",
       });
 
     } catch (error) {
