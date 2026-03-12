@@ -371,7 +371,7 @@ export default function TourDetail() {
                           <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Check className="w-8 h-8 text-white" />
                           </div>
-                          <h5 className="text-white font-bold text-lg mb-2">Booking Successful!</h5>
+                          <h5 className="text-white font-bold text-lg mb-2"> Enquiry sent</h5>
                           <p className="text-slate-400 text-sm">Our expert will contact you soon.</p>
                           <button
                             onClick={() => setBookingStatus('idle')}
@@ -452,26 +452,54 @@ export default function TourDetail() {
                             value={formData.date}
                             onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                           />
-                          <select
-                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
-                            value={isOtherSelected ? "others" : formData.travelers}
-                            onChange={(e) => {
-                              if (e.target.value === "others") {
-                                setIsOtherSelected(true);
-                                setFormData({ ...formData, travelers: "" });
-                              } else {
-                                setIsOtherSelected(false);
-                                setFormData({ ...formData, travelers: e.target.value });
-                              }
-                            }}
-                          >
-                            {[...Array(10)].map((_, i) => i + 1).map(n => (
-                              <option key={n} value={n} className="bg-primary">
-                                {n} Traveler{n > 1 ? 's' : ''}
-                              </option>
-                            ))}
-                            <option value="others" className="bg-primary">Others</option>
-                          </select>
+                          <div className="grid grid-cols-3 gap-3">
+
+                            {/* Adults */}
+                            <div>
+                              <label className="text-xs text-white/70 mb-1 block">Adults</label>
+                              <input
+                                type="number"
+                                min="1"
+                                placeholder="0"
+                                className="w-full bg-white/10 border border-white/10 rounded-xl px-3 py-3 text-white text-sm focus:outline-none focus:border-white"
+                                value={formData.adults}
+                                onChange={(e) =>
+                                  setFormData({ ...formData, adults: e.target.value })
+                                }
+                              />
+                            </div>
+
+                            {/* Children */}
+                            <div>
+                              <label className="text-xs text-white/70 mb-1 block">Children</label>
+                              <input
+                                type="number"
+                                min="0"
+                                placeholder="0"
+                                className="w-full bg-white/10 border border-white/10 rounded-xl px-3 py-3 text-white text-sm focus:outline-none focus:border-white"
+                                value={formData.children}
+                                onChange={(e) =>
+                                  setFormData({ ...formData, children: e.target.value })
+                                }
+                              />
+                            </div>
+
+                            {/* Infants */}
+                            <div>
+                              <label className="text-xs text-white/70 mb-1 block">Infants</label>
+                              <input
+                                type="number"
+                                min="0"
+                                placeholder="0"
+                                className="w-full bg-white/10 border border-white/10 rounded-xl px-3 py-3 text-white text-sm focus:outline-none focus:border-white"
+                                value={formData.infants}
+                                onChange={(e) =>
+                                  setFormData({ ...formData, infants: e.target.value })
+                                }
+                              />
+                            </div>
+
+                          </div>
 
                           {isOtherSelected && (
                             <input
@@ -502,7 +530,7 @@ export default function TourDetail() {
                             {bookingStatus === 'submitting' ? 'Processing...' : (
                               <>
                                 <MessageSquarePlus className="w-5 h-5" />
-                                Confirm Booking
+                                Send Enquiry
                               </>
                             )}
                           </button>
