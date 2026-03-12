@@ -21,11 +21,7 @@ const logos = [
     title: "Aussie Specialist",
     description: "An Aussie Specialist is a travel agent who has completed official training about Australia's destinations, attractions, and travel planning. This certification shows that the agent has expert knowledge of Australian travel."
   },
-  {
-    image: im['../../images/im/iata.png'],
-    title: "IATA",
-    description: "The International Air Transport Association (IATA) is a global organization that represents and supports airlines worldwide. It helps coordinate international air travel by setting common standards for airlines, travel agencies, and aviation operations."
-  },
+
   {
     image: im['../../images/im/Ministry of Tourism.jpg'],
     title: "Ministry of Tourism India",
@@ -41,11 +37,7 @@ const stats = [
 ]
 
 const accreditationDetails = [
-  {
-    image: im['../../images/im/iata.png'],
-    title: "IATA",
-    description: "The International Air Transport Association (IATA) is a global organization that represents and supports airlines worldwide. It helps coordinate international air travel by setting common standards for airlines, travel agencies, and aviation operations."
-  },
+
   {
     image: im['../../images/im/iaai.jpg'],
     title: "IAAI",
@@ -120,7 +112,7 @@ export default function OurStoryPage() {
                   {item.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">
-                  {item.text}         
+                  {item.text}
                 </p>
               </div>
             ))}
@@ -142,11 +134,11 @@ export default function OurStoryPage() {
               <p className="mt-4 leading-relaxed text-muted-foreground">
 
 
-Madura Global is a premium travel and advisory platform connecting Australia with India and select international destinations through curated, intelligently designed journeys. Built upon the 40-year legacy of Madura Travel in India, our foundation is rooted in operational depth, long-standing regional partnerships and multi-generational expertise.
+                Madura Global is a premium travel and advisory platform connecting Australia with India and select international destinations through curated, intelligently designed journeys. Built upon the 40-year legacy of Madura Travel in India, our foundation is rooted in operational depth, long-standing regional partnerships and multi-generational expertise.
 
-We specialise in crafting structured travel experiences that balance cultural authenticity with refined execution. From heritage landscapes and spiritual circuits to contemporary luxury itineraries, every journey is thoughtfully designed for Australian travellers seeking clarity, comfort and meaningful engagement.
+                We specialise in crafting structured travel experiences that balance cultural authenticity with refined execution. From heritage landscapes and spiritual circuits to contemporary luxury itineraries, every journey is thoughtfully designed for Australian travellers seeking clarity, comfort and meaningful engagement.
 
-Madura Global does not operate as a transactional tour reseller. We function as a strategic bridge — combining Australian consultation standards with on-ground precision across India and beyond. Our commitment is to deliver travel experiences defined by discretion, structure and enduring quality.
+                Madura Global does not operate as a transactional tour reseller. We function as a strategic bridge — combining Australian consultation standards with on-ground precision across India and beyond. Our commitment is to deliver travel experiences defined by discretion, structure and enduring quality.
               </p>
               <h6 className="text-3xl  text-primary">
                 Awards & Recognition
@@ -314,7 +306,7 @@ Madura Global does not operate as a transactional tour reseller. We function as 
             />
           ))}
         </div>
-        
+
 
         {/* Second Recognition Row */}
         <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">

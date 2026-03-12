@@ -34,6 +34,15 @@ import { db } from "./firebase-config";
 import { useEffect } from "react";    
 import { collection, getDocs } from "firebase/firestore";
 import Destinations from "./pages/TourPackage";
+import Dashboard from "./pages/admin/dashboard";
+import Login from "./pages/admin/Login";
+import AddTour from "./pages/admin/AddTourPage";
+import DeleteTour from "./pages/admin/DeleteTourPage";
+import AddDestination from "./pages/admin/DestinationsAddPage";
+import DeleteDestination from "./pages/admin/DestinationsDeletePage";
+import EditDestination from "./pages/admin/DestinationsEditPage";
+import EditTour from "./pages/admin/EditTourPage";
+import Tours from "./pages/admin/TourPage";
 
 export default function App() {
 
@@ -91,6 +100,25 @@ export default function App() {
             <Route path="/destinations/malaysia" element={<Malaysia />} />
             <Route path="/disclaimer" element={<Disclaimer />} />
             <Route path="/complaint-policy" element={<ComplaintPolicy />} />
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/login" element={<Login />} />
+            <Route path="/admin/destinations" element={<Destinations />} />
+
+<Route path="/admin/destinations/add" element={<AddDestination />} />
+
+<Route path="/admin/destinations/edit/:id" element={<EditDestination />} />
+
+<Route path="/admin/destinations/delete/:id" element={<DeleteDestination />} />
+
+<Route path="/admin/tours" element={<Tours />} />
+
+<Route path="/admin/tours/add" element={<AddTour />} />
+
+<Route path="/admin/tours/edit/:id" element={<EditTour />} />
+
+<Route path="/admin/tours/delete/:id" element={<DeleteTour />} />
+
+
           </Routes>
         </main>
        
