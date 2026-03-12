@@ -36,8 +36,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         date: formData.date,
         email: formData.email,
         enquiry: formData.type,
-        nationality: "Australia",
-        destination: "Website enquiry"
+        // nationality: "Australia",
+        // destination: "Website enquiry"
       };
 
       console.log("Sending payload:", data);
