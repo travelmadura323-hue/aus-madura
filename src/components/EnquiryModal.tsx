@@ -27,16 +27,12 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     setIsSubmitting(true);
 
     try {
-      // Format phone
-      // const cleanedPhone = formData.phone.replace(/\D/g, "").replace(/^0+/, "");
-      // const phone = `${formData.countryCode}${cleanedPhone}`;
-
-      // Format date
-      // const formattedDate = new Date(formData.date).toISOString().split("T")[0];
+      const cleanedPhone = formData.phone.replace(/\D/g, "").replace(/^0+/, "");
+      const phone = `${formData.countryCode}${cleanedPhone}`;
 
       const data = {
         name: formData.name,
-        phone: formData.phone,
+        phone,
         date: formData.date,
         email: formData.email,
         enquiry: formData.type,
@@ -61,7 +57,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       console.log("Server response:", text);
 
       if (!response.ok) {
-        throw new Error(`CRM error: ${response.status}`);
+        throw new Error(`CRM error: ${response.status} ${text ? `- ${text}` : ""}`);
       }
 
       setSubmittedEmail(formData.email);

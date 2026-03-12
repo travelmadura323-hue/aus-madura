@@ -30,13 +30,16 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
+      const cleanedPhone = formData.phone.replace(/\D/g, "").replace(/^0+/, "");
+      const phone = `${formData.countryCode}${cleanedPhone}`;
+
       const response = await fetch('https://api.maduratravel.com/api/lead/website', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
 
         body: JSON.stringify({
           name: formData.name,
-          phone: `${formData.countryCode}${formData.phone}`,
+          phone,
           date: formData.date,
           enquiry: formData.type,
           email: formData.email,
@@ -45,12 +48,22 @@ export default function ContactForm() {
         })
       });
 
+      const text = await response.text();
+      let result: any = null;
+      try {
+        result = text ? JSON.parse(text) : null;
+      } catch {
+        result = null;
+      }
 
-      const result = await response.json();
-      if (result.success) {
+      if (!response.ok) {
+        throw new Error(result?.message || text || `CRM error: ${response.status}`);
+      }
+
+      if (result?.success === true || response.ok) {
         setSubmitted(true);
       } else {
-        throw new Error(result.message);
+        throw new Error(result?.message || 'Submission failed');
       }
     } catch (error) {
       console.error('Submission error:', error);

@@ -10,9 +10,6 @@ import {
 import { useState } from 'react';
 import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
-import TourFilters from '../components/TourFilters';
-import FilteredTourList from '../components/FilteredTourList';
-import { useTourFilters } from '../hooks/useTourFilters';
 
 export default function TourDetail() {
   const { slug } = useParams();
@@ -37,27 +34,41 @@ export default function TourDetail() {
     setBookingStatus('submitting');
 
     try {
-      // ✅ Web3Forms integration - Directly sends to your email
+      const cleanedPhone = formData.phone.replace(/\D/g, "").replace(/^0+/, "");
+      const phone = `${formData.countryCode}${cleanedPhone}`;
+
+      // ✅ CRM integration - sends lead to CRM
       const response = await fetch('https://api.maduratravel.com/api/lead/website', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: "43dd3943-e03b-40eb-af68-3a2618020a2e", // Same Access Key as EnquiryForm
-          subject: `New Tour Booking: ${tour.title} from ${formData.name}`,
-          from_name: "Madura Travel Booking System",
-          tour_name: tour.title,
-          ...formData, // includes name, email, phone, date, travelers, message
-          recipient: "travelmadura323@gmail.com"
+          name: formData.name,
+          email: formData.email,
+          phone,
+          date: formData.date,
+          enquiry: "Tours",
+          nationality: "Australia",
+          destination: `Tour Booking: ${tour.title}`
         })
       });
 
-      const result = await response.json();
+      const text = await response.text();
+      let result: any = null;
+      try {
+        result = text ? JSON.parse(text) : null;
+      } catch {
+        result = null;
+      }
 
-      if (result.success) {
+      if (!response.ok) {
+        throw new Error(result?.message || text || `CRM error: ${response.status}`);
+      }
+
+      if (result?.success === true || response.ok) {
         setBookingStatus('success');
         setFormData({ name: '', email: '', phone: '', countryCode: '+91', date: '', travelers: '1', message: '' });
       } else {
-        throw new Error(result.message || 'Submission failed');
+        throw new Error(result?.message || 'Submission failed');
       }
     } catch (error) {
       console.error('Booking submission error:', error);
