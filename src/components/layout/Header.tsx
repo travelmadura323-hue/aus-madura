@@ -14,7 +14,7 @@ const im = import.meta.glob('../../../images/im/*.{png,jpg,jpeg,svg}', {
 const trustLogos = [
   { src: '../../../images/im/Ministry of Tourism.jpg', alt: 'Ministry of Tourism India' },
   { src: '../../../images/im/Aussie.jpg', alt: 'Aussie Specialist' },
-  { src: '../../../images/im/iata.png', alt: 'IATA' }
+
 ];
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -166,10 +166,10 @@ export default function Header() {
               </div>
             ))}
           </nav>
-          <Link
+          {/* <Link
           to="/admin/login"
           className="bg-black text-white px-4 py-2 rounded"
-        ></Link>
+        ></Link> */}
 
           <div className="flex items-center gap-3">
             <button
