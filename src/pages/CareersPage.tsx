@@ -12,20 +12,65 @@ export default function CareersPage() {
     resume: null,
   })
 
-  const handleChange = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type, files } = e.target
 
     if (type === "file") {
-      setFormData({ ...formData, resume: files[0] })
+      setFormData({ ...formData, resume: (files && files[0]) || null })
     } else {
       setFormData({ ...formData, [name]: value })
     }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(formData)
-    alert("Application Submitted Successfully!")
+    setIsSubmitting(true)
+
+    try {
+      const cleanedPhone = formData.phone.replace(/\D/g, "").replace(/^0+/, "")
+      const phone = cleanedPhone.startsWith("+" as any) ? cleanedPhone : `+${cleanedPhone}`
+
+      const today = new Date()
+      const date = today.toISOString().slice(0, 10) // YYYY-MM-DD
+
+      const response = await fetch("https://api.maduratravel.com/api/lead/website", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          name: `${formData.firstName} ${formData.lastName}`.trim(),
+          phone,
+          date,
+          enquiry: "Careers",
+          email: formData.email,
+          nationality: "India",
+          destination: `Careers Application - Role: ${formData.role || "N/A"}, Exp: ${formData.experience || "N/A"}`
+        }).toString(),
+      })
+
+      const text = await response.text()
+      if (!response.ok) {
+        throw new Error(text || `CRM error: ${response.status}`)
+      }
+
+      alert("Application Submitted Successfully!")
+      setFormData({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        qualification: "",
+        role: "",
+        experience: "",
+        resume: null,
+      })
+    } catch (err) {
+      console.error(err)
+      alert("Failed to submit. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -190,9 +235,10 @@ export default function CareersPage() {
           <div className="pt-4">
             <button
               type="submit"
-              className="w-full md:w-auto bg-[#191975]  items-center text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition"
+              disabled={isSubmitting}
+              className="w-full md:w-auto bg-[#191975] items-center text-white px-8 py-3 rounded-lg font-semibold hover:bg-red-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Submit Application
+              {isSubmitting ? "Submitting..." : "Submit Application"}
             </button>
           </div>
 

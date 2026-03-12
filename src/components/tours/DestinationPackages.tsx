@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Globe, Heart, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -26,6 +26,28 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
     tours,
     titlePrefix = 'Explore'
 }) => {
+    const [sortBy, setSortBy] = useState<'recommended' | 'priceLow' | 'priceHigh' | 'ratingHigh' | 'ratingLow'>('recommended');
+
+    const getPrice = (tour: any) =>
+        typeof tour?.price === 'number' ? tour.price : Number(tour?.price?.startingFrom ?? 0);
+
+    const getRating = (tour: any) => Number(tour?.rating ?? 0);
+
+    const sortedTours = useMemo(() => {
+        const withIndex = tours.map((t, i) => ({ t, i }));
+
+        const compare = (a: any, b: any) => {
+            if (sortBy === 'recommended') return a.i - b.i;
+            if (sortBy === 'priceLow') return getPrice(a.t) - getPrice(b.t) || a.i - b.i;
+            if (sortBy === 'priceHigh') return getPrice(b.t) - getPrice(a.t) || a.i - b.i;
+            if (sortBy === 'ratingHigh') return getRating(b.t) - getRating(a.t) || a.i - b.i;
+            if (sortBy === 'ratingLow') return getRating(a.t) - getRating(b.t) || a.i - b.i;
+            return a.i - b.i;
+        };
+
+        return withIndex.sort(compare).map(x => x.t);
+    }, [tours, sortBy]);
+
     return (
         <div className="pt-20 bg-slate-50 min-h-screen">
             {/* 🔹 Premium Hero Section */}
@@ -83,16 +105,34 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
 
             {/* 🔹 Packages Section */}
             <section className="py-24 max-w-7xl mx-auto px-4">
-                <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 px-4 text-center md:text-left">
+                <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 px-4 text-center md:text-left gap-6">
                     <div className="mb-6 md:mb-0">
                         <span className="text-accent font-bold uppercase tracking-widest text-[10px] mb-2 block">Our Collection</span>
                         <h2 className="text-3xl md:text-[40px] font-bold text-primary">Signature {country} Tours</h2>
+                    </div>
+                    <div className="w-full md:w-auto flex items-center justify-center md:justify-end">
+                        <div className="bg-white border border-slate-100 rounded-2xl px-4 py-3 shadow-sm flex items-center gap-3 w-full md:w-auto">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">
+                                Sort by
+                            </span>
+                            <select
+                                value={sortBy}
+                                onChange={(e) => setSortBy(e.target.value as any)}
+                                className="bg-transparent text-primary font-bold text-sm focus:outline-none cursor-pointer w-full md:w-[220px]"
+                            >
+                                <option value="recommended">Recommended</option>
+                                <option value="priceLow">Price: Low to High</option>
+                                <option value="priceHigh">Price: High to Low</option>
+                                <option value="ratingHigh">Rating: High to Low</option>
+                                <option value="ratingLow">Rating: Low to High</option>
+                            </select>
+                        </div>
                     </div>
 
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12">
-                    {tours.map((tour: any, idx) => (
+                    {sortedTours.map((tour: any, idx) => (
                         <motion.div
                             key={tour.id || tour.slug}
                             initial={{ opacity: 0, y: 30 }}
