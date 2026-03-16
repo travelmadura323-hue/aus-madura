@@ -106,7 +106,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         countryCode: "+61",
         date: "",
         type: "Tours",
-        website: ""
+        website: "",
+        source: ""
       });
     } catch (error) {
       console.error("Submission error:", error);
