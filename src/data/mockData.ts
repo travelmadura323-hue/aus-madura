@@ -3,7 +3,18 @@ const gallery = import.meta.glob('/images/**/*.{png,jpg,jpeg,svg,webp}', {
   import: 'default',
 });
 
-export const destinations = [
+export interface Destination {
+  id: string;
+  name: string;
+  type: 'domestic' | 'international';
+  image: string;
+  description: string;
+  region: string;
+  price?: string;
+  status?: 'Published' | 'Draft';
+}
+
+export const destinations: Destination[] = [
   // {
   //   id: 'kerala',
   //   name: 'Kerala',
@@ -26,7 +37,9 @@ export const destinations = [
     type: 'international',
     image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80',
     description: 'A land of staggering natural beauty and cultural complexities.',
-    region: 'Southeast Asia'
+    region: 'Southeast Asia',
+    price: '850',
+    status: 'Published'
   },
   {
     id: 'malaysia',
@@ -34,7 +47,9 @@ export const destinations = [
     type: 'international',
     image: gallery['/images/landscape.png'] as string,
     description: 'A vibrant mix of cultures, modern cities, and lush rainforests.',
-    region: 'Southeast Asia'
+    region: 'Southeast Asia',
+    price: '650',
+    status: 'Published'
   },
   {
     id: 'singapore',
@@ -42,7 +57,9 @@ export const destinations = [
     type: 'international',
     image: 'https://images.unsplash.com/photo-1525596662741-e94ff9f26de1?auto=format&fit=crop&w=600&h=800&q=80',
     description: 'A global hub of culture, finance, and entertainment.',
-    region: 'Southeast Asia'
+    region: 'Southeast Asia',
+    price: '950',
+    status: 'Published'
   },
   {
     id: 'sri-lanka',
@@ -50,7 +67,9 @@ export const destinations = [
     type: 'international',
     image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80',
     description: 'The Pearl of the Indian Ocean, rich in history and nature.',
-    region: 'South Asia'
+    region: 'South Asia',
+    price: '550',
+    status: 'Published'
   },
   {
     id: 'india',
@@ -58,7 +77,9 @@ export const destinations = [
     type: 'domestic',
     image: gallery['/images/1.png'] as string,
     description: 'A land of diverse landscapes, ancient history, and vibrant traditions.',
-    region: 'South Asia'
+    region: 'South Asia',
+    price: '350',
+    status: 'Published'
   },
   {
     id: 'australia',
@@ -66,7 +87,9 @@ export const destinations = [
     type: 'international',
     image: 'https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?auto=format&fit=crop&w=800&h=600&q=80',
     description: 'From iconic landmarks to stunning beaches and wildlife encounters.',
-    region: 'Oceania'
+    region: 'Oceania',
+    price: '1750',
+    status: 'Published'
   }
 ];
 
@@ -81,7 +104,7 @@ export const tours = [
     },
     overview: "Gold Coast and Cairns showcase Australia’s coastal beauty. Gold Coast is known for golden beaches, vibrant city life, theme parks, and surfing culture, while Cairns is the gateway to the Great Barrier Reef, tropical rainforests, crystal-clear waters, and unforgettable nature-based adventures.",
     duration: { days: 7, nights: 6 },
-    price: { startingFrom: 1750, currency: "USD", perPerson: true },
+    price: { startingFrom: 1750, currency: "AUD", perPerson: true },
     travelers: { adults: 2, children: 1, infants: 0 },
     minimumAge: 5,
     startingPlace: "Gold Coast",
@@ -143,7 +166,7 @@ export const tours = [
     },
     overview: "Gold Coast and Cairns showcase Australia’s coastal beauty. Gold Coast is known for golden beaches, vibrant city life, theme parks, and surfing culture, while Cairns is the gateway to the Great Barrier Reef, tropical rainforests, crystal-clear waters, and unforgettable nature-based adventures.",
     duration: { days: 11, nights: 10 },
-    price: { startingFrom: 1750, currency: "USD", perPerson: true },
+    price: { startingFrom: 1750, currency: "AUD", perPerson: true },
     travelers: { adults: 50, children: 0, infants: 0 },
     minimumAge: 2,
     startingPlace: "Sydney",
@@ -218,7 +241,7 @@ export const tours = [
 
     price: {
       startingFrom: 12000,
-      currency: "USD",
+      currency: "AUD",
       perPerson: true
     },
 
@@ -317,7 +340,7 @@ export const tours = [
     title: 'Scenic 06 Days Best Of Kerala Tour Package',
     location: { country: 'India', cities: ['Kochi', 'Munnar', 'Thekkady', 'Alleppey'] },
     duration: { days: 6, nights: 5 },
-    price: { startingFrom: 850, currency: "USD", perPerson: true },
+    price: { startingFrom: 850, currency: "AUD", perPerson: true },
     travelers: { adults: 9, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "Kochi",
@@ -357,7 +380,7 @@ export const tours = [
     title: 'Thiruvannamalai Girivalam Tour 01 Day',
     location: { country: 'India', cities: ['thiruvanamalai', 'chennai'] },
     duration: { days: 1, nights: 0 },
-    price: { startingFrom: 850, currency: "USD", perPerson: true },
+    price: { startingFrom: 850, currency: "AUD", perPerson: true },
     travelers: { adults: 9, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "Chennai",
@@ -391,7 +414,7 @@ export const tours = [
     title: 'Spellbinding of Tamil Nadu 06 Days Group Tour',
     location: { country: 'India', cities: ['Chennai', 'pondicherry'] },
     duration: { days: 6, nights: 5 },
-    price: { startingFrom: 1250, currency: "USD", perPerson: true },
+    price: { startingFrom: 1250, currency: "AUD", perPerson: true },
     travelers: { adults: 9, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "Chennai",
@@ -430,7 +453,7 @@ export const tours = [
     title: 'Vibrant culture of Vietnam 07 days Tour Package',
     location: { country: 'Vietnam', cities: ['Hanoi', 'Halong Bay', 'Hoi An', 'Ho Chi Minh City'] },
     duration: { days: 7, nights: 6 },
-    price: { startingFrom: 1450, currency: 'USD', perPerson: true },
+    price: { startingFrom: 1450, currency: 'AUD', perPerson: true },
     travelers: { adults: 10, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "Hanoi",
@@ -468,7 +491,7 @@ export const tours = [
     title: 'Malaysia Tour Package For 05 Nights and 06 Days',
     location: { country: 'malaysia', cities: ['Kuala Lumpur', 'Langkawi', 'Taman Negara'] },
     duration: { days: 6, nights: 5 },
-    price: { startingFrom: 1100, currency: 'USD', perPerson: true },
+    price: { startingFrom: 1100, currency: 'AUD', perPerson: true },
     travelers: { adults: 1, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "Penangr",
@@ -508,7 +531,7 @@ export const tours = [
     title: 'Budget Singapore 4 Days tour package',
     location: { country: 'Singapore', cities: ['Sentosa', 'Marina Bay', 'Orchard Road'] },
     duration: { days: 4, nights: 3 },
-    price: { startingFrom: 1350, currency: 'USD', perPerson: true },
+    price: { startingFrom: 1350, currency: 'AUD', perPerson: true },
     travelers: { adults: 9, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "Singapore Changi Airport",
@@ -544,7 +567,7 @@ export const tours = [
     title: 'Explore the Island of Wonders Srilanka 05 Days Tour',
     location: { country: 'Sri Lanka', cities: ['Colombo', 'Kandy', 'Sigiriya', 'Ella'] },
     duration: { days: 5, nights: 4 },
-    price: { startingFrom: 950, currency: 'USD', perPerson: true },
+    price: { startingFrom: 950, currency: 'AUD', perPerson: true },
     travelers: { adults: 10, children: 0, infants: 0 },
     minimumAge: 5,
     startingPlace: "Kandy",
@@ -580,7 +603,7 @@ export const tours = [
     title: 'Golden Triangle 05 Days Tour Package',
     location: { country: 'India', cities: ['Delhi', 'Agra', 'Jaipur'] },
     duration: { days: 5, nights: 4 },
-    price: { startingFrom: 1100, currency: 'USD', perPerson: true },
+    price: { startingFrom: 1100, currency: 'AUD', perPerson: true },
     travelers: { adults: 10, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "New Delhi",

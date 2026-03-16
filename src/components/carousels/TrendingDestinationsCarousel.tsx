@@ -21,10 +21,6 @@ export default function TrendingDestinationsCarousel({ destinations }: { destina
                 modules={[Navigation, Pagination, Autoplay]}
                 spaceBetween={24}
                 slidesPerView={1}
-                navigation={{
-                    nextEl: '.trending-next',
-                    prevEl: '.trending-prev',
-                }}
                 pagination={{
                     clickable: true,
                     el: '.trending-pagination',
@@ -63,7 +59,7 @@ export default function TrendingDestinationsCarousel({ destinations }: { destina
                                             Starting from
                                         </div>
                                         <div className="bg-accent text-white font-black px-4 py-1.5 rounded-xl shadow-xl inline-block text-xl transform group-hover:scale-110 transition-transform duration-500">
-                                            ${dest.price}
+                                            AUD${dest.price}
                                         </div>
                                     </div>
 
@@ -89,8 +85,7 @@ export default function TrendingDestinationsCarousel({ destinations }: { destina
                 ))}
             </Swiper>
 
-            {/* Custom Navigation Buttons - Perfectly Aligned */}
-            <div className="hidden md:block">
+            {/* <div className="hidden md:block">
                 <button className="trending-prev absolute left-[-20px] top-[40%] -translate-y-1/2 z-20 w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center text-primary hover:bg-accent hover:text-white transition-all duration-300 border border-slate-100 disabled:opacity-0">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -101,7 +96,7 @@ export default function TrendingDestinationsCarousel({ destinations }: { destina
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                 </button>
-            </div>
+            </div> */}
 
             {/* Custom Pagination Container - Centered and Spaced */}
             <div className="trending-pagination flex justify-center items-center gap-3 mt-4 h-8" />
@@ -120,8 +115,6 @@ export default function TrendingDestinationsCarousel({ destinations }: { destina
                     background: #cc1715;
                     width: 24px;
                 }
-                .group/carousel:hover .trending-prev { left: -30px; }
-                .group/carousel:hover .trending-next { right: -30px; }
             `}</style>
         </div>
     );

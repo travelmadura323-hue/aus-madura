@@ -22,7 +22,7 @@ export default function Footer() {
               </Link>
             </div>
             <p className="text-white text-sm leading-relaxed mb-6 max-w-xs">
-              Madura Global - Your trusted partner for global travel solutions for over 40 years. Excellence in service, every step of the way.
+              Madura Global curates journey across india,Australia and beyond -backed by over four decades of trusted travel expertise and thoughtful planning.
             </p>
             <div className="flex gap-4">
               <a href="https://www.facebook.com/maduratravel/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">

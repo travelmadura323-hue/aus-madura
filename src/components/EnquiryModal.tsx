@@ -69,7 +69,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         date: formData.date,
         email: formData.email,
         enquiry: formData.type,
-        source: "Global website"
+        source: "Global website",
+        website: ""
         // nationality: "Australia",
         // destination: "Website enquiry"
       };

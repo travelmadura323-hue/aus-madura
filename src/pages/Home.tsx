@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote, Images, MessageCircle, ChevronRight } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { tours } from '../data/mockData';
+// import { useFirebaseData } from '../hooks/useFirebaseData';
 import TourCard from '../components/tours/TourCard';
 import { cn } from '../lib/utils';
 import Chairmanimage from '../../images/VKT-BALAN.png';
@@ -18,6 +18,7 @@ import { Autoplay, Pagination } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { destinations, tours } from '../data/mockData';
 
 
 
@@ -26,11 +27,11 @@ import 'swiper/css/pagination';
 const cel = import.meta.glob('/images/celebrity/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
-});
+}) as Record<string, string>;
 const im = import.meta.glob('../../images/im/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
-});
+}) as Record<string, string>;
 const logos = [
   {
     image: im['../../images/im/Aussie1.png'],
@@ -69,21 +70,23 @@ const logos = [
 const images = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
-});
+}) as Record<string, string>;
 const gallery = import.meta.glob('/src/gallery/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
-});
+}) as Record<string, string>;
 const gal = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
-}); const own = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+}) as Record<string, string>;
+const own = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
-});
+}) as Record<string, string>;
 
 
 export default function Home() {
+  // const { tours, destinations, loading } = useFirebaseData();
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchStartY, setTouchStartY] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -149,45 +152,51 @@ export default function Home() {
   const [isPaused, setIsPaused] = useState(false);
   const [isEnquiryModalOpen, setIsEnquiryModalOpen] = useState(false);
 
-  // ✅ Slides = DATA ONLY
   const slides = [
     {
       image: images['/images/Meenachi amman temple.png'],
-      title: "Explore India",
+      label: 'EXPLORE',
+      title: 'INDIA',
       subtitle:
-        "Curated India journeys from Australia — thoughtfully designed around history, culture and regional depth",
+        'Discover India through its temple heritage, royal cities, sacred landscapes and regional cuisines — thoughtfully curated journeys designed for travellers from Australia.',
       buttons: [
-        { text: "Explore Journeys to India", link: "/destinations/india" }
-      ]
-    },
-    {
-      image: images['/images/Austra.png'],
-      title: "Explore Australia",
-      subtitle:
-        "From coastlines to desert interiors, Australia revealed through thoughtful design and disciplined execution.",
-      buttons: [
-        { text: "Explore Australia Tours", link: "/destinations/australia" }
+        { text: 'Explore Journeys to India', link: '/destinations/india', primary: true },
+        { text: 'Book a Free Travel Consultation', link: '#enquiry', primary: false },
       ]
     },
     {
       image: images['/images/vietnam.png'],
-      title: "Explore Vietnam",
+      label: 'EXPLORE',
+      title: 'VIETNAM',
       subtitle:
-        "From coastlines to desert interiors, Vietnam revealed through thoughtful design and disciplined execution.",
+        'From lantern-lit heritage towns to dramatic coastlines and vibrant street cuisine, explore Vietnam through curated journeys crafted for modern travellers.',
       buttons: [
-        { text: "Explore Vietnam Tours", link: "/destinations/vietnam" }
+        { text: 'Explore Journeys to Vietnam', link: '/destinations/vietnam', primary: true },
+        { text: 'Book a Free Travel Consultation', link: '#enquiry', primary: false },
+      ]
+    },
+    {
+      image: images['/images/Austra.png'],
+      label: 'EXPLORE',
+      title: 'AUSTRALIA',
+      subtitle:
+        'Experience Australia\'s iconic cities, ancient landscapes, coastal drives and celebrated wine regions through expertly curated journeys.',
+      buttons: [
+        { text: 'Explore Australia Journeys', link: '/destinations/australia', primary: true },
+        { text: 'Book a Free Travel Consultation', link: '#enquiry', primary: true },
       ]
     },
     {
       image: images['/images/sri-lanka.png'],
-      title: "Explore Sri Lanka",
+      label: 'EXPLORE',
+      title: 'SRI LANKA',
       subtitle:
-        "From coastlines to desert interiors, Sri lanka revealed through thoughtful design and disciplined execution.",
+        'Journey through ancient kingdoms, tea country hills, wildlife reserves and tropical coastlines across one of Asia\'s most captivating island destinations.',
       buttons: [
-        { text: "Explore Sri Lanka Tours", link: "/destinations/sri-lanka" }
+        { text: 'Explore Journeys to Sri Lanka', link: '/destinations/sri-lanka', primary: true },
+        { text: 'Book a Free Travel Consultation', link: '#enquiry', primary: false },
       ]
     },
-
   ];
 
   // Auto slide
@@ -331,13 +340,13 @@ export default function Home() {
               className="relative flex flex-col items-center justify-center py-10"
             >
               <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/5 font-black text-[15vw] leading-none uppercase select-none pointer-events-none whitespace-nowrap">
-                {slides[currentSlide].title.replace("Explore ", "")}
+                {slides[currentSlide].title}
               </span>
 
               <div className="relative z-10 flex items-center gap-4 mb-6">
                 <div className="h-[1px] w-8 md:w-16 bg-white/50" />
                 <span className="text-white text-xs md:text-sm lg:text-base font-bold uppercase tracking-[1em] pl-[1em]">
-                  Explore
+                  {slides[currentSlide].label}
                 </span>
                 <div className="h-[1px] w-8 md:w-16 bg-white/50" />
               </div>
@@ -346,7 +355,7 @@ export default function Home() {
                 style={{ fontSize: 'clamp(3rem, 10vw, 8rem)', lineHeight: 0.8 }}
                 className="relative z-10 font-black uppercase tracking-tighter text-white drop-shadow-[0_10px_40px_rgba(255,255,255,0.2)]"
               >
-                {slides[currentSlide].title.replace("Explore ", "")}
+                {slides[currentSlide].title}
               </motion.h1>
             </motion.div>
 
@@ -357,14 +366,32 @@ export default function Home() {
 
             {/* ✅ Dynamic Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              {slides[currentSlide].buttons.map((btn, index) => (
-                <Link key={index} to={btn.link}>
-                  <button className="bg-accent text-white font-bold px-8 py-4 rounded-full  hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20 ">
+              {slides[currentSlide].buttons.map((btn, index) => {
+                const isModalBtn = btn.link === '#enquiry';
+                const btnContent = (
+                  <button
+                    onClick={() => isModalBtn && setIsEnquiryModalOpen(true)}
+                    className={
+                      btn.primary
+                        ? "bg-accent text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group shadow-lg shadow-accent/20"
+                        : "bg-white/10 backdrop-blur-sm border border-white/40 text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all flex items-center gap-2 group"
+                    }
+                  >
                     {btn.text}
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1  transition-transform" />
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
-                </Link>
-              ))}
+                );
+
+                return isModalBtn ? (
+                  <React.Fragment key={index}>
+                    {btnContent}
+                  </React.Fragment>
+                ) : (
+                  <Link key={index} to={btn.link}>
+                    {btnContent}
+                  </Link>
+                );
+              })}
             </div>
           </motion.div>
         </motion.div>
@@ -404,13 +431,13 @@ export default function Home() {
                 whileHover={{ y: -5, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedLogo(logo)}
-                className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-slate-100 group"
+                className="bg-white p-4 sm:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-slate-100 group"
               >
                 <div className="relative overflow-hidden">
                   <img
                     src={logo.image}
                     alt={logo.title}
-                    className="h-16 sm:h-20 mx-auto object-contain transition-transform duration-300 group-hover:scale-110"
+                    className="h-24 sm:h-20 mx-auto object-contain transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
@@ -424,7 +451,7 @@ export default function Home() {
               onClick={() => window.scrollTo(0, 0)}
               className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors group"
             >
-              View our certifications
+              View all certifications
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -441,13 +468,15 @@ export default function Home() {
           </div>
 
           <TrendingDestinationsCarousel
-            destinations={[
-              { id: 'vietnam', name: 'Vietnam', price: '850', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&h=800&q=80', link: '/destinations/vietnam' },
-              { id: 'malaysia', name: 'Malaysia', price: '650', image: images['/images/Gemini_Generated_Image_hkiwomhkiwomhkiw.png'] as string, link: '/destinations/malaysia' },
-              { id: 'singapore', name: 'Singapore', price: '950', image: images['/images/Gemini_Generated_Image_4sxymo4sxymo4sxy.png'] as string, link: '/destinations/singapore' },
-              { id: 'sri-lanka', name: 'Sri Lanka', price: '550', image: 'https://images.unsplash.com/photo-1586611292717-f828b167408c?auto=format&fit=crop&w=600&h=800&q=80', link: '/destinations/sri-lanka' },
-              { id: 'india', name: 'India', price: '350', image: images['/images/11.png'] as string, link: '/destinations/india' }
-            ]}
+            destinations={destinations
+              .filter(d => d.status !== 'Draft')
+              .map(d => ({
+                id: d.id,
+                name: d.name,
+                price: d.price || '0',
+                image: d.image,
+                link: `/destinations/${d.id}`
+              }))}
           />
         </div>
       </section>
@@ -619,7 +648,7 @@ export default function Home() {
                 <div className="flex-shrink-0 ">
                   <div className="relative flex justify-center ">
                     <img
-                      src={own["/images/Sri sir.jpg"] as string}
+                      src={own["/images/Srisir1.jpg"] as string}
                       alt="Managing Director"
                       className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-2xl object-cover border-4 border-accent/20 shadow-xl"
                     />
@@ -769,7 +798,7 @@ export default function Home() {
 
           {/* Heading */}
           <h2 className="text-[32px] font-bold text-primary mt-6 mb-6">
-            Advantage of Choosing Us
+            The Madura Advantage
           </h2>
           <span className="text-sm font-semibold tracking-[0.4em] text-red-500 uppercase">
             Experience. Quality. Trust.
