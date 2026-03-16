@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function CareersPage() {
   const [formData, setFormData] = useState({
@@ -13,12 +14,14 @@ export default function CareersPage() {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type, files } = e.target
+    const { name, value, type } = e.target
 
     if (type === "file") {
-      setFormData({ ...formData, resume: (files && files[0]) || null })
+      const fileInput = e.target as HTMLInputElement
+      setFormData({ ...formData, resume: (fileInput.files && fileInput.files[0]) || null })
     } else {
       setFormData({ ...formData, [name]: value })
     }
@@ -26,6 +29,12 @@ export default function CareersPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!captchaValue) {
+      alert("Please verify the captcha")
+      return
+    }
+
     setIsSubmitting(true)
 
     try {
@@ -35,7 +44,7 @@ export default function CareersPage() {
       const today = new Date()
       const date = today.toISOString().slice(0, 10) // YYYY-MM-DD
 
-      const response = await fetch("https://api.maduratravel.com/api/lead/website", {
+      const response = await fetch(import.meta.env.VITE_CRM_URL, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
@@ -45,7 +54,8 @@ export default function CareersPage() {
           enquiry: "Careers",
           email: formData.email,
           nationality: "India",
-          destination: `Careers Application - Role: ${formData.role || "N/A"}, Exp: ${formData.experience || "N/A"}`
+          destination: `Careers Application - Role: ${formData.role || "N/A"}, Exp: ${formData.experience || "N/A"}`,
+          captchaToken: captchaValue!
         }).toString(),
       })
 
@@ -65,6 +75,7 @@ export default function CareersPage() {
         experience: "",
         resume: null,
       })
+      setCaptchaValue(null);
     } catch (err) {
       console.error(err)
       alert("Failed to submit. Please try again.")
@@ -229,6 +240,13 @@ export default function CareersPage() {
             <p className="text-xs text-gray-500 mt-2">
               Accepted formats: PDF, DOC, DOCX
             </p>
+          </div>
+
+          <div className="flex justify-center">
+            <ReCAPTCHA
+              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+              onChange={(value) => setCaptchaValue(value)}
+            />
           </div>
 
           {/* Submit Button */}

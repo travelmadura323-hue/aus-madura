@@ -1,4 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
+import ReCAPTCHA from "react-google-recaptcha";
 import { motion, AnimatePresence } from 'framer-motion';
 import React from "react"
 import {
@@ -18,6 +19,7 @@ export default function TourDetail() {
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [otherTravelers, setOtherTravelers] = useState("");
   const [isOtherSelected, setIsOtherSelected] = useState(false);
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -26,11 +28,20 @@ export default function TourDetail() {
     countryCode: '+91',
     date: '',
     travelers: '1',
+    adults: '1',
+    children: '0',
+    infants: '0',
     message: ''
   });
 
   const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!captchaValue) {
+      alert("Please verify the captcha");
+      return;
+    }
+
     setBookingStatus('submitting');
 
     try {
@@ -38,7 +49,7 @@ export default function TourDetail() {
       const phone = `${formData.countryCode}${cleanedPhone}`;
 
       // ✅ CRM integration - sends lead to CRM
-      const response = await fetch('https://api.maduratravel.com/api/lead/website', {
+      const response = await fetch(import.meta.env.VITE_CRM_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({
@@ -48,7 +59,8 @@ export default function TourDetail() {
           date: formData.date,
           enquiry: "Tours",
           nationality: "Australia",
-          destination: `Tour Booking: ${tour.title}`
+          destination: `Tour Booking: ${tour.title}`,
+          captchaToken: captchaValue!
         }).toString()
       });
 
@@ -66,7 +78,19 @@ export default function TourDetail() {
 
       if (result?.success === true || response.ok) {
         setBookingStatus('success');
-        setFormData({ name: '', email: '', phone: '', countryCode: '+91', date: '', travelers: '1', message: '' });
+        setFormData({ 
+          name: '', 
+          email: '', 
+          phone: '', 
+          countryCode: '+91', 
+          date: '', 
+          travelers: '1', 
+          adults: '1',
+          children: '0',
+          infants: '0',
+          message: '' 
+        });
+        setCaptchaValue(null); // Reset captcha on success
       } else {
         throw new Error(result?.message || 'Submission failed');
       }
@@ -523,6 +547,15 @@ export default function TourDetail() {
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                           />
+
+                          <div className="flex justify-center scale-75 origin-center">
+                            <ReCAPTCHA
+                              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                              onChange={(value) => setCaptchaValue(value)}
+                              theme="dark"
+                            />
+                          </div>
+
                           <button
                             type="submit"
                             disabled={bookingStatus === 'submitting'}

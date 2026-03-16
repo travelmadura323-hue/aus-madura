@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, Calendar, User, Mail, Phone, Briefcase, CheckCircle } from "lucide-react";
 import React, { useState } from "react";
 import { cn } from "../lib/utils";
-import { source } from "framer-motion/client";
 import ReCAPTCHA from "react-google-recaptcha";
 
 interface EnquiryModalProps {
@@ -42,21 +41,6 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       console.log("Bot detected. Submission blocked.");
       return;
     }
-    try {
-      // your existing logic (API / firebase / email etc)
-
-      setSubmittedEmail(formData.email);
-      setIsSubmitted(true);
-
-      // 👇 ADD THIS PART
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setSubmittedEmail("");
-      }, 3000);
-
-    } catch (error) {
-      console.error(error);
-    }
 
     setIsSubmitting(true);
 
@@ -71,16 +55,13 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         email: formData.email,
         enquiry: formData.type,
         source: "Global website",
-        website: ""
-        // nationality: "Australia",
-        // destination: "Website enquiry"
+        website: "",
+        captchaToken: captchaValue!
       };
 
       console.log("Sending payload:", data);
 
-      const response = await fetch(
-        "https://api.maduratravel.com/api/lead/website",
-        {
+      const response = await fetch(import.meta.env.VITE_CRM_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
@@ -327,7 +308,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                 </div>
                 <div className="flex justify-center">
                   <ReCAPTCHA
-                    sitekey="6LeDJYgsAAAAANjpSqE61aoXdJ7aM8onE1mOYGoT"
+                    sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
                     onChange={(value) => setCaptchaValue(value)}
                   />
                 </div>

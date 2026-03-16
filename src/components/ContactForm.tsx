@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, User, Mail, Phone, Calendar, Briefcase, CheckCircle } from 'lucide-react';
 import { cn } from '../lib/utils';
+import ReCAPTCHA from "react-google-recaptcha";
 
 interface FormData {
   name: string;
@@ -24,16 +25,23 @@ export default function ContactForm() {
 
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!captchaValue) {
+      alert("Please verify the captcha");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
       const cleanedPhone = formData.phone.replace(/\D/g, "").replace(/^0+/, "");
       const phone = `${formData.countryCode}${cleanedPhone}`;
 
-      const response = await fetch('https://api.maduratravel.com/api/lead/website', {
+      const response = await fetch(import.meta.env.VITE_CRM_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 
@@ -44,7 +52,8 @@ export default function ContactForm() {
           enquiry: formData.type,
           email: formData.email,
           nationality: "Australia",
-          destination: "Website enquiry"
+          destination: "Website enquiry",
+          captchaToken: captchaValue!
         }).toString()
       });
 
@@ -217,6 +226,13 @@ export default function ContactForm() {
               <option value="Passport">Passport</option>
             </select>
           </div>
+        </div>
+
+        <div className="flex justify-center">
+          <ReCAPTCHA
+            sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+            onChange={(value) => setCaptchaValue(value)}
+          />
         </div>
 
         {/* Submit */}
