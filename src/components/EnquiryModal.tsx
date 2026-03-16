@@ -18,7 +18,8 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     countryCode: "+61",
     date: "",
     type: "Tours",
-    website: ""
+    website: "",
+    source: ""
   });
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
   const [formStartTime] = useState(Date.now());
@@ -105,7 +106,6 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         countryCode: "+61",
         date: "",
         type: "Tours",
-        source: "Madura Global",
         website: ""
       });
     } catch (error) {
