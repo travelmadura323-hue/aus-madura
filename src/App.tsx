@@ -1,5 +1,5 @@
 // App.tsx
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Header from './components/layout/Header';
@@ -34,62 +34,64 @@ import Dashboard from "./pages/dashboard";
 import RequireAuth from "./components/admin/RequireAuth";
 import { AdminProvider } from "./pages/admin/admincontext";
 
-export default function App() {
+// Public Layout wrapper
+function PublicLayout() {
+  return (
+    <>
+      <Header />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
+}
 
+export default function App() {
   return (
     <AdminProvider>
       <Router>
         <ScrollToTop />
-        <div className="flex flex-col min-h-screen">
-          <Routes>
-            {/* ================== Admin Routes ================== */}
-            <Route path="/admin/login" element={<AdminLogin />} />
+        <Routes>
+          {/* Admin Login (public) */}
+          <Route path="/admin/login" element={<AdminLogin />} />
 
-            <Route path="/admin/*" element={
-              <RequireAuth>
-                <AdminDashboard /> {/* must include <Outlet /> in AdminDashboard */}
-              </RequireAuth>
-            }>
-              {/* Redirect /admin to /admin/tours */}
-              <Route index element={<Navigate to="tours" replace />} />
+          {/* Protected Admin Dashboard routes */}
+          <Route path="/admin" element={
+            <RequireAuth>
+              <AdminDashboard />
+            </RequireAuth>
+          }>
+            <Route index element={<Navigate to="tours" replace />} />
+            <Route path="tours" element={<ToursDashboard />} />
+            <Route path="destinations" element={<DestinationsDashboard />} />
+          </Route>
 
-              {/* Nested admin pages */}
-              <Route path="tours" element={<ToursDashboard />} />
-              <Route path="destinations" element={<DestinationsDashboard />} />
-            </Route>
-
-            {/* ================== Public Routes ================== */}
-            <Route path="*" element={
-              <>
-                <Header />
-                <main className="flex-grow">
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/tours" element={<ToursPage />} />
-                    <Route path="/tours/:slug" element={<TourDetail />} />
-                    <Route path="/destinations" element={<DestinationsPage />} />
-                    <Route path="/destinations/:id" element={<DestinationDetailPage />} />
-                    <Route path="/pages/:country" element={<DestinationDetail />} />
-                    <Route path="/categories/:category" element={<CategoryDetail />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/mice" element={<MICE />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/company/our-story" element={<OurStory />} />
-                    <Route path="/package/:id" element={<PackageDetails />} />
-                    <Route path="/company/careers" element={<CareersPage />} />
-                    <Route path="/company/media" element={<MediaPage />} />
-                    <Route path="/company/testimonials" element={<Testimonial />} />
-                    <Route path="/privacy-policy" element={<Privacy />} />
-                    <Route path="/terms-conditions" element={<Terms />} />
-                    <Route path="/disclaimer" element={<Disclaimer />} />
-                    <Route path="/complaint-policy" element={<ComplaintPolicy />} />
-                  </Routes>
-                </main>
-                <Footer />
-              </>
-            }/>
-          </Routes>
-        </div>
+          {/* Public pages */}
+          <Route path="/" element={<PublicLayout />}>
+            <Route index element={<Home />} />
+            <Route path="tours" element={<ToursPage />} />
+            <Route path="tours/:slug" element={<TourDetail />} />
+            <Route path="destinations" element={<DestinationsPage />} />
+            <Route path="destinations/:id" element={<DestinationDetailPage />} />
+            <Route path="pages/:country" element={<DestinationDetail />} />
+            <Route path="categories/:category" element={<CategoryDetail />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="mice" element={<MICE />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="company/our-story" element={<OurStory />} />
+            <Route path="package/:id" element={<PackageDetails />} />
+            <Route path="company/careers" element={<CareersPage />} />
+            <Route path="company/media" element={<MediaPage />} />
+            <Route path="company/testimonials" element={<Testimonial />} />
+            <Route path="privacy-policy" element={<Privacy />} />
+            <Route path="terms-conditions" element={<Terms />} />
+            <Route path="disclaimer" element={<Disclaimer />} />
+            <Route path="complaint-policy" element={<ComplaintPolicy />} />
+            {/* Catch-all redirect for unknown URLs */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Route>
+        </Routes>
       </Router>
     </AdminProvider>
   );
