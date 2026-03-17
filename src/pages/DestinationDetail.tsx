@@ -9,7 +9,7 @@ import { useTourFilters } from '../hooks/useTourFilters';
 
 export default function DestinationDetail() {
   const { country } = useParams();
-  const { filters, updateFilters } = useTourFilters();
+  const { filters, clearAllFilters } = useTourFilters();
   const destination = destinations.find(d => d.id === country) || destinations[0];
   const relatedTours = tours.filter(t => t.location.country.toLowerCase().includes(destination.name.toLowerCase()));
 
@@ -84,7 +84,10 @@ export default function DestinationDetail() {
 
 
                 {/* Filtered Tour List */}
-                <FilteredTourList tours={filteredTours} />
+                <FilteredTourList
+                  tours={filteredTours}
+                  onClearFilters={clearAllFilters}
+                />
               </div>
 
               <div>

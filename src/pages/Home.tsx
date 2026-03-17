@@ -211,7 +211,7 @@ export default function Home() {
 
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden pb-24 md:pb-0">
       <section
         ref={heroRef}
         onMouseEnter={() => setIsPaused(true)}
@@ -249,14 +249,16 @@ export default function Home() {
           </Link>
         </motion.div> */}
 
-        {/* Mobile Floating Button */}
-        <div className="fixed bottom-6 right-6 z-50 md:hidden">
-          <button
+        {/* Mobile Floating Button - touch-friendly, safe area */}
+        <div className="fixed bottom-6 right-6 z-50 md:hidden pb-[env(safe-area-inset-bottom)]">
+          <motion.button
             onClick={() => setIsEnquiryModalOpen(true)}
-            className="bg-accent text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all flex items-center justify-center border-2 border-white/20"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-accent text-white p-4 min-w-[56px] min-h-[56px] rounded-full shadow-accent-premium flex items-center justify-center border-2 border-white/20 touch-manipulation"
           >
             <MessageCircle className="w-6 h-6" />
-          </button>
+          </motion.button>
         </div>
 
         <EnquiryModal

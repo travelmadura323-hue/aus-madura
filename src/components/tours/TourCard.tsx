@@ -37,9 +37,9 @@ export default function TourCard({ tour }: TourCardProps) {
 
   return (
     <motion.div
-      whileHover={{ y: -8, scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      className="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 group flex flex-col h-full relative hover:shadow-2xl transition-all duration-500"
+      whileHover={{ y: -6 }}
+      whileTap={{ scale: 0.99 }}
+      className="bg-white rounded-3xl overflow-hidden shadow-card border border-slate-100/80 group flex flex-col h-full relative hover:shadow-card-hover transition-shadow duration-300"
     >
       {/* Premium Badge */}
       <div className="absolute top-4 right-4 z-20">
@@ -135,7 +135,7 @@ export default function TourCard({ tour }: TourCardProps) {
             <Link
               to={`/tours/${tour.slug}`}
               onClick={() => window.scrollTo(0, 0)}
-              className="group relative overflow-hidden bg-gradient-to-r from-primary to-primary/90 text-white font-bold px-6 py-3 rounded-2xl hover:from-accent hover:to-accent/90 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 text-sm"
+              className="group/btn relative overflow-hidden bg-primary text-white font-bold px-6 py-3 rounded-2xl hover:bg-accent transition-colors duration-300 shadow-premium hover:shadow-accent-premium flex items-center gap-2 text-sm min-h-[48px] touch-manipulation"
             >
               <span className="relative z-10">Explore Now</span>
               <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
