@@ -821,7 +821,7 @@ export default function Home() {
               onClick={() => window.scrollTo(0, 0)}
               className="inline-flex items-center gap-3 bg-primary text-white font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-accent transition-all shadow-lg hover:shadow-xl group text-sm sm:text-base"
             >
-              <span>Meet Our Leadership Team</span>
+              <span>Read More About Us</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
