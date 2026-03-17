@@ -7,32 +7,32 @@ import { Mail, Lock } from "lucide-react";
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    if (!email || !password) {
+      alert("Please enter both email and password");
+      return;
+    }
+
+    setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/admin/tours");
-    } catch (err) {
-      alert("Login Failed");
+    } catch (err: any) {
+      alert("Login Failed: " + err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-200">
-      
-      {/* Card */}
       <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md">
-        
-        {/* Title */}
-        <h1 className="text-3xl font-bold text-center mb-2">
-          Admin Login
-        </h1>
-        <p className="text-gray-500 text-center mb-6">
-          Welcome back 👋
-        </p>
+        <h1 className="text-3xl font-bold text-center mb-2">Admin Login</h1>
+        <p className="text-gray-500 text-center mb-6">Welcome back 👋</p>
 
-        {/* Email */}
         <div className="flex items-center border rounded-lg px-3 py-2 mb-4 focus-within:ring-2 focus-within:ring-blue-400">
           <Mail className="text-gray-400 mr-2" size={18} />
           <input
@@ -43,7 +43,6 @@ export default function AdminLogin() {
           />
         </div>
 
-        {/* Password */}
         <div className="flex items-center border rounded-lg px-3 py-2 mb-6 focus-within:ring-2 focus-within:ring-blue-400">
           <Lock className="text-gray-400 mr-2" size={18} />
           <input
@@ -54,18 +53,15 @@ export default function AdminLogin() {
           />
         </div>
 
-        {/* Button */}
         <button
           onClick={handleLogin}
-          className="w-full bg-blue-600 hover:bg-blue-700 transition text-white py-2 rounded-lg font-semibold"
+          disabled={loading}
+          className="w-full bg-blue-600 hover:bg-blue-700 transition text-white py-2 rounded-lg font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Login
+          {loading ? "Logging in..." : "Login"}
         </button>
 
-        {/* Footer */}
-        <p className="text-center text-gray-400 text-sm mt-4">
-          Admin access only
-        </p>
+        <p className="text-center text-gray-400 text-sm mt-4">Admin access only</p>
       </div>
     </div>
   );

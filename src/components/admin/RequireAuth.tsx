@@ -1,16 +1,21 @@
-// components/admin/RequireAuth.tsx
-import { Navigate, useLocation } from "react-router-dom";
-import { useAdminAccess } from "../../pages/admin/admincontext"; // your admin context
+import { auth } from "../../firebase-config";
+import { Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function RequireAuth({ children }: { children: React.ReactNode }) {
-  const { cameFromAdmin } = useAdminAccess(); // get admin login state from context
-  const location = useLocation();
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<any>(null);
 
-  // if not logged in, redirect to /admin/login
-  if (!cameFromAdmin) {
-    return <Navigate to="/admin/login" state={{ from: location }} replace />;
-  }
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
-  // if logged in, render children (protected page)
+  if (loading) return <div className="p-6 text-center">Checking authentication...</div>;
+  if (!user) return <Navigate to="/admin/login" replace />;
+
   return children;
 }
