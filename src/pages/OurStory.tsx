@@ -206,7 +206,9 @@ export default function OurStoryPage() {
                 more.
               </p>
             </div>
-            <div className="relative w-full h-[800px] overflow-hidden rounded-2xl">
+
+            {/* ✅ Fixed: removed fixed h-[800px], now auto height on mobile */}
+            <div className="relative w-full h-64 sm:h-[500px] lg:h-[800px] overflow-hidden rounded-2xl">
               <img
                 src={
                   images[
@@ -214,7 +216,7 @@ export default function OurStoryPage() {
                   ] as string
                 }
                 alt="Our team on a tour"
-                className="object-cover"
+                className="w-full h-full object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
@@ -223,10 +225,11 @@ export default function OurStoryPage() {
       </section>
 
       {/* Clients Section */}
-      <section className="py-12 sm:py-20 bg-white">
+      {/* ✅ Fixed: reduced py and gap on mobile */}
+      <section className="py-8 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Heading Section */}
-          <div className="text-center mb-14">
+          <div className="text-center mb-8 sm:mb-14">
             <h4 className="text-sm font-semibold tracking-widest text-[#cc1715] uppercase mb-3">
               Our Esteemed Clients
             </h4>
@@ -235,22 +238,22 @@ export default function OurStoryPage() {
             </h2>
             <p className="max-w-3xl mx-auto text-gray-600 text-lg leading-relaxed">
               Join millions of happy travelers who trust Madura Travel Service
-              (P) Ltd., one of India’s leading travel companies, for exceptional
+              (P) Ltd., one of India's leading travel companies, for exceptional
               tour planning and unforgettable journeys.
             </p>
           </div>
 
-          {/* Image Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {/* ✅ Fixed: tighter gap on mobile */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
             {Array.from({ length: 40 }).map((_, index) => (
               <div
                 key={index}
-                className="bg-gray-50 rounded-xl p-6 flex items-center justify-center hover:shadow-md transition"
+                className="bg-gray-50 rounded-xl p-4 sm:p-6 flex items-center justify-center hover:shadow-md transition"
               >
                 <img
                   src={gal[`../gallery/img-${index + 1}.jpg`] as string}
                   alt={`Client ${index + 1}`}
-                  className="max-h-28 object-contain"
+                  className="max-h-20 sm:max-h-28 object-contain"
                 />
               </div>
             ))}
@@ -260,7 +263,6 @@ export default function OurStoryPage() {
 
       {/* Awards & Recognitions Section */}
       <section className="py-12 sm:py-24 bg-gray-50 text-center">
-        {/* Main Heading */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-indigo-900 mb-10 sm:mb-16">
           Awards & Recognitions
         </h2>
@@ -329,12 +331,11 @@ export default function OurStoryPage() {
           ))}
         </div>
 
-        {/* Our Accreditations Section with ID for anchor */}
+        {/* Our Accreditations */}
         <section id="our-accreditations" className="py-12 sm:py-16">
           <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">
             Our Accreditations
           </h3>
-
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-9 max-w-6xl mx-auto px-4">
             {accreditationDetails.map((logo, index) => (
               <motion.div
@@ -364,27 +365,20 @@ export default function OurStoryPage() {
             transition={{ duration: 0.3 }}
             className="bg-white rounded-2xl p-8 max-w-md w-full text-center relative shadow-2xl"
           >
-            {/* Close Button */}
             <button
               onClick={() => setSelectedLogo(null)}
               className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
             >
               ✕
             </button>
-
-            {/* Logo */}
             <img
               src={selectedLogo.image}
               alt={selectedLogo.title}
               className="h-24 mx-auto mb-6 object-contain"
             />
-
-            {/* Title */}
             <h4 className="text-2xl font-bold text-primary mb-3">
               {selectedLogo.title}
             </h4>
-
-            {/* Description */}
             <p className="text-gray-600 leading-relaxed">
               {selectedLogo.description}
             </p>
