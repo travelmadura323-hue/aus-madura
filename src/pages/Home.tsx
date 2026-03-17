@@ -472,14 +472,13 @@ export default function Home() {
           </div>
 
           <div className="text-center mt-10">
-            <Link
-              to="/company/our-story"
-              onClick={() => window.scrollTo(0, 0)}
-              className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors group"
-            >
-              View all certifications
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+          <Link
+  to="/company/our-story#our-accreditations"
+  className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors group"
+>
+  View all certifications
+  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+</Link>
           </div>
         </div>
       </section>
