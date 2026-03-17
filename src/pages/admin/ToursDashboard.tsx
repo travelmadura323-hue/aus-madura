@@ -14,6 +14,7 @@ import { ChevronDown, ChevronRight, Plus, Search, Trash2, Pencil } from "lucide-
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 export default function ToursDashboard() {
+  
   const navigate = useNavigate();
   const [tours, setTours] = useState<Tour[]>([]);
   const [loading, setLoading] = useState(true);
