@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, User, Mail, Phone, Calendar, Briefcase, CheckCircle } from 'lucide-react';
 import { cn } from '../lib/utils';
-import ReCAPTCHA from "react-google-recaptcha";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 interface FormData {
   name: string;
@@ -14,37 +14,51 @@ interface FormData {
 }
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<FormData & { website: string }>({
     name: '',
     email: '',
     phone: '',
     countryCode: '+61',
     date: '',
     type: 'Tours',
+    website: '' // 👈 honeypot
   });
 
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (!captchaValue) {
-      alert("Please verify the captcha");
+  
+    // ✅ Honeypot check
+    if (formData.website.trim() !== "") {
+      console.log("Bot detected (honeypot)");
       return;
     }
-
+  
+    if (!executeRecaptcha) {
+      console.log("Recaptcha still loading...");
+      return;
+    }
+  
+    const token = await executeRecaptcha("contact_form");
+  
+    if (!token) {
+      alert("Captcha failed. Try again.");
+      return;
+    }
+  
     setIsSubmitting(true);
-
+  
     try {
       const cleanedPhone = formData.phone.replace(/\D/g, "").replace(/^0+/, "");
       const phone = `${formData.countryCode}${cleanedPhone}`;
-
+  
       const response = await fetch(import.meta.env.VITE_CRM_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-
+  
         body: new URLSearchParams({
           name: formData.name,
           phone,
@@ -53,30 +67,26 @@ export default function ContactForm() {
           email: formData.email,
           nationality: "Australia",
           destination: "Website enquiry",
-          captchaToken: captchaValue!
+          captchaToken: token // ✅ v3 token
         }).toString()
       });
-
-      const text = await response.text();
-      let result: any = null;
-      try {
-        result = text ? JSON.parse(text) : null;
-      } catch {
-        result = null;
-      }
-
-      if (!response.ok) {
-        throw new Error(result?.message || text || `CRM error: ${response.status}`);
-      }
-
-      if (result?.success === true || response.ok) {
-        setSubmitted(true);
-      } else {
-        throw new Error(result?.message || 'Submission failed');
-      }
+  
+      if (!response.ok) throw new Error("Submission failed");
+  
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        countryCode: '+61',
+        date: '',
+        type: 'Tours',
+        website: ''
+      });
+      setSubmitted(true);
+  
     } catch (error) {
-      console.error('Submission error:', error);
-      alert('Error sending message. Please try again.');
+      console.error(error);
+      alert("Error sending message");
     } finally {
       setIsSubmitting(false);
     }
@@ -227,13 +237,19 @@ export default function ContactForm() {
             </select>
           </div>
         </div>
-
-        <div className="flex justify-center">
-          <ReCAPTCHA
-            sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-            onChange={(value) => setCaptchaValue(value)}
-          />
-        </div>
+        <div style={{ display: "none" }}>
+  <input
+    type="text"
+    name="website"
+    autoComplete="off"
+    tabIndex={-1}
+    value={formData.website}
+    onChange={(e) =>
+      setFormData({ ...formData, website: e.target.value })
+    }
+  />
+</div>
+        
 
         {/* Submit */}
         <button
