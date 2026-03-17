@@ -471,7 +471,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-10">
+          <div className="text-center mt-30">
           <Link
   to="/company/our-story#our-accreditations"
   className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors group"
