@@ -111,14 +111,14 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
                         <h2 className="text-3xl md:text-[40px] font-bold text-primary">Signature {country} Tours</h2>
                     </div>
                     <div className="w-full md:w-auto flex items-center justify-center md:justify-end">
-                        <div className="bg-white border border-slate-100 rounded-2xl px-4 py-3 shadow-sm flex items-center gap-3 w-full md:w-auto">
-                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">
+                        <div className="bg-white border border-slate-200 rounded-2xl px-4 py-3 shadow-card flex items-center gap-3 w-full md:w-auto focus-within:ring-2 focus-within:ring-primary/20">
+                            <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest whitespace-nowrap">
                                 Sort by
                             </span>
                             <select
                                 value={sortBy}
                                 onChange={(e) => setSortBy(e.target.value as any)}
-                                className="bg-transparent text-primary font-bold text-sm focus:outline-none cursor-pointer w-full md:w-[220px]"
+                                className="bg-transparent text-primary font-bold text-sm focus:outline-none cursor-pointer w-full md:w-[220px] appearance-none"
                             >
                                 <option value="recommended">Recommended</option>
                                 <option value="priceLow">Price: Low to High</option>

@@ -133,15 +133,15 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit} className="p-8 space-y-5">
 
         {/* Full Name */}
-        <div className="space-y-1">
-          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Full Name</label>
+        <div className="space-y-1.5">
+          <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
           <div className="relative">
             <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               required
               type="text"
               placeholder="John Doe"
-              className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
+              className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             />
@@ -149,15 +149,15 @@ export default function ContactForm() {
         </div>
 
         {/* Email */}
-        <div className="space-y-1">
-          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Email Address</label>
+        <div className="space-y-1.5">
+          <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Email Address</label>
           <div className="relative">
             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               required
               type="email"
               placeholder="john@example.com"
-              className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
+              className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             />
@@ -165,11 +165,11 @@ export default function ContactForm() {
         </div>
 
         {/* Phone */}
-        <div className="space-y-1">
-          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Phone Number</label>
+        <div className="space-y-1.5">
+          <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Phone Number</label>
           <div className="flex gap-2">
             <select
-              className="bg-slate-50 border border-slate-100 rounded-xl py-3 px-2 text-xs focus:outline-none focus:border-accent"
+              className="bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
               value={formData.countryCode}
               onChange={(e) => setFormData({ ...formData, countryCode: e.target.value })}
             >
@@ -196,7 +196,7 @@ export default function ContactForm() {
                           formData.countryCode === '+1' ? '202 555 0123' :
                             'Enter phone number'
                 }
-                className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
+                className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               />
@@ -205,14 +205,14 @@ export default function ContactForm() {
         </div>
 
         {/* Date of Travel */}
-        <div className="space-y-1">
-          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Date of Travel</label>
+        <div className="space-y-1.5">
+          <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Date of Travel</label>
           <div className="relative">
             <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               required
               type="date"
-              className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent transition-colors"
+              className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
               value={formData.date}
               onChange={(e) => setFormData({ ...formData, date: e.target.value })}
             />
@@ -220,12 +220,12 @@ export default function ContactForm() {
         </div>
 
         {/* Type of Enquiry */}
-        <div className="space-y-1">
-          <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Type of Enquiry</label>
+        <div className="space-y-1.5">
+          <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Type of Enquiry</label>
           <div className="relative">
             <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <select
-              className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:border-accent appearance-none transition-colors"
+              className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50"
               value={formData.type}
               onChange={(e) => setFormData({ ...formData, type: e.target.value })}
             >
@@ -256,7 +256,7 @@ export default function ContactForm() {
           type="submit"
           disabled={isSubmitting}
           className={cn(
-            "w-full bg-accent text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 group shadow-lg shadow-accent/20",
+            "w-full bg-accent text-white font-bold py-4 rounded-2xl transition-all flex items-center justify-center gap-2 group shadow-accent-premium hover:bg-accent/90 min-h-[52px] touch-manipulation",
             isSubmitting && "opacity-70 cursor-not-allowed"
           )}
         >

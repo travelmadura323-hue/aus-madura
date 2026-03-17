@@ -14,6 +14,7 @@ import DestinationDetail from './pages/DestinationDetail';
 import CategoryDetail from './pages/CategoryDetail';
 import MICE from './pages/MICE';
 import Contact from './pages/Contact';
+import AdminLogin from "./pages/Adminpage";
 import OurStory from './pages/OurStory';
 import India from "./components/destinations/India";
 import MediaPage from './pages/media';
@@ -34,6 +35,8 @@ import { db } from "./firebase-config";
 import { useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import Destinations from "./pages/TourPackage";
+import AdminPage from "./pages/Adminpage";
+// import Dashboard from "./pages/Dashboard";
 // import Dashboard from "./pages/admin/dashboard";
 // import Login from "./pages/admin/Login";
 // import AddTour from "./pages/admin/AddTourPage";
@@ -76,7 +79,10 @@ export default function App() {
             <Route path="/pages/:country" element={<DestinationDetail />} />
             <Route path="/categories/:category" element={<CategoryDetail />} />
             <Route path="/destinations" element={<Destinations />} />
-
+            <Route path="/admin" element={<AdminLogin />} />
+            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+            
+            
             <Route
               path="/destinations/:id"
               element={<Destinations />}

@@ -4,7 +4,7 @@ import Image from '/images/logo8.png';
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white pt-20 pb-10">
+    <footer className="bg-primary text-white pt-20 pb-10 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 mb-16">
           {/* Column 1: About */}
@@ -24,14 +24,14 @@ export default function Footer() {
             <p className="text-white text-sm leading-relaxed mb-6 max-w-xs">
               Madura Global curates journey across india,Australia and beyond -backed by over four decades of trusted travel expertise and thoughtful planning.
             </p>
-            <div className="flex gap-4">
-              <a href="https://www.facebook.com/maduratravel/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+            <div className="flex gap-3">
+              <a href="https://www.facebook.com/maduratravel/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:scale-110 transition-all duration-300">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="https://www.instagram.com/maduratravelaus?igsh=MXYwaHc1YWZydmh3Zw%3D%3D" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+              <a href="https://www.instagram.com/maduratravelaus?igsh=MXYwaHc1YWZydmh3Zw%3D%3D" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:scale-110 transition-all duration-300">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://www.linkedin.com/company/madura-travel-service-p-ltd/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent transition-colors">
+              <a href="https://www.linkedin.com/company/madura-travel-service-p-ltd/" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-accent hover:scale-110 transition-all duration-300">
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>

@@ -69,7 +69,9 @@ export default function Header() {
       <header
         className={cn(
           'fixed top-0 left-0 w-full z-50 transition-all duration-300',
-          (isScrolled || location.pathname !== '/') ? 'bg-primary/95 backdrop-blur-md py-3' : 'bg-transparent py-5'
+          (isScrolled || location.pathname !== '/')
+            ? 'bg-primary/90 backdrop-blur-xl border-b border-white/10 py-3 shadow-lg shadow-black/5'
+            : 'bg-transparent py-5'
         )}
       >
         <div className="w-full px-4 md:px-10 h-full flex items-center justify-between gap-4">
@@ -151,12 +153,12 @@ export default function Header() {
 
                 {/* Dropdown */}
                 {link.dropdown && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white  rounded-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-slate-100">
+                  <div className="absolute top-full left-0 mt-2 w-56 bg-white/95 backdrop-blur-xl rounded-2xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border border-slate-100 shadow-premium">
                     {link.dropdown.map((item) => (
                       <Link
                         key={item.name}
                         to={item.path}
-                        className="block px-4 py-2 text-black text-slate-600 hover:bg-secondary hover:text-primary transition-colors"
+                        className="block px-4 py-2.5 text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors text-sm font-medium mx-2 rounded-xl"
                       >
                         {item.name}
                       </Link>
@@ -172,14 +174,17 @@ export default function Header() {
         ></Link> */}
 
           <div className="flex items-center gap-3">
-            <button
+            <motion.button
               onClick={() => setIsEnquiryModalOpen(true)}
-              className="hidden lg:flex items-center gap-2 mt-1 bg-accent text-white font-bold px-6 py-3 rounded-full text-xs md:text-sm hover:bg-white hover:text-primary transition-all"
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.98 }}
+              className="hidden lg:flex items-center gap-2 bg-accent text-white font-bold px-6 py-3 rounded-2xl text-xs md:text-sm shadow-accent-premium hover:bg-white hover:text-primary transition-colors duration-300"
             >
               Enquiry
-            </button>
-            <button
-              className="lg:hidden p-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20"
+            </motion.button>
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              className="lg:hidden p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 touch-manipulation"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
@@ -187,7 +192,7 @@ export default function Header() {
               ) : (
                 <Menu className="text-white w-6 h-6" />
               )}
-            </button>
+            </motion.button>
           </div>
         </div>
       </header>
@@ -278,18 +283,19 @@ export default function Header() {
                   ))}
                 </div>
 
-                {/* Main CTA */}
-                <div className="mt-10">
-                  <button
+                {/* Main CTA - touch-friendly, bottom safe area */}
+                <div className="mt-10 pb-8 pb-[max(2rem,env(safe-area-inset-bottom))]">
+                  <motion.button
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => {
                       setIsEnquiryModalOpen(true);
                       setIsMobileMenuOpen(false);
                     }}
-                    className="w-full bg-accent text-white font-black py-5 rounded-[2rem] shadow-xl shadow-accent/20 flex items-center justify-center gap-3 text-lg hover:brightness-110 active:scale-95 transition-all"
+                    className="w-full bg-accent text-white font-bold py-5 rounded-2xl shadow-accent-premium flex items-center justify-center gap-3 text-base min-h-[56px] touch-manipulation hover:brightness-110 transition-all"
                   >
                     <Send className="w-6 h-6" />
                     Book a free consultation
-                  </button>
+                  </motion.button>
                 </div>
               </div>
             </div>
