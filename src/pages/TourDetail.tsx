@@ -1,30 +1,37 @@
 import { useParams, Link } from 'react-router-dom';
-
 import { motion, AnimatePresence } from 'framer-motion';
-import React from "react"
+import React, { useState } from "react";
 import {
   Clock, Users, MapPin, Check, X, ChevronRight,
-  Calendar, Info, Wallet, Map, Star, MessageSquarePlus,
-  HelpCircle, ChevronDown, Plane, Hotel, ShieldCheck, Coffee,
+  Calendar, Star, MessageSquarePlus,
+  HelpCircle, ChevronDown, ShieldCheck, Info,
   ArrowRight
 } from 'lucide-react';
-import { useState } from 'react';
 import { tours } from '../data/mockData';
 import { useTourBySlug } from '../hooks/useTourBySlug';
 import TourCard from '../components/tours/TourCard';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
-export default function TourDetail() {
+// ─── Wrapper: provides reCAPTCHA context ──────────────────────────────────────
+export default function TourDetailWrapper() {
+  return (
+    <GoogleReCaptchaProvider reCaptchaKey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}>
+      <TourDetail />
+    </GoogleReCaptchaProvider>
+  );
+}
+
+// ─── Inner component: safely uses useGoogleReCaptcha ─────────────────────────
+function TourDetail() {
   const { slug } = useParams();
   const { tour: firestoreTour, loading } = useTourBySlug(slug);
   const mockTour = tours.find((t: { slug?: string }) => t.slug === slug);
   const tour = firestoreTour || mockTour || tours[0];
   const { executeRecaptcha } = useGoogleReCaptcha();
+
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
-  const [otherTravelers, setOtherTravelers] = useState("");
-  const [isOtherSelected, setIsOtherSelected] = useState(false);
-  
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -39,29 +46,126 @@ export default function TourDetail() {
     website: ''
   });
 
+  const [formErrors, setFormErrors] = useState<{ phone?: string; date?: string }>({});
+
+  // ─── Validation helpers ────────────────────────────────────────────────────
+
+  const validatePhone = (phone: string, countryCode: string): string | undefined => {
+    const digits = phone.replace(/\D/g, "").replace(/^0+/, "");
+    if (!digits) return "Phone number is required.";
+
+    const rules: Record<string, { min: number; max: number; label: string }> = {
+      "+91":  { min: 10, max: 10, label: "Indian numbers must be 10 digits." },
+      "+1":   { min: 10, max: 10, label: "US/Canada numbers must be 10 digits." },
+      "+44":  { min: 10, max: 10, label: "UK numbers must be 10 digits." },
+      "+61":  { min: 9,  max: 9,  label: "Australian numbers must be 9 digits." },
+      "+971": { min: 9,  max: 9,  label: "UAE numbers must be 9 digits." },
+      "+965": { min: 8,  max: 8,  label: "Kuwait numbers must be 8 digits." },
+      "+966": { min: 9,  max: 9,  label: "Saudi numbers must be 9 digits." },
+      "+968": { min: 8,  max: 8,  label: "Oman numbers must be 8 digits." },
+      "+973": { min: 8,  max: 8,  label: "Bahrain numbers must be 8 digits." },
+      "+974": { min: 8,  max: 8,  label: "Qatar numbers must be 8 digits." },
+      "+880": { min: 10, max: 10, label: "Bangladesh numbers must be 10 digits." },
+      "+60":  { min: 9,  max: 10, label: "Malaysian numbers must be 9–10 digits." },
+      "+65":  { min: 8,  max: 8,  label: "Singapore numbers must be 8 digits." },
+      "+62":  { min: 9,  max: 12, label: "Indonesian numbers must be 9–12 digits." },
+      "+63":  { min: 10, max: 10, label: "Philippine numbers must be 10 digits." },
+      "+90":  { min: 10, max: 10, label: "Turkish numbers must be 10 digits." },
+      "+20":  { min: 10, max: 10, label: "Egyptian numbers must be 10 digits." },
+      "+27":  { min: 9,  max: 9,  label: "South African numbers must be 9 digits." },
+      "+39":  { min: 9,  max: 10, label: "Italian numbers must be 9–10 digits." },
+      "+33":  { min: 9,  max: 9,  label: "French numbers must be 9 digits." },
+      "+81":  { min: 10, max: 10, label: "Japanese numbers must be 10 digits." },
+      "+82":  { min: 9,  max: 10, label: "Korean numbers must be 9–10 digits." },
+      "+86":  { min: 11, max: 11, label: "Chinese numbers must be 11 digits." },
+      "+852": { min: 8,  max: 8,  label: "Hong Kong numbers must be 8 digits." },
+      "+7":   { min: 10, max: 10, label: "Russian numbers must be 10 digits." },
+      "+49":  { min: 10, max: 11, label: "German numbers must be 10–11 digits." },
+      "+31":  { min: 9,  max: 9,  label: "Dutch numbers must be 9 digits." },
+      "+46":  { min: 9,  max: 9,  label: "Swedish numbers must be 9 digits." },
+      "+47":  { min: 8,  max: 8,  label: "Norwegian numbers must be 8 digits." },
+      "+48":  { min: 9,  max: 9,  label: "Polish numbers must be 9 digits." },
+      "+358": { min: 9,  max: 10, label: "Finnish numbers must be 9–10 digits." },
+    };
+
+    const rule = rules[countryCode];
+    if (rule) {
+      if (digits.length < rule.min || digits.length > rule.max) return rule.label;
+    } else {
+      if (digits.length < 6 || digits.length > 15) return "Enter a valid phone number (6–15 digits).";
+    }
+    return undefined;
+  };
+
+  const validateDate = (date: string): string | undefined => {
+    if (!date) return "Please select a travel date.";
+    const selected = new Date(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    if (isNaN(selected.getTime())) return "Invalid date.";
+    if (selected < today) return "Travel date must be today or in the future.";
+    const maxDate = new Date();
+    maxDate.setFullYear(maxDate.getFullYear() + 5);
+    if (selected > maxDate) return "Please choose a date within the next 5 years.";
+    return undefined;
+  };
+
+  const todayString = () => new Date().toISOString().split("T")[0];
+  const maxDateString = () => {
+    const d = new Date();
+    d.setFullYear(d.getFullYear() + 5);
+    return d.toISOString().split("T")[0];
+  };
+
+  // ─── Live field handlers ───────────────────────────────────────────────────
+
+  const handlePhoneChange = (value: string) => {
+    setFormData(prev => ({ ...prev, phone: value }));
+    setFormErrors(prev => ({ ...prev, phone: validatePhone(value, formData.countryCode) }));
+  };
+
+  const handleCountryCodeChange = (value: string) => {
+    setFormData(prev => ({ ...prev, countryCode: value }));
+    if (formData.phone) {
+      setFormErrors(prev => ({ ...prev, phone: validatePhone(formData.phone, value) }));
+    }
+  };
+
+  const handleDateChange = (value: string) => {
+    setFormData(prev => ({ ...prev, date: value }));
+    setFormErrors(prev => ({ ...prev, date: validateDate(value) }));
+  };
+
+  // ─── Submit ────────────────────────────────────────────────────────────────
+
   const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
- // Honeypot check
-if (formData.website.trim() !== "") {
-  console.log("Bot detected");
-  return;
-}
+    if (formData.website.trim() !== "") {
+      console.log("Bot detected");
+      return;
+    }
 
-if (!executeRecaptcha) {
-  alert("reCAPTCHA not ready");
-  return;
-}
+    // Full validation on submit
+    const phoneErr = validatePhone(formData.phone, formData.countryCode);
+    const dateErr = validateDate(formData.date);
+    if (phoneErr || dateErr) {
+      setFormErrors({ phone: phoneErr, date: dateErr });
+      return;
+    }
 
-const captchaToken = await executeRecaptcha("tour_booking");
+    if (!executeRecaptcha) {
+      alert("Security check not ready. Please wait a moment and try again.");
+      return;
+    }
 
+    const captchaToken = await executeRecaptcha("tour_booking");
     setBookingStatus('submitting');
 
     try {
       const cleanedPhone = formData.phone.replace(/\D/g, "").replace(/^0+/, "");
       const phone = `${formData.countryCode}${cleanedPhone}`;
 
-      // ✅ CRM integration - sends lead to CRM
       const response = await fetch(import.meta.env.VITE_CRM_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -73,38 +177,24 @@ const captchaToken = await executeRecaptcha("tour_booking");
           enquiry: "Tours",
           nationality: "Australia",
           destination: `Tour Booking: ${tour.title}`,
-          captchaToken:captchaToken || ""
+          captchaToken: captchaToken || ""
         }).toString()
       });
 
       const text = await response.text();
       let result: any = null;
-      try {
-        result = text ? JSON.parse(text) : null;
-      } catch {
-        result = null;
-      }
+      try { result = text ? JSON.parse(text) : null; } catch { result = null; }
 
-      if (!response.ok) {
-        throw new Error(result?.message || text || `CRM error: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(result?.message || text || `CRM error: ${response.status}`);
 
       if (result?.success === true || response.ok) {
         setBookingStatus('success');
-        setFormData({ 
-          name: '', 
-          email: '', 
-          phone: '', 
-          countryCode: '+91', 
-          date: '', 
-          travelers: '1', 
-          adults: '1',
-          children: '0',
-          infants: '0',
-          message: '' ,
-          website: ''
+        setFormData({
+          name: '', email: '', phone: '', countryCode: '+91',
+          date: '', travelers: '1', adults: '1', children: '0',
+          infants: '0', message: '', website: ''
         });
-       // Reset captcha on success
+        setFormErrors({});
       } else {
         throw new Error(result?.message || 'Submission failed');
       }
@@ -114,6 +204,20 @@ const captchaToken = await executeRecaptcha("tour_booking");
       setBookingStatus('idle');
     }
   };
+
+  // ─── Error message component ───────────────────────────────────────────────
+
+  const FieldError = ({ message }: { message?: string }) =>
+    message ? (
+      <p className="mt-1 text-xs text-red-400 flex items-center gap-1">
+        <svg className="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M18 10A8 8 0 1 1 2 10a8 8 0 0 1 16 0zm-7 4a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1-9a1 1 0 0 0-1 1v4a1 1 0 1 0 2 0V6a1 1 0 0 0-1-1z" clipRule="evenodd" />
+        </svg>
+        {message}
+      </p>
+    ) : null;
+
+  // ─── Display helpers ───────────────────────────────────────────────────────
 
   const displayLocation = typeof tour.location === 'string'
     ? tour.location
@@ -147,6 +251,7 @@ const captchaToken = await executeRecaptcha("tour_booking");
 
   return (
     <div className="pt-20 bg-slate-50 min-h-screen">
+
       {/* Hero Section */}
       <section className="relative h-[70vh] overflow-hidden">
         <motion.img
@@ -203,7 +308,7 @@ const captchaToken = await executeRecaptcha("tour_booking");
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
 
-            {/* Main Content Area */}
+            {/* Main Content */}
             <div className="lg:col-span-2 space-y-12">
 
               {/* Features Quick Grid */}
@@ -226,7 +331,7 @@ const captchaToken = await executeRecaptcha("tour_booking");
                 ))}
               </div>
 
-              {/* Highlights Section */}
+              {/* Highlights */}
               <div className="bg-white p-6 sm:p-10 rounded-3xl sm:rounded-[2.5rem] border border-slate-100 shadow-sm">
                 <h2 className="text-xl sm:text-[24px] font-bold text-primary mb-6 sm:mb-8 flex items-center gap-3">
                   <span className="w-2 h-6 sm:h-8 bg-accent rounded-full" />
@@ -248,7 +353,6 @@ const captchaToken = await executeRecaptcha("tour_booking");
                   ))}
                 </div>
               </div>
-
 
               {/* Overview */}
               <div className="bg-white p-6 sm:p-10 rounded-3xl sm:rounded-[2.5rem] border border-slate-100 shadow-sm">
@@ -319,20 +423,19 @@ const captchaToken = await executeRecaptcha("tour_booking");
                 </div>
               </div>
 
-
-              {/* Inclusion/Exclusion Tabs */}
+              {/* Inclusion / Exclusion */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="bg-[#191975]/5 p-10 rounded-[2.5rem] border border-[#191975]/20">
                   <h3 className="text-xl font-bold text-[#191975] mb-8 flex items-center gap-3">
                     <div className="w-10 h-10 bg-[#191975] rounded-2xl flex items-center justify-center text-white">
-                      <Check className="w-5 h-5 text-[#191715]-600" />
+                      <Check className="w-5 h-5" />
                     </div>
                     What's Included
                   </h3>
                   <ul className="space-y-5 list-none">
                     {(tour.included || ['Premium Hotel Stay', 'Luxury Transportation', 'Guided Cultural Tours', 'Full Board Meals', 'Activity Charges']).map((item, idx) => (
                       <li key={idx} className="flex items-center gap-4 text-[#191975] font-medium">
-                        <Check className="w-5 h-5 text-[#191715]-600" />{item}
+                        <Check className="w-5 h-5 shrink-0" />{item}
                       </li>
                     ))}
                   </ul>
@@ -341,21 +444,21 @@ const captchaToken = await executeRecaptcha("tour_booking");
                 <div className="bg-slate-100 p-10 rounded-[2.5rem] border border-slate-200">
                   <h3 className="text-xl font-bold text-slate-700 mb-8 flex items-center gap-3">
                     <div className="w-10 h-10 bg-slate-400 rounded-2xl flex items-center justify-center text-white">
-                      <X className="w-5 h-5 text-[#cc1715]-500" />
+                      <X className="w-5 h-5" />
                     </div>
                     What's Excluded
                   </h3>
                   <ul className="space-y-5">
                     {(tour.excluded || ['International Airfare', 'Visa Processing Charges', 'Travel & Health Insurance', 'Additional Activities', 'Private Shopping']).map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-4 text-[#cc1715] font-medium">
-                        <X className="w-5 h-5 text-[#cc1715]-500" />{item}
+                      <li key={idx} className="flex items-center gap-4 text-red-600 font-medium">
+                        <X className="w-5 h-5 shrink-0" />{item}
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
 
-              {/* FAQs Section */}
+              {/* FAQs */}
               {tour.faqs && (
                 <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
                   <h2 className="text-[24px] font-bold text-primary mb-10 flex items-center gap-3">
@@ -391,10 +494,9 @@ const captchaToken = await executeRecaptcha("tour_booking");
                   </div>
                 </div>
               )}
-
             </div>
 
-            {/* Sidebar Sticky Area */}
+            {/* Sidebar */}
             <div className="lg:col-span-1">
               <div className="sticky top-24 space-y-8">
 
@@ -408,7 +510,6 @@ const captchaToken = await executeRecaptcha("tour_booking");
                       <span className="text-[32px] font-black text-white">{displayCurrency}{displayPrice.toLocaleString()}</span>
                       <span className="text-slate-400 text-sm">/ person</span>
                     </div>
-
 
                     <div id="booking-form" className="bg-white/5 p-1 rounded-xl border border-white/10">
                       <h4 className="text-white font-bold mb-2 flex items-center gap-2">
@@ -425,7 +526,7 @@ const captchaToken = await executeRecaptcha("tour_booking");
                           <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Check className="w-8 h-8 text-white" />
                           </div>
-                          <h5 className="text-white font-bold text-lg mb-2"> Enquiry sent</h5>
+                          <h5 className="text-white font-bold text-lg mb-2">Enquiry Sent!</h5>
                           <p className="text-slate-400 text-sm">Our expert will contact you soon.</p>
                           <button
                             onClick={() => setBookingStatus('idle')}
@@ -436,166 +537,120 @@ const captchaToken = await executeRecaptcha("tour_booking");
                         </motion.div>
                       ) : (
                         <form onSubmit={handleBookingSubmit} className="space-y-3">
+
+                          {/* Name */}
                           <input
                             required
                             type="text"
                             placeholder="Full Name"
-                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
+                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white transition-colors"
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           />
+
+                          {/* Email */}
                           <input
                             required
                             type="email"
                             placeholder="Email Address"
-                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
+                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white transition-colors"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           />
-                          <div className="grid grid-cols-3 gap-2">
-                            <select
-                              className="bg-white/10 border border-white/10 rounded-xl px-2 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
-                              value={formData.countryCode}
-                              onChange={(e) => setFormData({ ...formData, countryCode: e.target.value })}
-                            >
-                              <option value="+91" className="bg-primary">+91</option>
-                              <option value="+1" className="bg-primary">+1</option>
-                              <option value="+44" className="bg-primary">+44</option>
-                              <option value="+971" className="bg-primary">+971</option>
-                              <option value="+965" className="bg-primary">+965</option>
-                              <option value="+966" className="bg-primary">+966</option>
-                              <option value="+968" className="bg-primary">+968</option>
-                              <option value="+973" className="bg-primary">+973</option>
-                              <option value="+974" className="bg-primary">+974</option>
-                              <option value="+880" className="bg-primary">+880</option>
-                              <option value="+60" className="bg-primary">+60</option>
-                              <option value="+65" className="bg-primary">+65</option>
-                              <option value="+62" className="bg-primary">+62</option>
-                              <option value="+63" className="bg-primary">+63</option>
-                              <option value="+90" className="bg-primary">+90</option>
-                              <option value="+20" className="bg-primary">+20</option>
-                              <option value="+27" className="bg-primary">+27</option>
-                              <option value="+39" className="bg-primary">+39</option>
-                              <option value="+33" className="bg-primary">+33</option>
-                              <option value="+81" className="bg-primary">+81</option>
-                              <option value="+82" className="bg-primary">+82</option>
-                              <option value="+86" className="bg-primary">+86</option>
-                              <option value="+852" className="bg-primary">+852</option>
-                              <option value="+61" className="bg-primary">+61</option>
-                              <option value="+7" className="bg-primary">+7</option>
-                              <option value="+49" className="bg-primary">+49</option>
-                              <option value="+31" className="bg-primary">+31</option>
-                              <option value="+46" className="bg-primary">+46</option>
-                              <option value="+47" className="bg-primary">+47</option>
-                              <option value="+48" className="bg-primary">+48</option>
-                              <option value="+358" className="bg-primary">+358</option>
-                            </select>
+
+                          {/* Phone */}
+                          <div>
+                            <div className="grid grid-cols-3 gap-2">
+                              <select
+                                className="bg-white/10 border border-white/10 rounded-xl px-2 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
+                                value={formData.countryCode}
+                                onChange={(e) => handleCountryCodeChange(e.target.value)}
+                              >
+                                {["+91","+1","+44","+971","+965","+966","+968","+973","+974",
+                                  "+880","+60","+65","+62","+63","+90","+20","+27","+39",
+                                  "+33","+81","+82","+86","+852","+61","+7","+49","+31",
+                                  "+46","+47","+48","+358"
+                                ].map(code => (
+                                  <option key={code} value={code} className="bg-primary">{code}</option>
+                                ))}
+                              </select>
+                              <input
+                                required
+                                type="tel"
+                                placeholder="Phone Number"
+                                className={`col-span-2 bg-white/10 border rounded-xl px-4 py-3 text-white text-sm placeholder:text-white/40 focus:outline-none transition-colors ${
+                                  formErrors.phone ? 'border-red-400' : 'border-white/10 focus:border-white'
+                                }`}
+                                value={formData.phone}
+                                onChange={(e) => handlePhoneChange(e.target.value)}
+                              />
+                            </div>
+                            <FieldError message={formErrors.phone} />
+                          </div>
+
+                          {/* Date */}
+                          <div>
                             <input
                               required
-                              type="tel"
-                              placeholder="Phone Number"
-                              className="col-span-2 bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
-                              value={formData.phone}
-                              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                              type="date"
+                              min={todayString()}
+                              max={maxDateString()}
+                              className={`w-full bg-white/10 border rounded-xl px-4 py-3 text-white text-sm focus:outline-none transition-colors ${
+                                formErrors.date ? 'border-red-400' : 'border-white/10 focus:border-white'
+                              }`}
+                              value={formData.date}
+                              onChange={(e) => handleDateChange(e.target.value)}
                             />
+                            <FieldError message={formErrors.date} />
                           </div>
-                          <input
-                            required
-                            type="date"
-                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors"
-                            value={formData.date}
-                            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                          />
+
+                          {/* Travelers */}
                           <div className="grid grid-cols-3 gap-3">
-
-                            {/* Adults */}
-                            <div>
-                              <label className="text-xs text-white/70 mb-1 block">Adults</label>
-                              <input
-                                type="number"
-                                min="1"
-                                placeholder="0"
-                                className="w-full bg-white/10 border border-white/10 rounded-xl px-3 py-3 text-white text-sm focus:outline-none focus:border-white"
-                                value={formData.adults}
-                                onChange={(e) =>
-                                  setFormData({ ...formData, adults: e.target.value })
-                                }
-                              />
-                            </div>
-
-                            {/* Children */}
-                            <div>
-                              <label className="text-xs text-white/70 mb-1 block">Children</label>
-                              <input
-                                type="number"
-                                min="0"
-                                placeholder="0"
-                                className="w-full bg-white/10 border border-white/10 rounded-xl px-3 py-3 text-white text-sm focus:outline-none focus:border-white"
-                                value={formData.children}
-                                onChange={(e) =>
-                                  setFormData({ ...formData, children: e.target.value })
-                                }
-                              />
-                            </div>
-
-                            {/* Infants */}
-                            <div>
-                              <label className="text-xs text-white/70 mb-1 block">Infants</label>
-                              <input
-                                type="number"
-                                min="0"
-                                max="10"
-                                placeholder="0"
-                                className="w-full bg-white/10 border border-white/10 rounded-xl px-3 py-3 text-white text-sm focus:outline-none focus:border-white"
-                                value={formData.infants}
-                                onChange={(e) =>
-                                  setFormData({ ...formData, infants: e.target.value })
-                                }
-                              />
-                            </div>
-
+                            {[
+                              { label: 'Adults', field: 'adults', min: 1 },
+                              { label: 'Children', field: 'children', min: 0 },
+                              { label: 'Infants', field: 'infants', min: 0 },
+                            ].map(({ label, field, min }) => (
+                              <div key={field}>
+                                <label className="text-xs text-white/70 mb-1 block">{label}</label>
+                                <input
+                                  type="number"
+                                  min={min}
+                                  placeholder="0"
+                                  className="w-full bg-white/10 border border-white/10 rounded-xl px-3 py-3 text-white text-sm focus:outline-none focus:border-white"
+                                  value={(formData as any)[field]}
+                                  onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
+                                />
+                              </div>
+                            ))}
                           </div>
 
-                          {isOtherSelected && (
-                            <input
-                              type="number"
-                              min="0"
-                              max="10"
-                              value={otherTravelers}
-                              placeholder="Enter number of travelers"
-                              className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors mt-3"
-                              onChange={(e) => {
-                                setOtherTravelers(e.target.value);
-                                setFormData({ ...formData, travelers: e.target.value });
-                              }}
-                            />
-                          )}
+                          {/* Message */}
                           <textarea
                             placeholder="Special Requests"
                             rows={3}
-                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white transition-colors resize-none"
+                            className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white transition-colors resize-none"
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                           />
+
+                          {/* Honeypot */}
                           <div className="hidden">
-  <input
-    type="text"
-    name="website"
-    autoComplete="off"
-    tabIndex={-1}
-    value={formData.website}
-    onChange={(e) =>
-      setFormData({ ...formData, website: e.target.value })
-    }
-  />
-</div>
+                            <input
+                              type="text"
+                              name="website"
+                              autoComplete="off"
+                              tabIndex={-1}
+                              value={formData.website}
+                              onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+                            />
+                          </div>
 
-                         
-
+                          {/* Submit */}
                           <button
                             type="submit"
-                            disabled={bookingStatus === 'submitting'}
-                            className="w-full bg-white text-Black font-black py-4 rounded-xl hover:bg-accent transition-all flex items-center justify-center gap-2 shadow-xl shadow-accent/20 disabled:opacity-50 sticky bottom-0"
+                            disabled={bookingStatus === 'submitting' || !!formErrors.phone || !!formErrors.date}
+                            className="w-full bg-white text-black font-black py-4 rounded-xl hover:bg-accent hover:text-white transition-all flex items-center justify-center gap-2 shadow-xl shadow-accent/20 disabled:opacity-50"
                           >
                             {bookingStatus === 'submitting' ? 'Processing...' : (
                               <>
@@ -607,13 +662,10 @@ const captchaToken = await executeRecaptcha("tour_booking");
                         </form>
                       )}
                     </div>
-
-
                   </div>
                 </div>
-                <p className="text-[10px] text-white/50 text-center mt-2">
-  Protected by reCAPTCHA
-</p>
+
+                <p className="text-[10px] text-slate-400 text-center">Protected by reCAPTCHA</p>
 
                 {/* Support Card */}
                 <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm text-center">
@@ -628,12 +680,12 @@ const captchaToken = await executeRecaptcha("tour_booking");
                     </a>
                   </div>
                 </div>
+
               </div>
             </div>
-
           </div>
 
-          {/* Related Tours Section */}
+          {/* Related Tours */}
           <div className="mt-32">
             <div className="flex items-end justify-between mb-16 px-4">
               <div>
@@ -654,7 +706,7 @@ const captchaToken = await executeRecaptcha("tour_booking");
         </div>
       </section>
 
-      {/* Mobile Sticky Book Now Button */}
+      {/* Mobile Sticky Book Now */}
       <div className="md:hidden fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-xl border-t border-slate-100 p-4 z-[90] flex items-center justify-between shadow-[0_-10px_30px_rgba(0,0,0,0.1)]">
         <div>
           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Starting from</span>
