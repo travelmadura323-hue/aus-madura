@@ -877,42 +877,41 @@ export default function Home() {
 
         </div>
       </section>
-
       {selectedLogo && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200]">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="bg-white rounded-2xl p-8 max-w-md w-full text-center relative shadow-2xl"
-          >
-            {/* Close Button */}
-            <button
-              onClick={() => setSelectedLogo(null)}
-              className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
-            >
-              ✕
-            </button>
+  <div 
+    className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200]"
+    onClick={() => setSelectedLogo(null)}
+  >
+    <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.3 }}
+      className="bg-white rounded-2xl p-8 max-w-md w-full text-center relative shadow-2xl"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        onClick={() => setSelectedLogo(null)}
+        className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+      >
+        ✕
+      </button>
 
-            {/* Logo */}
-            <img
-              src={selectedLogo.image}
-              alt={selectedLogo.title}
-              className="h-24 mx-auto mb-6 object-contain"
-            />
+      <img
+        src={selectedLogo.image}
+        alt={selectedLogo.title}
+        className="h-24 mx-auto mb-6 object-contain"
+      />
 
-            {/* Title */}
-            <h4 className="text-2xl font-bold text-primary mb-3">
-              {selectedLogo.title}
-            </h4>
+      <h4 className="text-2xl font-bold text-primary mb-3">
+        {selectedLogo.title}
+      </h4>
 
-            {/* Description */}
-            <p className="text-gray-600 leading-relaxed">
-              {selectedLogo.description}
-            </p>
-          </motion.div>
-        </div>
-      )}
+      <p className="text-gray-600 leading-relaxed">
+        {selectedLogo.description}
+      </p>
+    </motion.div>
+  </div>
+)}
 
       {/* Feedbacks Section */}
       <section className="testimonials-section py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-secondary to-white">
