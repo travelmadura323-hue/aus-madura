@@ -223,7 +223,7 @@ export default function ToursDashboard() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
         <h1 className="text-2xl font-bold text-primary">Tours Management</h1>
         <button
-          onClick={() => navigate("/admin/destination")}
+          onClick={() => navigate("/admin/destinations")}
           className="inline-flex items-center justify-center px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-primary font-semibold text-sm"
         >
           Go to Admin/Destination

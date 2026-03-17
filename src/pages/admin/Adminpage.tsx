@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { useNavigate } from "react-router-dom";
@@ -8,18 +8,27 @@ export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<any>(null);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    if (!email || !password) {
-      alert("Please enter both email and password");
-      return;
-    }
+  // Listen to auth state
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        // If user is logged in, redirect to tours page
+        navigate("/admin/tours", { replace: true });
+      }
+    });
+    return () => unsubscribe();
+  }, [navigate]);
 
+  const handleLogin = async () => {
+    if (!email || !password) return alert("Please enter email and password");
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/admin/tours");
+      // no navigate here! let onAuthStateChanged handle it
     } catch (err: any) {
       alert("Login Failed: " + err.message);
     } finally {
@@ -39,6 +48,7 @@ export default function AdminLogin() {
             type="email"
             placeholder="Enter your email"
             className="w-full outline-none"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
@@ -49,6 +59,7 @@ export default function AdminLogin() {
             type="password"
             placeholder="Enter your password"
             className="w-full outline-none"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
