@@ -33,7 +33,7 @@ export default function DestinationDetail() {
     <div className="pt-20">
       {/* Hero */}
       <div className="bg-primary py-12 sm:py-20 text-center">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 ">
           <span className="text-sm font-semibold uppercase tracking-widest text-white/70">
             Destinations
           </span>

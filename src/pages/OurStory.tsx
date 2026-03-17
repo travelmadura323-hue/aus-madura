@@ -5,15 +5,15 @@ import { motion } from "framer-motion";
 const images = import.meta.glob('../../images/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
-});
+}) as Record<string, string>;
 const gal = import.meta.glob('../gallery/*.{png,jpg,jpeg,svg,webp}', {
   eager: true,
   import: 'default',
-});
+}) as Record<string, string>;
 const im = import.meta.glob('../../images/im/*.{png,jpg,jpeg,svg}', {
   eager: true,
   import: 'default',
-});
+}) as Record<string, string>;
 
 const logos = [
   {
@@ -163,7 +163,7 @@ export default function OurStoryPage() {
             <div className="relative  w-full h-[800px] overflow-hidden rounded-2xl">
               <img src={images['../../images/WhatsApp-Image-2024-11-21-at-16.41.41_0f849961-767x1024 (1).jpg'] as string}
                 alt="Our team on a tour"
-                fill className="object-cover"
+                className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
           </div>
