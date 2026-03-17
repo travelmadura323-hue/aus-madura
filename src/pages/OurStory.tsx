@@ -64,7 +64,7 @@ export default function OurStoryPage() {
   const [selectedLogo, setSelectedLogo] = useState<any>(null);
 
   return (
-    <div className="pt-20 sm:pt-28">
+    <div className="pt-25 -mt-15 sm:pt-28">
 
       {/* Hero Section */}
       <div className="bg-primary py-12 sm:py-20 text-center">

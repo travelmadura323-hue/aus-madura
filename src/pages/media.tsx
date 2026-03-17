@@ -26,7 +26,7 @@ const youtubeVideos = [
 
 export default function MediaPage() {
   return (
-    <div className="pt-28 bg-white min-h-screen">
+    <div className="pt-28 -mt-15 bg-white min-h-screen">
 
       {/* ---------------- HEADER ---------------- */}
       <div className="bg-[#191975] py-24 text-center text-white">
