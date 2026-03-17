@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase-config";
+import { auth } from "../../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { Mail, Lock } from "lucide-react";
 
@@ -12,7 +12,7 @@ export default function AdminLogin() {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/admin");
+      navigate("/admin/tours");
     } catch (err) {
       alert("Login Failed");
     }

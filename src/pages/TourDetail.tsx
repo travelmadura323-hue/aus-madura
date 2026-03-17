@@ -10,12 +10,15 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import { tours } from '../data/mockData';
+import { useTourBySlug } from '../hooks/useTourBySlug';
 import TourCard from '../components/tours/TourCard';
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 export default function TourDetail() {
   const { slug } = useParams();
-  const tour = tours.find(t => t.slug === slug) || tours[0];
+  const { tour: firestoreTour, loading } = useTourBySlug(slug);
+  const mockTour = tours.find((t: { slug?: string }) => t.slug === slug);
+  const tour = firestoreTour || mockTour || tours[0];
   const { executeRecaptcha } = useGoogleReCaptcha();
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
@@ -124,7 +127,23 @@ const captchaToken = await executeRecaptcha("tour_booking");
     ? tour.price
     : tour.price.startingFrom;
 
-  const displayCurrency = (typeof tour.price === 'object' && tour.price.currency === 'INR') ? '₹' : '$';
+  const displayCurrency = 'AUD$';
+
+  if (loading) {
+    return (
+      <div className="pt-28 flex items-center justify-center min-h-screen">
+        <div className="text-slate-500">Loading tour...</div>
+      </div>
+    );
+  }
+  if (!tour) {
+    return (
+      <div className="pt-28 flex items-center justify-center min-h-screen">
+        <div className="text-slate-500">Tour not found.</div>
+        <Link to="/tours" className="ml-2 text-accent">Back to Tours</Link>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-20 bg-slate-50 min-h-screen">

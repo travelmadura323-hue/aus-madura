@@ -18,7 +18,9 @@ import { Autoplay, Pagination } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { destinations, tours } from '../data/mockData';
+import { destinations as mockDestinations, tours as mockTours } from '../data/mockData';
+import { useTours } from '../hooks/useTours';
+import { useDestinations } from '../hooks/useDestinations';
 
 
 
@@ -87,6 +89,28 @@ const own = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
 
 export default function Home() {
   // const { tours, destinations, loading } = useFirebaseData();
+  const { tours: firestoreTours } = useTours();
+  const { destinations: firestoreDestinations } = useDestinations();
+
+  const tours = (firestoreTours && firestoreTours.length > 0) ? firestoreTours : (mockTours as any[]);
+  const destinations = (firestoreDestinations && firestoreDestinations.length > 0) ? firestoreDestinations : (mockDestinations as any[]);
+
+  const getStartingFromForDestination = (dest: any) => {
+    const name = String(dest?.name || '').toLowerCase();
+    const country = String(dest?.country || dest?.region || '').toLowerCase();
+    const candidates = tours.filter((t: any) => {
+      const loc = typeof t.location === 'string' ? t.location : (t.location?.country || '');
+      const lc = String(loc).toLowerCase();
+      return (name && lc.includes(name)) || (country && lc.includes(country));
+    });
+    const prices = candidates
+      .map((t: any) => (typeof t.price === 'number' ? t.price : Number(t.price?.startingFrom ?? 0)))
+      .filter((p: number) => Number.isFinite(p) && p > 0);
+    const min = prices.length ? Math.min(...prices) : 0;
+    const fallback = Number(dest?.price ?? 0);
+    return String(min || fallback || 0);
+  };
+
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchStartY, setTouchStartY] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -475,9 +499,9 @@ export default function Home() {
               .map(d => ({
                 id: d.id,
                 name: d.name,
-                price: d.price || '0',
-                image: d.image,
-                link: `/destinations/${d.id}`
+                price: getStartingFromForDestination(d),
+                image: (d.images && d.images[0]) || (d.image as string) || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=600&h=800&q=80',
+                link: `/destinations/${d.slug || d.id}`
               }))}
           />
         </div>
@@ -500,7 +524,15 @@ export default function Home() {
             </Link>
           </div>
 
-          <TourCarousel tours={tours.filter(t => (typeof t.location === 'string' ? t.location : t.location.country).toLowerCase().includes('india'))} />
+          <TourCarousel
+            tours={tours
+              .map((t: any) => ({
+                ...t,
+                image: t.image || (t.gallery && t.gallery[0]) || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&h=600&q=80',
+                slug: t.slug || t.id,
+              }))
+              .filter((t: any) => (typeof t.location === 'string' ? t.location : t.location.country).toLowerCase().includes('india'))}
+          />
         </div>
       </section>
 
@@ -521,10 +553,18 @@ export default function Home() {
             </Link>
           </div>
 
-          <TourCarousel tours={tours.filter((t: any) => {
-            const loc = typeof t.location === 'string' ? t.location : t.location.country;
-            return loc.toLowerCase().includes('australia');
-          })} />
+          <TourCarousel
+            tours={tours
+              .map((t: any) => ({
+                ...t,
+                image: t.image || (t.gallery && t.gallery[0]) || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&h=600&q=80',
+                slug: t.slug || t.id,
+              }))
+              .filter((t: any) => {
+                const loc = typeof t.location === 'string' ? t.location : t.location.country;
+                return (loc || '').toLowerCase().includes('australia');
+              })}
+          />
         </div>
       </section>
       {/* <section className="relative py-32 overflow-hidden">
