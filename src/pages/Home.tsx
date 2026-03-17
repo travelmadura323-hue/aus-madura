@@ -1060,7 +1060,7 @@ export default function Home() {
         <div className="hidden md:flex relative flex-col gap-12">
           {/* Row 1 */}
           <div className="flex w-full overflow-hidden select-none">
-            <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee hover:[animation-play-state:paused]">
+            <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee pause-on-hover">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((i) => (
                 <div key={`logo-1-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500">
                   <img
@@ -1085,7 +1085,7 @@ export default function Home() {
 
           {/* Row 2 (Reverse) */}
           <div className="flex w-full overflow-hidden select-none">
-            <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee-reverse hover:[animation-play-state:paused]">
+            <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee pause-on-hover">
               {[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33].map((i) => (
                 <div key={`logo-2-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500 ">
                   <img
