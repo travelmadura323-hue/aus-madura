@@ -855,7 +855,7 @@ export default function Home() {
           {/* Stats Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
             {[
-              { number: "4 Million+", label: "Happy Travelers" },
+              { number: "4 M+", label: "Happy Travelers" },
               { number: "195+", label: "Countries Covered" },
               { number: "40+", label: "Years of Excellence" },
               { number: "10K+", label: "5-Star Client Ratings" }
