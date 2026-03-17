@@ -138,3 +138,6 @@
   opacity: 0;
   transform: translateY(24px);
 }
+.grecaptcha-badge {
+  visibility: hidden;
+}
