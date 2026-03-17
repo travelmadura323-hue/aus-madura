@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import ReCAPTCHA from "react-google-recaptcha";
+
 import { motion, AnimatePresence } from 'framer-motion';
 import React from "react"
 import {
@@ -11,16 +11,17 @@ import {
 import { useState } from 'react';
 import { tours } from '../data/mockData';
 import TourCard from '../components/tours/TourCard';
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 export default function TourDetail() {
   const { slug } = useParams();
   const tour = tours.find(t => t.slug === slug) || tours[0];
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [otherTravelers, setOtherTravelers] = useState("");
   const [isOtherSelected, setIsOtherSelected] = useState(false);
-  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
-
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,16 +32,25 @@ export default function TourDetail() {
     adults: '1',
     children: '0',
     infants: '0',
-    message: ''
+    message: '',
+    website: ''
   });
 
   const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!captchaValue) {
-      alert("Please verify the captcha");
-      return;
-    }
+ // Honeypot check
+if (formData.website.trim() !== "") {
+  console.log("Bot detected");
+  return;
+}
+
+if (!executeRecaptcha) {
+  alert("reCAPTCHA not ready");
+  return;
+}
+
+const captchaToken = await executeRecaptcha("tour_booking");
 
     setBookingStatus('submitting');
 
@@ -60,7 +70,7 @@ export default function TourDetail() {
           enquiry: "Tours",
           nationality: "Australia",
           destination: `Tour Booking: ${tour.title}`,
-          captchaToken: captchaValue!
+          captchaToken:captchaToken || ""
         }).toString()
       });
 
@@ -88,9 +98,10 @@ export default function TourDetail() {
           adults: '1',
           children: '0',
           infants: '0',
-          message: '' 
+          message: '' ,
+          website: ''
         });
-        setCaptchaValue(null); // Reset captcha on success
+       // Reset captcha on success
       } else {
         throw new Error(result?.message || 'Submission failed');
       }
@@ -547,14 +558,20 @@ export default function TourDetail() {
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                           />
+                          <div className="hidden">
+  <input
+    type="text"
+    name="website"
+    autoComplete="off"
+    tabIndex={-1}
+    value={formData.website}
+    onChange={(e) =>
+      setFormData({ ...formData, website: e.target.value })
+    }
+  />
+</div>
 
-                          <div className="flex justify-center scale-75 origin-center">
-                            <ReCAPTCHA
-                              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
-                              onChange={(value) => setCaptchaValue(value)}
-                              theme="dark"
-                            />
-                          </div>
+                         
 
                           <button
                             type="submit"
@@ -575,7 +592,9 @@ export default function TourDetail() {
 
                   </div>
                 </div>
-
+                <p className="text-[10px] text-white/50 text-center mt-2">
+  Protected by reCAPTCHA
+</p>
 
                 {/* Support Card */}
                 <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm text-center">
