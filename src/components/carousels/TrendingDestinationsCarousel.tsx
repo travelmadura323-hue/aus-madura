@@ -5,7 +5,10 @@ import { Link } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
+const im = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
+    eager: true,
+    import: 'default',
+  }) as Record<string, string>;
 interface Destination {
     id: string;
     name: string;
