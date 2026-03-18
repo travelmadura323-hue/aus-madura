@@ -7,57 +7,44 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
+/* ── Marquee Keyframes ── */
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
 }
 
 @keyframes marquee-reverse {
-  0% {
-    transform: translateX(-50%);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-}
-.pause-on-hover:hover {
-  animation-play-state: paused;
-}
-.animate-marquee {
-  animation: marquee 15s linear infinite;
-}
-
-.animate-marquee-reverse {
-  animation: marquee-reverse 15s linear infinite;
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
 }
 
 @keyframes pulse-subtle {
-
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  50% {
-    transform: scale(1.03);
-    opacity: 0.95;
-  }
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 2s ease-in-out infinite;
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.03); opacity: 0.95; }
 }
 
 @keyframes shimmer {
-  0% { background-position: 200% 0; }
+  0%   { background-position: 200% 0; }
   100% { background-position: -200% 0; }
+}
+
+/* ── Marquee Classes ── */
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 25s linear infinite;
+}
+
+/* ── Pause on hover ── */
+.pause-on-hover:hover {
+  animation-play-state: paused;
+}
+
+/* ── Other Animations ── */
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
 }
 
 .animate-shimmer {
@@ -75,37 +62,22 @@
     font-size: 16px;
   }
 
-  /* Headers */
-  h1,
-  h2,
-  .page-header {
+  h1, h2, .page-header {
     @apply font-extrabold text-primary;
   }
 
-  /* Subheadings */
-  h3,
-  h4,
-  h5,
-  h6,
-  .sub-header {
+  h3, h4, h5, h6, .sub-header {
     @apply font-extrabold text-primary;
     font-size: inherit;
-    /* Allow component-level control */
   }
 
-  /* Paragraphs and Body Text */
-  p,
-  span,
-  div,
-  li,
-  a {
+  p, span, div, li, a {
     @apply font-normal;
     font-size: inherit;
-    /* Allow component-level control */
   }
 }
 
-/* Glassmorphism utilities */
+/* ── Glassmorphism ── */
 .glass-nav {
   @apply bg-white/75 backdrop-blur-xl border-b border-white/30 shadow-[0_4px_30px_rgba(0,0,0,0.06)];
 }
@@ -118,7 +90,7 @@
   background: linear-gradient(to bottom, rgba(255,255,255,0.95), #f8fafc);
 }
 
-/* Premium shadows */
+/* ── Premium Shadows ── */
 .shadow-premium {
   box-shadow: 0 20px 40px -15px rgba(25, 25, 117, 0.08), 0 8px 16px rgba(15, 23, 42, 0.04);
 }
@@ -135,11 +107,13 @@
   box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1), 0 8px 24px rgba(15, 23, 42, 0.06);
 }
 
-/* Section scroll reveal animation helper */
+/* ── Section Reveal ── */
 .section-reveal {
   opacity: 0;
   transform: translateY(24px);
 }
+
+/* ── Hide reCAPTCHA badge ── */
 .grecaptcha-badge {
   visibility: hidden;
 }

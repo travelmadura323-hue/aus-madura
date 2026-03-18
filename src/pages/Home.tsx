@@ -75,6 +75,7 @@ const own = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
   import: 'default',
 }) as Record<string, string>;
 
+
 export default function Home() {
   const { tours: firestoreTours } = useTours();
   const { destinations: firestoreDestinations } = useDestinations();
@@ -195,7 +196,14 @@ export default function Home() {
     }, 5000);
     return () => clearInterval(timer);
   }, [slides.length, isPaused]);
-
+  const pauseMarquee = (e: React.MouseEvent<HTMLDivElement>) => {
+    const inner = e.currentTarget.querySelector<HTMLElement>('[data-marquee]');
+    if (inner) inner.style.animationPlayState = 'paused';
+  };
+  const resumeMarquee = (e: React.MouseEvent<HTMLDivElement>) => {
+    const inner = e.currentTarget.querySelector<HTMLElement>('[data-marquee]');
+    if (inner) inner.style.animationPlayState = 'running';
+  };
   return (
     <div className="overflow-x-hidden pb-24 md:pb-0">
 
@@ -685,66 +693,102 @@ export default function Home() {
       </section>
 
       {/* ===== TRUSTED CLIENTS LOGO CAROUSEL ===== */}
+      {/* CLIENTS */}
       <section className="py-12 sm:py-16 lg:py-24 bg-white border-y border-slate-100 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 lg:mb-20 text-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-16 text-center">
           <span className="text-accent font-bold uppercase tracking-[0.4em] text-xs mb-3 block">Global Network</span>
-          <h2 className="text-[24px] font-bold text-primary mb-6">Our Trusted Clients</h2>
-          <p className="text-slate-500 max-w-2xl mx-auto text-lg">
-            Collaborating with leading airlines, hotels, and tourism boards worldwide to deliver excellence.
-          </p>
+          <h2 className="text-[24px] font-bold text-primary mb-4">Our Trusted Clients</h2>
+          <p className="text-slate-500 max-w-2xl mx-auto text-base sm:text-lg">Collaborating with leading airlines, hotels, and tourism boards worldwide.</p>
         </div>
+ 
+        {/* Row 1 → LEFT */}
+        {/* ✅ Row 1 → LEFT */}
+{/* Desktop */}
+<div
+  className="hidden sm:flex w-full overflow-hidden select-none mb-10"
+  onMouseEnter={pauseMarquee}
+  onMouseLeave={resumeMarquee}
+>
+  <div data-marquee className="flex shrink-0 gap-16 items-center animate-marquee">
+    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(i => (
+      <div key={`d1a-${i}`} className="w-36 h-20 flex items-center justify-center shrink-0 hover:scale-110 transition-transform duration-300">
+        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+      </div>
+    ))}
+    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(i => (
+      <div key={`d1b-${i}`} className="w-36 h-20 flex items-center justify-center shrink-0 hover:scale-110 transition-transform duration-300">
+        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+      </div>
+    ))}
+  </div>
+</div>
 
-        {/* Desktop Marquee */}
-        <div className="hidden md:flex relative flex-col gap-12">
-          <div className="flex w-full overflow-hidden select-none">
-            <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee pause-on-hover">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((i) => (
-                <div key={`logo-1-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500">
-                  <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt={`Partner ${i}`} className="max-w-full max-h-full object-contain" />
-                </div>
-              ))}
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((i) => (
-                <div key={`logo-1-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500">
-                  <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt={`Partner ${i}`} className="max-w-full max-h-full object-contain" />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="flex w-full overflow-hidden select-none">
-            <div className="flex min-w-full shrink-0 gap-12 items-center justify-around animate-marquee pause-on-hover">
-              {[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33].map((i) => (
-                <div key={`logo-2-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500">
-                  <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt={`Partner ${i}`} className="max-w-full max-h-full object-contain" />
-                </div>
-              ))}
-              {[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33].map((i) => (
-                <div key={`logo-2-dup-${i}`} className="w-40 h-20 flex items-center justify-center p-4 transition-all duration-500">
-                  <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt={`Partner ${i}`} className="max-w-full max-h-full object-contain" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+{/* Mobile */}
+<div
+  className="sm:hidden flex w-full overflow-hidden select-none mb-6"
+  onTouchStart={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'paused'; }}
+  onTouchEnd={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'running'; }}
+>
+  <div data-marquee className="flex shrink-0 gap-8 items-center animate-marquee">
+    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(i => (
+      <div key={`m1a-${i}`} className="w-20 h-14 flex items-center justify-center shrink-0">
+        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+      </div>
+    ))}
+    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(i => (
+      <div key={`m1b-${i}`} className="w-20 h-14 flex items-center justify-center shrink-0">
+        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+      </div>
+    ))}
+  </div>
+</div>
 
-        {/* Mobile Logos */}
-        <div className="md:hidden flex flex-col gap-6 overflow-hidden px-4">
-          <div className="flex gap-6 w-max animate-marquee">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i, index) => (
-              <div key={index} className="w-24 h-16 flex items-center justify-center bg-slate-50 rounded-xl shrink-0">
-                <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt={`Partner ${i}`} className="max-h-12 object-contain" />
-              </div>
-            ))}
-          </div>
-          <div className="flex gap-6 w-max animate-marquee-reverse">
-            {[10, 11, 12, 13, 14, 15, 16, 17, 18, 10, 11, 12, 13, 14, 15, 16, 17, 18].map((i, index) => (
-              <div key={index} className="w-24 h-16 flex items-center justify-center bg-slate-50 rounded-xl shrink-0">
-                <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt={`Partner ${i}`} className="max-h-12 object-contain" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+{/* ✅ Row 2 → RIGHT */}
+{/* Desktop */}
+<div
+  className="hidden sm:flex w-full overflow-hidden select-none"
+  onMouseEnter={pauseMarquee}
+  onMouseLeave={resumeMarquee}
+>
+  <div data-marquee className="flex shrink-0 gap-16 items-center animate-marquee-reverse">
+    {[19,20,21,22,23,24,25,26,27,28,29,30,31,32,33].map(i => (
+      <div key={`d2a-${i}`} className="w-36 h-20 flex items-center justify-center shrink-0 hover:scale-110 transition-transform duration-300">
+        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+      </div>
+    ))}
+    {[19,20,21,22,23,24,25,26,27,28,29,30,31,32,33].map(i => (
+      <div key={`d2b-${i}`} className="w-36 h-20 flex items-center justify-center shrink-0 hover:scale-110 transition-transform duration-300">
+        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+      </div>
+    ))}
+  </div>
+</div>
 
-    </div>
+{/* Mobile */}
+<div
+  className="sm:hidden flex w-full overflow-hidden select-none"
+  onTouchStart={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'paused'; }}
+  onTouchEnd={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'running'; }}
+>
+  <div data-marquee className="flex shrink-0 gap-8 items-center animate-marquee-reverse">
+    {[19,20,21,22,23,24,25,26,27,28,29,30,31,32,33].map(i => (
+      <div key={`m2a-${i}`} className="w-20 h-14 flex items-center justify-center shrink-0">
+        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+      </div>
+    ))}
+    {[19,20,21,22,23,24,25,26,27,28,29,30,31,32,33].map(i => (
+      <div key={`m2b-${i}`} className="w-20 h-14 flex items-center justify-center shrink-0">
+        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+      </div>
+    ))}
+  </div>
+</div>
+
+
+</section>
+</div>
+ 
+
+    
   );
 }
