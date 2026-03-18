@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote, Images, MessageCircle, ChevronRight } from 'lucide-react';
+import { ArrowRight, Play, MapPin, Compass, Building2, Users, Phone, Mail, Award, Globe, Plane, Star, Quote, Images, MessageCircle } from 'lucide-react';
 import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import TourCard from '../components/tours/TourCard';
@@ -306,12 +306,9 @@ export default function Home() {
         </motion.div>
 
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20">
-          <button
-            onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all group hidden md:flex"
-          >
-            <ChevronRight className="w-6 h-6 rotate-180 group-hover:-translate-x-0.5 transition-transform" />
-          </button>
+
+
+
           <div className="flex gap-2">
             {slides.map((_, i) => (
               <button
@@ -321,12 +318,7 @@ export default function Home() {
               />
             ))}
           </div>
-          <button
-            onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all group hidden md:flex"
-          >
-            <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
-          </button>
+
         </div>
       </section>
 
