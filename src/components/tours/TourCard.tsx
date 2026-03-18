@@ -28,12 +28,15 @@ export default function TourCard({ tour }: TourCardProps) {
   const displayPrice = typeof tour.price === 'number'
     ? tour.price
     : tour.price.startingFrom;
+
   const displayCurrency =
     typeof tour.price === "object"
-      ? tour.price.currency === "AUD"
-        ? "AUD$"
-        : "AUD$"
+      ? tour.price.currency === "AUD" ? "AUD$" : "AUD$"
       : "AUD$";
+
+  // ✅ Single source of truth for the tour URL
+  const tourUrl = `/tours/${tour.slug}`;
+  const handleNavigate = () => window.scrollTo(0, 0);
 
   return (
     <motion.div
@@ -49,21 +52,20 @@ export default function TourCard({ tour }: TourCardProps) {
         </div>
       </div>
 
-      {/* Enhanced Image Section */}
+      {/* Image Section */}
       <div className="relative h-56 sm:h-64 overflow-hidden">
-        <Link to={`/tours/${tour.slug}`} onClick={() => window.scrollTo(0, 0)}>
+        <Link to={tourUrl} onClick={handleNavigate}>
           <div className="relative w-full h-full">
             <img
               src={tour.image}
               alt={tour.title}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
-            {/* Overlay Gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
           </div>
         </Link>
 
-        {/* Floating Duration Badge */}
+        {/* Duration Badge */}
         <div className="absolute top-4 left-4 z-20">
           <div className="bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl text-xs font-bold text-primary uppercase tracking-wider flex items-center gap-2 shadow-xl border border-white/20">
             <Calendar className="w-4 h-4 text-accent" />
@@ -71,7 +73,7 @@ export default function TourCard({ tour }: TourCardProps) {
           </div>
         </div>
 
-        {/* Enhanced Location Overlay */}
+        {/* Location Overlay */}
         <div className="absolute bottom-0 left-0 w-full p-4 z-10">
           <div className="flex items-center gap-2 text-white">
             <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
@@ -82,9 +84,9 @@ export default function TourCard({ tour }: TourCardProps) {
         </div>
       </div>
 
-      {/* Enhanced Content Section */}
+      {/* Content Section */}
       <div className="p-5 sm:p-6 flex flex-col flex-1 relative">
-        {/* Rating Stars */}
+        {/* Rating */}
         <div className="flex items-center gap-1 mb-3">
           {[1, 2, 3, 4, 5].map((star) => (
             <Star key={star} className="w-4 h-4 fill-accent text-accent" />
@@ -92,17 +94,19 @@ export default function TourCard({ tour }: TourCardProps) {
           <span className="text-xs text-slate-500 ml-2">(4.9)</span>
         </div>
 
-        {/* Title */}
-        <h3 className="text-lg sm:text-xl font-bold text-primary mb-3 line-clamp-2 leading-tight">
-          {tour.title}
-        </h3>
+        {/* ✅ Title is now also a clickable link */}
+        <Link to={tourUrl} onClick={handleNavigate}>
+          <h3 className="text-lg sm:text-xl font-bold text-primary mb-3 line-clamp-2 leading-tight hover:text-accent transition-colors cursor-pointer">
+            {tour.title}
+          </h3>
+        </Link>
 
-        {/* Enhanced Description */}
+        {/* Description */}
         <p className="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-3 flex-grow">
           {tour.description || "Discover the hidden gems and iconic landmarks of this breathtaking destination with our expert-led tour."}
         </p>
 
-        {/* Features Row */}
+        {/* Features */}
         <div className="flex items-center gap-4 mb-4 text-xs text-slate-500">
           <div className="flex items-center gap-1">
             <Users className="w-3 h-3" />
@@ -118,34 +122,33 @@ export default function TourCard({ tour }: TourCardProps) {
           </div>
         </div>
 
-        {/* Enhanced Price Section */}
+        {/* Price + CTA */}
         <div className="mt-auto pt-4 border-t border-slate-100">
           <div className="flex items-end justify-between gap-4">
             <div className="flex flex-col">
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Starting from</span>
               <div className="flex items-baseline gap-1">
-                <span className="text-xl sm:text-xl font-black text-primary leading-none">
+                <span className="text-xl font-black text-primary leading-none">
                   {displayCurrency}{displayPrice.toLocaleString()}
                 </span>
                 <span className="text-xs text-slate-500 mb-1">/person</span>
               </div>
             </div>
 
-            {/* Enhanced CTA Button */}
             <Link
-              to={`/tours/${tour.slug}`}
-              onClick={() => window.scrollTo(0, 0)}
+              to={tourUrl}
+              onClick={handleNavigate}
               className="group/btn relative overflow-hidden bg-primary text-white font-bold px-6 py-3 rounded-2xl hover:bg-accent transition-colors duration-300 shadow-premium hover:shadow-accent-premium flex items-center gap-2 text-sm min-h-[48px] touch-manipulation"
             >
               <span className="relative z-10">Explore Now</span>
-              <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+              <ArrowRight className="w-4 h-4 relative z-10 group-hover/btn:translate-x-1 transition-transform" />
+              <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-20 transition-opacity duration-300"></div>
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Hover Effect Overlay */}
+      {/* Hover Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl"></div>
     </motion.div>
   );
