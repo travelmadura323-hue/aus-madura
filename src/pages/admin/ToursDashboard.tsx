@@ -11,10 +11,9 @@ import {
 import { db, storage } from "../../firebase-config";
 import { Tour, defaultTour } from "../../types";
 import { ChevronDown, ChevronRight, Plus, Search, Trash2, Pencil } from "lucide-react";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 export default function ToursDashboard() {
-  
   const navigate = useNavigate();
   const [tours, setTours] = useState<Tour[]>([]);
   const [loading, setLoading] = useState(true);
@@ -38,7 +37,7 @@ export default function ToursDashboard() {
         return {
           ...defaultTour,
           ...raw,
-          id: d.id, // IMPORTANT: always use Firestore doc.id
+          id: d.id,
           location: raw.location ?? defaultTour.location,
           duration: raw.duration ?? defaultTour.duration,
           price: raw.price ?? defaultTour.price,
@@ -62,6 +61,38 @@ export default function ToursDashboard() {
     fetchTours();
   }, []);
 
+  // ✅ FIXED: use uploadBytesResumable for real progress tracking
+  const uploadSingleFile = (file: File, path: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const fileRef = ref(storage, path);
+      const uploadTask = uploadBytesResumable(fileRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+          setUploadProgressText(`Uploading: ${percent}%`);
+        },
+        (error) => {
+          switch (error.code) {
+            case "storage/unauthorized":
+              reject(new Error("Permission denied. Update Firebase Storage rules to allow writes."));
+              break;
+            case "storage/canceled":
+              reject(new Error("Upload cancelled."));
+              break;
+            default:
+              reject(new Error(`Upload failed: ${error.message}`));
+          }
+        },
+        async () => {
+          const url = await getDownloadURL(uploadTask.snapshot.ref);
+          resolve(url);
+        }
+      );
+    });
+  };
+
   const uploadTourImagesFromDevice = async (files: FileList | null, mode: "main" | "gallery") => {
     if (!files || files.length === 0) return;
     setUploading(true);
@@ -75,24 +106,23 @@ export default function ToursDashboard() {
       const uploadedUrls: string[] = [];
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        setUploadProgressText(`Uploading ${i + 1} / ${files.length}...`);
         const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-        const fileRef = ref(storage, `tours/${slug}/${Date.now()}-${safeName}`);
-        await uploadBytes(fileRef, file);
-        const url = await getDownloadURL(fileRef);
+        const filePath = `tours/${slug}/${Date.now()}-${safeName}`;
+        const url = await uploadSingleFile(file, filePath);
         uploadedUrls.push(url);
       }
 
       setForm((prev) => {
-        if (mode === "main") {
-          return { ...prev, image: uploadedUrls[0] || prev.image };
-        }
+        if (mode === "main") return { ...prev, image: uploadedUrls[0] || prev.image };
         return { ...prev, gallery: [...(prev.gallery || []), ...uploadedUrls] };
       });
+
+      setUploadProgressText("✓ Upload complete");
+      setTimeout(() => setUploadProgressText(null), 2000);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Image upload failed");
-    } finally {
       setUploadProgressText(null);
+    } finally {
       setUploading(false);
     }
   };
@@ -129,11 +159,7 @@ export default function ToursDashboard() {
     if (!window.confirm("Are you sure you want to delete this tour?")) return;
     try {
       await deleteDoc(doc(db, "tours", id));
-      setSelectedIds((prev) => {
-        const next = new Set(prev);
-        next.delete(id);
-        return next;
-      });
+      setSelectedIds((prev) => { const next = new Set(prev); next.delete(id); return next; });
       fetchTours();
     } catch (err) {
       setError(err instanceof Error ? err.message : `Failed to delete tour (${id})`);
@@ -141,83 +167,41 @@ export default function ToursDashboard() {
   };
 
   const toggleSelect = (id: string) => {
-    setSelectedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
+    setSelectedIds((prev) => { const next = new Set(prev); if (next.has(id)) next.delete(id); else next.add(id); return next; });
   };
-
   const toggleSelectAll = () => {
     if (selectedIds.size === filteredTours.length) setSelectedIds(new Set());
     else setSelectedIds(new Set(filteredTours.map((t) => t.id!).filter(Boolean)));
   };
-
   const toggleExpand = (id: string) => {
-    setExpandedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
+    setExpandedIds((prev) => { const next = new Set(prev); if (next.has(id)) next.delete(id); else next.add(id); return next; });
   };
-
-  const openAdd = () => {
-    setForm(defaultTour);
-    setEditingTour(null);
-    setModalOpen(true);
-  };
-
-  const openEdit = (tour: Tour) => {
-    setForm({ ...defaultTour, ...tour });
-    setEditingTour(tour);
-    setModalOpen(true);
-  };
+  const openAdd = () => { setForm(defaultTour); setEditingTour(null); setModalOpen(true); };
+  const openEdit = (tour: Tour) => { setForm({ ...defaultTour, ...tour }); setEditingTour(tour); setModalOpen(true); };
 
   const addHighlight = () => setForm({ ...form, highlights: [...form.highlights, ""] });
-  const updateHighlight = (i: number, v: string) => {
-    const arr = [...form.highlights];
-    arr[i] = v;
-    setForm({ ...form, highlights: arr });
-  };
+  const updateHighlight = (i: number, v: string) => { const arr = [...form.highlights]; arr[i] = v; setForm({ ...form, highlights: arr }); };
   const removeHighlight = (i: number) => setForm({ ...form, highlights: form.highlights.filter((_, j) => j !== i) });
 
   const addTourPlan = () => setForm({ ...form, tourPlan: [...form.tourPlan, { day: 0, title: "", description: "" }] });
   const updateTourPlan = (i: number, field: keyof { day: number; title: string; description: string }, v: string | number) => {
-    const arr = [...form.tourPlan];
-    (arr[i] as Record<string, unknown>)[field] = v;
-    setForm({ ...form, tourPlan: arr });
+    const arr = [...form.tourPlan]; (arr[i] as Record<string, unknown>)[field] = v; setForm({ ...form, tourPlan: arr });
   };
   const removeTourPlan = (i: number) => setForm({ ...form, tourPlan: form.tourPlan.filter((_, j) => j !== i) });
 
   const addIncluded = () => setForm({ ...form, included: [...form.included, ""] });
-  const updateIncluded = (i: number, v: string) => {
-    const arr = [...form.included];
-    arr[i] = v;
-    setForm({ ...form, included: arr });
-  };
+  const updateIncluded = (i: number, v: string) => { const arr = [...form.included]; arr[i] = v; setForm({ ...form, included: arr }); };
   const removeIncluded = (i: number) => setForm({ ...form, included: form.included.filter((_, j) => j !== i) });
 
   const addExcluded = () => setForm({ ...form, excluded: [...form.excluded, ""] });
-  const updateExcluded = (i: number, v: string) => {
-    const arr = [...form.excluded];
-    arr[i] = v;
-    setForm({ ...form, excluded: arr });
-  };
+  const updateExcluded = (i: number, v: string) => { const arr = [...form.excluded]; arr[i] = v; setForm({ ...form, excluded: arr }); };
   const removeExcluded = (i: number) => setForm({ ...form, excluded: form.excluded.filter((_, j) => j !== i) });
 
   const addFaq = () => setForm({ ...form, faqs: [...form.faqs, { question: "", answer: "" }] });
-  const updateFaq = (i: number, field: "question" | "answer", v: string) => {
-    const arr = [...form.faqs];
-    arr[i][field] = v;
-    setForm({ ...form, faqs: arr });
-  };
+  const updateFaq = (i: number, field: "question" | "answer", v: string) => { const arr = [...form.faqs]; arr[i][field] = v; setForm({ ...form, faqs: arr }); };
   const removeFaq = (i: number) => setForm({ ...form, faqs: form.faqs.filter((_, j) => j !== i) });
 
-  const filteredTours = tours.filter((t) =>
-    (t.title || "").toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredTours = tours.filter((t) => (t.title || "").toLowerCase().includes(searchTerm.toLowerCase()));
 
   return (
     <div className="p-6 lg:p-8">
@@ -230,9 +214,10 @@ export default function ToursDashboard() {
           Go to Admin/Destination
         </button>
       </div>
+
       {error && (
         <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
-          {error}
+          ⚠️ {error}
         </div>
       )}
 
@@ -249,12 +234,8 @@ export default function ToursDashboard() {
         </div>
         <div className="flex items-center gap-4">
           <span className="text-sm text-slate-500">{selectedIds.size} selected</span>
-          <button
-            onClick={openAdd}
-            className="flex items-center gap-2 bg-accent text-white px-4 py-2.5 rounded-xl font-medium hover:bg-accent/90 transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-            Add Tour
+          <button onClick={openAdd} className="flex items-center gap-2 bg-accent text-white px-4 py-2.5 rounded-xl font-medium hover:bg-accent/90 transition-colors">
+            <Plus className="w-4 h-4" /> Add Tour
           </button>
         </div>
       </div>
@@ -270,12 +251,7 @@ export default function ToursDashboard() {
               <thead>
                 <tr className="bg-slate-50 border-b border-slate-200">
                   <th className="w-10 p-3 text-left">
-                    <input
-                      type="checkbox"
-                      checked={filteredTours.length > 0 && selectedIds.size === filteredTours.length}
-                      onChange={toggleSelectAll}
-                      className="rounded"
-                    />
+                    <input type="checkbox" checked={filteredTours.length > 0 && selectedIds.size === filteredTours.length} onChange={toggleSelectAll} className="rounded" />
                   </th>
                   <th className="w-10 p-3" />
                   <th className="p-3 text-left font-medium text-slate-700">Title</th>
@@ -288,12 +264,7 @@ export default function ToursDashboard() {
                   <React.Fragment key={tour.id}>
                     <tr className="hover:bg-slate-50/50">
                       <td className="p-3">
-                        <input
-                          type="checkbox"
-                          checked={selectedIds.has(tour.id!)}
-                          onChange={() => toggleSelect(tour.id!)}
-                          className="rounded"
-                        />
+                        <input type="checkbox" checked={selectedIds.has(tour.id!)} onChange={() => toggleSelect(tour.id!)} className="rounded" />
                       </td>
                       <td className="p-2">
                         <button onClick={() => toggleExpand(tour.id!)} className="p-1 hover:bg-slate-100 rounded">
@@ -301,17 +272,11 @@ export default function ToursDashboard() {
                         </button>
                       </td>
                       <td className="p-3 font-medium text-slate-800">{tour.title || "N/A"}</td>
-                      <td className="p-3">
-                        AUD${tour.price?.startingFrom ?? 0}
-                      </td>
+                      <td className="p-3">AUD${tour.price?.startingFrom ?? 0}</td>
                       <td className="p-3">
                         <div className="flex gap-2">
-                          <button onClick={() => openEdit(tour)} className="p-2 rounded-lg hover:bg-slate-100 text-slate-600" title="Edit">
-                            <Pencil className="w-4 h-4" />
-                          </button>
-                          <button onClick={() => handleDelete(tour.id!)} className="p-2 rounded-lg hover:bg-red-50 text-red-600" title="Delete">
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+                          <button onClick={() => openEdit(tour)} className="p-2 rounded-lg hover:bg-slate-100 text-slate-600" title="Edit"><Pencil className="w-4 h-4" /></button>
+                          <button onClick={() => handleDelete(tour.id!)} className="p-2 rounded-lg hover:bg-red-50 text-red-600" title="Delete"><Trash2 className="w-4 h-4" /></button>
                         </div>
                       </td>
                     </tr>
@@ -355,43 +320,42 @@ export default function ToursDashboard() {
                   <input value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value })} className="w-full border rounded-xl px-4 py-2.5" placeholder="tour-slug" />
                 </div>
               </div>
+
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-medium text-slate-500 mb-2">Main Image (from device)</label>
+                  <label className="block text-xs font-medium text-slate-500 mb-2">Main Image</label>
                   <input
                     type="file"
                     accept="image/*"
                     disabled={uploading}
-                    onChange={(e) => {
-                      void uploadTourImagesFromDevice(e.target.files, "main");
-                      e.currentTarget.value = "";
-                    }}
+                    onChange={(e) => { void uploadTourImagesFromDevice(e.target.files, "main"); e.currentTarget.value = ""; }}
                     className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-slate-100 file:text-primary hover:file:bg-slate-200"
                   />
+                  {uploading && (
+                    <div className="mt-2">
+                      <p className="text-xs text-slate-500 mb-1">{uploadProgressText}</p>
+                      <div className="w-full bg-slate-100 rounded-full h-1.5">
+                        <div className="bg-accent h-1.5 rounded-full animate-pulse w-3/4"></div>
+                      </div>
+                    </div>
+                  )}
+                  {!uploading && uploadProgressText && (
+                    <p className="mt-1 text-xs text-green-600">{uploadProgressText}</p>
+                  )}
                   {form.image && (
-                    <img
-                      src={form.image}
-                      alt="Tour main"
-                      className="mt-3 w-full max-w-[320px] h-40 object-cover rounded-xl border border-slate-200"
-                    />
+                    <img src={form.image} alt="Main" className="mt-3 w-full max-w-[320px] h-40 object-cover rounded-xl border border-slate-200" />
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs font-medium text-slate-500 mb-2">Gallery Images (multiple)</label>
+                  <label className="block text-xs font-medium text-slate-500 mb-2">Gallery Images</label>
                   <input
                     type="file"
                     accept="image/*"
                     multiple
                     disabled={uploading}
-                    onChange={(e) => {
-                      void uploadTourImagesFromDevice(e.target.files, "gallery");
-                      e.currentTarget.value = "";
-                    }}
+                    onChange={(e) => { void uploadTourImagesFromDevice(e.target.files, "gallery"); e.currentTarget.value = ""; }}
                     className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-slate-100 file:text-primary hover:file:bg-slate-200"
                   />
-                  {uploadProgressText && (
-                    <div className="mt-2 text-xs text-slate-500">{uploadProgressText}</div>
-                  )}
                   {!!(form.gallery && form.gallery.length) && (
                     <div className="mt-3 flex gap-2 flex-wrap">
                       {(form.gallery || []).slice(0, 6).map((g, i) => (
@@ -401,9 +365,7 @@ export default function ToursDashboard() {
                             type="button"
                             onClick={() => setForm((prev) => ({ ...prev, gallery: (prev.gallery || []).filter((_, j) => j !== i) }))}
                             className="absolute -top-2 -right-2 bg-white border border-slate-200 rounded-full w-6 h-6 text-xs hover:bg-slate-50"
-                          >
-                            ×
-                          </button>
+                          >×</button>
                         </div>
                       ))}
                       {(form.gallery || []).length > 6 && (
@@ -413,6 +375,7 @@ export default function ToursDashboard() {
                   )}
                 </div>
               </div>
+
               <div>
                 <label className="block text-xs font-medium text-slate-500 mb-1">Starting Place</label>
                 <input value={form.startingPlace} onChange={(e) => setForm({ ...form, startingPlace: e.target.value })} className="w-full border rounded-xl px-4 py-2.5" />
@@ -443,11 +406,7 @@ export default function ToursDashboard() {
               </div>
               <div>
                 <label className="block text-xs font-medium text-slate-500 mb-1">Currency</label>
-                <input
-                  value="AUD"
-                  readOnly
-                  className="w-full border rounded-xl px-4 py-2.5 bg-slate-50 text-slate-500 cursor-not-allowed"
-                />
+                <input value="AUD" readOnly className="w-full border rounded-xl px-4 py-2.5 bg-slate-50 text-slate-500 cursor-not-allowed" />
               </div>
 
               <DynamicList label="Highlights" items={form.highlights} onAdd={addHighlight} onUpdate={updateHighlight} onRemove={removeHighlight} />
@@ -498,18 +457,9 @@ export default function ToursDashboard() {
   );
 }
 
-function DynamicList({
-  label,
-  items,
-  onAdd,
-  onUpdate,
-  onRemove,
-}: {
-  label: string;
-  items: string[];
-  onAdd: () => void;
-  onUpdate: (i: number, v: string) => void;
-  onRemove: (i: number) => void;
+function DynamicList({ label, items, onAdd, onUpdate, onRemove }: {
+  label: string; items: string[];
+  onAdd: () => void; onUpdate: (i: number, v: string) => void; onRemove: (i: number) => void;
 }) {
   return (
     <div>
