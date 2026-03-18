@@ -49,7 +49,7 @@ const DestinationPackages: React.FC<DestinationPackagesProps> = ({
     }, [tours, sortBy]);
 
     return (
-        <div className="pt-20 bg-slate-50 min-h-screen">
+        <div className="pt-18 bg-slate-50 min-h-screen">
             {/* 🔹 Premium Hero Section */}
             <section className="relative h-[60vh] flex items-center overflow-hidden">
                 <motion.div

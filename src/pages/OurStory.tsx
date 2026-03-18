@@ -330,29 +330,18 @@ export default function OurStoryPage() {
         </div>
 
         {/* Our Accreditations */}
-        <section id="our-accreditations" className="py-12 sm:py-16">
-          <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">
-            Our Accreditations
-          </h3>
+        <section id="our-accreditations" className="scroll-mt-28 py-12 sm:py-16">
+          <h3 className="text-3xl md:text-4xl font-bold text-indigo-900 mb-12">Our Accreditations</h3>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-9 max-w-6xl mx-auto px-4">
             {accreditationDetails.map((logo, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ y: -5, scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedLogo(logo)}
-                className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer"
-              >
-                <img
-                  src={logo.image}
-                  alt={logo.title}
-                  className="h-20 mx-auto object-contain"
-                />
+              <motion.div key={index} whileHover={{ y: -5, scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setSelectedLogo(logo)} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer">
+                <img src={logo.image} alt={logo.title} className="h-20 mx-auto object-contain" />
               </motion.div>
             ))}
           </div>
         </section>
       </section>
+      
 
       {/* Accreditation Modal */}
       {selectedLogo && (

@@ -82,7 +82,7 @@ export default function DestinationDetailPage() {
   }
 
   return (
-    <div className="pt-20 bg-slate-50 min-h-screen">
+    <div className="pt-18 bg-slate-50 min-h-screen">
       {/* Restored hero/banner */}
       <section className="relative h-[55vh] sm:h-[65vh] overflow-hidden">
         <motion.img
