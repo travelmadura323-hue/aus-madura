@@ -77,6 +77,7 @@ const own = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
 
 
 export default function Home() {
+
   const { tours: firestoreTours } = useTours();
   const { destinations: firestoreDestinations } = useDestinations();
 
@@ -102,7 +103,7 @@ export default function Home() {
   // ✅ FIXED: Cleaner swipe state
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
-  const minSwipeDistance = 50;
+
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
@@ -201,16 +202,15 @@ export default function Home() {
     },
   ];
 
-  // Auto slide
   useEffect(() => {
     const timer = setInterval(() => {
-      if (!isPaused) {
+      if (!isDragging.current) {
         setCurrentSlide((prev) => (prev + 1) % slides.length);
       }
     }, 5000);
 
     return () => clearInterval(timer);
-  }, [slides.length, isPaused]);
+  }, [slides.length]);
 
   const pauseMarquee = (e: React.MouseEvent<HTMLDivElement>) => {
     const inner = e.currentTarget.querySelector<HTMLElement>('[data-marquee]');
@@ -220,16 +220,49 @@ export default function Home() {
     const inner = e.currentTarget.querySelector<HTMLElement>('[data-marquee]');
     if (inner) inner.style.animationPlayState = 'running';
   };
+  const startX = useRef<number | null>(null);
+  const startY = useRef<number | null>(null);
+  const isDragging = useRef(false);
+
+  const minSwipeDistance = 60;
+  const handleStart = (x: number, y: number) => {
+    startX.current = x;
+    startY.current = y;
+    isDragging.current = true;
+  };
+  const handleEnd = (x: number, y: number) => {
+    const minSwipeDistance = 60;
+    if (!isDragging.current || startX.current === null || startY.current === null) return;
+
+    const deltaX = startX.current - x;
+    const deltaY = Math.abs(startY.current - y);
+
+    // horizontal swipe only
+    if (Math.abs(deltaX) > minSwipeDistance && deltaY < 100) {
+      if (deltaX > 0) {
+        // 👉 Next slide
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+      } else {
+        // 👉 Previous slide
+        setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+      }
+    }
+
+    isDragging.current = false;
+    startX.current = null;
+    startY.current = null;
+  };
   return (
     <div className="overflow-x-hidden pb-24 md:pb-0">
 
       {/* ===== HERO SECTION ===== */}
       <section
         ref={heroRef}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleTouchEnd}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
+        onMouseDown={(e) => handleStart(e.clientX, e.clientY)}
+        onMouseUp={(e) => handleEnd(e.clientX, e.clientY)}
+        onMouseLeave={() => (isDragging.current = false)}
+        onTouchStart={(e) => handleStart(e.touches[0].clientX, e.touches[0].clientY)}
+        onTouchEnd={(e) => handleEnd(e.changedTouches[0].clientX, e.changedTouches[0].clientY)}
         style={{ touchAction: "pan-y" }}
         className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 select-none cursor-grab active:cursor-grabbing"
       >
@@ -273,7 +306,7 @@ export default function Home() {
         </motion.div>
 
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20">
-          <button 
+          <button
             onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
             className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all group hidden md:flex"
           >
@@ -281,14 +314,14 @@ export default function Home() {
           </button>
           <div className="flex gap-2">
             {slides.map((_, i) => (
-              <button 
-                key={i} 
-                onClick={(e) => { e.stopPropagation(); setCurrentSlide(i); }} 
-                className={cn("w-2.5 h-2.5 rounded-full transition-all", currentSlide === i ? "bg-accent w-6" : "bg-white/40")} 
+              <button
+                key={i}
+                onClick={(e) => { e.stopPropagation(); setCurrentSlide(i); }}
+                className={cn("w-2.5 h-2.5 rounded-full transition-all", currentSlide === i ? "bg-accent w-6" : "bg-white/40")}
               />
             ))}
           </div>
-          <button 
+          <button
             onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
             className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all group hidden md:flex"
           >
