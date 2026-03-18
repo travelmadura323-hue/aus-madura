@@ -141,7 +141,7 @@ export default function OurStoryPage() {
       {/* About Content Section */}
       <section className="w-full bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <div className="grid items-center gap-8 lg:gap-12 lg:grid-cols-2">
+          <div className="grid items-start gap-8 lg:gap-12 lg:grid-cols-2">
             <div>
               <h4 className="font-Arial text-3xl font-bold text-foreground">
                 Discover about Madura Global
@@ -207,8 +207,8 @@ export default function OurStoryPage() {
               </p>
             </div>
 
-            {/* ✅ Fixed: removed fixed h-[800px], now auto height on mobile */}
-            <div className="relative w-full h-64 sm:h-[500px] lg:h-[800px] overflow-hidden rounded-2xl">
+            {/* ✅ Fixed: Full image size — no fixed height, no cropping */}
+            <div className="relative w-full overflow-hidden rounded-2xl">
               <img
                 src={
                   images[
@@ -216,7 +216,7 @@ export default function OurStoryPage() {
                   ] as string
                 }
                 alt="Our team on a tour"
-                className="w-full h-full object-cover"
+                className="w-full h-auto object-contain"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
@@ -225,7 +225,6 @@ export default function OurStoryPage() {
       </section>
 
       {/* Clients Section */}
-      {/* ✅ Fixed: reduced py and gap on mobile */}
       <section className="py-8 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Heading Section */}
@@ -243,7 +242,6 @@ export default function OurStoryPage() {
             </p>
           </div>
 
-          {/* ✅ Fixed: tighter gap on mobile */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
             {Array.from({ length: 40 }).map((_, index) => (
               <div
