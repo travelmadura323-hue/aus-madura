@@ -19,20 +19,32 @@ export default function DestinationDetailPage() {
     rating: 0,
   });
 
-  const destinationName = (destination?.name || "").toLowerCase();
-  const destinationCountry = (destination?.country || "").toLowerCase();
+  const destinationName = (destination?.name || "").toLowerCase().trim();
+  const destinationCountry = (destination?.country || destination?.region || "").toLowerCase().trim();
+  // ✅ Also check slug for matching (e.g. "india", "australia")
+  const destinationSlug = (destination?.slug || id || "").toLowerCase().trim();
 
+  // ✅ FIXED: More robust tour matching
   const relatedTours = tours.filter((t: any) => {
-    const locCountry =
-      typeof t.location === "string" ? t.location : (t.location?.country || "");
-    const lc = String(locCountry).toLowerCase();
+    const locRaw = typeof t.location === "string"
+      ? t.location
+      : (t.location?.country || t.location?.cities?.join(" ") || "");
+    const lc = String(locRaw).toLowerCase().trim();
+
     return (
       (destinationName && lc.includes(destinationName)) ||
-      (destinationCountry && lc.includes(destinationCountry))
+      (destinationCountry && lc.includes(destinationCountry)) ||
+      (destinationSlug && lc.includes(destinationSlug)) ||
+      // ✅ Also match the other way — destination contains tour location
+      (lc && destinationName && destinationName.includes(lc)) ||
+      (lc && destinationCountry && destinationCountry.includes(lc))
     );
   });
 
-  const filteredTours = relatedTours
+  // ✅ If no tours matched, show ALL tours as fallback so page isn't empty
+  const toursToFilter = relatedTours.length > 0 ? relatedTours : tours;
+
+  const filteredTours = toursToFilter
     .filter((tour: any) => {
       const price =
         typeof tour.price === "number" ? tour.price : tour.price?.startingFrom ?? 0;
@@ -42,7 +54,7 @@ export default function DestinationDetailPage() {
         price >= filters.priceRange[0] && price <= filters.priceRange[1];
       const matchesRating = filters.rating === 0 || rating >= filters.rating;
       const matchesSearch =
-        filters.searchTerm === "" ||
+        !filters.searchTerm ||
         (tour.title || "").toLowerCase().includes(filters.searchTerm.toLowerCase());
 
       return matchesPrice && matchesRating && matchesSearch;
@@ -58,9 +70,14 @@ export default function DestinationDetailPage() {
       if (filters.sortBy === "price-low-high") return aPrice - bPrice;
       if (filters.sortBy === "price-high-low") return bPrice - aPrice;
       if (filters.sortBy === "rating") return bRating - aRating;
-      if (filters.sortBy === "duration") return 0;
       return 0;
-    });
+    })
+    // ✅ Ensure image fallback so cards always show
+    .map((t: any) => ({
+      ...t,
+      image: t.image || (t.gallery && t.gallery[0]) || PLACEHOLDER_IMAGE,
+      slug: t.slug || t.id,
+    }));
 
   if (loading) {
     return (
@@ -83,7 +100,7 @@ export default function DestinationDetailPage() {
 
   return (
     <div className="pt-18 bg-slate-50 min-h-screen">
-      {/* Restored hero/banner */}
+      {/* Hero */}
       <section className="relative h-[55vh] sm:h-[65vh] overflow-hidden">
         <motion.img
           initial={{ scale: 1.06 }}
@@ -94,7 +111,6 @@ export default function DestinationDetailPage() {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/55" />
-
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 pb-10 sm:pb-16">
             <div className="text-white/80 text-xs mb-3">
@@ -120,6 +136,7 @@ export default function DestinationDetailPage() {
             </div>
           )}
 
+          {/* Destination info */}
           <div className="mb-12 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="flex gap-4">
               <div className="w-12 h-12 bg-secondary rounded-2xl flex items-center justify-center flex-shrink-0">
@@ -145,11 +162,17 @@ export default function DestinationDetailPage() {
             </div>
           </div>
 
+          {/* Tours */}
           <div className="mb-14">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
               <div>
                 <h2 className="text-[24px] font-bold text-primary">Top Tour Packages</h2>
-                <p className="text-slate-500 mt-2">Showing {filteredTours.length} packages</p>
+                <p className="text-slate-500 mt-2">
+                  Showing {filteredTours.length} package{filteredTours.length !== 1 ? "s" : ""}
+                  {relatedTours.length === 0 && tours.length > 0 && (
+                    <span className="ml-2 text-xs text-amber-600">(showing all tours)</span>
+                  )}
+                </p>
               </div>
               <button
                 onClick={clearAllFilters}
@@ -159,19 +182,16 @@ export default function DestinationDetailPage() {
               </button>
             </div>
 
-            {/* Filters + Sorting */}
+            {/* Filters */}
             <div className="mb-10 rounded-3xl border border-slate-200 bg-white shadow-card p-4 sm:p-5">
               <div className="flex items-center gap-2 text-primary font-bold mb-4">
                 <SlidersHorizontal className="w-5 h-5 text-accent" />
                 Filters & sorting
               </div>
-
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-12 gap-4">
                 {/* Search */}
                 <div className="xl:col-span-4">
-                  <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">
-                    Search
-                  </label>
+                  <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Search</label>
                   <div className="relative">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                     <input
@@ -182,58 +202,33 @@ export default function DestinationDetailPage() {
                     />
                   </div>
                 </div>
-
-                {/* Price range */}
+                {/* Price */}
                 <div className="xl:col-span-4">
-                  <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">
-                    Price range (AUD)
-                  </label>
+                  <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Price range (AUD)</label>
                   <div className="grid grid-cols-2 gap-3">
                     <div className="relative">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-bold">
-                        Min
-                      </span>
-                      <input
-                        inputMode="numeric"
-                        value={String(filters.priceRange[0])}
-                        onChange={(e) =>
-                          updateFilters({
-                            priceRange: [Number(e.target.value || 0), filters.priceRange[1]],
-                          })
-                        }
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-bold">Min</span>
+                      <input inputMode="numeric" value={String(filters.priceRange[0])}
+                        onChange={(e) => updateFilters({ priceRange: [Number(e.target.value || 0), filters.priceRange[1]] })}
                         className="w-full pl-12 pr-4 py-3 rounded-2xl border border-slate-200 bg-slate-50/60 text-sm font-semibold text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40"
                       />
                     </div>
                     <div className="relative">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-bold">
-                        Max
-                      </span>
-                      <input
-                        inputMode="numeric"
-                        value={String(filters.priceRange[1])}
-                        onChange={(e) =>
-                          updateFilters({
-                            priceRange: [filters.priceRange[0], Number(e.target.value || 0)],
-                          })
-                        }
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xs font-bold">Max</span>
+                      <input inputMode="numeric" value={String(filters.priceRange[1])}
+                        onChange={(e) => updateFilters({ priceRange: [filters.priceRange[0], Number(e.target.value || 0)] })}
                         className="w-full pl-12 pr-4 py-3 rounded-2xl border border-slate-200 bg-slate-50/60 text-sm font-semibold text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40"
                       />
                     </div>
                   </div>
                 </div>
-
                 {/* Rating */}
                 <div className="xl:col-span-2">
-                  <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">
-                    Minimum rating
-                  </label>
+                  <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Min rating</label>
                   <div className="relative">
                     <Star className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <select
-                      value={filters.rating}
-                      onChange={(e) => updateFilters({ rating: Number(e.target.value) })}
-                      className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 bg-slate-50/60 text-sm font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 appearance-none cursor-pointer"
-                    >
+                    <select value={filters.rating} onChange={(e) => updateFilters({ rating: Number(e.target.value) })}
+                      className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 bg-slate-50/60 text-sm font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer">
                       <option value={0}>Any</option>
                       <option value={3}>3+ Stars</option>
                       <option value={4}>4+ Stars</option>
@@ -241,19 +236,13 @@ export default function DestinationDetailPage() {
                     </select>
                   </div>
                 </div>
-
                 {/* Sort */}
                 <div className="xl:col-span-2">
-                  <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">
-                    Sort
-                  </label>
+                  <label className="block text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Sort</label>
                   <div className="relative">
                     <ArrowUpDown className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <select
-                      value={filters.sortBy}
-                      onChange={(e) => updateFilters({ sortBy: e.target.value as any })}
-                      className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 bg-slate-50/60 text-sm font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/40 appearance-none cursor-pointer"
-                    >
+                    <select value={filters.sortBy} onChange={(e) => updateFilters({ sortBy: e.target.value as any })}
+                      className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-200 bg-slate-50/60 text-sm font-bold text-primary focus:outline-none focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer">
                       <option value="price-low-high">Price: Low → High</option>
                       <option value="price-high-low">Price: High → Low</option>
                       <option value="rating">Rating</option>
@@ -266,6 +255,7 @@ export default function DestinationDetailPage() {
             <FilteredTourList tours={filteredTours} loading={toursLoading} onClearFilters={clearAllFilters} />
           </div>
 
+          {/* Gallery */}
           <div>
             <h2 className="text-[24px] font-bold text-primary mb-8">Photo Gallery</h2>
             {destination.images && destination.images.length > 0 ? (
@@ -285,4 +275,3 @@ export default function DestinationDetailPage() {
     </div>
   );
 }
-

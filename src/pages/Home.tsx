@@ -264,7 +264,30 @@ export default function Home() {
             <h2 className="text-[28px] sm:text-[32px] font-bold text-primary mb-4">Our Accreditations</h2>
             <p className="text-slate-600 max-w-2xl mx-auto text-lg">Recognized by leading tourism and aviation authorities worldwide, ensuring your travel experience meets the highest standards of quality and safety.</p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
+          {/* Mobile: 2+2+1 centered */}
+          <div className="sm:hidden flex flex-col gap-4">
+            <div className="flex justify-center gap-4">
+              {logos.slice(0, 2).map((logo, i) => (
+                <motion.div key={i} whileHover={{ y: -5, scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setSelectedLogo(logo)} className="bg-white p-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-slate-100 group w-36 flex items-center justify-center">
+                  <img src={logo.image} alt={logo.title} className="h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
+                </motion.div>
+              ))}
+            </div>
+            <div className="flex justify-center gap-4">
+              {logos.slice(2, 4).map((logo, i) => (
+                <motion.div key={i} whileHover={{ y: -5, scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setSelectedLogo(logo)} className="bg-white p-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-slate-100 group w-36 flex items-center justify-center">
+                  <img src={logo.image} alt={logo.title} className="h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
+                </motion.div>
+              ))}
+            </div>
+            <div className="flex justify-center">
+              <motion.div whileHover={{ y: -5, scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setSelectedLogo(logos[4])} className="bg-white p-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-slate-100 group w-36 flex items-center justify-center">
+                <img src={logos[4].image} alt={logos[4].title} className="h-16 object-contain group-hover:scale-110 transition-transform duration-300" />
+              </motion.div>
+            </div>
+          </div>
+          {/* Desktop: grid */}
+          <div className="hidden sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 lg:gap-8">
             {logos.map((logo, index) => (
               <motion.div key={index} whileHover={{ y: -5, scale: 1.05 }} whileTap={{ scale: 0.95 }} onClick={() => setSelectedLogo(logo)} className="bg-white p-4 sm:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-slate-100 group">
                 <img src={logo.image} alt={logo.title} className="h-16 sm:h-20 mx-auto object-contain transition-transform duration-300 group-hover:scale-110" />
@@ -278,6 +301,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+ 
 
       {/* ===== TRENDING DESTINATIONS ===== */}
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
