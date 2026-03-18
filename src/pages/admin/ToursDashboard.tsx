@@ -224,8 +224,8 @@ export default function ToursDashboard() {
                         <div className="flex flex-wrap gap-1 max-w-[200px]">
                           {((tour as any).categories || []).length > 0
                             ? ((tour as any).categories as string[]).map((c) => (
-                                <span key={c} className="px-2 py-0.5 bg-primary/10 text-primary text-[10px] rounded-full font-medium">{c}</span>
-                              ))
+                              <span key={c} className="px-2 py-0.5 bg-primary/10 text-primary text-[10px] rounded-full font-medium">{c}</span>
+                            ))
                             : <span className="text-slate-400 text-xs">—</span>
                           }
                         </div>
@@ -293,9 +293,12 @@ export default function ToursDashboard() {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-medium text-slate-500 mb-2">Main Image</label>
-                  <input type="file" accept="image/*" disabled={uploading}
-                    onChange={(e) => { void uploadTourImagesFromDevice(e.target.files, "main"); e.currentTarget.value = ""; }}
-                    className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-slate-100 file:text-primary hover:file:bg-slate-200"
+                  <input
+                    type="text"
+                    placeholder="Paste image URL here"
+                    value={form.image || ""}
+                    onChange={(e) => setForm({ ...form, image: e.target.value })}
+                    className="w-full border rounded-xl px-4 py-2.5"
                   />
                   {uploading && <div className="mt-2"><p className="text-xs text-slate-500 mb-1">{uploadProgressText}</p><div className="w-full bg-slate-100 rounded-full h-1.5"><div className="bg-accent h-1.5 rounded-full animate-pulse w-3/4"></div></div></div>}
                   {!uploading && uploadProgressText && <p className="mt-1 text-xs text-green-600">{uploadProgressText}</p>}
@@ -303,9 +306,24 @@ export default function ToursDashboard() {
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-slate-500 mb-2">Gallery Images</label>
-                  <input type="file" accept="image/*" multiple disabled={uploading}
-                    onChange={(e) => { void uploadTourImagesFromDevice(e.target.files, "gallery"); e.currentTarget.value = ""; }}
-                    className="block w-full text-sm file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:bg-slate-100 file:text-primary hover:file:bg-slate-200"
+                  <input
+                    type="text"
+                    placeholder="Paste image URL"
+                    className="flex-1 border rounded-xl px-4 py-2"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        e.preventDefault();
+                        const value = (e.target as HTMLInputElement).value;
+                        if (!value) return;
+
+                        setForm((prev) => ({
+                          ...prev,
+                          gallery: [...(prev.gallery || []), value],
+                        }));
+
+                        (e.target as HTMLInputElement).value = "";
+                      }
+                    }}
                   />
                   {!!(form.gallery?.length) && (
                     <div className="mt-3 flex gap-2 flex-wrap">
