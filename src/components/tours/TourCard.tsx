@@ -17,9 +17,10 @@ interface TourCardProps {
 }
 
 export default function TourCard({ tour }: TourCardProps) {
+  // ✅ Show country name only, not all cities
   const displayLocation = typeof tour.location === 'string'
     ? tour.location
-    : tour.location.cities.join(', ');
+    : tour.location.country || tour.location.cities[0] || '';
 
   const displayDuration = typeof tour.duration === 'string'
     ? tour.duration
