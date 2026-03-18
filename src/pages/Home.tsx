@@ -147,7 +147,7 @@ export default function Home() {
 
   const slides = [
     {
-      image: images['/images/Meenachi amman temple.png'],
+      image: images['/images/Meenachi amman temple.png'] || '/images/Meenachi amman temple.png',
       label: 'EXPLORE',
       title: 'INDIA',
       subtitle: 'Discover India through its temple heritage, royal cities, sacred landscapes and regional cuisines — thoughtfully curated journeys designed for travellers from Australia.',
@@ -157,7 +157,7 @@ export default function Home() {
       ]
     },
     {
-      image: images['/images/vietnam.png'],
+      image: images['/images/vietnam.png'] || '/images/vietnam.png',
       label: 'EXPLORE',
       title: 'VIETNAM',
       subtitle: 'From lantern-lit heritage towns to dramatic coastlines and vibrant street cuisine, explore Vietnam through curated journeys crafted for modern travellers.',
@@ -167,7 +167,7 @@ export default function Home() {
       ]
     },
     {
-      image: images['/images/Austra.png'],
+      image: images['/images/Austra.png'] || '/images/Austra.png',
       label: 'EXPLORE',
       title: 'AUSTRALIA',
       subtitle: "Experience Australia's iconic cities, ancient landscapes, coastal drives and celebrated wine regions through expertly curated journeys.",
@@ -177,7 +177,7 @@ export default function Home() {
       ]
     },
     {
-      image: images['/images/sri-lanka.png'],
+      image: images['/images/sri-lanka.png'] || '/images/sri-lanka.png',
       label: 'EXPLORE',
       title: 'SRI LANKA',
       subtitle: "Journey through ancient kingdoms, tea country hills, wildlife reserves and tropical coastlines across one of Asia's most captivating island destinations.",
@@ -190,12 +190,15 @@ export default function Home() {
 
   // Auto slide
   useEffect(() => {
-    if (isPaused) return;
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      if (!isPaused) {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+      }
     }, 5000);
+
     return () => clearInterval(timer);
   }, [slides.length, isPaused]);
+
   const pauseMarquee = (e: React.MouseEvent<HTMLDivElement>) => {
     const inner = e.currentTarget.querySelector<HTMLElement>('[data-marquee]');
     if (inner) inner.style.animationPlayState = 'paused';
@@ -222,9 +225,9 @@ export default function Home() {
             <MessageCircle className="w-6 h-6" />
           </motion.button>
         </div>
- 
+
         <EnquiryModal isOpen={isEnquiryModalOpen} onClose={() => setIsEnquiryModalOpen(false)} />
- 
+
         {slides.map((slide, index) => (
           <motion.div key={index} initial={{ opacity: 0 }} animate={{ opacity: currentSlide === index ? 1 : 0 }} transition={{ duration: 1 }} className="absolute inset-0 z-0">
             <motion.div style={{ y }} className="absolute inset-0">
@@ -233,7 +236,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
         ))}
- 
+
         <motion.div style={{ opacity }} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-16 md:py-24">
           <motion.div key={currentSlide} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <motion.div key={`t-${currentSlide}`} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2, ease: "circOut" }} className="relative flex flex-col items-center justify-center py-10">
@@ -255,17 +258,17 @@ export default function Home() {
             </div>
           </motion.div>
         </motion.div>
- 
+
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20">
           {slides.map((_, i) => <button key={i} onClick={() => setCurrentSlide(i)} className={cn("w-3 h-3 rounded-full transition-all", currentSlide === i ? "bg-accent w-8" : "bg-white/50")} />)}
         </div>
       </section>
- 
+
 
       {/* ===== OUR ACCREDITATIONS ===== */}
       {/* ✅ FIXED: Added scroll-mt-24 to prevent navbar overlap + id for anchor */}
-         {/* ACCREDITATIONS */}
-         <section id="our-accreditations" className="scroll-mt-24 py-12 sm:py-16 bg-gradient-to-b from-white to-slate-50 border-b border-slate-100">
+      {/* ACCREDITATIONS */}
+      <section id="our-accreditations" className="scroll-mt-24 py-12 sm:py-16 bg-gradient-to-b from-white to-slate-50 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="text-accent font-bold uppercase tracking-[0.4em] text-xs mb-3 block">Official Certifications</span>
@@ -309,7 +312,7 @@ export default function Home() {
           </div>
         </div>
       </section>
- 
+
 
       {/* ===== TRENDING DESTINATIONS ===== */}
       <section className="py-12 sm:py-16 lg:py-24 bg-white">
@@ -461,7 +464,7 @@ export default function Home() {
                 <div className="flex-shrink-0">
                   <div className="relative flex justify-center">
                     <img
-                      src={own["/images/Sri sir.jpeg"] as string}
+                      src={(own["/images/Sri sir.jpeg"] as string) || "/images/Sri sir.jpeg"}
                       alt="Managing Director"
                       className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-2xl object-cover border-4 border-accent/20 shadow-xl"
                     />
@@ -517,7 +520,7 @@ export default function Home() {
                 <div className="flex-shrink-0">
                   <div className="relative flex justify-center">
                     <img
-                      src={own["/images/Guru sir.jpeg"] as string}
+                      src={(own["/images/Guru sir.jpeg"] as string) || "/images/Guru sir.jpeg"}
                       alt="Vice President"
                       className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-2xl object-cover border-4 border-primary/20"
                     />
@@ -700,95 +703,95 @@ export default function Home() {
           <h2 className="text-[24px] font-bold text-primary mb-4">Our Trusted Clients</h2>
           <p className="text-slate-500 max-w-2xl mx-auto text-base sm:text-lg">Collaborating with leading airlines, hotels, and tourism boards worldwide.</p>
         </div>
- 
+
         {/* Row 1 → LEFT */}
         {/* ✅ Row 1 → LEFT */}
-{/* Desktop */}
-<div
-  className="hidden sm:flex w-full overflow-hidden select-none mb-10"
-  onMouseEnter={pauseMarquee}
-  onMouseLeave={resumeMarquee}
->
-  <div data-marquee className="flex shrink-0 gap-16 items-center animate-marquee">
-    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(i => (
-      <div key={`d1a-${i}`} className="w-36 h-20 flex items-center justify-center shrink-0 hover:scale-110 transition-transform duration-300">
-        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
-      </div>
-    ))}
-    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(i => (
-      <div key={`d1b-${i}`} className="w-36 h-20 flex items-center justify-center shrink-0 hover:scale-110 transition-transform duration-300">
-        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
-      </div>
-    ))}
-  </div>
-</div>
+        {/* Desktop */}
+        <div
+          className="hidden sm:flex w-full overflow-hidden select-none mb-10"
+          onMouseEnter={pauseMarquee}
+          onMouseLeave={resumeMarquee}
+        >
+          <div data-marquee className="flex shrink-0 gap-16 items-center animate-marquee">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map(i => (
+              <div key={`d1a-${i}`} className="w-36 h-20 flex items-center justify-center shrink-0 hover:scale-110 transition-transform duration-300">
+                <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+              </div>
+            ))}
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map(i => (
+              <div key={`d1b-${i}`} className="w-36 h-20 flex items-center justify-center shrink-0 hover:scale-110 transition-transform duration-300">
+                <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+              </div>
+            ))}
+          </div>
+        </div>
 
-{/* Mobile */}
-<div
-  className="sm:hidden flex w-full overflow-hidden select-none mb-6"
-  onTouchStart={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'paused'; }}
-  onTouchEnd={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'running'; }}
->
-  <div data-marquee className="flex shrink-0 gap-8 items-center animate-marquee">
-    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(i => (
-      <div key={`m1a-${i}`} className="w-20 h-14 flex items-center justify-center shrink-0">
-        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
-      </div>
-    ))}
-    {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18].map(i => (
-      <div key={`m1b-${i}`} className="w-20 h-14 flex items-center justify-center shrink-0">
-        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
-      </div>
-    ))}
-  </div>
-</div>
+        {/* Mobile */}
+        <div
+          className="sm:hidden flex w-full overflow-hidden select-none mb-6"
+          onTouchStart={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'paused'; }}
+          onTouchEnd={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'running'; }}
+        >
+          <div data-marquee className="flex shrink-0 gap-8 items-center animate-marquee">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map(i => (
+              <div key={`m1a-${i}`} className="w-20 h-14 flex items-center justify-center shrink-0">
+                <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+              </div>
+            ))}
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map(i => (
+              <div key={`m1b-${i}`} className="w-20 h-14 flex items-center justify-center shrink-0">
+                <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+              </div>
+            ))}
+          </div>
+        </div>
 
-{/* ✅ Row 2 → RIGHT */}
-{/* Desktop */}
-<div
-  className="hidden sm:flex w-full overflow-hidden select-none"
-  onMouseEnter={pauseMarquee}
-  onMouseLeave={resumeMarquee}
->
-  <div data-marquee className="flex shrink-0 gap-16 items-center animate-marquee-reverse">
-    {[19,20,21,22,23,24,25,26,27,28,29,30,31,32,33].map(i => (
-      <div key={`d2a-${i}`} className="w-36 h-20 flex items-center justify-center shrink-0 hover:scale-110 transition-transform duration-300">
-        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
-      </div>
-    ))}
-    {[19,20,21,22,23,24,25,26,27,28,29,30,31,32,33].map(i => (
-      <div key={`d2b-${i}`} className="w-36 h-20 flex items-center justify-center shrink-0 hover:scale-110 transition-transform duration-300">
-        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
-      </div>
-    ))}
-  </div>
-</div>
+        {/* ✅ Row 2 → RIGHT */}
+        {/* Desktop */}
+        <div
+          className="hidden sm:flex w-full overflow-hidden select-none"
+          onMouseEnter={pauseMarquee}
+          onMouseLeave={resumeMarquee}
+        >
+          <div data-marquee className="flex shrink-0 gap-16 items-center animate-marquee-reverse">
+            {[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33].map(i => (
+              <div key={`d2a-${i}`} className="w-36 h-20 flex items-center justify-center shrink-0 hover:scale-110 transition-transform duration-300">
+                <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+              </div>
+            ))}
+            {[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33].map(i => (
+              <div key={`d2b-${i}`} className="w-36 h-20 flex items-center justify-center shrink-0 hover:scale-110 transition-transform duration-300">
+                <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+              </div>
+            ))}
+          </div>
+        </div>
 
-{/* Mobile */}
-<div
-  className="sm:hidden flex w-full overflow-hidden select-none"
-  onTouchStart={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'paused'; }}
-  onTouchEnd={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'running'; }}
->
-  <div data-marquee className="flex shrink-0 gap-8 items-center animate-marquee-reverse">
-    {[19,20,21,22,23,24,25,26,27,28,29,30,31,32,33].map(i => (
-      <div key={`m2a-${i}`} className="w-20 h-14 flex items-center justify-center shrink-0">
-        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
-      </div>
-    ))}
-    {[19,20,21,22,23,24,25,26,27,28,29,30,31,32,33].map(i => (
-      <div key={`m2b-${i}`} className="w-20 h-14 flex items-center justify-center shrink-0">
-        <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
-      </div>
-    ))}
-  </div>
-</div>
+        {/* Mobile */}
+        <div
+          className="sm:hidden flex w-full overflow-hidden select-none"
+          onTouchStart={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'paused'; }}
+          onTouchEnd={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'running'; }}
+        >
+          <div data-marquee className="flex shrink-0 gap-8 items-center animate-marquee-reverse">
+            {[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33].map(i => (
+              <div key={`m2a-${i}`} className="w-20 h-14 flex items-center justify-center shrink-0">
+                <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+              </div>
+            ))}
+            {[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33].map(i => (
+              <div key={`m2b-${i}`} className="w-20 h-14 flex items-center justify-center shrink-0">
+                <img src={gallery[`/src/gallery/img-${i}.jpg`]} alt="" className="max-w-full max-h-full object-contain" />
+              </div>
+            ))}
+          </div>
+        </div>
 
 
-</section>
-</div>
- 
+      </section>
+    </div>
 
-    
+
+
   );
 }

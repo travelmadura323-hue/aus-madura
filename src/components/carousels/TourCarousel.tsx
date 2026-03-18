@@ -3,10 +3,7 @@ import { Pagination, Autoplay } from 'swiper/modules';
 import TourCard from '../tours/TourCard';
 import 'swiper/css';
 import 'swiper/css/pagination'; 
-const im = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
-  eager: true,
-  import: 'default',  
-}) as Record<string, string>;
+
 
 export default function TourCarousel({ tours }: { tours: any[] }) {
   return (

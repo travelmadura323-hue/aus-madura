@@ -16,7 +16,7 @@ const Malaysia = () => {
   return (
     <DestinationPackages
       country="Malaysia"
-      heroImage={im['/images/landscape.png'] as string}
+      heroImage={im['/images/landscape.png'] || '/images/landscape.png'}
       tagline="A Vibrant Mix of Cultures"
       description="Experience the modernity of Kuala Lumpur, the beaches of Langkawi, and the ancient rainforests of Taman Negara."
       features={[

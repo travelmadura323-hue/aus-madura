@@ -1,7 +1,7 @@
 const gallery = import.meta.glob('/images/**/*.{png,jpg,jpeg,svg,webp}', {
   eager: true,
   import: 'default',
-});
+}) as Record<string, string>;
 
 export interface Destination {
   id: string;
@@ -45,7 +45,7 @@ export const destinations: Destination[] = [
     id: 'malaysia',
     name: 'Malaysia',
     type: 'international',
-    image: gallery['/images/landscape.png'] as string,
+    image: gallery['/images/landscape.png'] || '/images/landscape.png' || 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=600&h=800&q=80',
     description: 'A vibrant mix of cultures, modern cities, and lush rainforests.',
     region: 'Southeast Asia',
     price: '650',
@@ -75,7 +75,7 @@ export const destinations: Destination[] = [
     id: 'india',
     name: 'India',
     type: 'domestic',
-    image: gallery['/images/1.png'] as string,
+    image: gallery['/images/1.png'] || '/images/1.png' || 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&h=800&q=80',
     description: 'A land of diverse landscapes, ancient history, and vibrant traditions.',
     region: 'South Asia',
     price: '350',
