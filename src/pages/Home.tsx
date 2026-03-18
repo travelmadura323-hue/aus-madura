@@ -109,25 +109,38 @@ export default function Home() {
     touchStartY.current = e.touches[0].clientY;
   };
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
+  const handleTouchEnd = (e: React.TouchEvent | React.MouseEvent) => {
     if (touchStartX.current === null || touchStartY.current === null) return;
 
-    const deltaX = touchStartX.current - e.changedTouches[0].clientX;
-    const deltaY = Math.abs(touchStartY.current - e.changedTouches[0].clientY);
+    let clientX: number;
+    let clientY: number;
 
-    // Only trigger swipe if horizontal movement dominates
-    if (Math.abs(deltaX) > minSwipeDistance && deltaY < 80) {
+    if ('changedTouches' in e) {
+      clientX = e.changedTouches[0].clientX;
+      clientY = e.changedTouches[0].clientY;
+    } else {
+      clientX = (e as React.MouseEvent).clientX;
+      clientY = (e as React.MouseEvent).clientY;
+    }
+
+    const deltaX = touchStartX.current - clientX;
+    const deltaY = Math.abs(touchStartY.current - clientY);
+
+    if (Math.abs(deltaX) > minSwipeDistance && deltaY < 100) {
       if (deltaX > 0) {
-        // Swipe Left → Next
         setCurrentSlide((prev) => (prev + 1) % slides.length);
       } else {
-        // Swipe Right → Previous
         setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
       }
     }
 
     touchStartX.current = null;
     touchStartY.current = null;
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    touchStartX.current = e.clientX;
+    touchStartY.current = e.clientY;
   };
 
   const [selectedLogo, setSelectedLogo] = useState<(typeof logos)[0] | null>(null);
@@ -213,12 +226,12 @@ export default function Home() {
       {/* ===== HERO SECTION ===== */}
       <section
         ref={heroRef}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleTouchEnd}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         style={{ touchAction: "pan-y" }}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 select-none"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 select-none cursor-grab active:cursor-grabbing"
       >
         <div className="fixed bottom-6 right-6 z-50 md:hidden pb-[env(safe-area-inset-bottom)]">
           <motion.button onClick={() => setIsEnquiryModalOpen(true)} whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }} className="bg-accent text-white p-4 min-w-[56px] min-h-[56px] rounded-full shadow-accent-premium flex items-center justify-center border-2 border-white/20 touch-manipulation">
@@ -259,8 +272,28 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-          {slides.map((_, i) => <button key={i} onClick={() => setCurrentSlide(i)} className={cn("w-3 h-3 rounded-full transition-all", currentSlide === i ? "bg-accent w-8" : "bg-white/50")} />)}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-4 z-20">
+          <button 
+            onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all group hidden md:flex"
+          >
+            <ChevronRight className="w-6 h-6 rotate-180 group-hover:-translate-x-0.5 transition-transform" />
+          </button>
+          <div className="flex gap-2">
+            {slides.map((_, i) => (
+              <button 
+                key={i} 
+                onClick={(e) => { e.stopPropagation(); setCurrentSlide(i); }} 
+                className={cn("w-2.5 h-2.5 rounded-full transition-all", currentSlide === i ? "bg-accent w-6" : "bg-white/40")} 
+              />
+            ))}
+          </div>
+          <button 
+            onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white transition-all group hidden md:flex"
+          >
+            <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
+          </button>
         </div>
       </section>
 
