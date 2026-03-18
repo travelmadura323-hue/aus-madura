@@ -384,7 +384,7 @@ export const tours = [
     travelers: { adults: 9, children: 0, infants: 0 },
     minimumAge: 1,
     startingPlace: "Chennai",
-    image: gallery['/images/thiruvannamalai1.webp'] as string,
+    image: gallery['/images/thiruvannamalai 2.webp'] as string,
     description: "Experience the profound spiritual journey of Girivalam around the sacred Annamalai Hill.",
     category: ['Family Tourism', "Group Tourism"],
     rating: 4.9,
