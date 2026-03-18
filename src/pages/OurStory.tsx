@@ -131,7 +131,7 @@ export default function OurStoryPage() {
             {/* ✅ MOBILE: full width, auto height */}
             <div className="w-full overflow-hidden rounded-2xl">
               <img
-                src={images['../../images/WhatsApp-Image-2024-11-21-at-16.41.41_0f849961-767x1024 (1).jpg'] as string}
+                src={images['../../images/Group.jpeg'] as string}
                 alt="Our team on a tour"
                 className="w-full h-auto object-contain"
                 sizes="(max-width: 1024px) 100vw, 50vw"

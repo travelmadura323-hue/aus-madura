@@ -448,7 +448,7 @@ export default function TourDetail() {
           onClick={() => document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth' })}
           className="bg-accent text-white font-black px-6 py-2.5 rounded-xl shadow-lg shadow-accent/20 active:scale-95 transition-all flex items-center gap-2 text-sm"
         >
-          <Calendar className="w-4 h-4" /> Book Now
+          <Calendar className="w-4 h-4" /> Book now
         </button>
       </div>
     </div>

@@ -635,10 +635,9 @@ export const tours = [
     ]
   }
 ];
-
 export const categories = [
-  { id: 'spiritual', name: 'Spiritual Tourism', slug: 'spiritual-tourism' },
-  { id: 'family', name: 'Family Tourism', slug: 'family-tourism' },
-  { id: 'honeymoon', name: 'Honeymoon Tourism', slug: 'honeymoon-tourism' },
-  { id: 'group', name: 'Group Tourism', slug: 'group-tourism' }
+  { id: 'family', name: 'Family', slug: 'family' },
+  { id: 'honeymoon', name: 'Honeymoon', slug: 'honeymoon' },
+  { id: 'spiritual', name: 'Spiritual', slug: 'spiritual' },
+  { id: 'group', name: 'Group', slug: 'group' },
 ];
