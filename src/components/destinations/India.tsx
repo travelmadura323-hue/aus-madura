@@ -10,7 +10,7 @@ const India = () => {
   const photo = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
     eager: true,
     import: 'default',
-  });
+  }) as Record<string,string>;
 
   return (
     <DestinationPackages
