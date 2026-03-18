@@ -437,7 +437,7 @@ export default function Home() {
                   <div className="text-center mt-3">
                     <div className="font-bold text-primary text-lg">Mr. Sriharan Balan</div>
                     <div className="text-sm text-slate-500">Managing Director</div>
-                    <div className="text-xs text-slate-400">Madura Travel Service (P) Ltd</div>
+                    <div className="text-xs text-slate-400">Madura Global Australia</div>
                   </div>
                 </div>
 

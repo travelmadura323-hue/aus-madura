@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, User, Mail, Phone, Calendar, Briefcase, CheckCircle } from 'lucide-react';
+import { Send, User, Mail, Phone, Calendar, Briefcase, CheckCircle, AlertCircle } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 interface FormData {
   name: string;
@@ -11,10 +10,12 @@ interface FormData {
   countryCode: string;
   date: string;
   type: string;
+  website: string;
 }
 
+// ✅ No reCAPTCHA — removed entirely, uses honeypot + timing protection
 export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData & { website: string }>({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
@@ -27,32 +28,26 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<{ phone?: string; date?: string }>({});
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { executeRecaptcha } = useGoogleReCaptcha();
-
-  // ─── Validation helpers ────────────────────────────────────────────────────
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [formStartTime] = useState(Date.now());
 
   const validatePhone = (phone: string, countryCode: string): string | undefined => {
     const digits = phone.replace(/\D/g, "").replace(/^0+/, "");
     if (!digits) return "Phone number is required.";
-
     const rules: Record<string, { min: number; max: number; label: string }> = {
-      "+61": { min: 9,  max: 9,  label: "Australian numbers must be 9 digits (e.g. 412 345 678)." },
-      "+91": { min: 10, max: 10, label: "Indian numbers must be 10 digits." },
-      "+1":  { min: 10, max: 10, label: "US/Canada numbers must be 10 digits." },
-      "+44": { min: 10, max: 10, label: "UK numbers must be 10 digits." },
-      "+65": { min: 8,  max: 8,  label: "Singapore numbers must be 8 digits." },
-      "+60": { min: 9,  max: 10, label: "Malaysian numbers must be 9–10 digits." },
-      "+84": { min: 9,  max: 10, label: "Vietnamese numbers must be 9–10 digits." },
-      "+94": { min: 9,  max: 9,  label: "Sri Lankan numbers must be 9 digits." },
-      "+971":{ min: 9,  max: 9,  label: "UAE numbers must be 9 digits." },
+      "+61":  { min: 9,  max: 9,  label: "Australian numbers must be 9 digits (e.g. 412 345 678)." },
+      "+91":  { min: 10, max: 10, label: "Indian numbers must be 10 digits." },
+      "+1":   { min: 10, max: 10, label: "US/Canada numbers must be 10 digits." },
+      "+44":  { min: 10, max: 10, label: "UK numbers must be 10 digits." },
+      "+65":  { min: 8,  max: 8,  label: "Singapore numbers must be 8 digits." },
+      "+60":  { min: 9,  max: 10, label: "Malaysian numbers must be 9–10 digits." },
+      "+84":  { min: 9,  max: 10, label: "Vietnamese numbers must be 9–10 digits." },
+      "+94":  { min: 9,  max: 9,  label: "Sri Lankan numbers must be 9 digits." },
+      "+971": { min: 9,  max: 9,  label: "UAE numbers must be 9 digits." },
     };
-
     const rule = rules[countryCode];
-    if (rule) {
-      if (digits.length < rule.min || digits.length > rule.max) return rule.label;
-    } else {
-      if (digits.length < 6 || digits.length > 15) return "Enter a valid phone number (6–15 digits).";
-    }
+    if (rule && (digits.length < rule.min || digits.length > rule.max)) return rule.label;
+    if (!rule && (digits.length < 6 || digits.length > 15)) return "Enter a valid phone number (6–15 digits).";
     return undefined;
   };
 
@@ -76,23 +71,14 @@ export default function ContactForm() {
     return d.toISOString().split("T")[0];
   };
 
-  // Dynamic placeholder per country code
   const phonePlaceholder = () => {
     const map: Record<string, string> = {
-      "+91":  "98765 43210",
-      "+61":  "412 345 678",
-      "+65":  "8123 4567",
-      "+44":  "7123 456789",
-      "+1":   "202 555 0123",
-      "+60":  "12 345 6789",
-      "+84":  "91 234 5678",
-      "+94":  "71 234 5678",
-      "+971": "50 123 4567",
+      "+91": "98765 43210", "+61": "412 345 678", "+65": "8123 4567",
+      "+44": "7123 456789", "+1": "202 555 0123", "+60": "12 345 6789",
+      "+84": "91 234 5678", "+94": "71 234 5678", "+971": "50 123 4567",
     };
     return map[formData.countryCode] || "Enter phone number";
   };
-
-  // ─── Live field handlers ───────────────────────────────────────────────────
 
   const handlePhoneChange = (value: string) => {
     setFormData(prev => ({ ...prev, phone: value }));
@@ -101,9 +87,7 @@ export default function ContactForm() {
 
   const handleCountryCodeChange = (value: string) => {
     setFormData(prev => ({ ...prev, countryCode: value }));
-    if (formData.phone) {
-      setErrors(prev => ({ ...prev, phone: validatePhone(formData.phone, value) }));
-    }
+    if (formData.phone) setErrors(prev => ({ ...prev, phone: validatePhone(formData.phone, value) }));
   };
 
   const handleDateChange = (value: string) => {
@@ -111,17 +95,16 @@ export default function ContactForm() {
     setErrors(prev => ({ ...prev, date: validateDate(value) }));
   };
 
-  // ─── Submit ────────────────────────────────────────────────────────────────
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setSubmitError(null);
 
-    if (formData.website.trim() !== "") {
-      console.log("Bot detected (honeypot)");
-      return;
-    }
+    // Honeypot
+    if (formData.website.trim() !== "") return;
 
-    // Full validation on submit
+    // Timing check
+    if (Date.now() - formStartTime < 2000) return;
+
     const phoneErr = validatePhone(formData.phone, formData.countryCode);
     const dateErr = validateDate(formData.date);
     if (phoneErr || dateErr) {
@@ -129,15 +112,9 @@ export default function ContactForm() {
       return;
     }
 
-    if (!executeRecaptcha) {
-      console.log("Recaptcha still loading...");
-      alert("Security check not ready. Please wait a moment and try again.");
-      return;
-    }
-
-    const token = await executeRecaptcha("contact_form");
-    if (!token) {
-      alert("Captcha failed. Try again.");
+    const crmUrl = import.meta.env.VITE_CRM_URL;
+    if (!crmUrl) {
+      setSubmitError("CRM URL is not configured. Please contact support.");
       return;
     }
 
@@ -147,51 +124,60 @@ export default function ContactForm() {
       const cleanedPhone = formData.phone.replace(/\D/g, "").replace(/^0+/, "");
       const phone = `${formData.countryCode}${cleanedPhone}`;
 
-      const response = await fetch(import.meta.env.VITE_CRM_URL, {
+      const payload: Record<string, string> = {
+        name: formData.name,
+        phone,
+        date: formData.date,
+        enquiry: formData.type,
+        email: formData.email,
+        nationality: "Australia",
+        destination: "Website enquiry",
+        source: "Global website",
+      };
+
+      console.log("Submitting to:", crmUrl);
+      console.log("Payload:", payload);
+
+      const response = await fetch(crmUrl, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          name: formData.name,
-          phone,
-          date: formData.date,
-          enquiry: formData.type,
-          email: formData.email,
-          nationality: "Australia",
-          destination: "Website enquiry",
-          captchaToken: token
-        }).toString()
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Accept': 'application/json, text/plain, */*',
+        },
+        body: new URLSearchParams(payload).toString()
       });
 
-      if (!response.ok) throw new Error("Submission failed");
+      const text = await response.text();
+      console.log("CRM response status:", response.status);
+      console.log("CRM response body:", text);
 
-      setFormData({
-        name: '', email: '', phone: '', countryCode: '+61',
-        date: '', type: 'Tours', website: ''
-      });
+      if (!response.ok) {
+        setSubmitError(`Server error ${response.status}.${text ? ` Details: ${text.substring(0, 200)}` : ""}`);
+        return;
+      }
+
+      setFormData({ name: '', email: '', phone: '', countryCode: '+61', date: '', type: 'Tours', website: '' });
       setErrors({});
       setSubmitted(true);
 
-    } catch (error) {
-      console.error(error);
-      alert("Error sending message");
+    } catch (error: any) {
+      console.error("Submit error:", error);
+      if (error instanceof TypeError && error.message.toLowerCase().includes("fetch")) {
+        setSubmitError("Cannot reach the server. This may be a CORS issue — the backend needs to allow requests from maduraglobal.com.");
+      } else {
+        setSubmitError(error?.message || "Unexpected error. Please try again.");
+      }
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // ─── Error message component ───────────────────────────────────────────────
-
   const FieldError = ({ message }: { message?: string }) =>
     message ? (
       <p className="mt-1.5 text-xs text-red-500 flex items-center gap-1">
-        <svg className="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-          <path fillRule="evenodd" d="M18 10A8 8 0 1 1 2 10a8 8 0 0 1 16 0zm-7 4a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1-9a1 1 0 0 0-1 1v4a1 1 0 1 0 2 0V6a1 1 0 0 0-1-1z" clipRule="evenodd" />
-        </svg>
-        {message}
+        <AlertCircle className="w-3.5 h-3.5 shrink-0" />{message}
       </p>
     ) : null;
-
-  // ─── Success state ─────────────────────────────────────────────────────────
 
   if (submitted) {
     return (
@@ -230,21 +216,28 @@ export default function ContactForm() {
         <p className="text-white/60 text-sm">Fill in the details and our experts will contact you.</p>
       </div>
 
-      {/* Form */}
       <form onSubmit={handleSubmit} className="p-8 space-y-5">
 
-        {/* Full Name */}
+        {/* Error Banner */}
+        {submitError && (
+          <div className="bg-red-50 border border-red-200 rounded-2xl p-4 flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+            <div>
+              <p className="text-sm font-semibold text-red-700 mb-1">Submission Failed</p>
+              <p className="text-xs text-red-600">{submitError}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Name */}
         <div className="space-y-1.5">
           <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
           <div className="relative">
             <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input
-              required
-              type="text"
-              placeholder="John Doe"
+            <input required type="text" placeholder="John Doe"
               className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              onChange={(e) => setFormData(f => ({ ...f, name: e.target.value }))}
             />
           </div>
         </div>
@@ -254,13 +247,10 @@ export default function ContactForm() {
           <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Email Address</label>
           <div className="relative">
             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input
-              required
-              type="email"
-              placeholder="john@example.com"
+            <input required type="email" placeholder="john@example.com"
               className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              onChange={(e) => setFormData(f => ({ ...f, email: e.target.value }))}
             />
           </div>
         </div>
@@ -286,16 +276,9 @@ export default function ContactForm() {
             </select>
             <div className="relative flex-1">
               <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-              <input
-                required
-                type="tel"
-                placeholder={phonePlaceholder()}
-                className={cn(
-                  "w-full bg-slate-50/80 border rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 transition-all",
-                  errors.phone
-                    ? "border-red-400 focus:ring-red-200"
-                    : "border-slate-200 focus:ring-primary/20 focus:border-primary/50"
-                )}
+              <input required type="tel" placeholder={phonePlaceholder()}
+                className={cn("w-full bg-slate-50/80 border rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 transition-all",
+                  errors.phone ? "border-red-400 focus:ring-red-200" : "border-slate-200 focus:ring-primary/20 focus:border-primary/50")}
                 value={formData.phone}
                 onChange={(e) => handlePhoneChange(e.target.value)}
               />
@@ -304,22 +287,14 @@ export default function ContactForm() {
           <FieldError message={errors.phone} />
         </div>
 
-        {/* Date of Travel */}
+        {/* Date */}
         <div className="space-y-1.5">
           <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Date of Travel</label>
           <div className="relative">
             <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input
-              required
-              type="date"
-              min={todayString()}
-              max={maxDateString()}
-              className={cn(
-                "w-full bg-slate-50/80 border rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 transition-all",
-                errors.date
-                  ? "border-red-400 focus:ring-red-200"
-                  : "border-slate-200 focus:ring-primary/20 focus:border-primary/50"
-              )}
+            <input required type="date" min={todayString()} max={maxDateString()}
+              className={cn("w-full bg-slate-50/80 border rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 transition-all",
+                errors.date ? "border-red-400 focus:ring-red-200" : "border-slate-200 focus:ring-primary/20 focus:border-primary/50")}
               value={formData.date}
               onChange={(e) => handleDateChange(e.target.value)}
             />
@@ -327,15 +302,15 @@ export default function ContactForm() {
           <FieldError message={errors.date} />
         </div>
 
-        {/* Type of Enquiry */}
+        {/* Enquiry Type */}
         <div className="space-y-1.5">
           <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Type of Enquiry</label>
           <div className="relative">
-            <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
             <select
               className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50"
               value={formData.type}
-              onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+              onChange={(e) => setFormData(f => ({ ...f, type: e.target.value }))}
             >
               <option value="Air Ticket">Air Ticket</option>
               <option value="Visa">Visa</option>
@@ -347,14 +322,10 @@ export default function ContactForm() {
         </div>
 
         {/* Honeypot */}
-        <div style={{ display: "none" }}>
-          <input
-            type="text"
-            name="website"
-            autoComplete="off"
-            tabIndex={-1}
+        <div style={{ display: "none" }} aria-hidden="true">
+          <input type="text" name="website" autoComplete="off" tabIndex={-1}
             value={formData.website}
-            onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+            onChange={(e) => setFormData(f => ({ ...f, website: e.target.value }))}
           />
         </div>
 
@@ -363,12 +334,24 @@ export default function ContactForm() {
           type="submit"
           disabled={isSubmitting || !!errors.phone || !!errors.date}
           className={cn(
-            "w-full bg-accent text-white font-bold py-4 rounded-2xl transition-all flex items-center justify-center gap-2 group shadow-accent-premium hover:bg-accent/90 min-h-[52px] touch-manipulation",
+            "w-full bg-accent text-white font-bold py-4 rounded-2xl transition-all flex items-center justify-center gap-2 group hover:bg-accent/90 min-h-[52px] touch-manipulation",
             (isSubmitting || !!errors.phone || !!errors.date) && "opacity-70 cursor-not-allowed"
           )}
         >
-          {isSubmitting ? "Processing..." : "Submit Enquiry"}
-          {!isSubmitting && <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
+          {isSubmitting ? (
+            <span className="flex items-center gap-2">
+              <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+              </svg>
+              Processing...
+            </span>
+          ) : (
+            <>
+              Submit Enquiry
+              <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </>
+          )}
         </button>
       </form>
     </motion.div>
