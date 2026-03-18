@@ -162,7 +162,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-start justify-center overflow-y-auto p-4">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4">
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={onClose}
@@ -173,14 +173,13 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 24 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-lg bg-white rounded-3xl mt-10 shadow-2xl border border-slate-100 overflow-hidden"
-          >
+className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden">
             {/* Header */}
-            <div className="bg-primary p-8 text-white relative">
+            <div className="bg-primary p-5 text-white relative">
               <button onClick={onClose} className="absolute top-6 right-6 p-2 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-colors">
                 <X className="w-6 h-6" />
               </button>
-              <h2 className="text-3xl font-bold mb-2 text-white">Turn Your Travel Dreams Into Reality</h2>
+              <h2 className="text-3xl font-bold mb-1 text-white">Turn Your Travel Dreams Into Reality</h2>
               <p className="text-white/70 text-sm">Fill in the details and our experts will contact you.</p>
             </div>
 
@@ -201,7 +200,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="p-8 space-y-5">
+              <form onSubmit={handleSubmit} className="p-5 space-y-3">
 
                 {/* Error Banner */}
                 {submitError && (
@@ -220,7 +219,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                   <div className="relative">
                     <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                     <input required type="text" placeholder="John Doe"
-                      className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
+                      className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-2.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
                       value={formData.name}
                       onChange={(e) => setFormData(f => ({ ...f, name: e.target.value }))}
                     />
