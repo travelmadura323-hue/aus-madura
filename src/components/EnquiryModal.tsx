@@ -116,8 +116,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         source: "Global website",
       };
 
-      console.log("Submitting to:", crmUrl);
-      console.log("Payload:", payload);
+    
 
       const response = await fetch(crmUrl, {
         method: "POST",
@@ -130,7 +129,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
       const text = await response.text();
       console.log("CRM response status:", response.status);
-      console.log("CRM response body:", text);
+    
 
       if (!response.ok) {
         setSubmitError(

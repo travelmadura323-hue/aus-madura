@@ -135,8 +135,8 @@ export default function ContactForm() {
         source: "Global website",
       };
 
-      console.log("Submitting to:", crmUrl);
-      console.log("Payload:", payload);
+     
+     
 
       const response = await fetch(crmUrl, {
         method: 'POST',
@@ -149,7 +149,7 @@ export default function ContactForm() {
 
       const text = await response.text();
       console.log("CRM response status:", response.status);
-      console.log("CRM response body:", text);
+     
 
       if (!response.ok) {
         setSubmitError(`Server error ${response.status}.${text ? ` Details: ${text.substring(0, 200)}` : ""}`);
