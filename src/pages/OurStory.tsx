@@ -131,7 +131,7 @@ export default function OurStoryPage() {
             {/* ✅ MOBILE: full width, auto height */}
             <div className="w-full overflow-hidden rounded-2xl">
               <img
-                src={images['../../images/Group.jpeg'] as string}
+                src={images['../../images/Group1.jpeg'] as string}
                 alt="Our team on a tour"
                 className="w-full h-auto object-contain"
                 sizes="(max-width: 1024px) 100vw, 50vw"

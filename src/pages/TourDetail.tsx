@@ -71,7 +71,7 @@ export default function TourDetail() {
     setFormData(p => ({ ...p, date: v }));
     setFormErrors(p => ({ ...p, date: validateDate(v) }));
   };
-
+  const [showMobileForm, setShowMobileForm] = useState(false);
   const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.website.trim() !== "") return;
@@ -117,7 +117,7 @@ export default function TourDetail() {
   if (!tour) return <div className="pt-28 flex items-center justify-center min-h-screen text-slate-500">Tour not found. <Link to="/tours" className="ml-2 text-accent">Back</Link></div>;
 
   return (
-    <div className="pt-20 bg-slate-50 min-h-screen">
+    <div className="pt-18 bg-slate-50 min-h-screen">
 
       {/* ── Hero ── */}
       <section className="relative h-[45vh] sm:h-[60vh] lg:h-[70vh] overflow-hidden">
@@ -308,13 +308,119 @@ export default function TourDetail() {
                           <span className="font-semibold text-primary text-sm sm:text-base pr-4">{faq.question}</span>
                           <ChevronDown className={`w-4 h-4 text-accent transition-transform shrink-0 ${activeFaq === idx ? 'rotate-180' : ''}`} />
                         </button>
-                        <AnimatePresence>
-                          {activeFaq === idx && (
-                            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                              <div className="p-4 pt-0 text-slate-500 text-sm border-t border-slate-100 mt-2">{faq.answer}</div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
+                       {/* ✅ Mobile Bottom Sheet Form */}
+<AnimatePresence>
+  {showMobileForm && (
+    <>
+      {/* Backdrop */}
+      <motion.div
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+        className="lg:hidden fixed inset-0 bg-black/60 z-[95]"
+        onClick={() => setShowMobileForm(false)}
+      />
+      {/* Sheet */}
+      <motion.div
+        initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className="lg:hidden fixed bottom-0 left-0 w-full bg-primary rounded-t-3xl z-[96] max-h-[90vh] overflow-y-auto pb-8"
+      >
+        {/* Handle */}
+        <div className="flex justify-center pt-3 pb-2">
+          <div className="w-10 h-1 bg-white/30 rounded-full" />
+        </div>
+        <div className="px-5 pb-4">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <div className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Starting From</div>
+              <div className="text-2xl font-black text-white">AUD${displayPrice.toLocaleString()}</div>
+            </div>
+            <button onClick={() => setShowMobileForm(false)} className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center text-white">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          <h4 className="text-white font-bold mb-3 text-sm flex items-center gap-2">
+            <Calendar className="w-4 h-4 text-accent" /> Book This Tour
+          </h4>
+
+          {bookingStatus === 'success' ? (
+            <div className="text-center py-6">
+              <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Check className="w-6 h-6 text-white" />
+              </div>
+              <h5 className="text-white font-bold mb-1">Enquiry Sent!</h5>
+              <p className="text-slate-400 text-xs">Our expert will contact you soon.</p>
+              <button onClick={() => { setBookingStatus('idle'); setShowMobileForm(false); }} className="mt-4 text-accent font-bold text-xs hover:underline">Done</button>
+            </div>
+          ) : (
+            <form onSubmit={handleBookingSubmit} className="space-y-2.5">
+              <input required type="text" placeholder="Full Name"
+                className="w-full bg-white/10 border border-white/10 rounded-xl px-3 py-2.5 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white"
+                value={formData.name} onChange={e => setFormData(p => ({ ...p, name: e.target.value }))} />
+              <input required type="email" placeholder="Email Address"
+                className="w-full bg-white/10 border border-white/10 rounded-xl px-3 py-2.5 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white"
+                value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} />
+              <div>
+                <div className="grid grid-cols-3 gap-2">
+                  <select className="bg-white/10 border border-white/10 rounded-xl px-2 py-2.5 text-white text-xs focus:outline-none"
+                    value={formData.countryCode} onChange={e => handleCCChange(e.target.value)}>
+                    {["+61","+91","+1","+44","+971","+65","+60","+94","+84"].map(c => (
+                      <option key={c} value={c} className="bg-primary">{c}</option>
+                    ))}
+                  </select>
+                  <input required type="tel" placeholder="Phone"
+                    className={`col-span-2 bg-white/10 border rounded-xl px-3 py-2.5 text-white text-sm placeholder:text-white/40 focus:outline-none ${formErrors.phone ? 'border-red-400' : 'border-white/10 focus:border-white'}`}
+                    value={formData.phone} onChange={e => handlePhoneChange(e.target.value)} />
+                </div>
+                <FieldError message={formErrors.phone} />
+              </div>
+              <div>
+                <input required type="date" min={todayStr()} max={maxDateStr()}
+                  className={`w-full bg-white/10 border rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none ${formErrors.date ? 'border-red-400' : 'border-white/10 focus:border-white'}`}
+                  value={formData.date} onChange={e => handleDateChange(e.target.value)} />
+                <FieldError message={formErrors.date} />
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {[{ label: 'Adults', f: 'adults' }, { label: 'Children', f: 'children' }, { label: 'Infants', f: 'infants' }].map(({ label, f }) => (
+                  <div key={f}>
+                    <label className="text-[10px] text-white/70 mb-1 block">{label}</label>
+                    <input type="number" min={0} placeholder="0"
+                      className="w-full bg-white/10 border border-white/10 rounded-xl px-2 py-2 text-white text-sm focus:outline-none focus:border-white"
+                      value={(formData as any)[f]} onChange={e => setFormData(p => ({ ...p, [f]: e.target.value }))} />
+                  </div>
+                ))}
+              </div>
+              <textarea placeholder="Special Requests" rows={2}
+                className="w-full bg-white/10 border border-white/10 rounded-xl px-3 py-2.5 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-white resize-none"
+                value={formData.message} onChange={e => setFormData(p => ({ ...p, message: e.target.value }))} />
+              <div className="hidden"><input type="text" name="website" autoComplete="off" tabIndex={-1} value={formData.website} onChange={e => setFormData(p => ({ ...p, website: e.target.value }))} /></div>
+              <button type="submit" disabled={bookingStatus === 'submitting' || !!formErrors.phone || !!formErrors.date}
+                className="w-full bg-white text-black font-black py-3 rounded-xl hover:bg-accent hover:text-white transition-all flex items-center justify-center gap-2 text-sm disabled:opacity-50">
+                {bookingStatus === 'submitting' ? 'Processing...' : <><MessageSquarePlus className="w-4 h-4" />Send Enquiry</>}
+              </button>
+            </form>
+          )}
+        </div>
+      </motion.div>
+    </>
+  )}
+</AnimatePresence>
+{/* Mobile Sticky Book Now */}
+
+
+{/* ✅ Mobile Sticky Bar */}
+<div className="lg:hidden fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-xl border-t border-slate-100 px-4 py-3 z-[90] flex items-center justify-between shadow-[0_-8px_24px_rgba(0,0,0,0.08)]">
+  <div>
+    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Starting from</span>
+    <span className="text-lg font-black text-primary">AUD${displayPrice.toLocaleString()}</span>
+  </div>
+  <button
+    onClick={() => setShowMobileForm(true)}
+    className="bg-accent text-white font-black px-6 py-2.5 rounded-xl shadow-lg shadow-accent/20 active:scale-95 transition-all flex items-center gap-2 text-sm"
+  >
+    <Calendar className="w-4 h-4" /> Book Now
+  </button>
+</div>
                       </div>
                     ))}
                   </div>
@@ -324,7 +430,9 @@ export default function TourDetail() {
 
             {/* ── Sidebar ── */}
             <div className="lg:col-span-1">
+            <div id="booking-form" className="scroll-mt-28 bg-white/5 p-3 rounded-xl border border-white/10">
               <div className="sticky top-24 space-y-6">
+              
                 <div className="bg-primary p-5 rounded-2xl sm:rounded-3xl shadow-2xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-accent opacity-10 rounded-full -mr-12 -mt-12" />
                   <div className="relative z-10">
@@ -334,7 +442,7 @@ export default function TourDetail() {
                       <span className="text-slate-400 text-xs">/ person</span>
                     </div>
 
-                    <div id="booking-form" className="bg-white/5 p-3 rounded-xl border border-white/10">
+                    
                       <h4 className="text-white font-bold mb-3 text-sm flex items-center gap-2">
                         <Calendar className="w-4 h-4 text-accent" /> Book This Tour
                       </h4>
