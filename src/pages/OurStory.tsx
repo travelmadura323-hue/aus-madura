@@ -39,6 +39,11 @@ const accreditationDetails = [
     title: "TAFI",
     description: "Travel Agents Federation of India (TAFI) is a national body representing travel agents and tour operators, working towards the growth and development of the travel industry in India.",
   },
+  {
+    image: im['../../images/im/Ministry of Tourism.jpg'],
+    title: "Ministry of Tourism",
+    description: "The Ministry of Tourism, Government of India is the central government body responsible for promoting, developing, and regulating tourism in India."
+  }
 ];
 
 export default function OurStoryPage() {
@@ -251,8 +256,9 @@ export default function OurStoryPage() {
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-indigo-900 mb-8 sm:mb-12">
               Our Accreditations
             </h3>
+   
             {/* ✅ MOBILE: 2 cols */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 max-w-6xl mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-4 sm:gap-6 max-w-6xl mx-auto">
               {accreditationDetails.map((logo, index) => (
                 <motion.div
                   key={index}
