@@ -441,14 +441,14 @@ export default function ToursDashboard() {
                   <label className="block text-xs font-medium text-slate-500 mb-1">Days</label>
                   <input
                     type="number"
-                    value={form.duration?.nights ?? ""}
-                    placeholder="Enter nights"
+                    value={form.duration?.days ?? ""}
+                    placeholder="Enter days"
                     onChange={(e) =>
                       setForm({
                         ...form,
                         duration: {
                           ...form.duration,
-                          nights: e.target.value === "" ? undefined : Number(e.target.value),
+                          days: e.target.value === "" ? undefined : Number(e.target.value),
                         },
                       })
                     }
