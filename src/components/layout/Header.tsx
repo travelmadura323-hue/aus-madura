@@ -59,15 +59,15 @@ export default function Header() {
       name: 'Destinations',
       // ✅ Dynamic from Fire
       //  name: 'Destinations',
-      dropdown: [
-        { name: 'India', path: '/destinations/india' },
-        { name: 'Australia', path: '/destinations/australia' },
-        { name: 'Malaysia', path: '/destinations/malaysia' },
-        { name: 'Singapore', path: '/destinations/singapore' },
-        { name: 'Sri Lanka', path: '/destinations/sri-lanka' },
-        { name: 'Vietnam', path: '/destinations/vietnam' },
-      ]
-    ,
+      // dropdown: [
+      //   { name: 'India', path: '/destinations/india' },
+      //   { name: 'Australia', path: '/destinations/australia' },
+      //   { name: 'Malaysia', path: '/destinations/malaysia' },
+      //   { name: 'Singapore', path: '/destinations/singapore' },
+      //   { name: 'Sri Lanka', path: '/destinations/sri-lanka' },
+      //   { name: 'Vietnam', path: '/destinations/vietnam' },
+      // ]
+
       dynamicDestinations: true,
     },
     {
