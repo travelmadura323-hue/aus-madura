@@ -158,8 +158,9 @@ export default function Header() {
                                   to={`/destinations/${dest.slug}`}
                                   className="flex items-center gap-2 px-4 py-1.5 text-slate-500 hover:text-primary hover:bg-slate-50 transition-colors text-xs mx-2 rounded-xl"
                                 >
+
                                   <span className="w-1 h-1 bg-accent rounded-full shrink-0" />
-                                  {city}
+                                  View Cities
                                 </Link>
                               ))}
                             </div>
