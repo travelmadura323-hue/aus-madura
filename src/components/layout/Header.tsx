@@ -8,6 +8,7 @@ import Image from '/images/logo8.png';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
+
 interface FirestoreDestination {
   id: string;
   name: string;
@@ -24,6 +25,7 @@ export default function Header() {
   const [expandedDestination, setExpandedDestination] = useState<string | null>(null);
   const [firestoreDestinations, setFirestoreDestinations] = useState<FirestoreDestination[]>([]);
   const location = useLocation();
+  const [openCountry, setOpenCountry] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -45,6 +47,9 @@ export default function Header() {
     });
     return () => unsub();
   }, []);
+  const toggleCountry = (id: string) => {
+    setOpenCountry(prev => (prev === id ? null : id));
+  };
 
   const navLinks = [
     {
@@ -269,13 +274,13 @@ export default function Header() {
                                               className="p-3 rounded-xl bg-primary/5 text-primary text-sm font-semibold text-center">
                                               View All {dest.name} Tours
                                             </Link>
-                                            {dest.cities.map((city) => (
+                                            {/* {dest.cities.map((city) => (
                                               <Link key={city} to={`/destinations/${dest.slug}`} onClick={() => setIsMobileMenuOpen(false)}
-                                                className="flex items-center gap-2 p-3 rounded-xl bg-slate-50 text-slate-600 text-sm">
-                                                <span className="w-1.5 h-1.5 bg-accent rounded-full shrink-0" />
-                                                {city}
+                                                className="flex items-center text-[#191975] gap-2 p-3 rounded-xl bg-slate-50 text-sm">
+                                                {/* <span className="w-1.5 h-1.5 bg-accent rounded-full shrink-0" /> */}
+                                            {/* {city}
                                               </Link>
-                                            ))}
+                                            ))} */}
                                           </div>
                                         </motion.div>
                                       )}
