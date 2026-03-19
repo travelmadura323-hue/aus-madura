@@ -44,7 +44,7 @@ export default function TourDetail() {
     if (!r && (d.length < 6 || d.length > 15)) return "Enter a valid phone number.";
     return undefined;
   };
-
+  const [showDatePicker, setShowDatePicker] = useState(false);
   const validateDate = (date: string): string | undefined => {
     if (!date) return "Please select a travel date.";
     const s = new Date(date), t = new Date();
@@ -407,14 +407,13 @@ export default function TourDetail() {
                                       </div>
                                       <div className="relative w-full">
                                         <input
-                                          required
-                                          type="date"
-                                          min={todayStr()}
-                                          max={maxDateStr()}
+                                          type="text"
+                                          readOnly
+                                          placeholder="Select travel date"
+                                          value={formData.date}
+                                          onClick={() => setShowDatePicker(true)} // we'll open a custom picker
                                           className={`w-full bg-white/10 border rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none ${formErrors.date ? "border-red-400" : "border-white/10 focus:border-white"
                                             }`}
-                                          value={formData.date}
-                                          onChange={e => handleDateChange(e.target.value)}
                                         />
                                         {/* Calendar icon */}
                                         <span className="absolute right-3 top-1/2 -translate-y-1/2 text-white pointer-events-none">
@@ -453,7 +452,18 @@ export default function TourDetail() {
                           )}
                         </AnimatePresence>
                         {/* Mobile Sticky Book Now */}
-
+                        {showDatePicker && (
+                          <DatePicker
+                            selected={formData.date ? new Date(formData.date) : null}
+                            onChange={(date: Date) => {
+                              handleDateChange(date.toISOString().split("T")[0]);
+                              setShowDatePicker(false);
+                            }}
+                            minDate={new Date()}
+                            maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 5))}
+                            inline
+                          />
+                        )}
 
                         {/* ✅ Mobile Sticky Bar */}
                         <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-xl border-t border-slate-100 px-4 py-3 z-[90] flex items-center justify-between shadow-[0_-8px_24px_rgba(0,0,0,0.08)]">
