@@ -787,8 +787,14 @@ export default function Home() {
         {/* Mobile */}
         <div
           className="sm:hidden flex w-full overflow-hidden select-none mb-6"
-          onTouchStart={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'paused'; }}
-          onTouchEnd={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'running'; }}
+          onTouchStart={(e: React.TouchEvent<HTMLDivElement>) => {
+            const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]');
+            if (el) el.style.animationPlayState = 'paused';
+          }}
+          onTouchEnd={(e: React.TouchEvent<HTMLDivElement>) => {
+            const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]');
+            if (el) el.style.animationPlayState = 'running';
+          }}
         >
           <div data-marquee className="flex shrink-0 gap-8 items-center animate-marquee">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].map(i => (
@@ -827,9 +833,15 @@ export default function Home() {
 
         {/* Mobile */}
         <div
-          className="sm:hidden flex w-full overflow-hidden select-none"
-          onTouchStart={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'paused'; }}
-          onTouchEnd={(e) => { const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]'); if (el) el.style.animationPlayState = 'running'; }}
+          className="sm:hidden flex w-full overflow-hidden select-none mb-6"
+          onTouchStart={(e: React.TouchEvent<HTMLDivElement>) => {
+            const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]');
+            if (el) el.style.animationPlayState = 'paused';
+          }}
+          onTouchEnd={(e: React.TouchEvent<HTMLDivElement>) => {
+            const el = e.currentTarget.querySelector<HTMLElement>('[data-marquee]');
+            if (el) el.style.animationPlayState = 'running';
+          }}
         >
           <div data-marquee className="flex shrink-0 gap-8 items-center animate-marquee-reverse">
             {[19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33].map(i => (
