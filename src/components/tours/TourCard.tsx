@@ -19,8 +19,8 @@ interface TourCardProps {
 export default function TourCard({ tour }: TourCardProps) {
   // ✅ Show country name only, not all cities
   const displayLocation = typeof tour.location === 'string'
-  ? tour.location
-  : [tour.location.cities?.[0], tour.location.country]
+    ? tour.location
+    : [tour.location.cities?.[0], tour.location.country]
       .filter(Boolean)
       .join(', ');
 
@@ -125,29 +125,27 @@ export default function TourCard({ tour }: TourCardProps) {
           </div>
         </div>
 
-        {/* Price + CTA */}
-        <div className="mt-auto pt-4 border-t border-slate-100">
-          <div className="flex items-end justify-between gap-4">
-            <div className="flex flex-col">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Starting from</span>
-              <div className="flex items-baseline gap-1">
-                <span className="text-xl font-black text-primary leading-none">
-                  {displayCurrency}{displayPrice.toLocaleString()}
-                </span>
-                <span className="text-xs text-slate-500 mb-1">/person</span>
-              </div>
-            </div>
-
-            <Link
-              to={tourUrl}
-              onClick={handleNavigate}
-              className="group/btn relative overflow-hidden bg-primary text-white font-bold px-6 py-3 rounded-2xl hover:bg-accent transition-colors duration-300 shadow-premium hover:shadow-accent-premium flex items-center gap-2 text-sm min-h-[48px] touch-manipulation"
-            >
-              <span className="relative z-10">Explore Now</span>
-              <ArrowRight className="w-4 h-4 relative z-10 group-hover/btn:translate-x-1 transition-transform" />
-              <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-20 transition-opacity duration-300"></div>
-            </Link>
+        {/* Price + CTA in same row */}
+        <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
+          {/* Price */}
+          <div className="flex flex-col">
+            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+              Starting from
+            </span>
+            <span className="text-lg md:text-xl font-extrabold text-primary">
+              {displayCurrency}{displayPrice.toLocaleString()}
+            </span>
+            <span className="text-sm text-slate-500 mt-0.5">/person</span>
           </div>
+
+          {/* CTA Button */}
+          <Link
+            to={tourUrl}
+            onClick={handleNavigate}
+            className="px-5 py-2 bg-primary text-white rounded-lg text-sm font-semibold flex items-center justify-center hover:bg-accent transition-colors"
+          >
+            Explore Now
+          </Link>
         </div>
       </div>
 
