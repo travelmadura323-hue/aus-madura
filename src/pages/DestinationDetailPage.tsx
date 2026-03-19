@@ -142,14 +142,14 @@ export default function DestinationDetailPage() {
               <div className="w-12 h-12 bg-secondary rounded-2xl flex items-center justify-center flex-shrink-0">
                 <Info className="w-6 h-6 text-accent" />
               </div>
-              <div>
+              {/* <div>
                 <h4 className="font-bold text-primary mb-1">Cities</h4>
                 <p className="text-sm text-slate-500">
                   {destination.cities?.length ? destination.cities.join(", ") : "—"}
                 </p>
-              </div>
+              </div> */}
             </div>
-            <div className="flex gap-4">
+            {/* <div className="flex gap-4">
               <div className="w-12 h-12 bg-secondary rounded-2xl flex items-center justify-center flex-shrink-0">
                 <Camera className="w-6 h-6 text-accent" />
               </div>
@@ -159,7 +159,7 @@ export default function DestinationDetailPage() {
                   {destination.country || destination.region || "—"}
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Tours */}
