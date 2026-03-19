@@ -8,7 +8,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 const COUNTRY_OPTIONS = [
   "India", "Australia", "Vietnam", "Sri Lanka", "Singapore",
-  "Malaysia", "Thailand", "Nepal", "Maldives", "Bhutan", "Indonesia", "UAE", "Other",
+  "Malaysia", "Thailand", "Nepal", "Maldives", "Bhutan", "Indonesia", "UAE", "Europe", "Other",
 ];
 
 // ✅ Tour categories — multi-select
