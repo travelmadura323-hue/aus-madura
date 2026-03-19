@@ -274,13 +274,13 @@ export default function Header() {
                                               className="p-3 rounded-xl bg-primary/5 text-primary text-sm font-semibold text-center">
                                               View All {dest.name} Tours
                                             </Link>
-                                            {/* {dest.cities.map((city) => (
+                                            {dest.cities.map((city) => (
                                               <Link key={city} to={`/destinations/${dest.slug}`} onClick={() => setIsMobileMenuOpen(false)}
-                                                className="flex items-center text-[#191975] gap-2 p-3 rounded-xl bg-slate-50 text-sm">
-                                                {/* <span className="w-1.5 h-1.5 bg-accent rounded-full shrink-0" /> */}
-                                            {/* {city}
+                                                className="">
+                                                <span className="w-1.5 h-1.5 bg-accent rounded-full shrink-0" />
+                                                {city}
                                               </Link>
-                                            ))} */}
+                                            ))}
                                           </div>
                                         </motion.div>
                                       )}
