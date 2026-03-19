@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore";
@@ -206,6 +207,7 @@ export default function ToursDashboard() {
                 <tr className="bg-slate-50 border-b border-slate-200">
                   <th className="w-10 p-3 text-left"><input type="checkbox" checked={filteredTours.length > 0 && selectedIds.size === filteredTours.length} onChange={toggleSelectAll} className="rounded" /></th>
                   <th className="w-10 p-3" />
+                  <th className="p-3 text-left font-medium text-slate-700">Image</th>
                   <th className="p-3 text-left font-medium text-slate-700">Title</th>
                   <th className="p-3 text-left font-medium text-slate-700">Country</th>
                   <th className="p-3 text-left font-medium text-slate-700">Categories</th>
@@ -213,6 +215,7 @@ export default function ToursDashboard() {
                   <th className="p-3 text-left font-medium text-slate-700">Price</th>
                   <th className="p-3 text-left font-medium text-slate-700">Actions</th>
                 </tr>
+
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filteredTours.map((tour) => (
@@ -220,6 +223,17 @@ export default function ToursDashboard() {
                     <tr className="hover:bg-slate-50/50">
                       <td className="p-3"><input type="checkbox" checked={selectedIds.has(tour.id!)} onChange={() => toggleSelect(tour.id!)} className="rounded" /></td>
                       <td className="p-2"><button onClick={() => toggleExpand(tour.id!)} className="p-1 hover:bg-slate-100 rounded">{expandedIds.has(tour.id!) ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}</button></td>
+                      <td className="p-3">
+                        {tour.image ? (
+                          <img src={tour.image} alt={tour.title} className="w-16 h-16 object-cover rounded-lg" />
+                        ) : (
+                          <div className="w-16 h-16 bg-slate-100 rounded-lg flex items-center justify-center text-slate-400">
+                            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                          </div>
+                        )}
+                      </td>
                       <td className="p-3 font-medium text-slate-800">{tour.title || "N/A"}</td>
                       <td className="p-3 text-sm">{tour.location?.country ? <span className="text-slate-700">{tour.location.country}</span> : <span className="text-red-400 font-medium">⚠ Missing</span>}</td>
                       {/* ✅ Show categories as badges */}
@@ -420,20 +434,21 @@ export default function ToursDashboard() {
 
               </div>
 
+              {/* Duration + Price */}
               <div className="grid sm:grid-cols-3 gap-4">
                 {/* Days Input */}
                 <div>
                   <label className="block text-xs font-medium text-slate-500 mb-1">Days</label>
                   <input
                     type="number"
-                    value={form.duration?.days ?? ""}
-                    placeholder="Enter days"
+                    value={form.duration?.nights ?? ""}
+                    placeholder="Enter nights"
                     onChange={(e) =>
                       setForm({
                         ...form,
                         duration: {
                           ...form.duration,
-                          days: e.target.value === "" ? undefined : Number(e.target.value), // Fixed: was 'nights'
+                          nights: e.target.value === "" ? undefined : Number(e.target.value),
                         },
                       })
                     }
