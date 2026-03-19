@@ -10,6 +10,8 @@ import {
 import { tours } from '../data/mockData';
 import { useTourBySlug } from '../hooks/useTourBySlug';
 import TourCard from '../components/tours/TourCard';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function TourDetail() {
   const { slug } = useParams();
@@ -105,6 +107,7 @@ export default function TourDetail() {
       setBookingStatus('idle');
     }
   };
+  const isMobile = window.innerWidth < 768; // adjust breakpoint if needed
 
   const FieldError = ({ message }: { message?: string }) =>
     message ? <p className="mt-1 text-xs text-red-400 flex items-center gap-1"><svg className="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10A8 8 0 1 1 2 10a8 8 0 0 1 16 0zm-7 4a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1-9a1 1 0 0 0-1 1v4a1 1 0 1 0 2 0V6a1 1 0 0 0-1-1z" clipRule="evenodd" /></svg>{message}</p> : null;
@@ -452,18 +455,18 @@ export default function TourDetail() {
                           )}
                         </AnimatePresence>
                         {/* Mobile Sticky Book Now */}
-                        {showDatePicker && (
-                          <DatePicker
-                            selected={formData.date ? new Date(formData.date) : null}
-                            onChange={(date: Date) => {
-                              handleDateChange(date.toISOString().split("T")[0]);
-                              setShowDatePicker(false);
-                            }}
-                            minDate={new Date()}
-                            maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 5))}
-                            inline
-                          />
-                        )}
+                        <DatePicker
+                          selected={formData.date ? new Date(formData.date) : null}
+                          onChange={(date: Date | null) => {
+                            if (date) handleDateChange(date.toISOString().split("T")[0]);
+                            setShowDatePicker(false);
+                          }}
+                          minDate={new Date()}
+                          maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 5))}
+                          placeholderText="Select a date"
+                          inline={!isMobile} // inline for desktop only
+                          withPortal={isMobile} // portal popup for mobile
+                        />
 
                         {/* ✅ Mobile Sticky Bar */}
                         <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-xl border-t border-slate-100 px-4 py-3 z-[90] flex items-center justify-between shadow-[0_-8px_24px_rgba(0,0,0,0.08)]">
