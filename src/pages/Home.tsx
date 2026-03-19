@@ -578,7 +578,7 @@ export default function Home() {
                 <div className="flex-shrink-0">
                   <div className="relative flex justify-center">
                     <img
-                      src={(own["/images/Guru sir.jpeg"] as string) || "/images/Guru sir.jpeg"}
+                      src={(own["/images/Guru sir1.jpeg"] as string) || "/images/Guru sir1.jpeg"}
                       alt="Vice President"
                       className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-2xl object-cover border-4 border-primary/20"
                     />
