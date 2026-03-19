@@ -39,7 +39,7 @@ export default function ContactPage() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 py-16">
+      <div className="mx-auto max-w-7xl px-6 py-1">
 
         {/* Contact Cards */}
         <div className="grid gap-8 md:grid-cols-2">
