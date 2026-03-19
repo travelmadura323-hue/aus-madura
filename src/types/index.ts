@@ -35,6 +35,8 @@ export const defaultTour: Tour = {
   included: [],
   excluded: [],
   faqs: [],
+  minimumAge: undefined,
+  rating: undefined,
 };
 
 export interface Destination {
