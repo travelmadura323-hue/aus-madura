@@ -420,8 +420,8 @@ export default function ToursDashboard() {
 
               </div>
 
-              {/* Duration + Price */}
               <div className="grid sm:grid-cols-3 gap-4">
+                {/* Days Input */}
                 <div>
                   <label className="block text-xs font-medium text-slate-500 mb-1">Days</label>
                   <input
@@ -433,12 +433,16 @@ export default function ToursDashboard() {
                         ...form,
                         duration: {
                           ...form.duration,
-                          nights: e.target.value === "" ? undefined : Number(e.target.value),
+                          days: e.target.value === "" ? undefined : Number(e.target.value), // Fixed: was 'nights'
                         },
                       })
                     }
                     className="w-full border rounded-xl px-4 py-2.5"
                   />
+                </div>
+
+                {/* Nights Input */}
+                <div>
                   <label className="block text-xs font-medium text-slate-500 mb-1">Nights</label>
                   <input
                     type="number"
@@ -456,6 +460,8 @@ export default function ToursDashboard() {
                     className="w-full border rounded-xl px-4 py-2.5"
                   />
                 </div>
+
+                {/* Price Input */}
                 <div>
                   <label className="block text-xs font-medium text-slate-500 mb-1">Price (AUD)</label>
                   <input
