@@ -111,6 +111,9 @@ export default function ToursDashboard() {
         excluded: form.excluded || [],
         faqs: form.faqs || [],
         categories: (form as any).categories || [],
+        minimumAge: (form as any).minimumAge ?? null,
+        rating: (form as any).rating ?? null,
+        travelers: (form as any).travelers ?? null,
       };
       if (editingTour?.id) {
         await updateDoc(doc(db, "tours", editingTour.id), payloadClean as Record<string, unknown>);
@@ -373,6 +376,24 @@ export default function ToursDashboard() {
                       setForm({
                         ...form,
                         minimumAge: e.target.value === "" ? undefined : Number(e.target.value),
+                      } as any)
+                    }
+                    className="w-full border rounded-xl px-4 py-2.5"
+                  />
+                </div>
+                {/* Travelers */}
+                <div>
+                  <label className="block text-xs font-medium text-slate-500 mb-1">
+                    Travelers
+                  </label>
+                  <input
+                    type="text"
+                    value={(form as any).travelers ?? ""}
+                    placeholder="e.g. 2-10 People / Flexible"
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        travelers: e.target.value,
                       } as any)
                     }
                     className="w-full border rounded-xl px-4 py-2.5"

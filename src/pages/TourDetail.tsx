@@ -171,7 +171,7 @@ export default function TourDetail() {
                   },
                   {
                     label: 'Travelers',
-                    value: tour.travelers || 'Flexible',
+                    value: (tour as any).travelers ?? 'Flexible',
                     icon: <Users className="w-4 h-4 sm:w-5 sm:h-5" />
                   },
                   {
@@ -196,27 +196,30 @@ export default function TourDetail() {
               </div>
 
               {/* Highlights */}
-              <div className="bg-white p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-slate-100 shadow-sm">
-                <h2 className="text-base sm:text-xl font-bold text-primary mb-4 sm:mb-6 flex items-center gap-2">
-                  <span className="w-1.5 h-5 sm:h-6 bg-accent rounded-full shrink-0" />
-                  Tour Highlights
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {((tour as any).highlights || [
-                    "Breathtaking scenery and photo opportunities",
-                    "Expert local English-speaking guides",
-                    "Luxury accommodation in prime locations",
-                    "Authentic local culinary experiences"
-                  ]).map((h: string, i: number) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <div className="mt-0.5 w-4 h-4 sm:w-5 sm:h-5 bg-accent/10 text-accent rounded-full flex items-center justify-center shrink-0">
-                        <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+              {(tour as any).highlights && (tour as any).highlights.length > 0 && (
+                <div className="bg-white p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-slate-100 shadow-sm">
+
+                  <h2 className="text-base sm:text-xl font-bold text-primary mb-4 sm:mb-6 flex items-center gap-2">
+                    <span className="w-1.5 h-5 sm:h-6 bg-accent rounded-full shrink-0" />
+                    Tour Highlights
+                  </h2>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {(tour as any).highlights.map((h: string, i: number) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <div className="mt-0.5 w-4 h-4 sm:w-5 sm:h-5 bg-accent/10 text-accent rounded-full flex items-center justify-center shrink-0">
+                          <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                        </div>
+                        <span className="text-slate-600 text-sm sm:text-base">{h}</span>
                       </div>
-                      <span className="text-slate-600 text-sm sm:text-base">{h}</span>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+
                 </div>
-              </div>
+              )}
+              {/* ))}
+                </div>
+              </div> */}
               <div className="bg-white p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-slate-100 shadow-sm">
                 <h2 className="text-base sm:text-xl font-bold text-primary mb-4 flex items-center gap-2">
                   <span className="w-1.5 h-5 sm:h-6 bg-accent rounded-full shrink-0" />
