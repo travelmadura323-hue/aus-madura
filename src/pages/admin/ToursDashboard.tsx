@@ -365,15 +365,55 @@ export default function ToursDashboard() {
               <div className="grid sm:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-xs font-medium text-slate-500 mb-1">Days</label>
-                  <input type="number" value={form.duration?.days || 0} onChange={(e) => setForm({ ...form, duration: { ...form.duration, days: Number(e.target.value) } })} className="w-full border rounded-xl px-4 py-2.5" />
-                </div>
-                <div>
+                  <input
+                    type="number"
+                    value={form.duration?.days ?? ""}
+                    placeholder="Enter days"
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        duration: {
+                          ...form.duration,
+                          nights: e.target.value === "" ? undefined : Number(e.target.value),
+                        },
+                      })
+                    }
+                    className="w-full border rounded-xl px-4 py-2.5"
+                  />
                   <label className="block text-xs font-medium text-slate-500 mb-1">Nights</label>
-                  <input type="number" value={form.duration?.nights || 0} onChange={(e) => setForm({ ...form, duration: { ...form.duration, nights: Number(e.target.value) } })} className="w-full border rounded-xl px-4 py-2.5" />
+                  <input
+                    type="number"
+                    value={form.duration?.nights ?? ""}
+                    placeholder="Enter nights"
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        duration: {
+                          ...form.duration,
+                          nights: e.target.value === "" ? undefined : Number(e.target.value),
+                        },
+                      })
+                    }
+                    className="w-full border rounded-xl px-4 py-2.5"
+                  />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-slate-500 mb-1">Price (AUD)</label>
-                  <input type="number" value={form.price?.startingFrom || 0} onChange={(e) => setForm({ ...form, price: { ...form.price, startingFrom: Number(e.target.value) } })} className="w-full border rounded-xl px-4 py-2.5" />
+                  <input
+                    type="number"
+                    value={form.price?.startingFrom ?? ""}
+                    placeholder="Enter price"
+                    onChange={(e) =>
+                      setForm({
+                        ...form,
+                        price: {
+                          ...form.price,
+                          startingFrom: e.target.value === "" ? undefined : Number(e.target.value),
+                        },
+                      })
+                    }
+                    className="w-full border rounded-xl px-4 py-2.5"
+                  />
                 </div>
               </div>
 
