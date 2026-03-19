@@ -584,7 +584,7 @@ export default function Home() {
                     />
                   </div>
                   <div className="text-center mt-3">
-                    <div className="font-bold text-primary text-lg">Guru Chandar</div>
+                    <div className="font-bold text-primary text-lg">Mr.Guru Chandar</div>
                     <div className="text-sm text-slate-500">Director</div>
                     <div className="text-xs text-slate-400">Madura Global Australia</div>
                   </div>
