@@ -253,7 +253,7 @@ export default function Home() {
     startY.current = null;
   };
   return (
-    <div className="overflow-x-hidden pb-24 md:pb-0">
+    <div className="overflow-x-hidden pb-14 md:pb-0">
 
       {/* ===== HERO SECTION ===== */}
       <section
