@@ -405,11 +405,27 @@ export default function TourDetail() {
                                         </div>
                                         <FieldError message={formErrors.phone} />
                                       </div>
-                                      <div>
-                                        <input required type="date" min={todayStr()} max={maxDateStr()}
-                                          className={`w-full bg-white/10 border rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none ${formErrors.date ? 'border-red-400' : 'border-white/10 focus:border-white'}`}
-                                          value={formData.date} onChange={e => handleDateChange(e.target.value)} />
-                                        <FieldError message={formErrors.date} />
+                                      <div className="relative w-full">
+                                        <input
+                                          required
+                                          type="date"
+                                          min={todayStr()}
+                                          max={maxDateStr()}
+                                          className={`w-full bg-white/10 border rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none ${formErrors.date ? "border-red-400" : "border-white/10 focus:border-white"
+                                            }`}
+                                          value={formData.date}
+                                          onChange={e => handleDateChange(e.target.value)}
+                                        />
+                                        {/* Calendar icon */}
+                                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-white pointer-events-none">
+                                          📅
+                                        </span>
+                                        {/* Mobile-friendly placeholder */}
+                                        {!formData.date && (
+                                          <p className="text-white text-xs mt-1">Select a date</p>
+                                        )}
+                                        {/* Error message */}
+                                        {formErrors.date && <FieldError message={formErrors.date} />}
                                       </div>
                                       <div className="grid grid-cols-3 gap-2">
                                         {[{ label: 'Adults', f: 'adults' }, { label: 'Children', f: 'children' }, { label: 'Infants', f: 'infants' }].map(({ label, f }) => (
