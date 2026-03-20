@@ -31,9 +31,9 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     const digits = phone.replace(/\D/g, "").replace(/^0+/, "");
     if (!digits) return "Phone number is required.";
     const rules: Record<string, { min: number; max: number; label: string }> = {
-      "+61": { min: 9,  max: 9,  label: "Australian numbers must be 9 digits (e.g. 412 345 678)." },
+      "+61": { min: 9, max: 9, label: "Australian numbers must be 9 digits (e.g. 412 345 678)." },
       "+91": { min: 10, max: 10, label: "Indian numbers must be 10 digits." },
-      "+1":  { min: 10, max: 10, label: "US/Canada numbers must be 10 digits." },
+      "+1": { min: 10, max: 10, label: "US/Canada numbers must be 10 digits." },
       "+44": { min: 10, max: 10, label: "UK numbers must be 10 digits." },
     };
     const rule = rules[countryCode];
@@ -116,7 +116,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         source: "Global website",
       };
 
-    
+
 
       const response = await fetch(crmUrl, {
         method: "POST",
@@ -129,7 +129,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
 
       const text = await response.text();
       console.log("CRM response status:", response.status);
-    
+
 
       if (!response.ok) {
         setSubmitError(
@@ -161,7 +161,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4">
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={onClose}
@@ -172,7 +172,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 24 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden">
+            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden">
             {/* Header */}
             <div className="bg-primary p-5 text-white relative">
               <button onClick={onClose} className="absolute top-6 right-6 p-2 rounded-xl text-white/60 hover:text-white hover:bg-white/10 transition-colors">
@@ -249,6 +249,9 @@ className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl border borde
                       <option value="+91">+91 (IN)</option>
                       <option value="+1">+1 (US)</option>
                       <option value="+44">+44 (UK)</option>
+                      <option value="+65">+65 (SG) </option>
+                      <option value="+971">+971 (AE) </option>
+
                     </select>
                     <div className="relative flex-1">
                       <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
