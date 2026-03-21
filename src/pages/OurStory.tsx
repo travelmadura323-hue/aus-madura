@@ -20,15 +20,17 @@ const im = import.meta.glob('../../images/im/*.{png,jpg,jpeg,svg}', {
 
 const accreditationDetails = [
   {
-    image: im['../../images/im/iaai.jpg'],
-    title: "IAAI",
-    description: "Indian Association of Tour Operators (IAAI) is a premier organization representing tour operators and travel agencies in India, promoting ethical business practices and professional standards in the tourism industry.",
-  },
-  {
     image: im['../../images/im/download.png'],
     title: "Ministry of Tourism",
     description: "Official recognition from India's Ministry of Tourism, certifying our commitment to promoting tourism and maintaining high standards in travel services.",
   },
+
+  {
+    image: im['../../images/im/iaai.jpg'],
+    title: "IAAI",
+    description: "Indian Association of Tour Operators (IAAI) is a premier organization representing tour operators and travel agencies in India, promoting ethical business practices and professional standards in the tourism industry.",
+  },
+
   {
     image: im['../../images/im/taai.png'],
     title: "TAAI",
@@ -251,12 +253,12 @@ export default function OurStoryPage() {
                 </div>
               ))}
             </div>
-          </div> 
+          </div>
           <section id="our-accreditations" className="scroll-mt-28 py-8 sm:py-16">
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-indigo-900 mb-8 sm:mb-12">
               Our Accreditations
             </h3>
-   
+
             {/* ✅ MOBILE: 2 cols */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-5 gap-4 sm:gap-6 max-w-6xl mx-auto">
               {accreditationDetails.map((logo, index) => (
