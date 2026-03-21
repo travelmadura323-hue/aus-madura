@@ -160,7 +160,7 @@ export default function Header() {
                                 >
 
                                   <span className="w-1 h-1 bg-accent rounded-full shrink-0" />
-                                  View Cities
+                                  {city}
                                 </Link>
                               ))}
                             </div>
@@ -277,9 +277,9 @@ export default function Header() {
                                             </Link>
                                             {dest.cities.map((city) => (
                                               <Link key={city} to={`/destinations/${dest.slug}`} onClick={() => setIsMobileMenuOpen(false)}
-                                                className="">
+                                                className="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-50 transition-colors">
                                                 <span className="w-1.5 h-1.5 bg-accent rounded-full shrink-0" />
-                                                {city.name}
+                                                <span className="text-sm text-primary">{city}</span>
                                               </Link>
                                             ))}
                                           </div>
