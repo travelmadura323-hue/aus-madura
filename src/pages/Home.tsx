@@ -32,6 +32,12 @@ const im = import.meta.glob('../../images/im/*.{png,jpg,jpeg,svg}', {
 
 const logos = [
   {
+    image: im['../../images/im/Ministry of Tourism.jpg'],
+    title: "Ministry of Tourism",
+    description: "The Ministry of Tourism, Government of India is the central government body responsible for promoting, developing, and regulating tourism in India."
+  },
+
+  {
     image: im['../../images/im/Aussie1.png'],
     title: "Aussie Specialist",
     description: "An Aussie Specialist is a travel agent who has completed official training about Australia's destinations, attractions, and travel planning. This certification shows that the agent has expert knowledge of Australian travel."
@@ -51,11 +57,7 @@ const logos = [
     title: "TAAI",
     description: "The Travel Agents Association of India (TAAI) is one of the oldest and most respected travel industry organizations in India. It represents travel agencies, tour operators, and travel professionals across the country."
   },
-  {
-    image: im['../../images/im/Ministry of Tourism.jpg'],
-    title: "Ministry of Tourism",
-    description: "The Ministry of Tourism, Government of India is the central government body responsible for promoting, developing, and regulating tourism in India."
-  }
+
 ];
 
 const images = import.meta.glob('/images/*.{png,jpg,jpeg,svg}', {
