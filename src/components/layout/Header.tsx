@@ -279,7 +279,7 @@ export default function Header() {
                                               <Link key={city} to={`/destinations/${dest.slug}`} onClick={() => setIsMobileMenuOpen(false)}
                                                 className="">
                                                 <span className="w-1.5 h-1.5 bg-accent rounded-full shrink-0" />
-                                                {city}
+                                                {city.name}
                                               </Link>
                                             ))}
                                           </div>
