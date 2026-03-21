@@ -20,32 +20,32 @@ const im = import.meta.glob('../../images/im/*.{png,jpg,jpeg,svg}', {
 
 const accreditationDetails = [
   {
-    image: im['../../images/im/download.png'],
-    title: "Ministry of Tourism",
-    description: "Official recognition from India's Ministry of Tourism, certifying our commitment to promoting tourism and maintaining high standards in travel services.",
-  },
-
-  {
-    image: im['../../images/im/iaai.jpg'],
-    title: "IAAI",
-    description: "Indian Association of Tour Operators (IAAI) is a premier organization representing tour operators and travel agencies in India, promoting ethical business practices and professional standards in the tourism industry.",
-  },
-
-  {
-    image: im['../../images/im/taai.png'],
-    title: "TAAI",
-    description: "Travel Agents Association of India (TAAI) is one of the oldest and most respected associations of travel agents in India, ensuring professional excellence and consumer protection.",
-  },
-  {
-    image: im['../../images/im/tafi.jpg'],
-    title: "TAFI",
-    description: "Travel Agents Federation of India (TAFI) is a national body representing travel agents and tour operators, working towards the growth and development of the travel industry in India.",
-  },
-  {
     image: im['../../images/im/Ministry of Tourism.jpg'],
     title: "Ministry of Tourism",
     description: "The Ministry of Tourism, Government of India is the central government body responsible for promoting, developing, and regulating tourism in India."
-  }
+  },
+
+  {
+    image: im['../../images/im/Aussie1.png'],
+    title: "Aussie Specialist",
+    description: "An Aussie Specialist is a travel agent who has completed official training about Australia's destinations, attractions, and travel planning. This certification shows that the agent has expert knowledge of Australian travel."
+  },
+  {
+    image: im['../../images/im/iaai.jpg'],
+    title: "IAAI",
+    description: "The Indian Association of Accredited Travel Agents (IAAI) is a professional organization representing accredited travel agencies in India. It works to promote high standards, professionalism, and ethical practices in the travel and tourism industry."
+  },
+  {
+    image: im['../../images/im/download.png'],
+    title: "Tourism Partner",
+    description: "The Outbound Tour Operators Association of India (OTOAI) is a national organization that represents travel companies in India specializing in outbound tourism—helping Indian travelers visit destinations around the world."
+  },
+  {
+    image: im['../../images/im/taai.png'],
+    title: "TAAI",
+    description: "The Travel Agents Association of India (TAAI) is one of the oldest and most respected travel industry organizations in India. It represents travel agencies, tour operators, and travel professionals across the country."
+  },
+
 ];
 
 export default function OurStoryPage() {
