@@ -10,7 +10,7 @@ const PLACEHOLDER_IMAGE =
   "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&h=900&q=80";
 
 export default function DestinationDetailPage() {
-  const { id } = useParams();
+  const { id, city } = useParams();
   const { destination, loading, error } = useDestinationBySlug(id);
   const { tours, loading: toursLoading } = useTours();
   const { filters, updateFilters, clearAllFilters } = useTourFilters({
@@ -23,9 +23,52 @@ export default function DestinationDetailPage() {
   const destinationCountry = (destination?.country || destination?.region || "").toLowerCase().trim();
   // ✅ Also check slug for matching (e.g. "india", "australia")
   const destinationSlug = (destination?.slug || id || "").toLowerCase().trim();
+  // ✅ Format city name for display (decode URI and capitalize)
+  const displayCityName = city ? decodeURIComponent(city).replace(/-/g, " ").replace(/\b\w/g, char => char.toUpperCase()) : null;
+  const cityLower = city ? city.toLowerCase().replace(/-/g, " ") : null;
 
   // ✅ FIXED: More robust tour matching
   const relatedTours = tours.filter((t: any) => {
+    // If city is specified, filter ONLY by matching city
+    if (cityLower) {
+      // For city view, strictly check if the city is in the tour's cities array
+      const tourCities = Array.isArray(t.location?.cities) 
+        ? t.location.cities.map((c: string) => c.toLowerCase().trim())
+        : [];
+      
+      // Check if any city in the tour matches the selected city OR if city is in tour title
+      const matchesCity = tourCities.some((tourCity: string) => 
+        tourCity === cityLower || 
+        tourCity.replace(/\s+/g, '') === cityLower.replace(/\s+/g, '')
+      ) || (t.title && t.title.toLowerCase().includes(cityLower));
+
+      // Also verify destination matches
+      const locRaw = typeof t.location === "string"
+        ? t.location
+        : (t.location?.country || "");
+      const destinationMatches = 
+        (destinationName && locRaw.toLowerCase().includes(destinationName)) ||
+        (destinationCountry && locRaw.toLowerCase().includes(destinationCountry)) ||
+        (destinationSlug && locRaw.toLowerCase().includes(destinationSlug));
+      
+      // DEBUG
+      console.log("=== CITY FILTER DEBUG ===");
+      console.log("Tour:", t.title);
+      console.log("tourCities:", tourCities);
+      console.log("cityLower:", cityLower);
+      console.log("matchesCity:", matchesCity);
+      console.log("locRaw:", locRaw);
+      console.log("destinationName:", destinationName);
+      console.log("destinationCountry:", destinationCountry);
+      console.log("destinationSlug:", destinationSlug);
+      console.log("destinationMatches:", destinationMatches);
+      console.log("FINAL:", matchesCity && destinationMatches);
+      console.log("---");
+      
+      return matchesCity && destinationMatches;
+    }
+
+    // Original logic for destination-only view
     const locRaw = typeof t.location === "string"
       ? t.location
       : (t.location?.country || t.location?.cities?.join(" ") || "");
@@ -35,7 +78,6 @@ export default function DestinationDetailPage() {
       (destinationName && lc.includes(destinationName)) ||
       (destinationCountry && lc.includes(destinationCountry)) ||
       (destinationSlug && lc.includes(destinationSlug)) ||
-      // ✅ Also match the other way — destination contains tour location
       (lc && destinationName && destinationName.includes(lc)) ||
       (lc && destinationCountry && destinationCountry.includes(lc))
     );
@@ -107,7 +149,7 @@ export default function DestinationDetailPage() {
           animate={{ scale: 1 }}
           transition={{ duration: 1.2 }}
           src={(destination.images && destination.images[0]) || (destination as any)?.image || PLACEHOLDER_IMAGE}
-          alt={destination.name}
+          alt={displayCityName || destination.name}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/55" />
@@ -115,13 +157,14 @@ export default function DestinationDetailPage() {
           <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 pb-10 sm:pb-16">
             <div className="text-white/80 text-xs mb-3">
               <Link to="/" className="hover:text-white">Home</Link> /{" "}
-              <Link to="/destinations" className="hover:text-white">Destinations</Link>
+              <Link to="/destinations" className="hover:text-white">Destinations</Link> /{" "}
+              <Link to={`/destinations/${id}`} className="hover:text-white">{destination.name}</Link>
             </div>
             <h1 className="text-3xl sm:text-5xl font-black text-white uppercase">
-              {destination.name}
+              {displayCityName || destination.name}
             </h1>
             <p className="mt-4 text-white/85 max-w-2xl">
-              {destination.description || "Discover curated packages for this destination."}
+              {city ? `Explore all tour packages in ${displayCityName}, ${destination.name}` : (destination.description || "Discover curated packages for this destination.")}
             </p>
           </div>
         </div>

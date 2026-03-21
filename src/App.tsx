@@ -73,6 +73,7 @@ export default function App() {
             <Route path="tours" element={<ToursPage />} />
             <Route path="tours/:slug" element={<TourDetail />} />
             <Route path="destinations" element={<DestinationsPage />} />
+            <Route path="destinations/:id/:city" element={<DestinationDetailPage />} />
             <Route path="destinations/:id" element={<DestinationDetailPage />} />
             <Route path="pages/:country" element={<DestinationDetail />} />
             <Route path="categories/:category" element={<CategoryDetail />} />

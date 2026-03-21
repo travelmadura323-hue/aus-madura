@@ -155,7 +155,7 @@ export default function Header() {
                               {dest.cities.map((city) => (
                                 <Link
                                   key={city}
-                                  to={`/destinations/${dest.slug}`}
+                                  to={`/destinations/${dest.slug}/${city.toLowerCase().replace(/\s+/g, '-')}`}
                                   className="flex items-center gap-2 px-4 py-1.5 text-slate-500 hover:text-primary hover:bg-slate-50 transition-colors text-xs mx-2 rounded-xl"
                                 >
 
@@ -276,7 +276,7 @@ export default function Header() {
                                               View All {dest.name} Tours
                                             </Link>
                                             {dest.cities.map((city) => (
-                                              <Link key={city} to={`/destinations/${dest.slug}`} onClick={() => setIsMobileMenuOpen(false)}
+                                              <Link key={city} to={`/destinations/${dest.slug}/${city.toLowerCase().replace(/\s+/g, '-')}`} onClick={() => setIsMobileMenuOpen(false)}
                                                 className="flex items-center gap-2 p-2 rounded-lg hover:bg-slate-50 transition-colors">
                                                 <span className="w-1.5 h-1.5 bg-accent rounded-full shrink-0" />
                                                 <span className="text-sm text-primary">{city}</span>
