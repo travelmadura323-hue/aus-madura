@@ -23,11 +23,20 @@ export default function DestinationDetailPage() {
   const destinationCountry = (destination?.country || destination?.region || "").toLowerCase().trim();
   // ✅ Also check slug for matching (e.g. "india", "australia")
   const destinationSlug = (destination?.slug || id || "").toLowerCase().trim();
+  // ✅ NEW: Get countries included for this destination (for header destinations like "Mainland Europe")
+  const countriesIncludedLower = (destination?.countriesIncluded || [])
+    .filter((c: string) => c && c.trim())
+    .map((c: string) => c.toLowerCase().trim());
+  const destinationHeader = (destination?.header || "").toLowerCase().trim();
+  
+  // ✅ Only use countriesIncluded if it's actually populated
+  const hasCountriesIncluded = countriesIncludedLower.length > 0;
+
   // ✅ Format city name for display (decode URI and capitalize)
   const displayCityName = city ? decodeURIComponent(city).replace(/-/g, " ").replace(/\b\w/g, char => char.toUpperCase()) : null;
   const cityLower = city ? city.toLowerCase().replace(/-/g, " ") : null;
 
-  // ✅ FIXED: More robust tour matching
+  // ✅ FIXED: More robust tour matching with destination header support
   const relatedTours = tours.filter((t: any) => {
     // If city is specified, filter ONLY by matching city
     if (cityLower) {
@@ -49,7 +58,8 @@ export default function DestinationDetailPage() {
       const destinationMatches = 
         (destinationName && locRaw.toLowerCase().includes(destinationName)) ||
         (destinationCountry && locRaw.toLowerCase().includes(destinationCountry)) ||
-        (destinationSlug && locRaw.toLowerCase().includes(destinationSlug));
+        (destinationSlug && locRaw.toLowerCase().includes(destinationSlug)) ||
+        (countriesIncludedLower.length > 0 && countriesIncludedLower.some((c: string) => locRaw.toLowerCase().includes(c)));
       
       // DEBUG
       console.log("=== CITY FILTER DEBUG ===");
@@ -61,6 +71,7 @@ export default function DestinationDetailPage() {
       console.log("destinationName:", destinationName);
       console.log("destinationCountry:", destinationCountry);
       console.log("destinationSlug:", destinationSlug);
+      console.log("countriesIncludedLower:", countriesIncludedLower);
       console.log("destinationMatches:", destinationMatches);
       console.log("FINAL:", matchesCity && destinationMatches);
       console.log("---");
@@ -68,23 +79,58 @@ export default function DestinationDetailPage() {
       return matchesCity && destinationMatches;
     }
 
-    // Original logic for destination-only view
-    const locRaw = typeof t.location === "string"
+    // ✅ Original logic for destination-only view with header support
+    const tourCountry = typeof t.location === "string"
       ? t.location
       : (t.location?.country || t.location?.cities?.join(" ") || "");
-    const lc = String(locRaw).toLowerCase().trim();
+    const lc = String(tourCountry).toLowerCase().trim();
 
-    return (
-      (destinationName && lc.includes(destinationName)) ||
-      (destinationCountry && lc.includes(destinationCountry)) ||
-      (destinationSlug && lc.includes(destinationSlug)) ||
-      (lc && destinationName && destinationName.includes(lc)) ||
-      (lc && destinationCountry && destinationCountry.includes(lc))
-    );
+    // ✅ NEW: Check if tour country is in countriesIncluded array for header-based filtering
+    // Use EXACT word matching to avoid false positives (e.g., "Asia" shouldn't match "East Asia")
+    if (countriesIncludedLower.length > 0) {
+      return countriesIncludedLower.some((c: string) => {
+        // EXACT match: exact string match or word boundary match
+        return lc === c || 
+               lc.endsWith(" " + c) || 
+               lc.startsWith(c + " ") || 
+               lc.includes(" " + c + " ");
+      });
+    }
+
+    // ✅ For single destination (like Malaysia, Singapore), use EXACT matching, not substring
+    // This prevents "East Asia" from showing on Malaysia page
+    if (destinationSlug && destinationSlug !== "") {
+      // Exact match: tour country must exactly match destination slug
+      const slugMatches = lc === destinationSlug || 
+                         lc.endsWith(" " + destinationSlug) || 
+                         lc.startsWith(destinationSlug + " ") || 
+                         lc.includes(" " + destinationSlug + " ");
+      if (slugMatches) return true;
+    }
+
+    if (destinationName && destinationName !== "") {
+      // Exact match: tour country must exactly match destination name
+      const nameMatches = lc === destinationName || 
+                         lc.endsWith(" " + destinationName) || 
+                         lc.startsWith(destinationName + " ") || 
+                         lc.includes(" " + destinationName + " ");
+      if (nameMatches) return true;
+    }
+
+    if (destinationCountry && destinationCountry !== "") {
+      // Exact match: tour country must exactly match destination country
+      const countryMatches = lc === destinationCountry || 
+                            lc.endsWith(" " + destinationCountry) || 
+                            lc.startsWith(destinationCountry + " ") || 
+                            lc.includes(" " + destinationCountry + " ");
+      if (countryMatches) return true;
+    }
+
+    return false;
   });
 
-  // ✅ If no tours matched, show ALL tours as fallback so page isn't empty
-  const toursToFilter = relatedTours.length > 0 ? relatedTours : tours;
+  // ✅ Only show tours that actually match this destination (no fallback to all tours)
+  const toursToFilter = relatedTours;
 
   const filteredTours = toursToFilter
     .filter((tour: any) => {

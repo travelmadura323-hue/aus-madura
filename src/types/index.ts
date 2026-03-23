@@ -51,6 +51,8 @@ export interface Destination {
   region?: string;
   price?: string;
   status?: "Published" | "Draft";
+  header?: string; // ✅ NEW: Destination header (e.g. "Mainland Europe", "Southeast Asia")
+  countriesIncluded?: string[]; // ✅ NEW: Countries mapped to this destination for filtering
 }
 
 export const defaultDestination: Destination = {
@@ -61,4 +63,6 @@ export const defaultDestination: Destination = {
   description: "",
   images: [],
   status: "Published",
+  header: "",
+  countriesIncluded: [],
 };

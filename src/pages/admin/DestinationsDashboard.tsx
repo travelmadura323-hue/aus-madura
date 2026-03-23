@@ -28,6 +28,8 @@ export default function DestinationsDashboard() {
         id: d.id, ...defaultDestination, ...d.data(),
         cities: d.data().cities ?? [],
         images: d.data().images ?? [],
+        header: d.data().header ?? "",
+        countriesIncluded: d.data().countriesIncluded ?? [],
       })) as Destination[];
       setDestinations(data);
     } catch (err) {
@@ -77,6 +79,8 @@ export default function DestinationsDashboard() {
         slug,
         cities: form.cities ?? [],
         images: form.images ?? [],
+        header: form.header ?? "",
+        countriesIncluded: (form.countriesIncluded || []).filter(c => c.trim()),
       };
       if (editingDest?.id) {
         await setDoc(
@@ -102,8 +106,8 @@ export default function DestinationsDashboard() {
   };
 
   const toggleExpand = (id: string) => setExpandedIds((p) => { const n = new Set(p); n.has(id) ? n.delete(id) : n.add(id); return n; });
-  const openAdd = () => { setForm(defaultDestination); setEditingDest(null); setModalOpen(true); };
-  const openEdit = (dest: Destination) => { setForm({ ...defaultDestination, ...dest }); setEditingDest(dest); setModalOpen(true); };
+  const openAdd = () => { setForm({ ...defaultDestination, header: "", countriesIncluded: [] }); setEditingDest(null); setModalOpen(true); };
+  const openEdit = (dest: Destination) => { setForm({ ...defaultDestination, ...dest, countriesIncluded: dest.countriesIncluded || [] }); setEditingDest(dest); setModalOpen(true); };
 
   const addCity = () => setForm({ ...form, cities: [...(form.cities || []), ""] });
   const updateCity = (i: number, v: string) => { const a = [...(form.cities || [])]; a[i] = v; setForm({ ...form, cities: a }); };
@@ -246,6 +250,37 @@ export default function DestinationsDashboard() {
               <div>
                 <label className="block text-xs font-medium text-slate-500 mb-1">Country</label>
                 <input value={form.country || ""} onChange={(e) => setForm({ ...form, country: e.target.value })} className="w-full border rounded-xl px-4 py-2.5" placeholder="e.g. India" />
+              </div>
+
+              {/* ✅ NEW: Region/Header field */}
+              <div>
+                <label className="block text-xs font-medium text-slate-500 mb-1">Header / Region <span className="text-slate-400">(e.g. Mainland Europe, Southeast Asia)</span></label>
+                <input value={form.header || ""} onChange={(e) => setForm({ ...form, header: e.target.value })} className="w-full border rounded-xl px-4 py-2.5" placeholder="e.g. Mainland Europe" />
+              </div>
+
+              {/* ✅ NEW: Countries included for filtering */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block text-xs font-medium text-slate-500">Countries/Regions Included</label>
+                  <span className="text-[10px] text-blue-500 font-medium">✓ Used for package filtering by header</span>
+                </div>
+                <p className="text-[10px] text-slate-500 mb-2">Enter countries to include when this destination is selected (e.g., France, Germany, Italy for Mainland Europe)</p>
+                {(form.countriesIncluded || []).map((c, i) => (
+                  <div key={i} className="flex gap-2 mb-2">
+                    <input value={c} onChange={(e) => {
+                      const updated = [...(form.countriesIncluded || [])];
+                      updated[i] = e.target.value;
+                      setForm({ ...form, countriesIncluded: updated });
+                    }} className="flex-1 border rounded-xl px-4 py-2" placeholder="e.g. France, Germany, Spain" />
+                    <button onClick={() => {
+                      const updated = (form.countriesIncluded || []).filter((_, j) => j !== i);
+                      setForm({ ...form, countriesIncluded: updated });
+                    }} className="px-3 py-2 text-red-500 hover:bg-red-50 rounded-xl">Remove</button>
+                  </div>
+                ))}
+                <button onClick={() => {
+                  setForm({ ...form, countriesIncluded: [...(form.countriesIncluded || []), ""] });
+                }} className="text-accent font-medium text-sm">+ Add Country</button>
               </div>
 
               {/* Description */}

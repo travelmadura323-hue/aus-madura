@@ -29,6 +29,8 @@ export function useDestinationBySlug(slugOrId: string | undefined) {
             ...raw,
             cities: raw.cities ?? [],
             images: raw.images ?? [],
+            header: raw.header ?? "",
+            countriesIncluded: raw.countriesIncluded ?? [],
           } as Destination);
           setLoading(false);
           return;
@@ -44,6 +46,8 @@ export function useDestinationBySlug(slugOrId: string | undefined) {
             ...raw,
             cities: raw.cities ?? [],
             images: raw.images ?? [],
+            header: raw.header ?? "",
+            countriesIncluded: raw.countriesIncluded ?? [],
           } as Destination);
           setLoading(false);
           return;
