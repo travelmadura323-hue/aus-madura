@@ -9,7 +9,8 @@ export interface Tour {
   description?: string;
   image?: string;
   overview?: string;
-  category?: string[];
+  category?: string[]; // Legacy field
+  categories?: string[]; // ✅ NEW: Firestore field (multi-select categories)
   rating?: number;
   reviews?: number;
   highlights: string[];

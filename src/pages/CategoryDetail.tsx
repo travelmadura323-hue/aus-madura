@@ -18,39 +18,61 @@ export default function CategoryDetail() {
   // ✅ Use Firestore tours instead of mockData
   const { tours, loading } = useTours();
 
-  const categoryData = categories.find(c => c.slug === category) || categories[0];
+  // ✅ FIX: Normalize slug comparison - handle both "family" and "family-tourism" format
+  const categoryData = useMemo(() => {
+    let found = categories.find(c => c.slug === category);
+    
+    // If not found by full slug, try matching by ID
+    if (!found && category) {
+      found = categories.find(c => c.id === category);
+    }
+    
+    // If still not found, try prefix match
+    if (!found && category) {
+      found = categories.find(c => c.slug.startsWith(category) || category.startsWith(c.id));
+    }
+    
+    return found || categories[0];
+  }, [category]);
 
-  // ✅ Match tours by categories array saved in Firestore
+  // ✅ Match tours by categories - FIX: Use id/slug for accurate matching
   const relatedTours = useMemo(() => {
-    const catName = categoryData.name.toLowerCase().trim(); // e.g. "family"
+    // Extract the category ID (e.g., "family" from "family-tourism")
+    const categoryId = categoryData.id.toLowerCase().trim();
+    
     return tours.filter((t: any) => {
       // ✅ Check new categories array field (Firestore tours)
       if (Array.isArray(t.categories) && t.categories.length > 0) {
-        return t.categories.some((c: string) =>
-          c.trim().toLowerCase() === catName
-        );
+        return t.categories.some((c: string) => {
+          const cLower = c.trim().toLowerCase();
+          // EXACT match only: "family" === "family"
+          return cLower === categoryId;
+        });
       }
       // ✅ Fallback: check old category string field (mockData tours)
       if (typeof t.category === "string") {
         return t.category
           .split(",")
           .map((c: string) => c.trim().toLowerCase())
-          .some((c: string) => c === catName || c.includes(catName) || catName.includes(c));
+          .some((c: string) => {
+            // EXACT match only
+            return c === categoryId || c === categoryData.name.toLowerCase();
+          });
       }
       // ✅ Fallback: check old category array field (mockData tours)
       if (Array.isArray(t.category)) {
-        return t.category.some((c: string) =>
-          c.trim().toLowerCase() === catName ||
-          c.trim().toLowerCase().includes(catName) ||
-          catName.includes(c.trim().toLowerCase())
-        );
+        return t.category.some((c: string) => {
+          const cLower = c.trim().toLowerCase();
+          // EXACT match only
+          return cLower === categoryId || cLower === categoryData.name.toLowerCase();
+        });
       }
       return false;
     });
-  }, [tours, categoryData.name]);
+  }, [tours, categoryData.id, categoryData.name]);
 
-  // If no category match, show all tours as fallback
-  const baseTours = relatedTours.length > 0 ? relatedTours : tours;
+  // ✅ NO FALLBACK: Only show tours that match this category
+  const baseTours = relatedTours;
 
   const [filters, setFilters] = useState<FilterValues>({
     searchTerm: "",
@@ -123,7 +145,6 @@ export default function CategoryDetail() {
               {loading
                 ? "Loading..."
                 : <>Showing <span className="font-semibold text-primary">{filteredAndSortedTours.length}</span> package{filteredAndSortedTours.length !== 1 ? "s" : ""}
-                  {relatedTours.length === 0 && tours.length > 0 && <span className="ml-2 text-xs text-amber-500">(showing all tours — no tours tagged with this category yet)</span>}
                 </>
               }
             </p>

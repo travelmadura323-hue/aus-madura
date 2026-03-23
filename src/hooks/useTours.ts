@@ -29,6 +29,7 @@ export function useTours() {
             excluded: raw.excluded ?? [],
             faqs: raw.faqs ?? [],
             gallery: raw.gallery ?? [],
+            categories: raw.categories ?? [], // ✅ Ensure categories field
           } as Tour;
         });
         setTours(data);
