@@ -16,7 +16,8 @@ interface FormData {
 // ✅ No reCAPTCHA — removed entirely, uses honeypot + timing protection
 export default function ContactForm() {
     const [formData, setFormData] = useState<FormData>({
-        name: '',
+        f_name: '',
+        l_name: '',
         email: '',
         phone: '',
         countryCode: '+61',
@@ -24,6 +25,7 @@ export default function ContactForm() {
         type: 'Tours',
         website: ''
     });
+    const [otherType, setOtherType] = useState("");
 
     const [errors, setErrors] = useState<{ phone?: string; date?: string }>({});
     const [submitted, setSubmitted] = useState(false);
@@ -125,10 +127,11 @@ export default function ContactForm() {
             const phone = `${formData.countryCode}${cleanedPhone}`;
 
             const payload: Record<string, string> = {
-                name: formData.name,
+                f_name: formData.name,
+                l_name: formData.name,
                 phone,
                 date: formData.date,
-                enquiry: formData.type,
+                enquiry: formData.type === "Other" ? otherType : formData.type,
                 email: formData.email,
                 nationality: "Australia",
                 destination: "Website enquiry",
@@ -233,12 +236,23 @@ export default function ContactForm() {
 
                     {/* Name */}
                     <div className="space-y-1.5">
-                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
+                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">First Name</label>
                         <div className="relative">
                             <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                            <input required type="text" placeholder="John Doe"
+                            <input required type="text" placeholder="John "
                                 className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
-                                value={formData.name}
+                                value={formData.f_name}
+                                onChange={(e) => setFormData(f => ({ ...f, name: e.target.value }))}
+                            />
+                        </div>
+                    </div>
+                    <div className="space-y-1.5">
+                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Last Name</label>
+                        <div className="relative">
+                            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                            <input required type="text" placeholder="Doe"
+                                className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
+                                value={formData.l_name}
                                 onChange={(e) => setFormData(f => ({ ...f, name: e.target.value }))}
                             />
                         </div>
@@ -317,9 +331,22 @@ export default function ContactForm() {
                                 <option value="Air Ticket">Air Ticket</option>
                                 <option value="Visa">Visa Services</option>
                                 <option value="Tours">Tour Packages</option>
-                                <option value="Passport">Transport</option>
+                                <option value="Transport Booking">Transport Booking</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
+                        {formData.type === "Other" && (
+                            <div className="mt-3">
+                                <input
+                                    type="text"
+                                    placeholder="Enter your enquiry type"
+                                    className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50"
+                                    value={otherType}
+                                    onChange={(e) => setOtherType(e.target.value)}
+                                    required
+                                />
+                            </div>
+                        )}
                     </div>
 
                     {/* Honeypot */}
