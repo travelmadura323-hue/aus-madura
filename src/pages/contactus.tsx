@@ -98,7 +98,11 @@ export default function ContactForm() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setSubmitError(null);
+        if (formData.type === "Other" && !otherType.trim()) {
+            setSubmitError("Please enter enquiry type");
+            return; // stop submission
+        }
+
 
         // Honeypot
         if (formData.website.trim() !== "") return;
@@ -129,7 +133,7 @@ export default function ContactForm() {
                 name: formData.name,
                 phone,
                 date: formData.date,
-                enquiry: formData.type,
+                enquiry: formData.type === "Other" ? otherType : formData.type,
                 email: formData.email,
                 nationality: "Australia",
                 destination: "Website enquiry",
@@ -334,6 +338,7 @@ export default function ContactForm() {
                                 />
                             </div>
                         )}
+
                     </div>
 
                     {/* Honeypot */}
@@ -342,6 +347,7 @@ export default function ContactForm() {
                             value={formData.website}
                             onChange={(e) => setFormData(f => ({ ...f, website: e.target.value }))}
                         />
+
                     </div>
 
                     {/* Submit */}
