@@ -4,8 +4,7 @@ import { Send, User, Mail, Phone, Calendar, Briefcase, CheckCircle, AlertCircle 
 import { cn } from '../lib/utils';
 
 interface FormData {
-    f_name: string;
-    l_name: string;
+    name: string;
     email: string;
     phone: string;
     countryCode: string;
@@ -17,8 +16,7 @@ interface FormData {
 // ✅ No reCAPTCHA — removed entirely, uses honeypot + timing protection
 export default function ContactForm() {
     const [formData, setFormData] = useState<FormData>({
-        f_name: '',
-        l_name: '',
+        name: '',
         email: '',
         phone: '',
         countryCode: '+61',
@@ -128,11 +126,10 @@ export default function ContactForm() {
             const phone = `${formData.countryCode}${cleanedPhone}`;
 
             const payload: Record<string, string> = {
-                f_name: formData.name,
-                l_name: formData.name,
+                name: formData.name,
                 phone,
                 date: formData.date,
-                enquiry: formData.type === "Other" ? otherType : formData.type,
+                enquiry: formData.type,
                 email: formData.email,
                 nationality: "Australia",
                 destination: "Website enquiry",
@@ -160,7 +157,7 @@ export default function ContactForm() {
                 return;
             }
 
-            setFormData({ f_name: '', l_name: '', email: '', phone: '', countryCode: '+61', date: '', type: 'Tours', website: '' });
+            setFormData({ name: '', email: '', phone: '', countryCode: '+61', date: '', type: 'Tours', website: '' });
             setErrors({});
             setSubmitted(true);
 
@@ -237,24 +234,13 @@ export default function ContactForm() {
 
                     {/* Name */}
                     <div className="space-y-1.5">
-                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">First Name</label>
+                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
                         <div className="relative">
                             <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                            <input required type="text" placeholder="John "
+                            <input required type="text" placeholder="John Doe"
                                 className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
-                                value={formData.f_name}
-                                onChange={(e) => setFormData(f => ({ ...f, f_name: e.target.value }))}
-                            />
-                        </div>
-                    </div>
-                    <div className="space-y-1.5">
-                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Last Name</label>
-                        <div className="relative">
-                            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                            <input required type="text" placeholder="Doe"
-                                className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
-                                value={formData.l_name}
-                                onChange={(e) => setFormData(f => ({ ...f, l_name: e.target.value }))}
+                                value={formData.name}
+                                onChange={(e) => setFormData(f => ({ ...f, name: e.target.value }))}
                             />
                         </div>
                     </div>
