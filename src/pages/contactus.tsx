@@ -4,7 +4,8 @@ import { Send, User, Mail, Phone, Calendar, Briefcase, CheckCircle, AlertCircle 
 import { cn } from '../lib/utils';
 
 interface FormData {
-    name: string;
+    f_name: string;
+    l_name: string;
     email: string;
     phone: string;
     countryCode: string;
