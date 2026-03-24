@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, User, Mail, Phone, Calendar, Briefcase, CheckCircle } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { source } from 'framer-motion/client';
 
 interface FormData {
     name: string;
@@ -11,6 +12,7 @@ interface FormData {
     date: string;
     type: string;
     website: string;
+    source: string;
 }
 
 export default function ContactForm() {
@@ -22,7 +24,8 @@ export default function ContactForm() {
         countryCode: '+61',
         date: '',
         type: 'Tours',
-        website: ''
+        website: '',
+        source: 'website Enquiry'
     });
 
     const [submitted, setSubmitted] = useState(false);
