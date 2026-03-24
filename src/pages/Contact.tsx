@@ -11,18 +11,18 @@ const contactInfo = [
     title: "India Office",
     icon: MapPin,
     details: [
-      { label: "Madura Travel Service (P) Ltd,Chennai, Tamil Nadu, India" },
+      { label: "Chennai, Tamil Nadu, India" },
       { label: "+91 9092949494 ", link: "tel:+91 9092949494" },
-      { label: "mail@maduratravel.com", link: "mailto:mail@maduratravel.com" },
+
     ],
   },
   {
     title: "Australia Office",
     icon: Globe,
     details: [
-      { label: "1-11 Rosa Crescent, Castle Hill NSW 2154, Australia" },
+      { label: "Sydney, Australia" },
       { label: "+61 434 500 743", link: "tel:+61 434 500 743" },
-      { label: "mail@maduratravel.com", link: "mailto:mail@maduratravel.com" },
+
     ],
   },
 ];

@@ -24,7 +24,7 @@ export default function ContactForm() {
     type: 'Tours',
     website: ''
   });
-
+  const [otherType, setOtherType] = useState("");
   const [errors, setErrors] = useState<{ phone?: string; date?: string }>({});
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -112,7 +112,7 @@ export default function ContactForm() {
       return;
     }
 
-    const crmUrl = import.meta.env.VITE_CRM_URL;
+    const crmUrl = import.meta.env.VITE_CRM_URL1;
     if (!crmUrl) {
       setSubmitError("CRM URL is not configured. Please contact support.");
       return;
@@ -128,7 +128,7 @@ export default function ContactForm() {
         name: formData.name,
         phone,
         date: formData.date,
-        enquiry: formData.type,
+        enquiry: formData.type === "Other" ? otherType : formData.type,
         email: formData.email,
         nationality: "Australia",
         destination: "Website enquiry",
@@ -191,7 +191,7 @@ export default function ContactForm() {
         </div>
         <h3 className="text-2xl font-bold text-primary mb-3">Enquiry Sent!</h3>
         <p className="text-slate-500 max-w-xs leading-relaxed">
-          Thank you for reaching out. Our travel experts will get back to you within 24 hours.
+          Thank you for reaching out. Our travel experts will get back to you.
         </p>
         <button
           onClick={() => setSubmitted(false)}
@@ -313,12 +313,24 @@ export default function ContactForm() {
               onChange={(e) => setFormData(f => ({ ...f, type: e.target.value }))}
             >
               <option value="Air Ticket">Air Ticket</option>
-              <option value="Visa">Visa</option>
-              <option value="Tours">Tours</option>
-              <option value="Forex">Forex</option>
-              <option value="Passport">Passport</option>
+              <option value="Visa">Visa Services</option>
+              <option value="Tour Packages">Tour Packages</option>
+              <option value="Transport">Transport Booking</option>
+              <option value="Other">Other</option>
             </select>
           </div>
+          {formData.type === "Other" && (
+            <div className="mt-3">
+              <input
+                type="text"
+                placeholder="Enter your enquiry type"
+                className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50"
+                value={otherType}
+                onChange={(e) => setOtherType(e.target.value)}
+                required
+              />
+            </div>
+          )}
         </div>
 
         {/* Honeypot */}

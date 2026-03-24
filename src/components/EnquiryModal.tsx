@@ -19,6 +19,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
     type: "Tours",
     website: "", // honeypot
   });
+  const [otherType, setOtherType] = useState("");
 
   const [errors, setErrors] = useState<{ phone?: string; date?: string }>({});
   const [formStartTime] = useState(Date.now());
@@ -112,7 +113,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
         email: formData.email,
         phone,
         date: formData.date,
-        enquiry: formData.type,
+        enquiry: formData.type === "Other" ? otherType : formData.type,
         source: "Global website",
       };
 
@@ -300,12 +301,25 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
                       onChange={(e) => setFormData(f => ({ ...f, type: e.target.value }))}
                     >
                       <option value="Air Ticket">Air Ticket</option>
-                      <option value="Visa">Visa</option>
-                      <option value="Tours">Tours</option>
-                      <option value="Forex">Forex</option>
-                      <option value="Passport">Passport</option>
+                      <option value="Visa">Visa Services</option>
+                      <option value="Tour Packages">Tour Packages</option>
+                      <option value="Transport">Transport Booking</option>
+                      <option value="Other">Other</option>
+
                     </select>
                   </div>
+                  {formData.type === "Other" && (
+                    <div className="mt-3">
+                      <input
+                        type="text"
+                        placeholder="Enter your enquiry type"
+                        className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 px-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50"
+                        value={otherType}
+                        onChange={(e) => setOtherType(e.target.value)}
+                        required
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* Honeypot — hidden from humans, visible to bots */}

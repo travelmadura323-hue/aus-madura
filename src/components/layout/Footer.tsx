@@ -78,17 +78,12 @@ export default function Footer() {
             </form> */}
             <h1 className="text-lg font-bold mb-6 text-accent">Contact</h1>
             <div className="space-y-3">
-              <div className="flex items-center gap-3 text-sm text-white/80">
-                <Phone className="w-4 h-4 text-accent shrink-0" />
-                <a href="tel:+61434500743" className="hover:text-accent transition-colors">
-                  +61 434 500 743
-                </a>
-              </div>
+
 
               <div className="flex items-center gap-3 text-sm text-white/80">
                 <Mail className="w-4 h-4 text-accent shrink-0" />
                 <a href="mailto:mail@maduratravel.com" className="hover:text-accent transition-colors">
-                  mail@maduratravel.com
+                  mail@maduraglobal.com
                 </a>
               </div>
             </div>

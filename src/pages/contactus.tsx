@@ -191,7 +191,7 @@ export default function ContactForm() {
                 </div>
                 <h3 className="text-2xl font-bold text-primary mb-3">Enquiry Sent!</h3>
                 <p className="text-slate-500 max-w-xs leading-relaxed">
-                    Thank you for reaching out. Our travel experts will get back to you within 24 hours.
+                    Thank you for reaching out. Our travel experts will get back to you.
                 </p>
                 <button
                     onClick={() => setSubmitted(false)}
@@ -315,10 +315,9 @@ export default function ContactForm() {
                                 onChange={(e) => setFormData(f => ({ ...f, type: e.target.value }))}
                             >
                                 <option value="Air Ticket">Air Ticket</option>
-                                <option value="Visa">Visa</option>
-                                <option value="Tours">Tours</option>
-                                <option value="Forex">Forex</option>
-                                <option value="Passport">Passport</option>
+                                <option value="Visa">Visa Services</option>
+                                <option value="Tours">Tour Packages</option>
+                                <option value="Passport">Transport</option>
                             </select>
                         </div>
                     </div>
