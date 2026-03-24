@@ -160,7 +160,7 @@ export default function ContactForm() {
                 return;
             }
 
-            setFormData({ name: '', email: '', phone: '', countryCode: '+61', date: '', type: 'Tours', website: '' });
+            setFormData({ f_name: '', l_name: '', email: '', phone: '', countryCode: '+61', date: '', type: 'Tours', website: '' });
             setErrors({});
             setSubmitted(true);
 
@@ -243,7 +243,7 @@ export default function ContactForm() {
                             <input required type="text" placeholder="John "
                                 className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
                                 value={formData.f_name}
-                                onChange={(e) => setFormData(f => ({ ...f, name: e.target.value }))}
+                                onChange={(e) => setFormData(f => ({ ...f, f_name: e.target.value }))}
                             />
                         </div>
                     </div>
@@ -254,7 +254,7 @@ export default function ContactForm() {
                             <input required type="text" placeholder="Doe"
                                 className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
                                 value={formData.l_name}
-                                onChange={(e) => setFormData(f => ({ ...f, name: e.target.value }))}
+                                onChange={(e) => setFormData(f => ({ ...f, l_name: e.target.value }))}
                             />
                         </div>
                     </div>
