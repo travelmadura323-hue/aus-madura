@@ -35,15 +35,15 @@ export default function ContactForm() {
     const digits = phone.replace(/\D/g, "").replace(/^0+/, "");
     if (!digits) return "Phone number is required.";
     const rules: Record<string, { min: number; max: number; label: string }> = {
-      "+61":  { min: 9,  max: 9,  label: "Australian numbers must be 9 digits (e.g. 412 345 678)." },
-      "+91":  { min: 10, max: 10, label: "Indian numbers must be 10 digits." },
-      "+1":   { min: 10, max: 10, label: "US/Canada numbers must be 10 digits." },
-      "+44":  { min: 10, max: 10, label: "UK numbers must be 10 digits." },
-      "+65":  { min: 8,  max: 8,  label: "Singapore numbers must be 8 digits." },
-      "+60":  { min: 9,  max: 10, label: "Malaysian numbers must be 9–10 digits." },
-      "+84":  { min: 9,  max: 10, label: "Vietnamese numbers must be 9–10 digits." },
-      "+94":  { min: 9,  max: 9,  label: "Sri Lankan numbers must be 9 digits." },
-      "+971": { min: 9,  max: 9,  label: "UAE numbers must be 9 digits." },
+      "+61": { min: 9, max: 9, label: "Australian numbers must be 9 digits (e.g. 412 345 678)." },
+      "+91": { min: 10, max: 10, label: "Indian numbers must be 10 digits." },
+      "+1": { min: 10, max: 10, label: "US/Canada numbers must be 10 digits." },
+      "+44": { min: 10, max: 10, label: "UK numbers must be 10 digits." },
+      "+65": { min: 8, max: 8, label: "Singapore numbers must be 8 digits." },
+      "+60": { min: 9, max: 10, label: "Malaysian numbers must be 9–10 digits." },
+      "+84": { min: 9, max: 10, label: "Vietnamese numbers must be 9–10 digits." },
+      "+94": { min: 9, max: 9, label: "Sri Lankan numbers must be 9 digits." },
+      "+971": { min: 9, max: 9, label: "UAE numbers must be 9 digits." },
     };
     const rule = rules[countryCode];
     if (rule && (digits.length < rule.min || digits.length > rule.max)) return rule.label;
@@ -135,8 +135,8 @@ export default function ContactForm() {
         source: "Global website",
       };
 
-     
-     
+
+
 
       const response = await fetch(crmUrl, {
         method: 'POST',
@@ -149,7 +149,7 @@ export default function ContactForm() {
 
       const text = await response.text();
       console.log("CRM response status:", response.status);
-     
+
 
       if (!response.ok) {
         setSubmitError(`Server error ${response.status}.${text ? ` Details: ${text.substring(0, 200)}` : ""}`);
