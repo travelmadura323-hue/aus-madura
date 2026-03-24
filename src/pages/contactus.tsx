@@ -21,7 +21,7 @@ export default function ContactForm() {
         phone: '',
         countryCode: '+61',
         date: '',
-        type: 'Tours',
+        type: '',
         website: ''
     });
     const [otherType, setOtherType] = useState("");
@@ -161,7 +161,7 @@ export default function ContactForm() {
                 return;
             }
 
-            setFormData({ name: '', email: '', phone: '', countryCode: '+61', date: '', type: 'Tours', website: '' });
+            setFormData({ name: '', email: '', phone: '', countryCode: '+61', date: '', type: '', website: '' });
             setErrors({});
             setSubmitted(true);
 
@@ -318,7 +318,7 @@ export default function ContactForm() {
                                 className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50"
                                 value={formData.type}
                                 onChange={(e) => setFormData(f => ({ ...f, type: e.target.value }))}
-                            >
+                            ><option value="" disabled>Select enquiry type</option>
                                 <option value="Air Ticket">Air Ticket</option>
                                 <option value="Visa">Visa Services</option>
                                 <option value="Tours">Tour Packages</option>
