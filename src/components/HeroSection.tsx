@@ -1,6 +1,7 @@
 import { motion, useAnimation, PanInfo } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import react from 'react';
 
 interface Slide {
   id: number;
@@ -19,15 +20,15 @@ interface HeroSectionProps {
   autoPlayInterval?: number;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ 
-  slides, 
-  autoPlay = true, 
-  autoPlayInterval = 5000 
+const HeroSection: React.FC<HeroSectionProps> = ({
+  slides,
+  autoPlay = true,
+  autoPlayInterval = 5000
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const controls = useAnimation();
-  
+
   const minSwipeDistance = 80;
   const slideWidth = 100;
 
@@ -138,7 +139,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                   >
                     {slide.title}
                   </motion.h1>
-                  
+
                   <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -196,11 +197,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`transition-all duration-300 rounded-full ${
-              currentSlide === index
+            className={`transition-all duration-300 rounded-full ${currentSlide === index
                 ? 'w-8 h-3 bg-white'
                 : 'w-3 h-3 bg-white/50 hover:bg-white/70'
-            }`}
+              }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}

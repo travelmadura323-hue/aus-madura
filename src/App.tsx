@@ -33,6 +33,7 @@ import Dashboard from "./pages/dashboard";
 
 import RequireAuth from "./components/admin/RequireAuth";
 import { AdminProvider } from "./pages/admin/admincontext";
+import ContactUS from "./pages/contactus";
 
 // Public Layout wrapper
 function PublicLayout() {
@@ -89,6 +90,7 @@ export default function App() {
             <Route path="terms-conditions" element={<Terms />} />
             <Route path="disclaimer" element={<Disclaimer />} />
             <Route path="complaint-policy" element={<ComplaintPolicy />} />
+            <Route path="contactus" element={<ContactUS />} />
             {/* Catch-all redirect for unknown URLs */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
