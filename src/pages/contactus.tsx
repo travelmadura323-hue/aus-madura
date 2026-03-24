@@ -181,179 +181,171 @@ export default function ContactForm() {
 
     if (submitted) {
         return (
+
             <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-white rounded-3xl shadow-lg border border-slate-100 p-12 text-center flex flex-col items-center justify-center min-h-[400px]"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-white/70 backdrop-blur-xl"
             >
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                    <CheckCircle className="w-10 h-10 text-green-500" />
+                {/* Gradient Glow Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none" />
+
+                {/* Header */}
+                <div className="relative p-10 bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-white">
+                    <h2 className="text-3xl font-bold mb-2 tracking-tight">
+                        Turn Your Travel Dreams Into Reality ✈️
+                    </h2>
+                    <p className="text-white/70 text-sm">
+                        Fill in your details and our experts will contact you shortly.
+                    </p>
                 </div>
-                <h3 className="text-2xl font-bold text-primary mb-3">Enquiry Sent!</h3>
-                <p className="text-slate-500 max-w-xs leading-relaxed">
-                    Thank you for reaching out. Our travel experts will get back to you within 24 hours.
-                </p>
-                <button
-                    onClick={() => setSubmitted(false)}
-                    className="mt-8 text-sm font-bold text-accent hover:text-primary transition-colors"
-                >
-                    Send another enquiry →
-                </button>
-            </motion.div>
-        );
-    }
 
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden"
-        >
-            {/* Header */}
-            <div className="bg-primary p-8 text-white">
-                <h2 className="text-3xl font-bold text-white mb-2">Turn Your Travel Dreams Into Reality</h2>
-                <p className="text-white/60 text-sm">Fill in the details and our experts will contact you.</p>
-            </div>
+                <form onSubmit={handleSubmit} className="relative p-8 space-y-6">
 
-            <form onSubmit={handleSubmit} className="p-8 space-y-5">
-
-                {/* Error Banner */}
-                {submitError && (
-                    <div className="bg-red-50 border border-red-200 rounded-2xl p-4 flex items-start gap-3">
-                        <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                        <div>
-                            <p className="text-sm font-semibold text-red-700 mb-1">Submission Failed</p>
-                            <p className="text-xs text-red-600">{submitError}</p>
+                    {/* Error Banner */}
+                    {submitError && (
+                        <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-start gap-3 shadow-sm">
+                            <AlertCircle className="w-5 h-5 text-red-500 mt-0.5" />
+                            <div>
+                                <p className="text-sm font-semibold text-red-700">Submission Failed</p>
+                                <p className="text-xs text-red-600">{submitError}</p>
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
 
-                {/* Name */}
-                <div className="space-y-1.5">
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Full Name</label>
-                    <div className="relative">
-                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                        <input required type="text" placeholder="John Doe"
-                            className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
-                            value={formData.name}
-                            onChange={(e) => setFormData(f => ({ ...f, name: e.target.value }))}
-                        />
-                    </div>
-                </div>
+                    {/* Common Input Style */}
+                    {/** Use this class everywhere */}
+                    {/** inputClass */}
+                    {/** improves UI consistency */}
 
-                {/* Email */}
-                <div className="space-y-1.5">
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Email Address</label>
-                    <div className="relative">
-                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                        <input required type="email" placeholder="john@example.com"
-                            className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-all"
-                            value={formData.email}
-                            onChange={(e) => setFormData(f => ({ ...f, email: e.target.value }))}
-                        />
-                    </div>
-                </div>
-
-                {/* Phone */}
-                <div className="space-y-1.5">
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Phone Number</label>
-                    <div className="flex gap-2">
-                        <select
-                            className="bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
-                            value={formData.countryCode}
-                            onChange={(e) => handleCountryCodeChange(e.target.value)}
-                        >
-                            <option value="+61">+61 (AU)</option>
-                            <option value="+91">+91 (IN)</option>
-                            <option value="+1">+1 (US)</option>
-                            <option value="+44">+44 (UK)</option>
-                            <option value="+65">+65 (SG)</option>
-                            <option value="+60">+60 (MY)</option>
-                            <option value="+84">+84 (VN)</option>
-                            <option value="+94">+94 (LK)</option>
-                            <option value="+971">+971 (UAE)</option>
-                        </select>
-                        <div className="relative flex-1">
-                            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                            <input required type="tel" placeholder={phonePlaceholder()}
-                                className={cn("w-full bg-slate-50/80 border rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 transition-all",
-                                    errors.phone ? "border-red-400 focus:ring-red-200" : "border-slate-200 focus:ring-primary/20 focus:border-primary/50")}
-                                value={formData.phone}
-                                onChange={(e) => handlePhoneChange(e.target.value)}
+                    {/* Name */}
+                    <div className="space-y-2">
+                        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            Full Name
+                        </label>
+                        <div className="relative group">
+                            <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-primary transition" />
+                            <input
+                                required
+                                type="text"
+                                placeholder="John Doe"
+                                className="w-full bg-white/80 border border-slate-200 rounded-xl py-3.5 pl-11 pr-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                                value={formData.name}
+                                onChange={(e) => setFormData(f => ({ ...f, name: e.target.value }))}
                             />
                         </div>
                     </div>
-                    <FieldError message={errors.phone} />
-                </div>
 
-                {/* Date */}
-                <div className="space-y-1.5">
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Date of Travel</label>
-                    <div className="relative">
-                        <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                        <input required type="date" min={todayString()} max={maxDateString()}
-                            className={cn("w-full bg-slate-50/80 border rounded-2xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 transition-all",
-                                errors.date ? "border-red-400 focus:ring-red-200" : "border-slate-200 focus:ring-primary/20 focus:border-primary/50")}
-                            value={formData.date}
-                            onChange={(e) => handleDateChange(e.target.value)}
-                        />
+                    {/* Email */}
+                    <div className="space-y-2">
+                        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            Email Address
+                        </label>
+                        <div className="relative group">
+                            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-primary transition" />
+                            <input
+                                required
+                                type="email"
+                                placeholder="john@example.com"
+                                className="w-full bg-white/80 border border-slate-200 rounded-xl py-3.5 pl-11 pr-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                                value={formData.email}
+                                onChange={(e) => setFormData(f => ({ ...f, email: e.target.value }))}
+                            />
+                        </div>
                     </div>
-                    <FieldError message={errors.date} />
-                </div>
 
-                {/* Enquiry Type */}
-                <div className="space-y-1.5">
-                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Type of Enquiry</label>
-                    <div className="relative">
-                        <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
-                        <select
-                            className="w-full bg-slate-50/80 border border-slate-200 rounded-2xl py-3.5 pl-11 pr-4 text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50"
-                            value={formData.type}
-                            onChange={(e) => setFormData(f => ({ ...f, type: e.target.value }))}
-                        >
-                            <option value="Air Ticket">Air Ticket</option>
-                            <option value="Visa">Visa</option>
-                            <option value="Tours">Tours</option>
-                            <option value="Forex">Forex</option>
-                            <option value="Passport">Passport</option>
-                        </select>
+                    {/* Phone */}
+                    <div className="space-y-2">
+                        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            Phone Number
+                        </label>
+                        <div className="flex gap-2">
+                            <select
+                                className="bg-white/80 border border-slate-200 rounded-xl px-3 text-sm shadow-sm focus:ring-2 focus:ring-primary/30"
+                                value={formData.countryCode}
+                                onChange={(e) => handleCountryCodeChange(e.target.value)}
+                            >
+                                <option value="+61">+61 (AU)</option>
+                                <option value="+91">+91 (IN)</option>
+                                <option value="+1">+1 (US)</option>
+                                <option value="+44">+44 (UK)</option>
+                            </select>
+
+                            <div className="relative flex-1 group">
+                                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-primary transition" />
+                                <input
+                                    required
+                                    type="tel"
+                                    placeholder={phonePlaceholder()}
+                                    className="w-full bg-white/80 border border-slate-200 rounded-xl py-3.5 pl-11 pr-4 text-sm shadow-sm focus:ring-2 focus:ring-primary/30 transition-all"
+                                    value={formData.phone}
+                                    onChange={(e) => handlePhoneChange(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <FieldError message={errors.phone} />
                     </div>
-                </div>
 
-                {/* Honeypot */}
-                <div style={{ display: "none" }} aria-hidden="true">
-                    <input type="text" name="website" autoComplete="off" tabIndex={-1}
-                        value={formData.website}
-                        onChange={(e) => setFormData(f => ({ ...f, website: e.target.value }))}
-                    />
-                </div>
+                    {/* Date */}
+                    <div className="space-y-2">
+                        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            Date of Travel
+                        </label>
+                        <div className="relative group">
+                            <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-primary transition" />
+                            <input
+                                required
+                                type="date"
+                                min={todayString()}
+                                max={maxDateString()}
+                                className="w-full bg-white/80 border border-slate-200 rounded-xl py-3.5 pl-11 pr-4 text-sm shadow-sm focus:ring-2 focus:ring-primary/30 transition-all"
+                                value={formData.date}
+                                onChange={(e) => handleDateChange(e.target.value)}
+                            />
+                        </div>
+                        <FieldError message={errors.date} />
+                    </div>
 
-                {/* Submit */}
-                <button
-                    type="submit"
-                    disabled={isSubmitting || !!errors.phone || !!errors.date}
-                    className={cn(
-                        "w-full bg-accent text-white font-bold py-4 rounded-2xl transition-all flex items-center justify-center gap-2 group hover:bg-accent/90 min-h-[52px] touch-manipulation",
-                        (isSubmitting || !!errors.phone || !!errors.date) && "opacity-70 cursor-not-allowed"
-                    )}
-                >
-                    {isSubmitting ? (
-                        <span className="flex items-center gap-2">
-                            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
-                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
-                            </svg>
-                            Processing...
-                        </span>
-                    ) : (
-                        <>
-                            Submit Enquiry
-                            <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                        </>
-                    )}
-                </button>
-            </form>
-        </motion.div>
-    );
+                    {/* Enquiry Type */}
+                    <div className="space-y-2">
+                        <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            Type of Enquiry
+                        </label>
+                        <div className="relative group">
+                            <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-primary transition" />
+                            <select
+                                className="w-full bg-white/80 border border-slate-200 rounded-xl py-3.5 pl-11 pr-4 text-sm shadow-sm focus:ring-2 focus:ring-primary/30 appearance-none"
+                                value={formData.type}
+                                onChange={(e) => setFormData(f => ({ ...f, type: e.target.value }))}
+                            >
+                                <option value="Air Ticket">Air Ticket</option>
+                                <option value="Visa">Visa</option>
+                                <option value="Tours">Tours</option>
+                                <option value="Forex">Forex</option>
+                                <option value="Passport">Passport</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    {/* Submit */}
+                    <button
+                        type="submit"
+                        disabled={isSubmitting || !!errors.phone || !!errors.date}
+                        className="w-full bg-gradient-to-r from-accent to-accent/80 text-white font-semibold py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+                    >
+                        {isSubmitting ? (
+                            "Processing..."
+                        ) : (
+                            <>
+                                Submit Enquiry
+                                <Send className="w-4 h-4" />
+                            </>
+                        )}
+                    </button>
+                </form>
+            </motion.div>
+        );
+
+    }
 }
