@@ -92,9 +92,9 @@ export default function TourCard({ tour }: TourCardProps) {
         {/* Rating */}
         <div className="flex items-center gap-1 mb-3">
           {[1, 2, 3, 4, 5].map((star) => (
-            <Star key={star} className="w-4 h-4 fill-accent text-accent" />
+            <Star key={star} className={`w-4 h-4 ${star <= (tour as any).rating ? 'fill-accent text-accent' : 'text-slate-300'}`} />
           ))}
-          <span className="text-xs text-slate-500 ml-2">(4.9)</span>
+          <span className="text-xs text-slate-500 ml-2">({(tour as any).rating || '4.9'})</span>
         </div>
 
         {/* ✅ Title is now also a clickable link */}

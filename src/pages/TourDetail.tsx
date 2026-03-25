@@ -7,17 +7,23 @@ import {
   HelpCircle, ChevronDown, ShieldCheck, Info,
   ArrowRight
 } from 'lucide-react';
-import { tours } from '../data/mockData';
+import { tours as mockTours } from '../data/mockData';
 import { useTourBySlug } from '../hooks/useTourBySlug';
+import { useTours } from '../hooks/useTours';
 import TourCard from '../components/tours/TourCard';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 export default function TourDetail() {
   const { slug } = useParams();
-  const { tour: firestoreTour, loading } = useTourBySlug(slug);
-  const mockTour = tours.find((t: { slug?: string }) => t.slug === slug);
+  const { tour: firestoreTour, loading: detailLoading } = useTourBySlug(slug);
+  const { tours: allFirestoreTours } = useTours();
+  
+  const tours = (allFirestoreTours && allFirestoreTours.length > 0) ? allFirestoreTours : mockTours;
+  const mockTour = mockTours.find((t: { slug?: string }) => t.slug === slug);
   const tour = firestoreTour || mockTour || tours[0];
+  
+  const loading = detailLoading;
 
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [bookingStatus, setBookingStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
@@ -598,9 +604,46 @@ export default function TourDetail() {
             </div>
             {/* ✅ Mobile: single col */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {tours.filter((t: any) => t.slug !== slug).slice(0, 3).map((t: any) => (
-                <TourCard key={t.id || t.slug} tour={t} />
-              ))}
+              {(() => {
+                const currentCountry = typeof tour.location === 'object' ? tour.location.country : tour.location;
+                const otherTours = tours.filter((t: any) => t.slug !== slug);
+                
+                // 1. Same country
+                const sameCountryTours = otherTours.filter((t: any) => {
+                  const tCountry = typeof t.location === 'object' ? t.location.country : t.location;
+                  return tCountry?.toLowerCase() === currentCountry?.toLowerCase();
+                });
+                
+                // 2. Same category but different country
+                const sameCategoryTours = otherTours.filter((t: any) => {
+                  if (sameCountryTours.includes(t)) return false;
+                  
+                  // Handle both "category" (mock) and "categories" (Firestore)
+                  const tCats = t.categories || (Array.isArray(t.category) ? t.category : [t.category]);
+                  const tourCats = (tour as any).categories || (Array.isArray((tour as any).category) ? (tour as any).category : [(tour as any).category]);
+                  
+                  return Array.isArray(tCats) && Array.isArray(tourCats) && tCats.some((c: string) => tourCats.includes(c));
+                });
+                
+                // 3. Others (different country and different category)
+                const otherGlobalTours = otherTours.filter(t => !sameCountryTours.includes(t) && !sameCategoryTours.includes(t));
+
+                // Mix them up for variety: 1 from same country, 1 from same category, 1 from others, then fill up
+                const mixedTours = [
+                  ...sameCountryTours.slice(0, 1),
+                  ...sameCategoryTours.slice(0, 1),
+                  ...otherGlobalTours.slice(0, 1),
+                  ...sameCountryTours.slice(1),
+                  ...sameCategoryTours.slice(1),
+                  ...otherGlobalTours.slice(1)
+                ];
+
+                return mixedTours
+                  .slice(0, 3)
+                  .map((t: any) => (
+                    <TourCard key={t.id || t.slug} tour={t} />
+                  ));
+              })()}
             </div>
           </div>
         </div>

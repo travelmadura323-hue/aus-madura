@@ -189,7 +189,7 @@ export default function Home() {
       subtitle: "Experience Australia's iconic cities, ancient landscapes, coastal drives and celebrated wine regions through expertly curated journeys.",
       buttons: [
         { text: 'Explore Australia Journeys', link: '/destinations/australia', primary: true },
-        { text: 'Book a Free Travel Consultation', link: '#enquiry', primary: true },
+        { text: 'Book a Free Travel Consultation', link: '#enquiry', primary: false },
       ]
     },
     {
@@ -449,6 +449,36 @@ export default function Home() {
               .filter((t: any) => {
                 const loc = typeof t.location === 'string' ? t.location : t.location.country;
                 return (loc || '').toLowerCase().includes('australia');
+              })}
+          />
+        </div>
+      </section>
+
+      {/* ===== GLOBAL ESCAPES ===== */}
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+            <div className="text-left">
+              <h2 className="text-[24px] font-bold text-primary">Global Escapes</h2>
+            </div>
+            <Link
+              to="/destinations" onClick={() => window.scrollTo(0, 0)}
+              className="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors group self-end md:self-auto"
+            >
+              View All Destinations
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+          <TourCarousel
+            tours={tours
+              .map((t: any) => ({
+                ...t,
+                image: t.image || (t.gallery && t.gallery[0]) || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&h=600&q=80',
+                slug: t.slug || t.id,
+              }))
+              .filter((t: any) => {
+                const loc = (typeof t.location === 'string' ? t.location : t.location.country || '').toLowerCase();
+                return !loc.includes('india') && !loc.includes('australia');
               })}
           />
         </div>

@@ -77,7 +77,7 @@ export const tours = [
     title: "Queensland Coastal Experience 07 Days Tour Package",
     location: {
       country: "Australia",
-      cities: ["Australia", "Sydney", "Melbourne", "Gold Coast"]
+      cities: ["Queensland", "Sydney", "Melbourne", "Gold Coast"]
     },
     overview: "Gold Coast and Cairns showcase Australia’s coastal beauty. Gold Coast is known for golden beaches, vibrant city life, theme parks, and surfing culture, while Cairns is the gateway to the Great Barrier Reef, tropical rainforests, crystal-clear waters, and unforgettable nature-based adventures.",
     duration: { days: 7, nights: 6 },
@@ -139,7 +139,7 @@ export const tours = [
     title: "Australia 11 Days Group Tour Package",
     location: {
       country: "Australia",
-      cities: ["Australia", "Sydney", "Canberra", "Melbourne", "Gold Coast", "Brisbane", "Queensland"]
+      cities: ["Sydney", "Canberra", "Melbourne", "Gold Coast", "Brisbane", "Queensland"]
     },
     overview: "Gold Coast and Cairns showcase Australia’s coastal beauty. Gold Coast is known for golden beaches, vibrant city life, theme parks, and surfing culture, while Cairns is the gateway to the Great Barrier Reef, tropical rainforests, crystal-clear waters, and unforgettable nature-based adventures.",
     duration: { days: 11, nights: 10 },
@@ -147,7 +147,7 @@ export const tours = [
     travelers: { adults: 50, children: 0, infants: 0 },
     minimumAge: 2,
     startingPlace: "Sydney",
-    image: '',
+    image: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80',
     description: "Discover Australia’s top destinations with an unforgettable journey through Sydney, Canberra, and Melbourne, Gold coast and Brisbane. Experience iconic city landmarks, rich culture, and scenic landscapes. From vibrant urban life to historical attractions, Australia offers the perfect mix of adventure, relaxation, and memorable travel experiences for every kind of traveler.",
     category: ['Group Tourism', 'Family Tourism'],
     rating: 4.8,
@@ -209,7 +209,7 @@ export const tours = [
     title: "Whitsundays Couples Retreat 05 Days Tour Package",
     location: {
       country: "Australia",
-      cities: ["Australia", "Sydney", "Cairns", "Brisbane", "Queensland"]
+      cities: ["Whitsundays", "Sydney", "Cairns", "Brisbane", "Queensland"]
     },
 
     overview: "Hamilton Island offers a refined tropical escape in the Whitsundays, combining luxury resorts, palm-fringed beaches, and crystal-clear waters. Relaxed island living meets adventure through sailing, snorkeling, and hiking, all framed by coral reefs, stunning sunsets, and effortless access to the Great Barrier Reef for couples, families, honeymooners, explorers, and dreamers.",

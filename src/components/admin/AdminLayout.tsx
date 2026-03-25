@@ -28,16 +28,14 @@ const AdminLayout = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`flex items-center px-3 py-2 text-sm font-medium rounded-md ${
-                    isActive
+                  className={`flex items-center px-3 py-2 text-sm font-medium rounded-md ${isActive
                       ? 'bg-primary/10 text-primary'
                       : 'text-gray-700 hover:bg-gray-50'
-                  }`}
+                    }`}
                 >
                   <item.icon
-                    className={`mr-3 h-5 w-5 ${
-                      isActive ? 'text-primary' : 'text-gray-400'
-                    }`}
+                    className={`mr-3 h-5 w-5 ${isActive ? 'text-primary' : 'text-gray-400'
+                      }`}
                   />
                   {item.name}
                 </Link>
@@ -66,25 +64,24 @@ const AdminLayout = () => {
 
       {/* Mobile nav (bottom) - optional but good to have a way out */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around p-3 z-50">
-         {navigation.map((item) => {
-              const isActive = location.pathname === item.href;
-              return (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`flex flex-col items-center p-2 rounded-lg ${
-                    isActive ? 'text-primary' : 'text-gray-500'
-                  }`}
-                >
-                  <item.icon className="h-6 w-6" />
-                  <span className="text-[10px] mt-1">{item.name}</span>
-                </Link>
-              );
-         })}
-         <button onClick={logout} className="flex flex-col items-center p-2 rounded-lg text-gray-500">
-             <LogOut className="h-6 w-6" />
-             <span className="text-[10px] mt-1">Logout</span>
-         </button>
+        {navigation.map((item) => {
+          const isActive = location.pathname === item.href;
+          return (
+            <Link
+              key={item.name}
+              to={item.href}
+              className={`flex flex-col items-center p-2 rounded-lg ${isActive ? 'text-primary' : 'text-gray-500'
+                }`}
+            >
+              <item.icon className="h-6 w-6" />
+              <span className="text-[10px] mt-1">{item.name}</span>
+            </Link>
+          );
+        })}
+        <button onClick={logout} className="flex flex-col items-center p-2 rounded-lg text-gray-500">
+          <LogOut className="h-6 w-6" />
+          <span className="text-[10px] mt-1">Logout</span>
+        </button>
       </div>
 
       {/* Main content */}
