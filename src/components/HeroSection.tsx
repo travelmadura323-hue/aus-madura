@@ -1,7 +1,7 @@
 import { motion, useAnimation, PanInfo } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import react from 'react';
+import React from 'react';
 
 interface Slide {
   id: number;

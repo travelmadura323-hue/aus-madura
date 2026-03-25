@@ -96,7 +96,7 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
       return;
     }
 
-    const crmUrl = import.meta.env.VITE_CRM_URL;
+    const crmUrl = import.meta.env.VITE_CRM_URL1;
     if (!crmUrl) {
       setSubmitError("CRM URL is not configured. Please contact support.");
       return;
